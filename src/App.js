@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
 import 'milligram';
-import WidgetList from './containers/WidgetList';
+import './App.css';
+import WidgetList from './components/WidgetList';
 
 class App extends Component {
   render() {
