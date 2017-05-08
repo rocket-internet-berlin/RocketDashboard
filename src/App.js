@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-import WidgetList from './components/WidgetList';
-import Button from './components/Button';
+import Dashboard from './containers/Dashboard';
 
 const App = () => (
   <div className="App container">
-    <Button label="Refresh" onClick={() => {}} />
-    <WidgetList />
+    <Dashboard />
   </div>
 );
 
 export default App;
+

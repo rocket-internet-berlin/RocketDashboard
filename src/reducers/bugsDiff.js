@@ -9,9 +9,11 @@ const bugsDiff = (state = defaultState, action) => {
   switch (action.type) {
     case 'REFRESH_ALL':
     default:  // triggered when a page is reloaded
-      return { ...state,
+      return {
+        ...state,
         lastWeek: Sugar.Number.random(0, 20),
-        thisWeek: Sugar.Number.random(0, 20) };
+        thisWeek: Sugar.Number.random(0, 20),
+      };
   }
 };
 

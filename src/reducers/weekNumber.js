@@ -8,8 +8,10 @@ const weekNumber = (state = defaultState, action) => {
   switch (action.type) {
     case 'REFRESH_ALL':
     default:  // triggered when a page is reloaded
-      return { ...state,
-        aNumber: Sugar.Number.random(1, 52) };
+      return {
+        ...state,
+        aNumber: Sugar.Number.random(1, 52),
+      };
   }
 };
 
