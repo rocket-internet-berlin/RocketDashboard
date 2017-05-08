@@ -1,5 +1,4 @@
-
-export const refreshAll = (id) => ({
+const refreshAll = () => ({
   type: 'REFRESH_ALL',
 });
-
+export default refreshAll;
