@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
-import WidgetList from './components/WidgetList';
+import Dashboard from './containers/Dashboard';
 
 const App = () => (
   <div className="App container">
-    <WidgetList />
+    <Dashboard />
   </div>
 );
 
 export default App;
+

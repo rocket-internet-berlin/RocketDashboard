@@ -1,4 +1,8 @@
-const refreshAll = () => ({
+
+export const refreshAll = () => ({
   type: 'REFRESH_ALL',
 });
-export default refreshAll;
+
+export const refreshSome = () => ({
+  type: 'REFRESH_SOME',
+});

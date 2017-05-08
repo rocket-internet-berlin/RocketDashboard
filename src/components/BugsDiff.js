@@ -15,13 +15,8 @@ const mapStateToProps = (state) => ({
 });
 
 BugsDiff.propTypes = {
-  thisWeek: PropTypes.number,
-  lastWeek: PropTypes.number,
-};
-
-BugsDiff.defaultProps = {
-  thisWeek: 0,
-  lastWeek: 0,
+  thisWeek: PropTypes.number.isRequired,
+  lastWeek: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(BugsDiff);
