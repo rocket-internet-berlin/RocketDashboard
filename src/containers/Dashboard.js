@@ -6,10 +6,9 @@ import Button from '../components/Button';
 import { refreshAll } from '../actions';
 
 class Dashboard extends Component {
-
   handleRefresh = () => {
     this.props.refreshAll();
-  }
+  };
 
   render() {
     return (
@@ -21,7 +20,7 @@ class Dashboard extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   state,
 });
 

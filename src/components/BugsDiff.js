@@ -9,7 +9,7 @@ const BugsDiff = ({ lastWeek, thisWeek }) => (
   </div>
 );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   lastWeek: state.bugsDiff.lastWeek,
   thisWeek: state.bugsDiff.thisWeek,
 });
