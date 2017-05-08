@@ -3,9 +3,19 @@ import WeekNumber from '../components/WeekNumber';
 import BugsDiff from '../components/BugsDiff';
 
 const WidgetList = () => (
-  <div className="container">
-    <WeekNumber />
-    <BugsDiff />
+  <div className="row">
+    <div className="col-md-4">
+      <WeekNumber />
+    </div>
+    <div className="col-md-4">
+      <BugsDiff />
+    </div>
+    <div className="col-md-4">
+      <WeekNumber />
+    </div>
+    <div className="col-md-4">
+      <BugsDiff />
+    </div>
   </div>
 );
 

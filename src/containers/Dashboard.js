@@ -12,7 +12,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="App container">
+      <div className="container">
         <Button label="Refresh" onClick={this.handleRefresh} />
         <WidgetList />
       </div>
