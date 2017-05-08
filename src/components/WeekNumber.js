@@ -2,21 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-const WeekNumber = ({ aNumber }) => (
+const WeekNumber = ({ week }) => (
 
   <div className="WeekNumber widget">
     <div className="WeekNumber-title widget-title">Week</div>
-    <div className="WeekNumber-number widget-number">{aNumber}</div>
+    <div className="WeekNumber-number widget-number">{week}</div>
   </div>
 
 );
 
 const mapStateToProps = (state) => ({
-  aNumber: state.weekNumber.aNumber,
+  week: state.weekNumber.week,
 });
 
 WeekNumber.propTypes = {
-  aNumber: PropTypes.number.isRequired,
+  week: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(WeekNumber);
