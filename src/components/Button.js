@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Button = ({ onClick, label }) => (
-  <button onClick={onClick}>{label}</button>
+  <button className="btn btn-primary" onClick={onClick}>{label}</button>
 );
 
 Button.propTypes = {
