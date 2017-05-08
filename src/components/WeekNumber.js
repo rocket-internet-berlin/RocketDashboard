@@ -1,29 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-class WeekNumber extends Component {
-    static defaultProps = {
-        weekNumber: {
-            number: 0
-        }
-    };
+const WeekNumber = ({ weeknumber }) => (
 
-    render() {
-        return (
-            <div className="WeekNumber widget">
-                <div className="WeekNumber-title widget-title">Week</div>
-                <div className="WeekNumber-number widget-number">{this.props.weekNumber.number}</div>
-            </div>
-        )
-    }
+  <div className="WeekNumber widget">
+    <div className="WeekNumber-title widget-title">Week</div>
+    <div className="WeekNumber-number widget-number">{weeknumber}</div>
+  </div>
 
-}
+);
 
 const mapStateToProps = (state) => ({
-    weekNumber: state.weekNumber
+  weeknumber: state.weekNumber,
 });
 
-const mapDispatchToProps = {
+WeekNumber.propTypes = {
+  weeknumber: PropTypes.number.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(WeekNumber);
+export default connect(mapStateToProps)(WeekNumber);
