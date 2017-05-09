@@ -1,35 +1,18 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import WidgetList from '../components/WidgetList';
-import Button from '../components/Button';
-import { refreshAll } from '../actions';
+import WidgetList from '../components/WidgetList/WidgetList';
+import NavigationBar from '../components/NavigationBar/NavigationBar';
+import './Dashboard.css';
 
 class Dashboard extends Component {
-  handleRefresh = () => {
-    this.props.refreshAll();
-  };
-
   render() {
     return (
-      <div className="App container">
-        <Button label="Refresh" onClick={this.handleRefresh} />
+      <div className="Dashboard container">
+        <NavigationBar />
         <WidgetList />
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({
-  state,
-});
-
-const mapDispatchToProps = {
-  refreshAll,
-};
-
-Dashboard.propTypes = {
-  refreshAll: PropTypes.func.isRequired,
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
+export default Dashboard;
