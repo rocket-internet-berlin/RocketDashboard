@@ -15,7 +15,7 @@ class NavigationBar extends Component {
       <nav className="NavigationBar navbar navbar-default">
         <div className="container-fluid">
           <div className="navbar-header">
-            <a className="navbar-brand" href="#">RocketDashboard</a>
+            <div className="navbar-brand">RocketDashboard</div>
           </div>
           <ul className="nav navbar-nav navbar-right">
             <li className="active"><button className="NavigationBar__refresh btn btn-default navbar-btn" onClick={this.handleRefresh}>Refresh</button></li>

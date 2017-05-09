@@ -5,16 +5,16 @@ import BugsDiff from '../BugsDiff';
 
 const WidgetList = () => (
   <div className="row WidgetList">
-    <div className="col-md-4">
+    <div className="col-xs-6 col-sm-4 col-lg-3">
       <WeekNumber />
     </div>
-    <div className="col-md-4">
+    <div className="col-xs-6 col-sm-4 col-lg-3">
       <BugsDiff />
     </div>
-    <div className="col-md-4">
+    <div className="col-xs-6 col-sm-4 col-lg-3">
       <WeekNumber />
     </div>
-    <div className="col-md-4">
+    <div className="col-xs-6 col-sm-4 col-lg-3">
       <BugsDiff />
     </div>
   </div>
