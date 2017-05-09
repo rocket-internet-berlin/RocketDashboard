@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const BugsDiff = ({ lastWeek, thisWeek }) => (
   <div className="panel panel-primary">
     <div className="panel-heading">Bugs</div>
-    <div className="panel-title widget-body">{thisWeek} / {lastWeek}</div>
+    <div className="panel-body widget-body">{thisWeek} / {lastWeek}</div>
   </div>
 );
 

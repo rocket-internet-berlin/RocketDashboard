@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import WidgetList from '../components/WidgetList';
+import WidgetList from '../components/WidgetList/WidgetList';
 import Button from '../components/Button';
 import { refreshAll } from '../actions';
 

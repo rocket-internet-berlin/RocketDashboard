@@ -1,9 +1,10 @@
 import React from 'react';
-import WeekNumber from '../components/WeekNumber';
-import BugsDiff from '../components/BugsDiff';
+import './WidgetList.css';
+import WeekNumber from '../WeekNumber';
+import BugsDiff from '../BugsDiff';
 
 const WidgetList = () => (
-  <div className="row">
+  <div className="row WidgetList">
     <div className="col-md-4">
       <WeekNumber />
     </div>
