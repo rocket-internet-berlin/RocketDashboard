@@ -1,4 +1,3 @@
-
 export const refreshAll = () => ({
   type: 'REFRESH_ALL',
 });
