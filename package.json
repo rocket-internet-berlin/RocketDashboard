@@ -1,16 +1,18 @@
 {
-  "name": "intdash-one",
+  "name": "ROCKETDASHBOARD",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^3.3.7",
+    "prop-types": "^15.5.8",
     "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
-    "whatwg-fetch": "^2.0.1",
     "sugar": "^2.0.4",
-    "prop-types": "^15.5.8"
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -38,12 +40,15 @@
     "fs-extra": "0.30.0",
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "0.17.3",
+    "husky": "^0.13.3",
     "jest": "18.1.0",
     "json-loader": "0.5.4",
+    "lint-staged": "^3.4.1",
     "materialize-css": "^0.98.2",
     "milligram": "^1.3.0",
     "object-assign": "4.1.1",
     "postcss-loader": "1.2.2",
+    "prettier": "^1.3.1",
     "promise": "7.1.1",
     "react-dev-utils": "^0.5.2",
     "style-loader": "0.13.1",
@@ -57,7 +62,15 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "lint:js": "eslint --ext .js src/**/*.js"
+    "lint:js": "eslint --ext .js src/**/*.js",
+    "lint:js-fix": "eslint --fix --ext .js src/**/*.js",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --single-quote --trailing-comma all --write",
+      "git add"
+    ]
   },
   "jest": {
     "collectCoverageFrom": [

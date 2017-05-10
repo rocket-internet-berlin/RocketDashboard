@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 const WeekNumber = ({ week }) => (
-
-  <div className="WeekNumber widget">
-    <div className="WeekNumber-title widget-title">Week</div>
-    <div className="WeekNumber-number widget-number">{week}</div>
+  <div className="panel panel-primary">
+    <div className="panel-heading">Week</div>
+    <div className="panel-body widget-body">
+      {week}
+    </div>
   </div>
-
 );
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   week: state.weekNumber.week,
 });
 
