@@ -12,7 +12,7 @@ export const receiveWeekNumber = (json) => ({
 
 export const fetchWeekNumber = () => dispatch => {
   dispatch(requestWeekNumber());
-  return fetch('http://mockbin.org/bin/af0bab28-d7f8-4ff5-8131-53ffd952abe2')
+  return fetch('/weekNumberApi.json')
     .then(response => response.json())
     .then(json => dispatch(receiveWeekNumber(json)));
 };

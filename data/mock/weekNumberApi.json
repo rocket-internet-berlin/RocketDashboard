@@ -1,9 +1,0 @@
-/* JSend REST-style strucure - https://labs.omniti.com/labs/jsend */
-{
-  "status": "success",
-  "message": "",
-  "data":
-    {
-      "week": 10000
-    }
-}
