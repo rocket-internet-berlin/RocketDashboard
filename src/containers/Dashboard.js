@@ -7,6 +7,10 @@ import { refreshAll } from '../actions';
 
 class Dashboard extends Component {
 
+  componentDidMount() {
+    this.props.refreshAll();
+  }
+
   handleRefresh = () => {
     this.props.refreshAll();
   }

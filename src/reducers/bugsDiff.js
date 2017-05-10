@@ -1,5 +1,3 @@
-import Sugar from 'sugar/number';
-
 const defaultState = {
   lastWeek: 0,
   thisWeek: 0,
@@ -7,12 +5,15 @@ const defaultState = {
 
 const bugsDiff = (state = defaultState, action) => {
   switch (action.type) {
-    case 'REFRESH_ALL':
+    case 'RECEIVE_BUGSDIFF':
+      return {
+        ...state,
+        lastWeek: action.lastWeek,
+        thisWeek: action.thisWeek,
+      };
     default:  // triggered when a page is reloaded
       return {
         ...state,
-        lastWeek: Sugar.Number.random(0, 20),
-        thisWeek: Sugar.Number.random(0, 20),
       };
   }
 };

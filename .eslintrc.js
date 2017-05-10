@@ -18,5 +18,6 @@ module.exports = {
         'max-len': 0,
         'no-console': 0,
         "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "no-unused-vars": 1,
     }
 }
