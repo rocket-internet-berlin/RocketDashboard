@@ -1,9 +1,9 @@
 @import "../sass/config";
 
 .Dashboard {
-  background: white;
-  border-left: 1px solid #e7e7e7;
-  border-right: 1px solid #e7e7e7;
+  background: $default-bg-color;
+  border-left: $line-thickness solid $line-color;
+  border-right: $line-thickness solid $line-color;
   padding-top: $margin;
   min-height: calc(100vh);
 }
