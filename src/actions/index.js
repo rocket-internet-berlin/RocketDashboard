@@ -4,7 +4,7 @@ export const requestWeekNumber = () => ({
   type: 'REQUEST_WEEKNUMBER',
 });
 
-export const receiveWeekNumber = (json) => ({
+export const receiveWeekNumber = json => ({
   type: 'RECEIVE_WEEKNUMBER',
   week: json.data.week,
 });
@@ -20,7 +20,7 @@ export const requestBugsDiff = () => ({
   type: 'REQUEST_BUGSDIFF',
 });
 
-export const receiveBugsDiff = (json) => ({
+export const receiveBugsDiff = json => ({
   type: 'RECEIVE_BUGSDIFF',
   lastWeek: json.data.lastWeek,
   thisWeek: json.data.thisWeek,
@@ -37,7 +37,3 @@ export const refreshAll = () => dispatch => {
   dispatch(fetchWeekNumber());
   dispatch(fetchBugsDiff());
 };
-
-export const refreshSome = () => ({
-  type: 'REFRESH_SOME',
-});
