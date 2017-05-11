@@ -1,5 +1,5 @@
 import React from 'react';
-import './WidgetList.css';
+import './WidgetList.scss';
 import WeekNumber from '../WeekNumber';
 import BugsDiff from '../BugsDiff';
 

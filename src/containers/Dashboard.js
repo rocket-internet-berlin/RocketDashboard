@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import WidgetList from '../components/WidgetList/WidgetList';
 import NavigationBar from '../components/NavigationBar/NavigationBar';
-import './Dashboard.css';
+import './Dashboard.scss';
 
 class Dashboard extends Component {
   render() {

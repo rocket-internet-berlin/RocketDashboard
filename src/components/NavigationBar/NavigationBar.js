@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { refreshAll } from '../../actions';
-import './NavigationBar.css';
+import './NavigationBar.scss';
 
 class NavigationBar extends Component {
   handleRefresh = () => {
@@ -18,7 +18,14 @@ class NavigationBar extends Component {
             <div className="navbar-brand">RocketDashboard</div>
           </div>
           <ul className="nav navbar-nav navbar-right">
-            <li className="active"><button className="NavigationBar__refresh btn btn-default navbar-btn" onClick={this.handleRefresh}>Refresh</button></li>
+            <li className="active">
+              <button
+                className="NavigationBar__refresh btn btn-default navbar-btn"
+                onClick={this.handleRefresh}
+              >
+                Refresh
+              </button>
+            </li>
           </ul>
         </div>
       </nav>
@@ -26,7 +33,7 @@ class NavigationBar extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   state,
 });
 
