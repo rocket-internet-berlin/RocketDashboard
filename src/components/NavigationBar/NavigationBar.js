@@ -18,7 +18,14 @@ class NavigationBar extends Component {
             <div className="navbar-brand">RocketDashboard</div>
           </div>
           <ul className="nav navbar-nav navbar-right">
-            <li className="active"><button className="NavigationBar__refresh btn btn-default navbar-btn" onClick={this.handleRefresh}>Refresh</button></li>
+            <li className="active">
+              <button
+                className="NavigationBar__refresh btn btn-default navbar-btn"
+                onClick={this.handleRefresh}
+              >
+                Refresh
+              </button>
+            </li>
           </ul>
         </div>
       </nav>
@@ -26,7 +33,7 @@ class NavigationBar extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   state,
 });
 
