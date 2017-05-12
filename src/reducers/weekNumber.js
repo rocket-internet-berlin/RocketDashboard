@@ -9,7 +9,8 @@ const weekNumber = (state = defaultState, action) => {
         ...state,
         week: action.week,
       };
-    default:  // triggered when a page is reloaded
+    default:
+      // triggered when a page is reloaded
       return {
         ...state,
       };

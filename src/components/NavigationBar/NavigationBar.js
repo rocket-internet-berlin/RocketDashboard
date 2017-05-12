@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { refreshAll } from '../../actions';
-import './NavigationBar.css';
+import './NavigationBar.scss';
 
 class NavigationBar extends Component {
   handleRefresh = () => {
