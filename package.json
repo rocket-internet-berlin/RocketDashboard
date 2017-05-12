@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "prop-types": "^15.5.8",
+    "prop-types": "^15.5.9",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
@@ -12,10 +12,10 @@
     "redux": "^3.6.0",
     "redux-thunk": "^2.2.0",
     "sugar": "^2.0.4",
-    "whatwg-fetch": "^2.0.1"
+    "whatwg-fetch": "^2.0.2"
   },
   "devDependencies": {
-    "autoprefixer": "^6.7.2",
+    "autoprefixer": "^7.0.1",
     "babel-core": "^6.22.1",
     "babel-eslint": "^7.2.3",
     "babel-loader": "6.2.10",
@@ -52,8 +52,7 @@
     "url-loader": "0.5.7",
     "webpack": "1.14.0",
     "webpack-dev-server": "1.16.2",
-    "webpack-manifest-plugin": "1.1.0",
-    "whatwg-fetch": "2.0.2"
+    "webpack-manifest-plugin": "1.1.0"
   },
   "scripts": {
     "start": "node scripts/start.js",
