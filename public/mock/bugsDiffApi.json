@@ -1,0 +1,9 @@
+{
+  "_comment": "JSend REST-style structure - https://labs.omniti.com/labs/jsend",
+  "status": "success",
+  "message": "",
+  "data": {
+    "lastWeek": 15,
+    "thisWeek": 13
+  }
+}
