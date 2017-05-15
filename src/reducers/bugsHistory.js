@@ -1,5 +1,6 @@
 const defaultState = {
   history: [],
+  period: 'loading...',
 };
 
 const bugsHistory = (state = defaultState, action) => {
@@ -8,6 +9,7 @@ const bugsHistory = (state = defaultState, action) => {
       return {
         ...state,
         history: action.history,
+        period: action.period,
       };
     default:
       // triggered when a page is reloaded

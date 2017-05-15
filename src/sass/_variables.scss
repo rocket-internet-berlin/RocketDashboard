@@ -9,5 +9,11 @@ $line-thickness: 1px;
 $margin: 15px;
 $widget-body-min-height: 100px;
 
+// bugs history chart
+// (note: the variables below are not used, they are added here only as a memo)
+$chart-grid-stroke: $line-color;
+$chart-axis-stroke: #777;
+$chart-bar-fill: #ff9c00;
+
 // to override default bootstrap variables
 // https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_variables.scss

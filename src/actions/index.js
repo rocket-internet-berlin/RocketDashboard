@@ -46,6 +46,7 @@ export const requestBugsHistory = () => ({
 export const receiveBugsHistory = json => ({
   type: 'RECEIVE_BUGSHISTORY',
   history: json.data.history,
+  period: json.data.period,
 });
 
 export const fetchBugsHistory = () => dispatch => {

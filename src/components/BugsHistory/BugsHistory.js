@@ -11,9 +11,9 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
-const BugsHistory = ({ history }) => (
+const BugsHistory = ({ history, period }) => (
   <div className="panel panel-primary">
-    <div className="panel-heading">Bugs History</div>
+    <div className="panel-heading">Bugs History ({period})</div>
     <div className="panel-body widget-body">
       <ResponsiveContainer width="100%" aspect={3}>
         <BarChart
@@ -33,6 +33,7 @@ const BugsHistory = ({ history }) => (
 
 const mapStateToProps = state => ({
   history: state.bugsHistory.history,
+  period: state.bugsHistory.period,
 });
 
 BugsHistory.propTypes = {
@@ -42,6 +43,7 @@ BugsHistory.propTypes = {
       bugs: React.PropTypes.number.isRequired,
     }),
   ).isRequired,
+  period: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(BugsHistory);

@@ -3,6 +3,7 @@
   "status": "success",
   "message": "",
   "data": {
+    "period": "Last 3 Days",
     "history": [
       {
         "label": "Fri",
