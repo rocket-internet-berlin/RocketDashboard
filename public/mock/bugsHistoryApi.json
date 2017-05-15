@@ -1,0 +1,21 @@
+{
+  "_comment": "JSend REST-style structure - https://labs.omniti.com/labs/jsend",
+  "status": "success",
+  "message": "",
+  "data": {
+    "history": [
+      {
+        "label": "Fri",
+        "bugs": 10
+      },
+      {
+        "label": "Mon",
+        "bugs": 12
+      },
+      {
+        "label": "Tue",
+        "bugs": 7
+      }
+    ]
+  }
+}

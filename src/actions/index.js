@@ -1,5 +1,7 @@
 import 'whatwg-fetch';
 
+// week number
+
 export const requestWeekNumber = () => ({
   type: 'REQUEST_WEEKNUMBER',
 });
@@ -15,6 +17,8 @@ export const fetchWeekNumber = () => dispatch => {
     .then(response => response.json())
     .then(json => dispatch(receiveWeekNumber(json)));
 };
+
+// bugs diffrence
 
 export const requestBugsDiff = () => ({
   type: 'REQUEST_BUGSDIFF',
@@ -33,7 +37,28 @@ export const fetchBugsDiff = () => dispatch => {
     .then(json => dispatch(receiveBugsDiff(json)));
 };
 
+// bugs history
+
+export const requestBugsHistory = () => ({
+  type: 'REQUEST_BUGSHISTORY',
+});
+
+export const receiveBugsHistory = json => ({
+  type: 'RECEIVE_BUGSHISTORY',
+  history: json.data.history,
+});
+
+export const fetchBugsHistory = () => dispatch => {
+  dispatch(requestBugsHistory());
+  return fetch('/mock/bugsHistoryApi.json')
+    .then(response => response.json())
+    .then(json => dispatch(receiveBugsHistory(json)));
+};
+
+// refresh all
+
 export const refreshAll = () => dispatch => {
   dispatch(fetchWeekNumber());
   dispatch(fetchBugsDiff());
+  dispatch(fetchBugsHistory());
 };
