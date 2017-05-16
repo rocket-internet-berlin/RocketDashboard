@@ -6,16 +6,24 @@
     "period": "Last 3 Days",
     "history": [
       {
-        "label": "Fri",
-        "bugs": 10
-      },
-      {
         "label": "Mon",
-        "bugs": 12
+        "bugs": 3
       },
       {
         "label": "Tue",
-        "bugs": 7
+        "bugs": 12
+      },
+      {
+        "label": "Wed",
+        "bugs": 2
+      },
+      {
+        "label": "Thu",
+        "bugs": 10
+      },
+      {
+        "label": "Fri",
+        "bugs": 4
       }
     ]
   }
