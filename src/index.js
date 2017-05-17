@@ -7,12 +7,16 @@ import thunk from 'redux-thunk';
 import App from './App';
 import reducer from './reducers';
 
-const enhancer = window.__REDUX_DEVTOOLS_EXTENSION__ &&
-  process.env.NODE_ENV === 'development'
-  ? compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__())
-  : applyMiddleware(thunk);
+const storeEnhancers = [applyMiddleware(thunk)];
 
-const store = createStore(reducer, enhancer);
+if (
+  window.__REDUX_DEVTOOLS_EXTENSION__ &&
+  process.env.NODE_ENV === 'development'
+) {
+  storeEnhancers.push(window.__REDUX_DEVTOOLS_EXTENSION__());
+}
+
+const store = createStore(reducer, compose(...storeEnhancers));
 
 ReactDOM.render(
   <Provider store={store}>
