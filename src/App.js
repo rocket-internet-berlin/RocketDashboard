@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import Dashboard from './containers/Dashboard';
 
 const App = () => (
@@ -9,4 +9,3 @@ const App = () => (
 );
 
 export default App;
-

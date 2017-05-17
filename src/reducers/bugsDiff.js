@@ -11,7 +11,8 @@ const bugsDiff = (state = defaultState, action) => {
         lastWeek: action.lastWeek,
         thisWeek: action.thisWeek,
       };
-    default:  // triggered when a page is reloaded
+    default:
+      // triggered when a page is reloaded
       return {
         ...state,
       };

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import WidgetList from '../components/WidgetList/WidgetList';
 import NavigationBar from '../components/NavigationBar/NavigationBar';
-import './Dashboard.css';
+import './Dashboard.scss';
 import { refreshAll } from '../actions';
 
 class Dashboard extends Component {
