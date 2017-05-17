@@ -9,12 +9,12 @@ import App from './App';
 import './index.css';
 import reducer from './reducers';
 
-const preloadedState = window.__REDUX_DEVTOOLS_EXTENSION__ &&
+const enhancer = window.__REDUX_DEVTOOLS_EXTENSION__ &&
   process.env.NODE_ENV === 'development'
   ? compose(applyMiddleware(thunk), window.__REDUX_DEVTOOLS_EXTENSION__())
   : applyMiddleware(thunk);
 
-const store = createStore(reducer, preloadedState);
+const store = createStore(reducer, enhancer);
 
 ReactDOM.render(
   <Provider store={store}>
