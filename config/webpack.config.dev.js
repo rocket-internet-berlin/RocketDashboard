@@ -180,19 +180,6 @@ module.exports = {
     ],
   },
 
-  // We use PostCSS for autoprefixing only.
-  // postcss: function() {
-  //   return [
-  //     autoprefixer({
-  //       browsers: [
-  //         '>1%',
-  //         'last 4 versions',
-  //         'Firefox ESR',
-  //         'not ie < 9', // React doesn't support IE8 anyway
-  //       ],
-  //     }),
-  //   ];
-  // },
   plugins: [
     new ExtractTextPlugin({
       // define where to save the file
@@ -225,6 +212,7 @@ module.exports = {
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
     new webpack.LoaderOptionsPlugin({
       options: {
+        // We use PostCSS for autoprefixing only.
         postcss: [
           autoprefixer({
             browsers: [
