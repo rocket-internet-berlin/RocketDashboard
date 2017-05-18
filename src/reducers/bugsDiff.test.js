@@ -1,7 +1,7 @@
 import bugsDiff from './bugsDiff';
 
 describe('bugsDiff reducer', () => {
-  it('should handle RECEIVE_BUGSDIFF', () => {
+  it('updates the state with the data from a RECEIVE_BUGSDIFF action', () => {
     expect(
       bugsDiff(
         {},
@@ -17,7 +17,7 @@ describe('bugsDiff reducer', () => {
     });
   });
 
-  it('should not handle other actions', () => {
+  it('does not handle other actions', () => {
     expect(
       bugsDiff(
         {

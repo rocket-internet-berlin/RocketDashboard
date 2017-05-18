@@ -1,7 +1,7 @@
 import weekNumber from './weekNumber';
 
 describe('weekNumber reducer', () => {
-  it('should handle RECEIVE_WEEKNUMBER', () => {
+  it('updates the state with the data from a RECEIVE_WEEKNUMBER action', () => {
     expect(
       weekNumber(
         {},
@@ -15,7 +15,7 @@ describe('weekNumber reducer', () => {
     });
   });
 
-  it('should not handle other actions', () => {
+  it('does not handle other actions', () => {
     expect(
       weekNumber(
         {
