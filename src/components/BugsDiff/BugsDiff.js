@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import './BugsDiff.scss';
 
 const BugsDiff = ({ lastWeek, thisWeek }) => (
   <div className="panel panel-primary">

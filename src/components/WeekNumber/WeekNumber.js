@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import './WeekNumber.scss';
 
 const WeekNumber = ({ week }) => (
   <div className="panel panel-primary">
