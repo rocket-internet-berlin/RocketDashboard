@@ -16,7 +16,7 @@ describe('WeekNumber component', () => {
     widget,
     'widget-body',
   );
-  it('displays 99', () => {
+  it('displays 999', () => {
     expect(body.textContent).toEqual('999');
   });
 });

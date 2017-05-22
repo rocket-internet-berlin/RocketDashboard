@@ -21,3 +21,6 @@ BugsDiff.propTypes = {
 };
 
 export default connect(mapStateToProps)(BugsDiff);
+
+// Note: PureBugsDiff is BugsDiff without redux (for unit tests)
+export { BugsDiff as PureBugsDiff };
