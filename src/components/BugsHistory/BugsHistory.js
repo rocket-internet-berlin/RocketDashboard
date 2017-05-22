@@ -59,3 +59,6 @@ BugsHistory.propTypes = {
 };
 
 export default connect(mapStateToProps)(BugsHistory);
+
+// Note: PureBugsHistory is BugsHistory without redux (for unit tests)
+export { BugsHistory as PureBugsHistory };
