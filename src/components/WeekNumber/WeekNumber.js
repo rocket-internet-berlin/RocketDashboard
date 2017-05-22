@@ -21,3 +21,6 @@ WeekNumber.propTypes = {
 };
 
 export default connect(mapStateToProps)(WeekNumber);
+
+// Note: PureWeekNumber is WeekNumber without redux (for unit tests)
+export { WeekNumber as PureWeekNumber };

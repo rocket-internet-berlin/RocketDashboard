@@ -7,12 +7,12 @@
     "concurrently": "^3.4.0",
     "prop-types": "^15.5.9",
     "react": "^15.5.4",
+    "react-addons-test-utils": "^15.5.1",
     "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
     "recharts": "^0.22.4",
     "redux": "^3.6.0",
-    "redux-mock-store": "^1.2.3",
     "redux-thunk": "^2.2.0",
     "sugar": "^2.0.4",
     "whatwg-fetch": "^2.0.2"
