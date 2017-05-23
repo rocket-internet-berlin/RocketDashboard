@@ -3,6 +3,7 @@
 - Chart widget.
 - Backend (based on **Express**).
 - An issue when **Redux DevTools** are not installed in the browser is fixed.
+- Changelog, **MIT license**, and readme are added.
 
 
 ### Week 2 (12.05.17)
