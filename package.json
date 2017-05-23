@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "concurrently": "^3.4.0",
     "prop-types": "^15.5.9",
     "react": "^15.5.4",
     "react-bootstrap": "^0.31.0",
@@ -63,7 +64,8 @@
     "whatwg-fetch": "2.0.2"
   },
   "scripts": {
-    "start": "node scripts/start.js",
+    "start": "concurrently \"node scripts/client-start.js\" \"node server/scripts/server-start.js\"",
+    "client": "node scripts/client-start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "lint:js": "eslint --ext .js src/**/*.js",
