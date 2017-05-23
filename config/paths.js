@@ -78,4 +78,8 @@ module.exports = {
   servedPath: getServedPath(resolveApp('package.json')),
   bootstrap: resolveApp('./node_modules/bootstrap-sass/assets/stylesheets'),
   sassVariables: resolveApp('./src/sass'),
+
+  serverSrc: resolveApp('server'),
+  serverIndexJs: resolveApp('server/app.js'),
+  serverBuild: resolveApp('build-server'),
 };
