@@ -3,7 +3,7 @@
 A dashboard with Jira integration.
 It's perfect for development teams who want to be aware of their progress in real time.
 
-## Available widgets
+## Widgets
 
 - **Bugs History** – bugs amount chart.
 - **Week Number** – the current week number.
@@ -13,7 +13,14 @@ It's perfect for development teams who want to be aware of their progress in rea
 
 ## Installation
 
-TODO
+- Clone ([SSH](git@github.com:rocket-internet-berlin/RocketDashboard.git) or [HTTPS](https://github.com/rocket-internet-berlin/RocketDashboard.git)) or [download](https://github.com/rocket-internet-berlin/RocketDashboard/archive/master.zip) the repository.
+
+- [Install](https://nodejs.org) **node.js**.
+
+Optional:
+
+- [Add](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) **Redux DevTools** extension to Chrome.
+- [Add](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) **React Developer Tools** extension to Chrome.
 
 ## Collaboration
 
