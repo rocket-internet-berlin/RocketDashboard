@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 
+var chalk = require('chalk');
 var app = require('../app');
-var debug = require('debug')('server:server');
 var http = require('http');
 
 /**
@@ -14,6 +14,11 @@ var http = require('http');
 
 var port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
+
+var protocol = process.env.HTTPS === 'true' ? "https" : "http";
+var host = process.env.HOST || 'localhost';
+
+console.log(chalk.cyan('Starting the Express server...'));
 
 /**
  * Create HTTP server.
@@ -65,11 +70,11 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+      console.error(chalk.red(bind + ' requires elevated privileges'));
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+      console.error(chalk.red(bind + ' is already in use'));
       process.exit(1);
       break;
     default:
@@ -82,9 +87,6 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  console.log('Express is running at: ' + chalk.cyan(protocol + '://' + host + ':' + port + '/'));
+  console.log();
 }
