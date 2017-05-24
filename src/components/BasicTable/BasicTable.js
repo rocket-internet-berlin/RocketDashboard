@@ -5,7 +5,9 @@ const BasicTable = ({ data }) => (
   <div className="table-responsive">
     <table className="table">
       <tbody>
-        {data.map(item => <tr><td>{item.label}</td><td>{item.bugs}</td></tr>)}
+        {data.map(item => (
+          <tr key={item.label}><td>{item.label}</td><td>{item.bugs}</td></tr>
+        ))}
       </tbody>
     </table>
   </div>
@@ -14,8 +16,8 @@ const BasicTable = ({ data }) => (
 BasicTable.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      bugs: PropTypes.isRequired,
     }),
   ).isRequired,
 };
