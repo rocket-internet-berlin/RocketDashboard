@@ -21,12 +21,12 @@ It's perfect for development teams who want to be aware of their progress in rea
 
 The last command will start a development server and open http://localhost:3000 with the dashboard site running in chrome.
 
-Optional:
+### Optional:
 
 - [Add](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) **Redux DevTools** extension to Chrome.
 - [Add](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) **React Developer Tools** extension to Chrome.
 - You might want to use [yarn](https://yarnpkg.com) as a replacement for [npm](https://www.npmjs.com):
-  - open Terminal and execute: `brew install yarn`.
+  - open terminal and execute: `brew install yarn`.
 
 ## Collaboration
 
