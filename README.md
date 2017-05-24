@@ -22,7 +22,8 @@ npm install
 cd server
 npm install
 cd ..
-npm start```
+npm start
+```
 
 The last command will start a development server and open http://localhost:3000 with the dashboard site running in chrome.
 
