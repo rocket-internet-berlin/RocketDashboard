@@ -12,22 +12,33 @@ It's perfect for development teams who want to be aware of their progress in rea
 
 ## Installation
 
-_Note: Make sure you have [npm](https://nodejs.org) or [yarn](https://yarnpkg.com) installed. We do recommend yarn._
+_Note: Make sure you have [yarn](https://yarnpkg.com) or [npm](https://nodejs.org) or installed. We recommend **yarn** due to performance and consistency reasons._
 
 - Clone (SSH or [HTTPS](https://github.com/rocket-internet-berlin/RocketDashboard.git)) or [download](https://github.com/rocket-internet-berlin/RocketDashboard/archive/master.zip) our sources.
-- Open terminal (MacOS) or command line (Windows) and execute:
+- Go to the project folder
 ```
-cd <path-to-the-dashboard-folder>
-npm install
-cd server
-npm install
-cd ..
-npm start
+cd <name-of-the-project-folder>
+```
+- Install all dependencies by running
+```
+yarn && cd server && yarn && cd ..
+```
+or using `npm`:
+```
+npm install && cd server && npm install && cd ..
 ```
 
-The last command will start a development server and open http://localhost:3000 with the dashboard site running in chrome.
+- Then `yarn start` or `npm start` to run the development and backend servers
 
-### Optional:
+Then open [http://localhost:3000](http://localhost:3000) to see your app.
+
+The page will reload if you make edits.
+
+You will see the build errors and lint warnings in the console.
+
+### Optional
+
+In order to have a better development experience, you can install the following Chrome extensions: 
 
 - [Add](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) **Redux DevTools** extension to Chrome.
 - [Add](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) **React Developer Tools** extension to Chrome.
