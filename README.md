@@ -37,4 +37,4 @@ The best way to help improving the project is [to file an issue](https://github.
 
 ## License
 
-RocketDashboard is [MIT licensed](./LICENSE).
+RocketDashboard is [MIT licensed](LICENSE).
