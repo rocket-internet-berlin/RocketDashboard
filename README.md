@@ -39,3 +39,7 @@ The best way to help improving the project is [to file an issue](https://github.
 ## License
 
 RocketDashboard is [MIT licensed](LICENSE).
+
+## Background
+
+This project is being implemented in a JS bootcamp at [Rocket Internet SE](https://www.rocket-internet.com). We’re proud and thrilled to share it with the world!
