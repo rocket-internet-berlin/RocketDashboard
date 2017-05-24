@@ -6,7 +6,7 @@ router.get('/', (req, res, next) => {
     status: 'success',
     message: '',
     data: {
-      period: 'Last 3 Days',
+      period: 'Last 5 Days',
       history: [
         {
           label: 'Mon',
