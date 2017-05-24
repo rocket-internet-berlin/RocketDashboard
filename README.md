@@ -12,7 +12,7 @@ It's perfect for development teams who want to be aware of their progress in rea
 
 ## Installation
 
-- Clone ([SSH](git@github.com:rocket-internet-berlin/RocketDashboard.git) or [HTTPS](https://github.com/rocket-internet-berlin/RocketDashboard.git)) or [download](https://github.com/rocket-internet-berlin/RocketDashboard/archive/master.zip) our sources.
+- Clone (SSH or [HTTPS](https://github.com/rocket-internet-berlin/RocketDashboard.git)) or [download](https://github.com/rocket-internet-berlin/RocketDashboard/archive/master.zip) our sources.
 - Install [Homebrew](https://brew.sh).
 - Install **node.js** and **npm**:
   - open Terminal and execute: `brew install node`;
@@ -25,8 +25,7 @@ The last command will start a development server and open http://localhost:3000 
 
 - [Add](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) **Redux DevTools** extension to Chrome.
 - [Add](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) **React Developer Tools** extension to Chrome.
-- You might want to use [yarn](https://yarnpkg.com) as a replacement for [npm](https://www.npmjs.com):
-  - open terminal and execute: `brew install yarn`.
+- You might want to use [yarn](https://yarnpkg.com) as a replacement for [npm](https://www.npmjs.com): `brew install yarn`.
 
 ## Collaboration
 
