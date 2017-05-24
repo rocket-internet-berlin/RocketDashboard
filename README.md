@@ -18,6 +18,8 @@ It's perfect for development teams who want to be aware of their progress in rea
   - open Terminal and execute: `brew install node`;
 - `cd <path-to-the-dashboard-folder>`.
 - `npm install` or `yarn`.
+- `cd server`.
+- `npm install` or `yarn`.
 
 The last command will start a development server and open http://localhost:3000 with the dashboard site running in chrome.
 
