@@ -15,11 +15,11 @@ It's perfect for development teams who want to be aware of their progress in rea
 _Note: Make sure you have [yarn](https://yarnpkg.com) or [npm](https://nodejs.org) or installed. We recommend **yarn** due to performance and consistency reasons._
 
 - Clone (SSH or [HTTPS](https://github.com/rocket-internet-berlin/RocketDashboard.git)) or [download](https://github.com/rocket-internet-berlin/RocketDashboard/archive/master.zip) our sources.
-- Go to the project folder
+- Go to the project folder:
 ```
-cd <name-of-the-project-folder>
+cd <path-to-the-project-folder>
 ```
-- Install all dependencies by running
+- Install all dependencies by running:
 ```
 yarn && cd server && yarn && cd ..
 ```
@@ -27,14 +27,13 @@ or using `npm`:
 ```
 npm install && cd server && npm install && cd ..
 ```
+- Then `yarn start` (or `npm start`) to run the development and backend servers
 
-- Then `yarn start` or `npm start` to run the development and backend servers
+- Open [http://localhost:3000](http://localhost:3000) in a browser to see your app.
 
-Then open [http://localhost:3000](http://localhost:3000) to see your app.
+In Chrome the page will reload automatically if you edit anything in the project.
 
-The page will reload if you make edits.
-
-You will see the build errors and lint warnings in the console.
+You'll find build errors and lint warnings in the console.
 
 ### Optional
 
