@@ -10,17 +10,23 @@ It's perfect for development teams who want to be aware of their progress in rea
 - **Bugs Difference** – contains two numbers: the current amount of bugs and the amount of bugs one week ago.
 - and many more are coming.
 
-
 ## Installation
 
-- Clone ([SSH](git@github.com:rocket-internet-berlin/RocketDashboard.git) or [HTTPS](https://github.com/rocket-internet-berlin/RocketDashboard.git)) or [download](https://github.com/rocket-internet-berlin/RocketDashboard/archive/master.zip) the repository.
+- Clone ([SSH](git@github.com:rocket-internet-berlin/RocketDashboard.git) or [HTTPS](https://github.com/rocket-internet-berlin/RocketDashboard.git)) or [download](https://github.com/rocket-internet-berlin/RocketDashboard/archive/master.zip) our sources.
+- Install [Homebrew](https://brew.sh).
+- Install **node.js** and **npm**:
+  - open Terminal and execute: `brew install node`;
+- `cd <path-to-the-dashboard-folder>`.
+- `npm install` or `yarn`.
 
-- [Install](https://nodejs.org) **node.js**.
+The last command will start a development server and open http://localhost:3000 with the dashboard site running in chrome.
 
 Optional:
 
 - [Add](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) **Redux DevTools** extension to Chrome.
 - [Add](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) **React Developer Tools** extension to Chrome.
+- You might want to use [yarn](https://yarnpkg.com) as a replacement for [npm](https://www.npmjs.com):
+  - open Terminal and execute: `brew install yarn`.
 
 ## Collaboration
 

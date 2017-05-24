@@ -5,7 +5,6 @@
 - An issue when **Redux DevTools** are not installed in the browser is fixed.
 - Changelog, **MIT license**, and readme are added.
 
-
 ### Week 2 (12.05.17)
 
 - Loading data with **AJAX**.
@@ -13,7 +12,6 @@
 - **Bootstrap** styles.
 - Bugs Difference widget.
 - Responsive layout.
-
 
 ### Week 1 (03.05.17)
 
