@@ -14,8 +14,6 @@ It's perfect for development teams who want to be aware of their progress in rea
 
 _Note: Make sure you have [npm](https://nodejs.org) or [yarn](https://yarnpkg.com) installed. We do recommend yarn._
 
-
-
 - Clone (SSH or [HTTPS](https://github.com/rocket-internet-berlin/RocketDashboard.git)) or [download](https://github.com/rocket-internet-berlin/RocketDashboard/archive/master.zip) our sources.
 - Open terminal (MacOS) or command line (Windows) and execute:
 ```
