@@ -10,11 +10,12 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from 'recharts';
+import BasicTable from '../BasicTable/BasicTable';
 
 const BugsHistory = ({ history, period }) => (
   <div className="panel panel-primary">
     <div className="panel-heading">Bugs History ({period})</div>
-    <div className="panel-body widget-body">
+    <div className="panel-body widget-body hidden-xs">
       <ResponsiveContainer width="100%" aspect={3}>
         <LineChart
           margin={{ top: 30, right: 15, left: 0, bottom: 15 }}
@@ -33,6 +34,9 @@ const BugsHistory = ({ history, period }) => (
           <Tooltip />
         </LineChart>
       </ResponsiveContainer>
+    </div>
+    <div className="panel-body widget-body visible-xs-block">
+      <BasicTable data={history} />
     </div>
   </div>
 );
