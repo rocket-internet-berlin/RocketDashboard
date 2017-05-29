@@ -13,7 +13,7 @@ export const receiveWeekNumber = json => ({
 
 export const fetchWeekNumber = () => dispatch => {
   dispatch(requestWeekNumber());
-  return fetch('/weekNumber')
+  return fetch('/api/weekNumber')
     .then(response => response.json())
     .then(json => dispatch(receiveWeekNumber(json)));
 };
@@ -32,7 +32,7 @@ export const receiveBugsDiff = json => ({
 
 export const fetchBugsDiff = () => dispatch => {
   dispatch(requestBugsDiff());
-  return fetch('/bugsDiff')
+  return fetch('/api/bugsDiff')
     .then(response => response.json())
     .then(json => dispatch(receiveBugsDiff(json)));
 };
@@ -51,7 +51,7 @@ export const receiveBugsHistory = json => ({
 
 export const fetchBugsHistory = () => dispatch => {
   dispatch(requestBugsHistory());
-  return fetch('/bugsHistory')
+  return fetch('/api/bugsHistory')
     .then(response => response.json())
     .then(json => dispatch(receiveBugsHistory(json)));
 };
