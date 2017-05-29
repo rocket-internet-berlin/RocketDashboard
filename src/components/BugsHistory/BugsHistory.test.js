@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import TestUtils from 'react-dom/test-utils';
 import { PureBugsHistory } from './BugsHistory';
 
-const { describe, it, expect } = global;
-
 class RenderableBugsHistory extends Component {
   render() {
     return <PureBugsHistory history={[]} period={this.props.period} />;
