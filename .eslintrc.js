@@ -8,6 +8,7 @@ module.exports = {
   env: {
     browser: true,
     jquery: true,
+    jest: true,
   },
   // add your custom rules here
   rules: {

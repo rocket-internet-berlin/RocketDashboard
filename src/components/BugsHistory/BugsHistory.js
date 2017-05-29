@@ -12,6 +12,8 @@ import {
 } from 'recharts';
 import BasicTable from '../BasicTable/BasicTable';
 
+import './BugsHistory.scss';
+
 const BugsHistory = ({ history, period }) => (
   <div className="panel panel-primary">
     <div className="panel-heading">Bugs History ({period})</div>
@@ -57,3 +59,6 @@ BugsHistory.propTypes = {
 };
 
 export default connect(mapStateToProps)(BugsHistory);
+
+// Note: PureBugsHistory is BugsHistory without redux (for unit tests)
+export { BugsHistory as PureBugsHistory };
