@@ -1,19 +1,27 @@
 import 'whatwg-fetch';
+import {
+  REQUEST_WEEKNUMBER,
+  RECEIVE_WEEKNUMBER,
+  REQUEST_BUGSDIFF,
+  RECEIVE_BUGSDIFF,
+  RECEIVE_BUGSHISTORY,
+  REQUEST_BUGSHISTORY,
+} from '../constants/actionTypes';
 
 // week number
 
 export const requestWeekNumber = () => ({
-  type: 'REQUEST_WEEKNUMBER',
+  type: REQUEST_WEEKNUMBER,
 });
 
 export const receiveWeekNumber = json => ({
-  type: 'RECEIVE_WEEKNUMBER',
+  type: RECEIVE_WEEKNUMBER,
   week: json.data.week,
 });
 
 export const fetchWeekNumber = () => dispatch => {
   dispatch(requestWeekNumber());
-  return fetch('/weekNumber')
+  return fetch('/api/weekNumber')
     .then(response => response.json())
     .then(json => dispatch(receiveWeekNumber(json)));
 };
@@ -21,18 +29,18 @@ export const fetchWeekNumber = () => dispatch => {
 // bugs diffrence
 
 export const requestBugsDiff = () => ({
-  type: 'REQUEST_BUGSDIFF',
+  type: REQUEST_BUGSDIFF,
 });
 
 export const receiveBugsDiff = json => ({
-  type: 'RECEIVE_BUGSDIFF',
+  type: RECEIVE_BUGSDIFF,
   lastWeek: json.data.lastWeek,
   thisWeek: json.data.thisWeek,
 });
 
 export const fetchBugsDiff = () => dispatch => {
   dispatch(requestBugsDiff());
-  return fetch('/bugsDiff')
+  return fetch('/api/bugsDiff')
     .then(response => response.json())
     .then(json => dispatch(receiveBugsDiff(json)));
 };
@@ -40,18 +48,18 @@ export const fetchBugsDiff = () => dispatch => {
 // bugs history
 
 export const requestBugsHistory = () => ({
-  type: 'REQUEST_BUGSHISTORY',
+  type: REQUEST_BUGSHISTORY,
 });
 
 export const receiveBugsHistory = json => ({
-  type: 'RECEIVE_BUGSHISTORY',
+  type: RECEIVE_BUGSHISTORY,
   history: json.data.history,
   period: json.data.period,
 });
 
 export const fetchBugsHistory = () => dispatch => {
   dispatch(requestBugsHistory());
-  return fetch('/bugsHistory')
+  return fetch('/api/bugsHistory')
     .then(response => response.json())
     .then(json => dispatch(receiveBugsHistory(json)));
 };
