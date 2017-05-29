@@ -9,6 +9,7 @@ const bugsDiff = require('./routes/bugsDiff');
 const bugsHistory = require('./routes/bugsHistory');
 
 const app = express();
+const ROUTE_PREFIX = '/api';
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -16,9 +17,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/weekNumber', weekNumber);
-app.use('/bugsDiff', bugsDiff);
-app.use('/bugsHistory', bugsHistory);
+app.use(ROUTE_PREFIX + '/weekNumber', weekNumber);
+app.use(ROUTE_PREFIX + '/bugsDiff', bugsDiff);
+app.use(ROUTE_PREFIX + '/bugsHistory', bugsHistory);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
