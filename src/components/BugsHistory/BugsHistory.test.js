@@ -18,7 +18,7 @@ describe('BugsHistory component', () => {
     widget,
     'panel-heading',
   );
-  it('displys "Last 0 Days" in the header', () => {
+  it('displays "Last 0 Days" in the header', () => {
     expect(header.textContent).toEqual('Bugs History (Last 0 Days)');
   });
 });
