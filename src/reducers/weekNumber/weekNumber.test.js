@@ -1,7 +1,5 @@
 import weekNumber from './weekNumber';
 
-const { describe, it, expect } = global;
-
 describe('weekNumber reducer', () => {
   it('updates the state with the data from a RECEIVE_WEEKNUMBER action', () => {
     expect(

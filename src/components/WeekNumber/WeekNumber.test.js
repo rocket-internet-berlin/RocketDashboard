@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import TestUtils from 'react-dom/test-utils';
 import { PureWeekNumber } from './WeekNumber';
 
-const { describe, it, expect } = global;
-
 class RenderableWeekNumber extends Component {
   render() {
     return <PureWeekNumber week={this.props.week} />;
