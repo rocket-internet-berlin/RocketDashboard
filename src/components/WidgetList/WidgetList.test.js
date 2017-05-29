@@ -5,6 +5,8 @@ import WeekNumber from '../WeekNumber/WeekNumber';
 import BugsDiff from '../BugsDiff/BugsDiff';
 import BugsHistory from '../BugsHistory/BugsHistory';
 
+const { describe, it, expect } = global;
+
 describe('WidgetList component', () => {
   const widget = shallow(<WidgetList />);
   it('contains WeekNumber, BugsDiff, and BugsHistory component', () => {

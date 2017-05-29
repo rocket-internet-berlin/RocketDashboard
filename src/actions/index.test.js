@@ -1,5 +1,7 @@
 import * as actions from './index';
 
+const { describe, it, expect } = global;
+
 describe('a week number receiving action', () => {
   // parsing
 

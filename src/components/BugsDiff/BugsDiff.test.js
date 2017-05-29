@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TestUtils from 'react-dom/test-utils';
 import { PureBugsDiff } from './BugsDiff';
 
+const { describe, it, expect } = global;
+
 class RenderableBugsDiff extends Component {
   render() {
     return (

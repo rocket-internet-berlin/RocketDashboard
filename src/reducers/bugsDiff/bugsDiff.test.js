@@ -1,5 +1,7 @@
 import bugsDiff from './bugsDiff';
 
+const { describe, it, expect } = global;
+
 describe('bugsDiff reducer', () => {
   it('updates the state with the data from a RECEIVE_BUGSDIFF action', () => {
     expect(

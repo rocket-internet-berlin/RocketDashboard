@@ -1,5 +1,7 @@
 import bugsHistory from './bugsHistory';
 
+const { describe, it, expect } = global;
+
 describe('bugsHistory reducer', () => {
   it('updates the state with the data from a RECEIVE_BUGSHISTORY action', () => {
     expect(
