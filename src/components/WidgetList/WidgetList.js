@@ -1,7 +1,7 @@
 import React from 'react';
 import './WidgetList.scss';
-import WeekNumber from '../WeekNumber';
-import BugsDiff from '../BugsDiff';
+import WeekNumber from '../WeekNumber/WeekNumber';
+import BugsDiff from '../BugsDiff/BugsDiff';
 import BugsHistory from '../BugsHistory/BugsHistory';
 
 const WidgetList = () => (

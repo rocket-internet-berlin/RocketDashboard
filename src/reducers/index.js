@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
 import { handleActions } from 'redux-actions';
-import weekNumber from './weekNumber';
-import bugsDiff from './bugsDiff';
-import bugsHistory from './bugsHistory';
+import weekNumber from './weekNumber/weekNumber';
+import bugsDiff from './bugsDiff/bugsDiff';
+import bugsHistory from './bugsHistory/bugsHistory';
 
 const valueChangeReducer = handleActions(
   {
