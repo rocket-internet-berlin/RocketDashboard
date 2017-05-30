@@ -27,21 +27,22 @@ class NavigationBar extends Component {
           </div>
           <ul className="nav navbar-nav navbar-right">
             <li className="active">
-              <button
-                className="NavigationBar__refresh btn btn-default navbar-btn"
-                onClick={this.handleIncrement}
-              >
-                increment
-              </button>
-              {}
-              <button
-                className="NavigationBar__refresh btn btn-default navbar-btn"
-                onClick={this.handleDecrement}
-              >
-                decrement
-              </button>
 
-              [{this.props.counter}]
+              <div className="Counter">
+                <button
+                  className="NavigationBar__refresh btn btn-default navbar-btn"
+                  onClick={this.handleIncrement}
+                >
+                  increment
+                </button>
+                [{this.props.counter}]
+                <button
+                  className="NavigationBar__refresh btn btn-default navbar-btn"
+                  onClick={this.handleDecrement}
+                >
+                  decrement
+                </button>
+              </div>
 
               <button
                 className="NavigationBar__refresh btn btn-default navbar-btn"
@@ -59,7 +60,7 @@ class NavigationBar extends Component {
 
 const mapStateToProps = state => ({
   state,
-  counter: state.valueChangeReducer.counter,
+  counter: state.counter.counter,
 });
 
 const mapDispatchToProps = {

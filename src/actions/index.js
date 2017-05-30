@@ -73,9 +73,9 @@ export const refreshAll = () => dispatch => {
   dispatch(fetchBugsHistory());
 };
 
+// counter
+
 export const { increment, decrement } = createActions({
   INCREMENT: amount => ({ amount }),
   DECREMENT: amount => ({ amount }),
 });
-
-console.log(increment(15));
