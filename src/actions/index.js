@@ -1,4 +1,5 @@
 import 'whatwg-fetch';
+import { createActions } from 'redux-actions';
 import {
   REQUEST_WEEKNUMBER,
   RECEIVE_WEEKNUMBER,
@@ -71,3 +72,10 @@ export const refreshAll = () => dispatch => {
   dispatch(fetchBugsDiff());
   dispatch(fetchBugsHistory());
 };
+
+export const { increment, decrement } = createActions({
+  INCREMENT: amount => ({ amount }),
+  DECREMENT: amount => ({ amount }),
+});
+
+console.log(increment(15));

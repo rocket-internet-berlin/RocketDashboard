@@ -12,6 +12,7 @@
     "react-redux": "^5.0.4",
     "recharts": "^0.22.4",
     "redux": "^3.6.0",
+    "redux-actions": "^2.0.3",
     "redux-thunk": "^2.2.0",
     "sugar": "^2.0.4",
     "whatwg-fetch": "^2.0.2"
