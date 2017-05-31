@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
-import { createAction, createActions } from 'redux-actions';
+import { createAction } from 'redux-actions';
 import {
   REQUEST_WEEKNUMBER,
   RECEIVE_WEEKNUMBER,
