@@ -2,18 +2,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { refreshAll, increment, decrement } from '../../actions';
+import { refreshAll } from '../../actions';
 import './NavigationBar.scss';
 
 class NavigationBar extends Component {
-  handleIncrement = () => {
-    this.props.increment(1);
-  };
-
-  handleDecrement = () => {
-    this.props.decrement(1);
-  };
-
   handleRefresh = () => {
     this.props.refreshAll();
   };
@@ -27,22 +19,6 @@ class NavigationBar extends Component {
           </div>
           <ul className="nav navbar-nav navbar-right">
             <li className="active">
-              <button
-                className="NavigationBar__refresh btn btn-default navbar-btn"
-                onClick={this.handleIncrement}
-              >
-                increment
-              </button>
-              {}
-              <button
-                className="NavigationBar__refresh btn btn-default navbar-btn"
-                onClick={this.handleDecrement}
-              >
-                decrement
-              </button>
-
-              [{this.props.counter}]
-
               <button
                 className="NavigationBar__refresh btn btn-default navbar-btn"
                 onClick={this.handleRefresh}
@@ -59,20 +35,14 @@ class NavigationBar extends Component {
 
 const mapStateToProps = state => ({
   state,
-  counter: state.valueChangeReducer.counter,
 });
 
 const mapDispatchToProps = {
   refreshAll,
-  increment,
-  decrement,
 };
 
 NavigationBar.propTypes = {
   refreshAll: PropTypes.func.isRequired,
-  increment: PropTypes.func.isRequired,
-  decrement: PropTypes.func.isRequired,
-  counter: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar);

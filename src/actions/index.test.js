@@ -7,7 +7,7 @@ describe('a week number receiving action', () => {
     const json = { data: { week: 99 } };
     const expectedAction = {
       type: 'RECEIVE_WEEKNUMBER',
-      week: 99,
+      payload: 99,
     };
     expect(actions.receiveWeekNumber(json)).toEqual(expectedAction);
   });
@@ -27,8 +27,10 @@ describe('a bugs difference receiving action', () => {
     const json = { data: { lastWeek: 99, thisWeek: 9 } };
     const expectedAction = {
       type: 'RECEIVE_BUGSDIFF',
-      lastWeek: 99,
-      thisWeek: 9,
+      payload: {
+        lastWeek: 99,
+        thisWeek: 9,
+      },
     };
     expect(actions.receiveBugsDiff(json)).toEqual(expectedAction);
   });
@@ -53,8 +55,10 @@ describe('a bugs history receiving action', () => {
     };
     const expectedAction = {
       type: 'RECEIVE_BUGSHISTORY',
-      period: '1 day period',
-      history: [{ label: 'yesterday', bugs: 99 }],
+      payload: {
+        period: '1 day period',
+        history: [{ label: 'yesterday', bugs: 99 }],
+      },
     };
     expect(actions.receiveBugsHistory(json)).toEqual(expectedAction);
   });

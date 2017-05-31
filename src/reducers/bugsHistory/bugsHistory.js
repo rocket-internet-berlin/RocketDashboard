@@ -1,22 +1,17 @@
-const defaultState = {
-  history: [],
-  period: 'loading...',
-};
+import { handleActions } from 'redux-actions';
+import { receiveBugsHistory } from '../../actions/index';
 
-const bugsHistory = (state = defaultState, action) => {
-  switch (action.type) {
-    case 'RECEIVE_BUGSHISTORY':
-      return {
-        ...state,
-        history: action.history,
-        period: action.period,
-      };
-    default:
-      // triggered when a page is reloaded
-      return {
-        ...state,
-      };
-  }
-};
+const bugsHistory = handleActions(
+  {
+    [receiveBugsHistory]: (state, { payload }) => ({
+      history: payload.history,
+      period: payload.period,
+    }),
+  },
+  {
+    history: [],
+    period: 'loading...',
+  },
+);
 
 export default bugsHistory;

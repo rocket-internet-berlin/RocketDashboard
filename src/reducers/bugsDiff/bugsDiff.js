@@ -1,22 +1,17 @@
-const defaultState = {
-  lastWeek: 0,
-  thisWeek: 0,
-};
+import { handleActions } from 'redux-actions';
+import { receiveBugsDiff } from '../../actions/index';
 
-const bugsDiff = (state = defaultState, action) => {
-  switch (action.type) {
-    case 'RECEIVE_BUGSDIFF':
-      return {
-        ...state,
-        lastWeek: action.lastWeek,
-        thisWeek: action.thisWeek,
-      };
-    default:
-      // triggered when a page is reloaded
-      return {
-        ...state,
-      };
-  }
-};
+const bugsDiff = handleActions(
+  {
+    [receiveBugsDiff]: (state, { payload }) => ({
+      lastWeek: payload.lastWeek,
+      thisWeek: payload.thisWeek,
+    }),
+  },
+  {
+    lastWeek: 0,
+    thisWeek: 0,
+  },
+);
 
 export default bugsDiff;
