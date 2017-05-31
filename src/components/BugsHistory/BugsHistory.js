@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import {
   ResponsiveContainer,
-  AreaChart,
-  Area,
+  LineChart,
+  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -22,29 +22,23 @@ const BugsHistory = ({ history, period }) => (
         <div className="col-sm-9">
           <div className="chart-container">
             <ResponsiveContainer width="100%" height={400}>
-              <AreaChart
+              <LineChart
                 margin={{ top: 30, right: 15, left: 0, bottom: 15 }}
                 data={history}
               >
-                <defs>
-                  <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="15%" stopColor="#1986ff" stopOpacity={1.0} />
-                    <stop offset="85%" stopColor="#fff" stopOpacity={0.5} />
-                  </linearGradient>
-                </defs>
-                <Area
+                <Line
                   type="linear"
                   dataKey="bugs"
-                  barSize={40}
-                  strokeWidth="2"
-                  stroke="#1986FF"
-                  fill="url(#gradient)"
+                  barSize={10}
+                  strokeWidth="1"
+                  dot={{ stroke: '#1986ff', strokeWidth: 1, r: 6 }}
+                  stroke="#1986ff"
                 />
                 <CartesianGrid stroke="#e7e7e7" strokeDasharray="2 4" />
                 <XAxis dataKey="label" stroke="#b7b7b7" tickSize={10} />
                 <YAxis stroke="#b7b7b7" tickSize={10} />
                 <Tooltip />
-              </AreaChart>
+              </LineChart>
             </ResponsiveContainer>
           </div>
         </div>
