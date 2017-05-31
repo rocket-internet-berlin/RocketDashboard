@@ -7,7 +7,7 @@ describe('weekNumber reducer', () => {
         {},
         {
           type: 'RECEIVE_WEEKNUMBER',
-          week: 10,
+          payload: 10,
         },
       ),
     ).toEqual({
@@ -23,7 +23,7 @@ describe('weekNumber reducer', () => {
         },
         {
           type: 'RECEIVE_BUGSDIFF',
-          week: 9,
+          payload: 9,
         },
       ),
     ).toEqual({

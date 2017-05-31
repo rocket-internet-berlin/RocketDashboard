@@ -1,20 +1,13 @@
-const defaultState = {
-  week: 0,
-};
+import { handleActions } from 'redux-actions';
+import { receiveWeekNumber } from '../../actions/index';
 
-const weekNumber = (state = defaultState, action) => {
-  switch (action.type) {
-    case 'RECEIVE_WEEKNUMBER':
-      return {
-        ...state,
-        week: action.week,
-      };
-    default:
-      // triggered when a page is reloaded
-      return {
-        ...state,
-      };
-  }
-};
+const weekNumber = handleActions(
+  {
+    [receiveWeekNumber]: (state, { payload }) => ({
+      week: payload,
+    }),
+  },
+  { week: 0 },
+);
 
 export default weekNumber;

@@ -7,8 +7,10 @@ describe('bugsDiff reducer', () => {
         {},
         {
           type: 'RECEIVE_BUGSDIFF',
-          lastWeek: 10,
-          thisWeek: 20,
+          payload: {
+            lastWeek: 10,
+            thisWeek: 20,
+          },
         },
       ),
     ).toEqual({
@@ -26,8 +28,10 @@ describe('bugsDiff reducer', () => {
         },
         {
           type: 'RECEIVE_WEEKNUMBER',
-          lastWeek: 9,
-          thisWeek: 99,
+          payload: {
+            lastWeek: 9,
+            thisWeek: 99,
+          },
         },
       ),
     ).toEqual({

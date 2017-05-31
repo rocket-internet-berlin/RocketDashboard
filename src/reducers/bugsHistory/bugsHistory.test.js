@@ -10,17 +10,19 @@ describe('bugsHistory reducer', () => {
         },
         {
           type: 'RECEIVE_BUGSHISTORY',
-          period: 'Last 2 Days',
-          history: [
-            {
-              label: 'yesterday',
-              bugs: 9,
-            },
-            {
-              label: 'today',
-              bugs: 99,
-            },
-          ],
+          payload: {
+            period: 'Last 2 Days',
+            history: [
+              {
+                label: 'yesterday',
+                bugs: 9,
+              },
+              {
+                label: 'today',
+                bugs: 99,
+              },
+            ],
+          },
         },
       ),
     ).toEqual({
@@ -47,13 +49,15 @@ describe('bugsHistory reducer', () => {
         },
         {
           type: 'RECEIVE_WEEKNUMBER',
-          history: [
-            {
-              label: 'today',
-              bugs: 99,
-            },
-          ],
-          period: 'Only today',
+          payload: {
+            history: [
+              {
+                label: 'today',
+                bugs: 99,
+              },
+            ],
+            period: 'Only today',
+          },
         },
       ),
     ).toEqual({
