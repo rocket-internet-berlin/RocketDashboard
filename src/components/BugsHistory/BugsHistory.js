@@ -28,8 +28,8 @@ const BugsHistory = ({ history, period }) => (
               >
                 <defs>
                   <linearGradient id="gradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="25%" stopColor="#1986ff" stopOpacity={1.0} />
-                    <stop offset="75%" stopColor="#fff" stopOpacity={0.5} />
+                    <stop offset="15%" stopColor="#1986ff" stopOpacity={1.0} />
+                    <stop offset="85%" stopColor="#fff" stopOpacity={0.5} />
                   </linearGradient>
                 </defs>
                 <Area
@@ -60,7 +60,9 @@ const BugsHistory = ({ history, period }) => (
               <path d="M177.9 147.9c0 6.8 5.5 12.3 12.3 12.3 6.8 0 12.3-5.5 12.3-12.3 0-29.6 24-53.6 53.6-53.6s53.6 24 53.6 53.6c0 6.8 5.5 12.3 12.3 12.3s12.3-5.5 12.3-12.3c0-43.1-35-78.1-78.1-78.1s-78.3 35-78.3 78.1z" />
             </g>
           </svg>
-          <span className="bugs-current">10</span>
+          <span className="bugs-current">
+            {history.length > 0 ? history[history.length - 1].bugs : 0}
+          </span>
         </div>
       </div>
     </div>
