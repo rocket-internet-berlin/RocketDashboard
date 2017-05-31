@@ -1,9 +1,54 @@
 @import 'variables';
 
 .NavigationBar__refresh {
-  margin-right: 10px;
 }
 
-.NavigationBar.navbar {
-  margin-bottom: $margin;
+.navbar {
+  margin-left: $space-medium;
+  margin-right: $space-medium;
+  padding-top: 15px;
+  border: 0;
+  border-radius: 0;
+}
+
+.NavigationBar {
+  .navbar-brand {
+    height: 50px;
+    width: 50px;
+    padding: 0;
+  }
+
+  .navbar-left{
+    color: $rocket-gray;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: .04em;
+    height: 50px;
+    line-height: 50px;
+    margin-left: 10px;
+  }
+
+  .navbar-right {
+    padding: 0 $space-small;
+
+    button {
+      font-size: 14px;
+      border: 1px solid $main-color;
+      background-color: transparent;
+      color: $main-color;
+      outline: none;
+    }
+
+    button:hover {
+      cursor: hand;
+    }
+
+    button:active {
+      outline: none;
+      box-shadow: none;
+      background-color: $main-color;
+      color: white;
+      border: 1px solid $main-color;
+    }
+  }
 }

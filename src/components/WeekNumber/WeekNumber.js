@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import './WeekNumber.scss';
 
 const WeekNumber = ({ week }) => (
-  <div className="panel panel-primary">
-    <div className="panel-heading">Week</div>
+  <div className="WeekNumber panel">
+    <div className="panel-heading">Week Number</div>
     <div className="panel-body widget-body">
-      {week}
+      <span className="number-big">{week}</span>
     </div>
   </div>
 );
