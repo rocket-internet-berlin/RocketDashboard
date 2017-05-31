@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { receiveBugsDiff } from '../../actions/index';
+import { receiveBugsDiff } from '../../actions';
 
 const bugsDiff = handleActions(
   {

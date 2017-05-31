@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { receiveBugsHistory } from '../../actions/index';
+import { receiveBugsHistory } from '../../actions';
 
 const bugsHistory = handleActions(
   {
