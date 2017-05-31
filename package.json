@@ -46,7 +46,7 @@
     "html-webpack-plugin": "2.24.0",
     "http-proxy-middleware": "0.17.3",
     "husky": "^0.13.3",
-    "jest": "^20.0.1",
+    "jest": "^20.0.4",
     "json-loader": "0.5.4",
     "lint-staged": "^3.4.1",
     "node-sass": "^4.5.2",
@@ -89,6 +89,9 @@
       "<rootDir>/config/polyfills.js"
     ],
     "testPathIgnorePatterns": [
+      "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
+    ],
+    "modulePathIgnorePatterns": [
       "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
     ],
     "testEnvironment": "node",
