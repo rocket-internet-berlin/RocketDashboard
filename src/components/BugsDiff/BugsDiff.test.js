@@ -19,7 +19,7 @@ describe('BugsDiff component', () => {
   );
   const body = TestUtils.findRenderedDOMComponentWithClass(
     widget,
-    'widget-body',
+    'panel-body',
   );
   it('displays 99 / 9', () => {
     expect(body.textContent).toEqual('99 / 9');

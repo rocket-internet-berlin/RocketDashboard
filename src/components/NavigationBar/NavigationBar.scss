@@ -32,8 +32,8 @@
     padding: 0 $space-small;
 
     button {
-      font-size: 14px;
-      border: 1px solid $main-color;
+      font-size: $font-small;
+      border-color: transparent;
       background-color: transparent;
       color: $main-color;
       outline: none;
@@ -44,11 +44,11 @@
     }
 
     button:active {
-      outline: none;
       box-shadow: none;
-      background-color: $main-color;
-      color: white;
-      border: 1px solid $main-color;
+      color: $rocket-gray;
+      background-color: transparent;
+      border-color: transparent;
+      outline: none;
     }
   }
 }

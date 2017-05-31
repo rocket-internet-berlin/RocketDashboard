@@ -14,7 +14,7 @@ describe('WeekNumber component', () => {
   );
   const body = TestUtils.findRenderedDOMComponentWithClass(
     widget,
-    'widget-body',
+    'panel-body',
   );
   it('displays 999', () => {
     expect(body.textContent).toEqual('999');
