@@ -1,18 +1,7 @@
-@import "./sass/variables";
 @import "./sass/bootstrap-custom";
-
-.panel-heading {
-  padding: $space-medium 0 0 $space-medium;
-  font-size: 22px;
-  font-weight: 100;
-  color: $rocket-gray;
-  letter-spacing: .04em;
-}
-
-.panel {
-  margin-bottom: $space-large;
-  min-height: $widget-height;
-}
+@import "variables";
+@import "panel";
+@import "scaffolding";
 
 .number-big {
   font-size: $font-huge;

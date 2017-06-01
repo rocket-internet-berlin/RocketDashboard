@@ -1,17 +1,12 @@
 @import 'variables';
 
-.NavigationBar__refresh {
-}
-
-.navbar {
+.navigationbar {
   margin-left: $space-medium;
   margin-right: $space-medium;
   padding-top: 15px;
   border: 0;
   border-radius: 0;
-}
 
-.NavigationBar {
   .navbar-brand {
     height: 50px;
     width: 50px;

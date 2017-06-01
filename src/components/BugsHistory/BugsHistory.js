@@ -15,7 +15,7 @@ import BasicTable from '../BasicTable/BasicTable';
 import './BugsHistory.scss';
 
 const BugsHistory = ({ history, period }) => (
-  <div className="panel panel--bugshistory">
+  <div className="panel widget--bugshistory">
     <div className="panel-heading">Bugs History ({period})</div>
     <div className="panel-body hidden-xs">
       <div className="row">
