@@ -13,7 +13,7 @@ class NavigationBar extends Component {
 
   render() {
     return (
-      <nav className="navigationbar navbar">
+      <nav className="NavigationBar navbar">
         <div className="container-fluid">
           <div className="navbar-header">
             <img className="navbar-brand" src={logo} alt="Logo" />
