@@ -21,7 +21,7 @@ const BugsHistory = ({ history, period }) => (
       <div className="row">
         <div className="col-sm-9">
           <div className="chart-container">
-            <ResponsiveContainer width="100%" height={400}>
+            <ResponsiveContainer width="100%" height={320}>
               <LineChart
                 margin={{ top: 30, right: 15, left: 0, bottom: 15 }}
                 data={history}

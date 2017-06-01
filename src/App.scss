@@ -1,7 +1,7 @@
 @import "./sass/bootstrap-custom";
-@import "variables";
-@import "panel";
-@import "scaffolding";
+@import "./sass/variables";
+@import "./sass/panels";
+@import "./sass/scaffolding";
 
 .number-big {
   font-size: $font-huge;

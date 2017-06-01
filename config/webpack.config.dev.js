@@ -133,33 +133,32 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: {
-                importLoaders: 1,
-                sourceMap: true,
-              },
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              sourceMap: true,
             },
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: function() {
-                  return [require('autoprefixer')];
-                },
+          },
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: function() {
+                return [require('autoprefixer')];
               },
+              sourceMap: true,
             },
-            {
-              loader: 'sass-loader',
-              options: {
-                sourceMap: true,
-                includePaths: [paths.bootstrap, paths.sassVariables],
-              },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+              includePaths: [paths.bootstrap, paths.sassVariables],
             },
-          ],
-        }),
+          },
+        ],
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
@@ -181,11 +180,6 @@ module.exports = {
   },
 
   plugins: [
-    new ExtractTextPlugin({
-      // define where to save the file
-      filename: '[name].css',
-      allChunks: true,
-    }),
     // Makes some environment variables available in index.html.
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
