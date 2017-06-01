@@ -1,7 +1,9 @@
 ### Week 4 (25.05.17)
 
-- Unit tests.
+- Redux-actions.
+- Constants for action names.
 - UI refresh.
+- Unit tests.
 
 ### Week 3 (19.05.17)
 
