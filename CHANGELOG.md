@@ -1,3 +1,8 @@
+### Week 4 (25.05.17)
+
+- Unit tests.
+- UI refresh.
+
 ### Week 3 (19.05.17)
 
 - Chart widget.
