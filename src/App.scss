@@ -1,1 +1,14 @@
 @import "./sass/bootstrap-custom";
+@import "variables";
+@import "panel";
+@import "scaffolding";
+
+.number-big {
+  font-size: $font-huge;
+  color: $main-color;
+}
+
+.number-normal {
+  font-size: $font-big;
+  color: $rocket-gray;
+}

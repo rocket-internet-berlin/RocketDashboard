@@ -4,9 +4,12 @@ import { connect } from 'react-redux';
 import './BugsDiff.scss';
 
 const BugsDiff = ({ lastWeek, thisWeek }) => (
-  <div className="panel panel-primary">
-    <div className="panel-heading">Bugs</div>
-    <div className="panel-body widget-body">{thisWeek} / {lastWeek}</div>
+  <div className="panel">
+    <div className="panel-heading">Bugs Difference</div>
+    <div className="panel-body">
+      <span className="this-week number-big">{thisWeek}</span>
+      <span className="last-week number-normal"> / {lastWeek}</span>
+    </div>
   </div>
 );
 

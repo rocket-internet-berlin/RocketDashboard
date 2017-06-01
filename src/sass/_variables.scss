@@ -1,19 +1,30 @@
-$main-color: #337ab7; // is taken from bootstrap ($brand-primary)
+// colors
+$main-color: #1986ff;
+$default-bg-color: #f1f6f8;
+$rocket-gray: #b7b7b7;
+$widget-border-color: #e5e5e5;
 
-$outer-bg-color: #fdfdfd;
-$default-bg-color: #fff;
+// spaces
+$space-small : 5px;
+$space-medium: 15px;
+$space-large: 30px;
+$space-extra-large: 60px;
 
-$line-color: #e7e7e7;
+// font-sizes
+$font-huge: 144px;
+$font-big: 48px;
+$font-normal: 28px;
+$font-small: 18px;
+
 $line-thickness: 1px;
 
-$margin: 15px;
-$widget-body-min-height: 100px;
+$widget-height: 300px;
 
 // bugs history chart
 // (note: the variables below are not used, they are added here only as a memo)
-$chart-grid-stroke: $line-color;
-$chart-axis-stroke: #777;
-$chart-bar-fill: #ff9c00;
+$chart-grid-stroke: #e7e7e7;
+$chart-axis-stroke: $rocket-gray;
+$chart-bar-fill: $main-color;
 
 // to override default bootstrap variables
 // https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_variables.scss

@@ -13,7 +13,7 @@ class Dashboard extends Component {
 
   render() {
     return (
-      <div className="Dashboard container">
+      <div className="Dashboard">
         <NavigationBar />
         <WidgetList />
       </div>

@@ -1,9 +1,5 @@
 @import 'variables';
 
 .Dashboard {
-  background: $default-bg-color;
-  border-left: $line-thickness solid $line-color;
-  border-right: $line-thickness solid $line-color;
-  padding-top: $margin;
-  min-height: calc(100vh);
+  padding-top: 0;
 }

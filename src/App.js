@@ -4,7 +4,7 @@ import './App.scss';
 import Dashboard from './containers/Dashboard';
 
 const App = () => (
-  <div className="App container">
+  <div className="App">
     <Dashboard />
   </div>
 );

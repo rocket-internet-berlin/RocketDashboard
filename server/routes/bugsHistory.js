@@ -10,15 +10,15 @@ router.get('/', (req, res, next) => {
       history: [
         {
           label: 'Mon',
-          bugs: 3,
-        },
-        {
-          label: 'Tue',
           bugs: 12,
         },
         {
+          label: 'Tue',
+          bugs: 8,
+        },
+        {
           label: 'Wed',
-          bugs: 2,
+          bugs: 9,
         },
         {
           label: 'Thu',
@@ -26,7 +26,7 @@ router.get('/', (req, res, next) => {
         },
         {
           label: 'Fri',
-          bugs: 4,
+          bugs: 7,
         },
       ],
     },
