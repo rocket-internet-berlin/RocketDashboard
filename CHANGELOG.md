@@ -1,18 +1,19 @@
-### Week 4 (25.05.17)
+### Week 4 (25.05.17 - 01.06.17)
 
 - Redux-actions.
 - Constants for action names.
 - UI refresh.
 - Unit tests.
+- Fixed Build script.
 
-### Week 3 (19.05.17)
+### Week 3 (19.05.17 - 24.05.17)
 
 - Chart widget.
 - Backend (based on **Express**).
 - An issue when **Redux DevTools** are not installed in the browser is fixed.
 - Changelog, **MIT license**, and readme are added.
 
-### Week 2 (12.05.17)
+### Week 2 (12.05.17 - 18.05.17)
 
 - Loading data with **AJAX**.
 - **Sass** – **CSS** preprocessor.
@@ -20,7 +21,7 @@
 - Bugs Difference widget.
 - Responsive layout.
 
-### Week 1 (03.05.17)
+### Week 1 (03.05.17 - 11.05.17)
 
 - Started off by using **create-react-app**.
 - Basic **HTML** layout.
