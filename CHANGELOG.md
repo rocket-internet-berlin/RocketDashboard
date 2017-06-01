@@ -4,6 +4,7 @@
 - Constants for action names.
 - UI refresh.
 - Unit tests.
+- Fixed Build script
 
 ### Week 3 (19.05.17)
 
