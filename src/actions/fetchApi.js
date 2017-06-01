@@ -1,5 +1,5 @@
 import 'whatwg-fetch';
 
-const fetchApi = url => fetch(`/api/${url}`).then(response => response.json());
+const fetchApi = endpoint => fetch(`/api/${endpoint}`).then(response => response.json());
 
 export default fetchApi;
