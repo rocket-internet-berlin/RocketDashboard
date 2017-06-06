@@ -16,48 +16,33 @@ const jwtClient = new google.auth.JWT(
 router.get('/', (req, res, next) => {
   const request = {
     spreadsheetId: '',    // TODO: spreadsheet ID
-    ranges: ['A1:A9', 'B1:B9'],
+    ranges: ['A1:A20', 'B1:B20'],   // TODO: magic number
     includeGridData: true,
     auth: jwtClient,
     fields: 'sheets(data(rowData(values(userEnteredValue/numberValue))))',
   };
-  sheets.spreadsheets.get(request, function(err, response) {
+  sheets.spreadsheets.get(request, (err, response) => {
     if (err) {
-      console.log('ERR123: ' + err);
-      // TODO: handle an error
-    } else {
-      console.log('RESP123: ' + JSON.stringify(response, null, 2));
-      // TODO: handle a response
+      console.log(`ERR123: ${err}`);
+      return;
     }
-  });
-  res.json({
-    status: 'success',
-    message: '',
-    data: {
-      period: 'Last 5 Days',
-      history: [
-        {
-          label: 'Mon',
-          bugs: 12,
-        },
-        {
-          label: 'Tue',
-          bugs: 8,
-        },
-        {
-          label: 'Wed',
-          bugs: 9,
-        },
-        {
-          label: 'Thu',
-          bugs: 10,
-        },
-        {
-          label: 'Fri',
-          bugs: 7,
-        },
-      ],
-    },
+    const data = response.sheets[0].data;
+    const columns = data.map((column) => {
+      const rowData = column.rowData;
+      const values = rowData[0].values;
+      return rowData.map((cellData) => cellData.values[0].userEnteredValue.numberValue);
+    });
+    const history = columns[0].map((label, i) => (
+      { label, bugs: columns[1][i] }
+    ));
+    res.json({
+      status: 'success',
+      message: '',
+      data: {
+        period: 'Last ? Days',
+        history,
+      },
+    });
   });
 });
 
