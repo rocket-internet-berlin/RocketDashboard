@@ -7,8 +7,8 @@ module.exports = {
   extends: 'airbnb',
   env: {
     browser: true,
-    jquery: true,
     jest: true,
+    node: true,
   },
   // add your custom rules here
   rules: {
