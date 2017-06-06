@@ -67,7 +67,7 @@
     "webpack-validator": "^3.0.0"
   },
   "scripts": {
-    "start": "concurrently \"npm run client\" \"npm run --prefix server start\"",
+    "start": "concurrently \"npm run client\" \"npm run --prefix server start:dev\"",
     "client": "node scripts/client-start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",

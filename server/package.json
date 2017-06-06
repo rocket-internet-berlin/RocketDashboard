@@ -3,9 +3,11 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon -w src --exec \"babel-node src --presets env\"",
+    "start:dev": "nodemon -w src --exec \"npm run lint:js && babel-node src --presets env\"",
+    "start:build": "node build",
     "build": "babel src -d build",
-    "start:build": "node build"
+    "lint:js": "eslint --ext .js src/**/*.js",
+    "lint:js-fix": "eslint --fix --ext .js src/**/*.js"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -17,7 +19,9 @@
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
     "babel-preset-env": "^1.5.1",
+    "eslint": "^3.19.0",
     "nodemon": "^1.11.0"
   },
   "babel": {
