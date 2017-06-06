@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "server-start": "node scripts/server-start.js"
+    "start": "nodemon -w src --exec \"babel-node src --presets env\"",
+    "build": "babel src -d build",
+    "start:build": "node build"
   },
   "dependencies": {
     "body-parser": "~1.17.1",
@@ -11,7 +13,23 @@
     "cookie-parser": "~1.4.3",
     "express": "^4.15.2",
     "jade": "~1.11.0",
-    "morgan": "~1.8.1",
-    "serve-favicon": "~2.4.2"
+    "morgan": "~1.8.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "nodemon": "^1.11.0"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
   }
 }

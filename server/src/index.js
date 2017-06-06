@@ -1,12 +1,48 @@
-#!/usr/bin/env node
+import express from 'express';
+import path from 'path';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import http from 'http';
+import chalk from 'chalk';
 
-/**
- * Module dependencies.
- */
+import weekNumber from './routes/weekNumber';
+import bugsDiff from './routes/bugsDiff';
+import bugsHistory from './routes/bugsHistory';
 
-var chalk = require('chalk');
-var app = require('../app');
-var http = require('http');
+const app = express();
+const ROUTE_PREFIX = '/api';
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(ROUTE_PREFIX + '/weekNumber', weekNumber);
+app.use(ROUTE_PREFIX + '/bugsDiff', bugsDiff);
+app.use(ROUTE_PREFIX + '/bugsHistory', bugsHistory);
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  const err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
+
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // render the error page
+  res.status(err.status || 500);
+  res.send({
+    "status": "error",
+    "message": "Something went terribly wrong!"
+  });
+});
 
 /**
  * Get port from environment and store in Express.
@@ -90,3 +126,5 @@ function onListening() {
   console.log('Express is running at: ' + chalk.cyan(protocol + '://' + host + ':' + port + '/'));
   console.log();
 }
+
+export default app;

@@ -1,4 +1,5 @@
-const express = require('express');
+import express from 'express';
+
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -6,10 +7,9 @@ router.get('/', (req, res, next) => {
     status: 'success',
     message: '',
     data: {
-      lastWeek: 15,
-      thisWeek: 13,
+      week: 52,
     },
   });
 });
 
-module.exports = router;
+export default router;
