@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { receiveWeekNumber } from '../../actions/index';
+import { receiveWeekNumber } from '../../actions';
 
 const weekNumber = handleActions(
   {
