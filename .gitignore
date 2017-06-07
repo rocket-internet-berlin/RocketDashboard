@@ -18,3 +18,4 @@ yarn-debug.log*
 yarn-error.log*
 
 src/**/*.css
+server/src/config/config.*.js

@@ -1,14 +1,15 @@
 import express from 'express';
 import _ from 'lodash';
 import google from 'googleapis';
+import { spreadsheetID, clientAccountEmail, clientAccountPrivateKey } from '../config/config';
 
 const sheets = google.sheets('v4');
 const router = express.Router();
 
 const jwtClient = new google.auth.JWT(
-  '',   // TODO: client email
+  clientAccountEmail(),
   null,
-  '', // TODO: private key
+  clientAccountPrivateKey(),
   ['https://www.googleapis.com/auth/spreadsheets.readonly'],
   null,
 );
@@ -17,7 +18,7 @@ const maxEntriesAmount = 20;  // FIXME: magic number
 
 router.get('/', (req, res) => {
   const request = {
-    spreadsheetId: '1kUt_9zxoHbqCyTKUo2PVk7MHEpeydLMWL2jjrk3beMg',    // TODO: spreadsheet ID
+    spreadsheetId: spreadsheetID(),
     ranges: [`A1:A${maxEntriesAmount}`, `B1:B${maxEntriesAmount}`, `C1:C${maxEntriesAmount}`],
     includeGridData: true,
     auth: jwtClient,

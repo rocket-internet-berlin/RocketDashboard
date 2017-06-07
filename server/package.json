@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start:dev": "nodemon -w src --exec \"npm run lint:js && babel-node src --presets env\"",
-    "start:build": "node build",
+    "start:dev": "nodemon -w src --exec \"export NODE_ENV=dev&&npm run lint:js && babel-node src --presets env\"",
+    "start:build": "export NODE_ENV=prod&&node build",
     "build": "babel src -d build",
     "lint:js": "eslint --ext .js src/**/*.js",
     "lint:js-fix": "eslint --fix --ext .js src/**/*.js"
