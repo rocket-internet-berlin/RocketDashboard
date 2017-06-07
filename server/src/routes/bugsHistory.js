@@ -1,4 +1,5 @@
 import express from 'express';
+import _ from 'lodash';
 import google from 'googleapis';
 
 const sheets = google.sheets('v4');
@@ -16,7 +17,7 @@ const maxEntriesAmount = 20;  // FIXME: magic number
 
 router.get('/', (req, res) => {
   const request = {
-    spreadsheetId: '',    // TODO: spreadsheet ID
+    spreadsheetId: '1kUt_9zxoHbqCyTKUo2PVk7MHEpeydLMWL2jjrk3beMg',    // TODO: spreadsheet ID
     ranges: [`A1:A${maxEntriesAmount}`, `B1:B${maxEntriesAmount}`, `C1:C${maxEntriesAmount}`],
     includeGridData: true,
     auth: jwtClient,
@@ -24,26 +25,27 @@ router.get('/', (req, res) => {
   };
   sheets.spreadsheets.get(request, (err, response) => {
     if (err) {
-      console.log(`ERROR: ${err}`);
+      res.status(500).send('Sorry, something went wrong');
       return;
     }
-    const data = response.sheets[0].data;
-    const columns = data.map((column) => {
-      const rowData = column.rowData;
-      return rowData.map((cellData) => cellData.values[0].userEnteredValue);
-    });
-    const history = columns[0].map((label, i) => (
-      { label: label.stringValue, bugs: columns[1][i].numberValue }
-    ));
-    const period = columns[2][0].stringValue;
-    res.json({
-      status: 'success',
-      message: '',
-      data: {
-        period,
-        history,
-      },
-    });
+    try {
+      const data = _.get(response, 'sheets[0].data');
+      const columns = data.map((column) => column.rowData.map(cellData => _.get(cellData, 'values[0].userEnteredValue')));
+      const history = columns[0].map((label, i) => (
+        { label: label.stringValue, bugs: columns[1][i].numberValue }
+      ));
+      const period = columns[2][0].stringValue;
+      res.json({
+        status: 'success',
+        message: '',
+        data: {
+          period,
+          history,
+        },
+      });
+    } catch (exception) {
+      res.status(500).send('Sorry, something went wrong');
+    }
   });
 });
 

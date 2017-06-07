@@ -17,6 +17,7 @@
     "googleapis": "^19.0.0",
     "jade": "~1.11.0",
     "moment": "^2.18.1",
+    "lodash": "^4.17.4",
     "morgan": "~1.8.1"
   },
   "devDependencies": {
