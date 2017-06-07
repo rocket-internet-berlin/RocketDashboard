@@ -12,10 +12,12 @@ const jwtClient = new google.auth.JWT(
   null,
 );
 
+const maxEntriesAmount = 20;  // FIXME: magic number
+
 router.get('/', (req, res) => {
   const request = {
     spreadsheetId: '',    // TODO: spreadsheet ID
-    ranges: ['A1:A20', 'B1:B20', 'C1:C20'],   // TODO: magic number, 20 – maximum amount of entries
+    ranges: [`A1:A${maxEntriesAmount}`, `B1:B${maxEntriesAmount}`, `C1:C${maxEntriesAmount}`],
     includeGridData: true,
     auth: jwtClient,
     fields: 'sheets(data(rowData(values(userEnteredValue))))',
