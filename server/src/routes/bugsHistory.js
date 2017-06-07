@@ -1,19 +1,18 @@
 import express from 'express';
+import google from 'googleapis';
 
-const router = express.Router();
-
-const google = require('googleapis');
 const sheets = google.sheets('v4');
+const router = express.Router();
 
 const jwtClient = new google.auth.JWT(
   '',   // TODO: client email
   null,
   '', // TODO: private key
   ['https://www.googleapis.com/auth/spreadsheets.readonly'],
-  null
+  null,
 );
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   const request = {
     spreadsheetId: '',    // TODO: spreadsheet ID
     ranges: ['A1:A20', 'B1:B20', 'C1:C20'],   // TODO: magic number, 20 – maximum amount of entries
@@ -29,7 +28,6 @@ router.get('/', (req, res, next) => {
     const data = response.sheets[0].data;
     const columns = data.map((column) => {
       const rowData = column.rowData;
-      const values = rowData[0].values;
       return rowData.map((cellData) => cellData.values[0].userEnteredValue);
     });
     const history = columns[0].map((label, i) => (
