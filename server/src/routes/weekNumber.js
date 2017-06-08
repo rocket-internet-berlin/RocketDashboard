@@ -1,13 +1,14 @@
 import express from 'express';
+import moment from 'moment';
 
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
+router.get('/', (req, res) => {
   res.json({
     status: 'success',
     message: '',
     data: {
-      week: 52,
+      week: moment().format('w'),
     },
   });
 });
