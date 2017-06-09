@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "concurrently": "^3.4.0",
+    "moment": "^2.18.1",
     "prop-types": "^15.5.9",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
