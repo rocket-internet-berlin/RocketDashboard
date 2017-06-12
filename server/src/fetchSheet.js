@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _get from 'lodash/get';
 import google from 'googleapis';
 import Ajv from 'ajv';
 import config from './config/config';
@@ -47,8 +47,8 @@ const fetchSheet = (callback) => {
     }
     try {
       // @TODO Decouple "fetching" and "data crunching" so we can reuse them
-      const data = _.get(response, 'sheets[0].data');
-      const columns = data.map((column) => column.rowData.map(cellData => _.get(cellData, 'values[0].userEnteredValue')));
+      const data = _get(response, 'sheets[0].data');
+      const columns = data.map((column) => column.rowData.map(cellData => _get(cellData, 'values[0].userEnteredValue')));
       const history = columns[0].map((label, i) => (
         { label: label.stringValue, bugs: columns[1][i].numberValue }
       ));

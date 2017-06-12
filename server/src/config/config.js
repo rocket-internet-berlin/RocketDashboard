@@ -1,5 +1,5 @@
 /* eslint import/no-dynamic-require: 0 */
-import _ from 'lodash';
+import defaultsDeep from 'lodash/defaultsDeep';
 
 const configDefault = require('./config.default');
 
@@ -7,6 +7,6 @@ const configDefault = require('./config.default');
 // literals nor 'import' inside if-statements.
 const configEnv = require(`./config.${process.env.NODE_ENV}`);
 
-const config = _.defaultsDeep(configEnv, configDefault);
+const config = defaultsDeep(configEnv, configDefault);
 
 export default config;
