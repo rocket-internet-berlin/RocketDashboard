@@ -1,8 +1,4 @@
-import {
-  requestWeekNumber,
-  receiveWeekNumber,
-  fetchWeekNumber,
-} from './weekNumber';
+import { receiveWeekNumber, fetchWeekNumber } from './weekNumber';
 import { requestBugsDiff, receiveBugsDiff, fetchBugsDiff } from './bugsDiff';
 import {
   requestBugsHistory,
@@ -11,7 +7,6 @@ import {
 } from './bugsHistory';
 
 export {
-  requestWeekNumber,
   receiveWeekNumber,
   fetchWeekNumber,
   requestBugsDiff,
