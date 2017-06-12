@@ -1,13 +1,31 @@
 import _ from 'lodash';
 import google from 'googleapis';
-import { spreadsheetID, clientAccountEmail, clientAccountPrivateKey } from './config/config';
+import Ajv from 'ajv';
+import config from './config/config';
+
+// validate required config props
+const ajv = new Ajv({
+  allErrors: true,
+});
+const schema = {
+  'required': [
+    'spreadsheetId',
+    'clientAccountEmail',
+    'clientAccountPrivateKey',
+  ],
+};
+
+const validate = ajv.compile(schema);
+if (!validate(config.bugsDiff)) {
+  throw ajv.errorsText(validate.errors);
+}
 
 const sheets = google.sheets('v4');
 
 const jwtClient = new google.auth.JWT(
-  clientAccountEmail(),
+  config.bugsDiff.clientAccountEmail,
   null,
-  clientAccountPrivateKey(),
+  config.bugsDiff.clientAccountPrivateKey,
   ['https://www.googleapis.com/auth/spreadsheets.readonly'],
   null,
 );
@@ -16,7 +34,7 @@ const maxEntriesAmount = 20;  // FIXME: magic number
 
 const fetchSheet = (callback) => {
   const request = {
-    spreadsheetId: spreadsheetID(),
+    spreadsheetId: config.bugsDiff.spreadsheetId,
     ranges: [`A1:A${maxEntriesAmount}`, `B1:B${maxEntriesAmount}`, `C1:C${maxEntriesAmount}`],
     includeGridData: true,
     auth: jwtClient,
@@ -28,6 +46,7 @@ const fetchSheet = (callback) => {
       return;
     }
     try {
+      // @TODO Decouple "fetching" and "data crunching" so we can reuse them
       const data = _.get(response, 'sheets[0].data');
       const columns = data.map((column) => column.rowData.map(cellData => _.get(cellData, 'values[0].userEnteredValue')));
       const history = columns[0].map((label, i) => (
