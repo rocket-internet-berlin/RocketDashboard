@@ -18,3 +18,5 @@ yarn-debug.log*
 yarn-error.log*
 
 src/**/*.css
+src/config/config.dev.js
+src/config/config.prod.js
