@@ -6,7 +6,6 @@ import bodyParser from 'body-parser';
 import http from 'http';
 import chalk from 'chalk';
 
-import weekNumber from './routes/weekNumber';
 import bugsDiff from './routes/bugsDiff';
 import bugsHistory from './routes/bugsHistory';
 
@@ -19,7 +18,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(ROUTE_PREFIX + '/weekNumber', weekNumber);
 app.use(ROUTE_PREFIX + '/bugsDiff', bugsDiff);
 app.use(ROUTE_PREFIX + '/bugsHistory', bugsHistory);
 
