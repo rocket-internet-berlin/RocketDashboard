@@ -8,6 +8,7 @@ import chalk from 'chalk';
 
 import bugsDiff from './routes/bugsDiff';
 import bugsHistory from './routes/bugsHistory';
+import newRelicAlerts from './routes/newRelicAlerts';
 
 const app = express();
 const ROUTE_PREFIX = '/api';
@@ -18,8 +19,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(ROUTE_PREFIX + '/bugsDiff', bugsDiff);
-app.use(ROUTE_PREFIX + '/bugsHistory', bugsHistory);
+app.use(`${ROUTE_PREFIX}/bugsDiff`, bugsDiff);
+app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistory);
+app.use(`${ROUTE_PREFIX}/newRelicAlerts`, newRelicAlerts);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -37,8 +39,8 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.send({
-    "status": "error",
-    "message": "Something went terribly wrong!"
+    status: 'error',
+    message: 'Something went terribly wrong!',
   });
 });
 
@@ -46,11 +48,11 @@ app.use(function (err, req, res, next) {
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3001');
+const port = normalizePort(process.env.PORT || '3001');
 app.set('port', port);
 
-var protocol = process.env.HTTPS === 'true' ? "https" : "http";
-var host = process.env.HOST || 'localhost';
+const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
+const host = process.env.HOST || 'localhost';
 
 console.log(chalk.cyan('Starting the Express server...'));
 
@@ -58,7 +60,7 @@ console.log(chalk.cyan('Starting the Express server...'));
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -73,7 +75,7 @@ server.on('listening', onListening);
  */
 
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  const port = parseInt(val, 10); // eslint-disable-line no-shadow
 
   if (isNaN(port)) {
     // named pipe
@@ -97,9 +99,9 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof port === 'string'
+    ? `Pipe ${port}`
+    : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {

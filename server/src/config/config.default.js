@@ -4,6 +4,10 @@ const config = {
     clientAccountEmail: undefined,
     clientAccountPrivateKey: undefined,
   },
+  newRelic: {
+    accountId: undefined,
+    queryKey: undefined,
+  },
 };
 
 export default config;
