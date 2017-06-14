@@ -1,13 +1,11 @@
-const config = {
-  bugsDiff: {
+module.exports = {
+  bugsHistory: {
     spreadsheetId: undefined,
-    clientAccountEmail: undefined,
-    clientAccountPrivateKey: undefined,
+    serviceAccountEmail: undefined,
+    serviceAccountPrivateKey: undefined,
   },
   newRelic: {
     accountId: undefined,
     queryKey: undefined,
   },
 };
-
-export default config;
