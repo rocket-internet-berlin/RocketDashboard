@@ -23,10 +23,15 @@ const insights = new Insights({
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   const nrql = 'SELECT count(*) FROM TransactionError SINCE 7 DAYS AGO COMPARE WITH 1 week ago';
 
+  // TODO: Refactor to use Promise;
   insights.query(nrql, (err, responseBody) => {
+    if (err) {
+      next(err);
+      return;
+    }
     res.json({
       status: 'success',
       message: '',

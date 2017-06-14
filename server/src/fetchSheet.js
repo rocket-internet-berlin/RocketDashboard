@@ -41,7 +41,7 @@ const fetchSheet = (callback) => {
   };
   sheets.spreadsheets.get(request, (err, response) => {
     if (err) {
-      callback(false);
+      callback(err);
       return;
     }
     try {
@@ -53,7 +53,7 @@ const fetchSheet = (callback) => {
       ));
       const period = columns[2][0].stringValue;
       // TODO: Move building of API response to the "route"
-      callback(true, {
+      callback(err, {
         status: 'success',
         message: '',
         data: {
@@ -62,7 +62,7 @@ const fetchSheet = (callback) => {
         },
       });
     } catch (exception) {
-      callback(false);
+      callback(exception);
     }
   });
 };

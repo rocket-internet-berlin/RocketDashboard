@@ -3,12 +3,13 @@ import fetchSheet from '../fetchSheet';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  fetchSheet((success, json) => {
-    if (success) {
-      res.json(json);
+router.get('/', (req, res, next) => {
+  // TODO: Refactor to use Promise
+  fetchSheet((err, json) => {
+    if (err) {
+      next(err);
     } else {
-      res.status(500).send('Sorry, something went wrong');
+      res.json(json);
     }
   });
 });
