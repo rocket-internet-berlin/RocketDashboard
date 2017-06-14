@@ -1,7 +1,7 @@
 import React from 'react';
 import './WidgetList.scss';
 import WeekNumber from '../WeekNumber/WeekNumber';
-import BugsDiff from '../BugsDiff/BugsDiff';
+import NewRelicErrors from '../NewRelicErrors/NewRelicErrors';
 import BugsHistory from '../BugsHistory/BugsHistory';
 
 const WidgetList = () => (
@@ -11,7 +11,7 @@ const WidgetList = () => (
         <WeekNumber />
       </div>
       <div className="col-xs-12 col-sm-6">
-        <BugsDiff />
+        <NewRelicErrors />
       </div>
       <div className="col-xs-12">
         <BugsHistory />

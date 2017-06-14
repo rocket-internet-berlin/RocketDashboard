@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import TestUtils from 'react-dom/test-utils';
-import { PureBugsDiff } from './BugsDiff';
+import { PureNewRelicErrors } from './NewRelicErrors';
 
-class RenderableBugsDiff extends Component {
+class RenderableNewRelicErrors extends Component {
   render() {
     return (
-      <PureBugsDiff
+      <PureNewRelicErrors
         lastWeek={this.props.lastWeek}
         thisWeek={this.props.thisWeek}
       />
@@ -13,9 +13,9 @@ class RenderableBugsDiff extends Component {
   }
 }
 
-describe('BugsDiff component', () => {
+describe('NewRelicErrors component', () => {
   const widget = TestUtils.renderIntoDocument(
-    <RenderableBugsDiff lastWeek={9} thisWeek={99} />,
+    <RenderableNewRelicErrors lastWeek={9} thisWeek={99} />,
   );
   const body = TestUtils.findRenderedDOMComponentWithClass(
     widget,

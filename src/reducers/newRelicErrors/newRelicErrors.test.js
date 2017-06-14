@@ -1,12 +1,12 @@
-import bugsDiff from './bugsDiff';
+import newRelicErrors from './newRelicErrors';
 
-describe('bugsDiff reducer', () => {
-  it('updates the state with the data from a RECEIVE_BUGSDIFF action', () => {
+describe('newRelicErrors reducer', () => {
+  it('updates the state with the data from a NEWRELICERRORS_RECEIVE action', () => {
     expect(
-      bugsDiff(
+      newRelicErrors(
         {},
         {
-          type: 'RECEIVE_BUGSDIFF',
+          type: 'NEWRELICERRORS_RECEIVE',
           payload: {
             lastWeek: 10,
             thisWeek: 20,
@@ -21,7 +21,7 @@ describe('bugsDiff reducer', () => {
 
   it('does not handle other actions', () => {
     expect(
-      bugsDiff(
+      newRelicErrors(
         {
           lastWeek: 0,
           thisWeek: 0,

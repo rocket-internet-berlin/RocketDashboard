@@ -1,9 +1,9 @@
 import { handleActions } from 'redux-actions';
-import { receiveBugsDiff } from '../../actions';
+import { receiveNewRelicErrors } from '../../actions';
 
-const bugsDiff = handleActions(
+const newRelicErrors = handleActions(
   {
-    [receiveBugsDiff]: (state, { payload }) => ({
+    [receiveNewRelicErrors]: (state, { payload }) => ({
       lastWeek: payload.lastWeek,
       thisWeek: payload.thisWeek,
     }),
@@ -14,4 +14,4 @@ const bugsDiff = handleActions(
   },
 );
 
-export default bugsDiff;
+export default newRelicErrors;
