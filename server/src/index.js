@@ -6,9 +6,8 @@ import bodyParser from 'body-parser';
 import http from 'http';
 import chalk from 'chalk';
 
-import bugsDiff from './routes/bugsDiff';
 import bugsHistory from './routes/bugsHistory';
-import newRelicAlerts from './routes/newRelicAlerts';
+import newRelicErrors from './routes/newRelicErrors';
 
 const app = express();
 const ROUTE_PREFIX = '/api';
@@ -19,9 +18,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(`${ROUTE_PREFIX}/bugsDiff`, bugsDiff);
 app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistory);
-app.use(`${ROUTE_PREFIX}/newRelicAlerts`, newRelicAlerts);
+app.use(`${ROUTE_PREFIX}/newRelicErrors`, newRelicErrors);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

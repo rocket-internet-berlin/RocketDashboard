@@ -1,5 +1,9 @@
 import { receiveWeekNumber, fetchWeekNumber } from './weekNumber';
-import { requestBugsDiff, receiveBugsDiff, fetchBugsDiff } from './bugsDiff';
+import {
+  requestNewRelicErrors,
+  receiveNewRelicErrors,
+  fetchNewRelicErrors,
+} from './newRelicErrors';
 import {
   requestBugsHistory,
   receiveBugsHistory,
@@ -9,9 +13,9 @@ import {
 export {
   receiveWeekNumber,
   fetchWeekNumber,
-  requestBugsDiff,
-  receiveBugsDiff,
-  fetchBugsDiff,
+  requestNewRelicErrors,
+  receiveNewRelicErrors,
+  fetchNewRelicErrors,
   requestBugsHistory,
   receiveBugsHistory,
   fetchBugsHistory,
@@ -19,6 +23,6 @@ export {
 
 export const refreshAll = () => dispatch => {
   dispatch(fetchWeekNumber());
-  dispatch(fetchBugsDiff());
+  dispatch(fetchNewRelicErrors());
   dispatch(fetchBugsHistory());
 };
