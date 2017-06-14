@@ -1,4 +1,5 @@
 module.exports = {
+  globalCache: '2 minutes',
   bugsHistory: {
     spreadsheetId: undefined,
     serviceAccountEmail: undefined,
