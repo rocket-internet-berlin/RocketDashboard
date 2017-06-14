@@ -5,6 +5,8 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import http from 'http';
 import chalk from 'chalk';
+import apicache from 'apicache';
+import config from './config/config';
 
 import bugsHistory from './routes/bugsHistory';
 import newRelicErrors from './routes/newRelicErrors';
@@ -17,6 +19,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// Cache all routes. Note: cache could also be set-up per-route - see docs
+app.use(apicache.middleware(config.globalCache));
 
 app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistory);
 app.use(`${ROUTE_PREFIX}/newRelicErrors`, newRelicErrors);
