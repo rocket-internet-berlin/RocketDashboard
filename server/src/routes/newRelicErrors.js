@@ -1,7 +1,20 @@
 import express from 'express';
 import Insights from 'node-insights';
 import _get from 'lodash/get';
+import Ajv from 'ajv';
 import config from '../config/config';
+
+// validate required config props
+const ajv = new Ajv();
+const validate = ajv.compile({
+  required: [
+    'queryKey',
+    'accountId',
+  ],
+});
+if (!validate(config.newRelic)) {
+  throw ajv.errorsText(validate.errors);
+}
 
 const insights = new Insights({
   queryKey: config.newRelic.queryKey,
