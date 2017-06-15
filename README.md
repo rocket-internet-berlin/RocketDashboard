@@ -27,6 +27,14 @@ or using `npm`:
 ```
 npm install && cd server && npm install && cd ..
 ```
+## Adding configuration
+
+Since the current widgets fetch data remotely, **some configuration parameters are required**. Configuration is loaded from `src/config/config.[env].js`, where `env` can be either `dev` or `prod`. 
+
+- Copy `config.default.js` to a new file named `config.dev.js`, open it, and fill-out the required API keys, etc. accordingly. 
+
+## Starting the "dev" server
+
 - Then `yarn start` (or `npm start`) to run the development and backend servers
 
 - Open [http://localhost:3000](http://localhost:3000) in a browser to see your app.
