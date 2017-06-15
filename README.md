@@ -41,7 +41,7 @@ RocketDashboard consists of two quasi-separate parts - "client" and "server":
 - "Client" is the front-end (React) app. It resides in the root folder of the project with its code in the `src` sub-folder. 
 - "Server" is the back-end (Express) app. It resides in the `server` folder with its code similarly in the `server/src` sub-folder. 
 
-Currently the `yarn start` commands will start concurently the "Dev" servers for both for convenience. However, you can run, test, compile etc. the client and server also separately. Just look at the available commands in the "scripts" section of `package.json` or with `yarn run` in the relevant folder.
+Currently the `yarn start` commands will start the "Dev" servers for BOTH in parallel for convenience. However, you can run, test, compile etc. the client and server also separately. Just look at the available commands in the "scripts" section of `package.json` or with `yarn run` in the relevant folder.
 
 ### Optional
 
