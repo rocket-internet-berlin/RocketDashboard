@@ -20,9 +20,14 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Cache all routes. Note: cache could also be set-up per-route - see docs
-app.use(apicache.middleware(config.globalCache));
+// cache management endpoints
+app.get(`${ROUTE_PREFIX}/cache/index`, (req, res) => res.json(apicache.getIndex()));
+app.get(`${ROUTE_PREFIX}/cache/clear`, (req, res) => res.json(apicache.clear()));
 
+// Cache all routes. Note: cache could also be set-up per-route - see docs
+app.use(apicache.middleware(config.globalEndpointCache));
+
+// widget endpoints
 app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistory);
 app.use(`${ROUTE_PREFIX}/newRelicErrors`, newRelicErrors);
 
