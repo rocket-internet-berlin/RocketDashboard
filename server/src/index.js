@@ -6,7 +6,7 @@ import bodyParser from 'body-parser';
 import http from 'http';
 import chalk from 'chalk';
 import apicache from 'apicache';
-import config from './config/config';
+import config from './config';
 
 import bugsHistory from './routes/bugsHistory';
 import newRelicErrors from './routes/newRelicErrors';
