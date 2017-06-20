@@ -1,7 +1,7 @@
 import _get from 'lodash/get';
 import google from 'googleapis';
 import Ajv from 'ajv';
-import config from './config/config';
+import config from './config';
 
 // validate required config props
 const ajv = new Ajv({
