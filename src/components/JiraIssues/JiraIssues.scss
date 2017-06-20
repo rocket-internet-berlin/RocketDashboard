@@ -1,0 +1,13 @@
+@import "../../sass/variables";
+
+.blockers-number {
+  font-size: $font-big;
+  font-weight: bold;
+  color: $main-color;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding-top: 127px;
+  text-align: center;
+}
