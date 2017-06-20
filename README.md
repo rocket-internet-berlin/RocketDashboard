@@ -29,9 +29,9 @@ npm install && cd server && npm install && cd ..
 ```
 ## Adding configuration
 
-Since the current widgets fetch data remotely, **some configuration parameters are required**. According to [best practices](https://devcenter.heroku.com/articles/node-best-practices#be-environmentally-aware) the configuration is loaded from a `.env` in the project's folder for local development. In production the configuration should be set as environment variables.
+Since the current widgets fetch data remotely, **some configuration parameters are required**. According to [best practices](https://devcenter.heroku.com/articles/node-best-practices#be-environmentally-aware) the configuration is loaded from a `server/.env` in the project's folder for local development. In production the configuration should be set as environment variables.
 
-- Create a file named `.env`, open it, and fill-out the required API keys, etc. accordingly, e.g.
+- Create a file named `server/.env`, open it, and fill-out the required API keys, etc. accordingly, e.g.
 
 ```$xslt
 NEWRELIC_ACCOUNT_ID=11111111
