@@ -35,7 +35,7 @@ Since the current widgets fetch data remotely, **some configuration parameters a
 
 ```$xslt
 NEWRELIC_ACCOUNT_ID=11111111
-NEWRELIC_QUERY_KEY='SuperSecretThusVeryRandomKey'
+NEWRELIC_QUERY_KEY="SuperSecretThusVeryRandomKey"
 ```
 
 ## Starting the "dev" server

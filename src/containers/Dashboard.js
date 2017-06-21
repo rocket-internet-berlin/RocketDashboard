@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
+import ReactInterval from 'react-interval';
 import WidgetList from '../components/WidgetList/WidgetList';
 import NavigationBar from '../components/NavigationBar/NavigationBar';
 import './Dashboard.scss';
@@ -16,6 +17,11 @@ class Dashboard extends Component {
       <div className="Dashboard">
         <NavigationBar />
         <WidgetList />
+        <ReactInterval
+          timeout={1000 * 60}
+          enabled
+          callback={this.props.refreshAll}
+        />
       </div>
     );
   }
