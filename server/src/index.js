@@ -25,7 +25,7 @@ app.get(`${ROUTE_PREFIX}/cache/index`, (req, res) => res.json(apicache.getIndex(
 app.get(`${ROUTE_PREFIX}/cache/clear`, (req, res) => res.json(apicache.clear()));
 
 // Cache all routes. Note: cache could also be set-up per-route - see docs
-app.use(apicache.middleware(config.globalEndpointCache));
+// app.use(apicache.middleware(config.globalEndpointCache));
 
 // widget endpoints
 app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistory);
