@@ -26,5 +26,5 @@ $chart-grid-stroke: #e7e7e7;
 $chart-axis-stroke: $rocket-gray;
 $chart-bar-fill: $main-color;
 
-// to override default bootstrap variables
-// https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_variables.scss
+// Override default bootstrap variables (https://raw.githubusercontent.com/twbs/bootstrap-sass/master/assets/stylesheets/bootstrap/_variables.scss)
+$panel-border-radius: 0;
