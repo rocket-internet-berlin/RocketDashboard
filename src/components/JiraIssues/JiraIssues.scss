@@ -1,13 +1,27 @@
-@import "../../sass/variables";
+@import "variables";
 
-.blockers-number {
-  font-size: $font-big;
-  font-weight: bold;
-  color: $main-color;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  padding-top: 127px;
-  text-align: center;
+.JiraIssues {
+  .labels-container {
+    display: flex;
+  }
+
+  .label {
+    font-size: $font-small;
+    color: $rocket-gray;
+  }
+
+  .label-blockers {
+    margin-left: 59px;
+    color: #ff2b19;
+  }
+
+  .label-criticals {
+    margin-left: 41px;
+    color: #ff796e;
+  }
+
+  .label-others {
+    margin-left: 48px;
+    color: #ffb8b2;
+  }
 }

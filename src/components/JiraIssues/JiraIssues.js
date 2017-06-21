@@ -1,16 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from 'recharts';
+import { ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 import './JiraIssues.scss';
 
-const data = [
-  { name: 'Blokers', value: 3 },
-  { name: 'Criticals', value: 5 },
-  { name: 'Others', value: 10 },
-];
-
-const COLORS = ['#1986ff', '#7fbcff', '#e5f1ff'];
+const data = [{ blockers: 3, criticals: 5, others: 10 }];
 
 const JiraIssues = () => (
   <div className="panel JiraIssues">
@@ -19,21 +13,28 @@ const JiraIssues = () => (
       <div className="row">
         <div className="chart-container">
           <ResponsiveContainer width="100%" height={200}>
-            <PieChart>
-              <Pie
-                data={data}
-                isAnimationActive={false}
-                innerRadius={60}
-                outerRadius={100}
-                fill="#8884d8"
-              >
-                {data.map((entry, index) => <Cell fill={COLORS[index]} />)}
-              </Pie>
-              <Tooltip />
-            </PieChart>
+            <BarChart width="100%" height={200} data={data}>
+              <Bar
+                dataKey="blockers"
+                fill="#ff2b19"
+                label={{ fill: '#ff2b19', fontSize: 28 }}
+              />
+              <Bar
+                dataKey="criticals"
+                fill="#ff796e"
+                label={{ fill: '#ff796e', fontSize: 28 }}
+              />
+              <Bar
+                dataKey="others"
+                fill="#ffb8b2"
+                label={{ fill: '#ffb8b2', fontSize: 28 }}
+              />
+            </BarChart>
           </ResponsiveContainer>
-          <div className="blockers-number">
-            {data.length > 0 ? data[0].value : 0}
+          <div className="labels-container">
+            <div className="label label-blockers">blockers</div>
+            <div className="label label-criticals">criticals</div>
+            <div className="label label-others">others</div>
           </div>
         </div>
       </div>
