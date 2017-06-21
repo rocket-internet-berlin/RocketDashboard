@@ -31,7 +31,7 @@ let refresher;
 export const autoRefreshStart = () => dispatch => {
   refresher = setInterval(() => {
     dispatch(refreshAll());
-  }, 1000 * 60); // TODO: magic number -> config
+  }, 1000 * 60);
 };
 
 export const autoRefreshStop = () => {
