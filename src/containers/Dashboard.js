@@ -4,11 +4,12 @@ import React, { Component } from 'react';
 import WidgetList from '../components/WidgetList/WidgetList';
 import NavigationBar from '../components/NavigationBar/NavigationBar';
 import './Dashboard.scss';
-import { refreshAll } from '../actions';
+import { refreshAll, autoRefreshStart } from '../actions';
 
 class Dashboard extends Component {
   componentDidMount() {
     this.props.refreshAll();
+    this.props.autoRefreshStart();
   }
 
   render() {
@@ -23,10 +24,12 @@ class Dashboard extends Component {
 
 const mapDispatchToProps = {
   refreshAll,
+  autoRefreshStart,
 };
 
 Dashboard.propTypes = {
   refreshAll: PropTypes.func.isRequired,
+  autoRefreshStart: PropTypes.func.isRequired,
 };
 
 export default connect(state => state, mapDispatchToProps)(Dashboard);
