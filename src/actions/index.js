@@ -26,3 +26,14 @@ export const refreshAll = () => dispatch => {
   dispatch(fetchNewRelicErrors());
   dispatch(fetchBugsHistory());
 };
+
+let refresher;
+export const autoRefreshStart = () => dispatch => {
+  refresher = setInterval(() => {
+    dispatch(refreshAll());
+  }, 1000 * 60); // TODO: magic number -> config
+};
+
+export const autoRefreshStop = () => {
+  clearInterval(refresher);
+};
