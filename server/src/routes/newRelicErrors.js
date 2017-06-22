@@ -35,7 +35,7 @@ const getResponsePayload = (insightsResponse) => getResponseSuccess({
 });
 
 router.get('/', (req, res, next) => {
-  const nrql = 'SELECT count(*) FROM TransactionError SINCE 7 DAYS AGO COMPARE WITH 1 week ago';
+  const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 7 DAYS AGO COMPARE WITH 1 week ago';
 
   const cachedPayload = cache.get(cacheKey);
 
