@@ -52,14 +52,9 @@ const fetchSheet = (callback) => {
         { label: label.stringValue, bugs: columns[1][i].numberValue }
       ));
       const period = columns[2][0].stringValue;
-      // TODO: Move building of API response to the "route"
       callback(err, {
-        status: 'success',
-        message: '',
-        data: {
-          period,
-          history,
-        },
+        period,
+        history,
       });
     } catch (exception) {
       callback(exception);

@@ -4,4 +4,9 @@ const getResponseSuccess = (data) => ({
   data: data || {},
 });
 
-export default getResponseSuccess;
+const getResponseError = (message) => ({
+  status: 'success',
+  message: message || '',
+});
+
+export { getResponseSuccess, getResponseError };

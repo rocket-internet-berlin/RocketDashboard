@@ -7,6 +7,7 @@ import http from 'http';
 import chalk from 'chalk';
 import apicache from 'apicache';
 import config from './config';
+import CacheService from './service/cacheService';
 
 import bugsHistory from './routes/bugsHistory';
 import newRelicErrors from './routes/newRelicErrors';
@@ -19,6 +20,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.locals.cacheService = new CacheService(config.defaultCacheTTL);
 
 // cache management endpoints
 app.get(`${ROUTE_PREFIX}/cache/index`, (req, res) => res.json(apicache.getIndex()));

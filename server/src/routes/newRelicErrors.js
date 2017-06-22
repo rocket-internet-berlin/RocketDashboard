@@ -2,9 +2,8 @@ import express from 'express';
 import Insights from 'node-insights';
 import _get from 'lodash/get';
 import Ajv from 'ajv';
-import Cache from 'node-cache';
 import config from '../config';
-import getResponseSuccess from '../helper/responseHelper';
+import { getResponseSuccess } from '../helper/responseHelper';
 
 // validate required config props
 const ajv = new Ajv();
@@ -23,21 +22,14 @@ const insights = new Insights({
   accountId: config.newRelic.accountId,
 });
 
-const stdTTL = 60; // TODO: Magic number -> config
-const cache = new Cache({ stdTTL });
-const cacheKey = 'newRelicErrors';
-
 const router = express.Router();
-
-const getResponsePayload = (insightsResponse) => getResponseSuccess({
-  lastWeek: _get(insightsResponse, 'previous.results[0].count'),
-  thisWeek: _get(insightsResponse, 'current.results[0].count'),
-});
 
 router.get('/', (req, res, next) => {
   const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 7 DAYS AGO COMPARE WITH 1 week ago';
 
-  const cachedPayload = cache.get(cacheKey);
+  const cacheKey = 'newRelicErrors';
+  const cacheService = req.app.locals.cacheService;
+  const cachedPayload = cacheService.get(cacheKey);
 
   // TODO: Refactor to use Promise;
   if (cachedPayload) {
@@ -48,9 +40,12 @@ router.get('/', (req, res, next) => {
         next(err);
         return;
       }
-      const payload = getResponsePayload(insightsResponse);
+      const payload = getResponseSuccess({
+        lastWeek: _get(insightsResponse, 'previous.results[0].count'),
+        thisWeek: _get(insightsResponse, 'current.results[0].count'),
+      });
       res.json(payload);
-      cache.set(cacheKey, payload);
+      cacheService.set(cacheKey, payload);
     });
   }
 });
