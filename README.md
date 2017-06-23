@@ -3,6 +3,8 @@
 A dashboard with Jira integration.
 It's perfect for development teams who want to be aware of their progress in real time.
 
+Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/CHANGELOG.md) for recent updates.
+
 ## Widgets
 
 - **Bugs History** – bugs amount chart.
