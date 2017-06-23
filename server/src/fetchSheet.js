@@ -29,12 +29,17 @@ const jwtClient = new google.auth.JWT(
   null,
 );
 
-const maxEntriesAmount = 20;  // FIXME: magic number
+const firstRow = 3;  // FIXME: magic number
+const maxEntriesAmount = 50;  // FIXME: magic number
 
 const fetchSheet = (callback) => {
   const request = {
     spreadsheetId: config.bugsHistory.spreadsheetId,
-    ranges: [`A1:A${maxEntriesAmount}`, `B1:B${maxEntriesAmount}`, `C1:C${maxEntriesAmount}`],
+    ranges: [
+      `'numbers'!B${firstRow}:B${maxEntriesAmount}`,
+      `'numbers'!C${firstRow}:C${maxEntriesAmount}`,
+      `'numbers'!D${firstRow}:D${maxEntriesAmount}`,
+      `'numbers'!E${firstRow}:E${maxEntriesAmount}`],
     includeGridData: true,
     auth: jwtClient,
     fields: 'sheets(data(rowData(values(userEnteredValue))))',
@@ -48,20 +53,21 @@ const fetchSheet = (callback) => {
       // TODO: Decouple "fetching" and "data crunching" so we can reuse them
       const data = _get(response, 'sheets[0].data');
       const columns = data.map((column) => column.rowData.map(cellData => _get(cellData, 'values[0].userEnteredValue')));
-      const history = columns[0].map((label, i) => (
-        { label: label.stringValue, bugs: columns[1][i].numberValue }
-      ));
-      const period = columns[2][0].stringValue;
+      const history = columns[0].map((timestamp, i) => {
+        const timestampValue = timestamp.numberValue;
+        const openBugs = columns[1][i] === undefined ? 0 : columns[1][i].numberValue;
+        const solvedBugs = columns[2][i] === undefined ? 0 : columns[2][i].numberValue;
+        const newBugs = columns[3][i] === undefined ? 0 : columns[3][i].numberValue;
+        return { timestamp: timestampValue, openBugs, solvedBugs, newBugs };
+      });
       // TODO: Move building of API response to the "route"
       callback(err, {
         status: 'success',
         message: '',
-        data: {
-          period,
-          history,
-        },
+        data: [...history],
       });
     } catch (exception) {
+      console.log(`exception123: ${exception}`);
       callback(exception);
     }
   });

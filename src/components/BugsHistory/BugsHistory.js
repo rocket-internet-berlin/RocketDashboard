@@ -14,9 +14,9 @@ import BasicTable from '../BasicTable/BasicTable';
 
 import './BugsHistory.scss';
 
-const BugsHistory = ({ history, period }) => (
+const BugsHistory = ({ history }) => (
   <div className="panel BugsHistory">
-    <div className="panel-heading">Bugs History ({period})</div>
+    <div className="panel-heading">Bugs History</div>
     <div className="panel-body hidden-xs">
       <div className="row">
         <div className="col-sm-9">
@@ -28,11 +28,27 @@ const BugsHistory = ({ history, period }) => (
               >
                 <Line
                   type="linear"
-                  dataKey="bugs"
+                  dataKey="openBugs"
                   barSize={10}
                   strokeWidth="1"
                   dot={{ stroke: '#1986ff', strokeWidth: 1, r: 6 }}
                   stroke="#1986ff"
+                />
+                <Line
+                  type="linear"
+                  dataKey="solvedBugs"
+                  barSize={10}
+                  strokeWidth="1"
+                  dot={{ stroke: '#1986ff', strokeWidth: 1, r: 6 }}
+                  stroke="green"
+                />
+                <Line
+                  type="linear"
+                  dataKey="newBugs"
+                  barSize={10}
+                  strokeWidth="1"
+                  dot={{ stroke: '#1986ff', strokeWidth: 1, r: 6 }}
+                  stroke="yellow"
                 />
                 <CartesianGrid stroke="#e7e7e7" strokeDasharray="2 4" />
                 <XAxis dataKey="label" stroke="#b7b7b7" tickSize={10} />
@@ -68,7 +84,6 @@ const BugsHistory = ({ history, period }) => (
 
 const mapStateToProps = state => ({
   history: state.bugsHistory.history,
-  period: state.bugsHistory.period,
 });
 
 BugsHistory.propTypes = {
@@ -78,7 +93,6 @@ BugsHistory.propTypes = {
       bugs: PropTypes.number.isRequired,
     }),
   ).isRequired,
-  period: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(BugsHistory);

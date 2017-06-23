@@ -3,10 +3,10 @@ import { createAction } from 'redux-actions';
 import fetchApi from './fetchApi';
 
 export const requestBugsHistory = createAction('REQUEST_BUGSHISTORY');
-export const receiveBugsHistory = createAction('RECEIVE_BUGSHISTORY', json => ({
-  history: json.data.history,
-  period: json.data.period,
-}));
+export const receiveBugsHistory = createAction(
+  'RECEIVE_BUGSHISTORY',
+  json => json.data,
+);
 
 export const fetchBugsHistory = () => dispatch => {
   dispatch(requestBugsHistory());
