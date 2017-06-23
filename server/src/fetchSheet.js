@@ -41,6 +41,7 @@ const fetchSheet = (callback) => {
       `'numbers'!D${firstRow}:D${maxEntriesAmount}`,
       `'numbers'!E${firstRow}:E${maxEntriesAmount}`],
     includeGridData: true,
+    dateTimeRenderOption: 'SERIAL_NUMBER',
     auth: jwtClient,
     fields: 'sheets(data(rowData(values(userEnteredValue))))',
   };
