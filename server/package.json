@@ -20,6 +20,7 @@
     "googleapis": "^19.0.0",
     "jade": "~1.11.0",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "morgan": "~1.8.1",
     "node-insights": "^1.0.15"
   },

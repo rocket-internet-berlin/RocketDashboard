@@ -1,6 +1,7 @@
 import _get from 'lodash/get';
 import google from 'googleapis';
 import Ajv from 'ajv';
+import moment from 'moment';
 import config from './config';
 
 // validate required config props
@@ -41,7 +42,6 @@ const fetchSheet = (callback) => {
       `'numbers'!D${firstRow}:D${maxEntriesAmount}`,
       `'numbers'!E${firstRow}:E${maxEntriesAmount}`],
     includeGridData: true,
-    dateTimeRenderOption: 'SERIAL_NUMBER',
     auth: jwtClient,
     fields: 'sheets(data(rowData(values(userEnteredValue))))',
   };
@@ -55,11 +55,12 @@ const fetchSheet = (callback) => {
       const data = _get(response, 'sheets[0].data');
       const columns = data.map((column) => column.rowData.map(cellData => _get(cellData, 'values[0].userEnteredValue')));
       const history = columns[0].map((timestamp, i) => {
-        const timestampValue = timestamp.numberValue;
+        const googleTimestamp = timestamp.numberValue;
+        const date = moment(new Date(1899, 12, 30)).add(googleTimestamp, 'd').format('MMM, D'); // conversion from a Google's timestamp format
         const openBugs = columns[1][i] === undefined ? 0 : columns[1][i].numberValue;
         const solvedBugs = columns[2][i] === undefined ? 0 : columns[2][i].numberValue;
         const newBugs = columns[3][i] === undefined ? 0 : columns[3][i].numberValue;
-        return { timestamp: timestampValue, openBugs, solvedBugs, newBugs };
+        return { date: date, openBugs, solvedBugs, newBugs };
       });
       // TODO: Move building of API response to the "route"
       callback(err, {
@@ -68,7 +69,6 @@ const fetchSheet = (callback) => {
         data: [...history],
       });
     } catch (exception) {
-      console.log(`exception123: ${exception}`);
       callback(exception);
     }
   });

@@ -50,7 +50,7 @@ const BugsHistory = ({ history }) => (
               stroke="#FF2B19"
             />
             <CartesianGrid stroke="#e7e7e7" strokeDasharray="2 4" />
-            <XAxis dataKey="timestamp" stroke="#b7b7b7" tickSize={10} />
+            <XAxis dataKey="date" stroke="#b7b7b7" tickSize={10} />
             <YAxis stroke="#b7b7b7" tickSize={10} />
             <Tooltip />
             <Legend />
