@@ -3,14 +3,10 @@ import { receiveBugsHistory } from '../../actions';
 
 const bugsHistory = handleActions(
   {
-    [receiveBugsHistory]: (state, { payload }) => ({
-      history: payload.history,
-      period: payload.period,
-    }),
+    [receiveBugsHistory]: (state, { payload }) => ({ history: payload }),
   },
   {
     history: [],
-    period: 'loading...',
   },
 );
 
