@@ -1,18 +1,22 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 import './JiraIssues.scss';
 
-const data = [{ blockers: 3, criticals: 5, others: 10 }];
-
-const JiraIssues = () => (
+const JiraIssues = ({ blockers, criticals, others }) => (
   <div className="panel JiraIssues">
     <div className="panel-heading">Jira Issues</div>
     <div className="panel-body hidden-xs">
       <div className="row">
         <ResponsiveContainer width="100%" height={190}>
-          <BarChart width="100%" height="100%" data={data}>
+          <BarChart
+            width="100%"
+            height="100%"
+            data={[{ blockers, criticals, others }]}
+          >
             <Bar
               dataKey="blockers"
               fill="#ff2b19"
@@ -40,4 +44,16 @@ const JiraIssues = () => (
   </div>
 );
 
-export default JiraIssues;
+const mapStateToProps = state => ({
+  blockers: state.jiraIssues.blockers,
+  criticals: state.jiraIssues.criticals,
+  others: state.jiraIssues.others,
+});
+
+JiraIssues.propTypes = {
+  blockers: PropTypes.number.isRequired,
+  criticals: PropTypes.number.isRequired,
+  others: PropTypes.number.isRequired,
+};
+
+export default connect(mapStateToProps)(JiraIssues);
