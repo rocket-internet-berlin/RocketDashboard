@@ -28,7 +28,7 @@ router.get('/', (req, res, next) => {
   const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 7 DAYS AGO COMPARE WITH 1 week ago';
 
   const cacheKey = req.baseUrl;
-  const cacheService = req.app.locals.cacheService;
+  const cacheService = req.app.locals.services.cacheService;
   const cachedPayload = cacheService.get(cacheKey);
 
   // TODO: Refactor to use Promise;

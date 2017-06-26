@@ -3,7 +3,7 @@ import { getResponseSuccess } from '../helper/responseHelper';
 
 const router = express.Router();
 
-router.get('/index', (req, res) => res.json(getResponseSuccess(req.app.locals.cacheService.keys())));
-router.get('/clear', (req, res) => res.json(getResponseSuccess(req.app.locals.cacheService.clear())));
+router.get('/index', (req, res) => res.json(getResponseSuccess(req.app.locals.services.cacheService.keys())));
+router.get('/clear', (req, res) => res.json(getResponseSuccess(req.app.locals.services.cacheService.clear())));
 
 export default router;

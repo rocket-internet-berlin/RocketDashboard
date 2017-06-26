@@ -5,8 +5,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import http from 'http';
 import chalk from 'chalk';
-import config from './config';
-import CacheService from './service/cacheService';
+import services from './service';
 
 import cache from './routes/cache';
 import bugsHistory from './routes/bugsHistory';
@@ -21,7 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.locals.cacheService = new CacheService(config.defaultCacheTTL);
+// bootstrap services
+app.locals.services = services;
 
 // cache endpoints
 app.use(`${ROUTE_PREFIX}/cache`, cache);
@@ -41,7 +41,7 @@ app.use(function (req, res, next) {
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'dev' ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);

@@ -6,7 +6,7 @@ const router = express.Router();
 
 router.get('/', (req, res, next) => {
   const cacheKey = req.baseUrl;
-  const cacheService = req.app.locals.cacheService;
+  const cacheService = req.app.locals.services.cacheService;
   const cachedPayload = cacheService.get(cacheKey);
 
   // TODO: Refactor to use Promise
