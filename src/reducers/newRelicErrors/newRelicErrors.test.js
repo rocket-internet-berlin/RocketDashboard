@@ -8,14 +8,14 @@ describe('newRelicErrors reducer', () => {
         {
           type: 'NEWRELICERRORS_RECEIVE',
           payload: {
-            lastWeek: 10,
-            thisWeek: 20,
+            previous: 10,
+            current: 20,
           },
         },
       ),
     ).toEqual({
-      lastWeek: 10,
-      thisWeek: 20,
+      previous: 10,
+      current: 20,
     });
   });
 
@@ -23,20 +23,20 @@ describe('newRelicErrors reducer', () => {
     expect(
       newRelicErrors(
         {
-          lastWeek: 0,
-          thisWeek: 0,
+          previous: 0,
+          current: 0,
         },
         {
           type: 'RECEIVE_WEEKNUMBER',
           payload: {
-            lastWeek: 9,
-            thisWeek: 99,
+            previous: 9,
+            current: 99,
           },
         },
       ),
     ).toEqual({
-      lastWeek: 0,
-      thisWeek: 0,
+      previous: 0,
+      current: 0,
     });
   });
 });

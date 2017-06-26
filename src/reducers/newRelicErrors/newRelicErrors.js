@@ -4,13 +4,13 @@ import { receiveNewRelicErrors } from '../../actions';
 const newRelicErrors = handleActions(
   {
     [receiveNewRelicErrors]: (state, { payload }) => ({
-      lastWeek: payload.lastWeek,
-      thisWeek: payload.thisWeek,
+      previous: payload.previous,
+      current: payload.current,
     }),
   },
   {
-    lastWeek: 0,
-    thisWeek: 0,
+    previous: 0,
+    current: 0,
   },
 );
 
