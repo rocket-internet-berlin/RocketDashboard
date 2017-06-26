@@ -1,3 +1,3 @@
 module.exports = {
-  globalEndpointCache: '2 minutes',
+  defaultCacheTTL: 120,
 };

@@ -6,8 +6,8 @@ class RenderableNewRelicErrors extends Component {
   render() {
     return (
       <PureNewRelicErrors
-        lastWeek={this.props.lastWeek}
-        thisWeek={this.props.thisWeek}
+        previous={this.props.previous}
+        current={this.props.current}
       />
     );
   }
@@ -15,7 +15,7 @@ class RenderableNewRelicErrors extends Component {
 
 describe('NewRelicErrors component', () => {
   const widget = TestUtils.renderIntoDocument(
-    <RenderableNewRelicErrors lastWeek={9} thisWeek={99} />,
+    <RenderableNewRelicErrors previous={9} current={99} />,
   );
   const body = TestUtils.findRenderedDOMComponentWithClass(
     widget,

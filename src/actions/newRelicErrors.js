@@ -6,8 +6,8 @@ export const requestNewRelicErrors = createAction('NEWRELICERRORS_REQUEST');
 export const receiveNewRelicErrors = createAction(
   'NEWRELICERRORS_RECEIVE',
   json => ({
-    lastWeek: json.data.lastWeek,
-    thisWeek: json.data.thisWeek,
+    previous: json.data.previous,
+    current: json.data.current,
   }),
 );
 
