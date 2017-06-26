@@ -1,31 +1,33 @@
-### What’s the plan for next week
-- Add semantic versions
-- Remove data duplication in Weekly Report / CHANGELOG and use one for weekly report
-- Test production build and add instructions
+# Change Log
+
+#### What’s the plan for next week
+
+- Adhered project to [Semantic Versioning](http://semver.org/)
+- Remove data duplication in Weekly Report / CHANGELOG.md and use one for weekly report
+- Test production build and add production build+deploy instructions
 - Improve test coverage
-- Finish Jira connection and widget
+- Fetch from the real bugs history Google Sheet - WIP
+- Establish API connection to Jira and add a widget - WIP
 - Improve widget code structure
 - Background process for remote data loading and crunching
 
 #### Possible topics
 
-- Add all widgets that Campsy has
+- Implement all widgets that Campsy has
 
 ### 0.7.0
 
-- Establish API connection to Jira and add a widget - WIP
-- Improve caching with key-value cache (cache crunched data instead of route responses) 
-- Fetch from the real bugs history Google Sheet - WIP
+- Improve caching with key-value cache (cache crunched data instead of route responses)
 - Refactored loading of environment credentials
 - Auto-refresh the widgets data
 - Test coverage: 25.53% ↘
 
-### 0.5.0 - 0.6.0 
+### 0.6.0
 
 - Added Babel ES6 transpiler and Eslint for the “server” part
-- Removed back-end part of weekNumber (only FE now) 
+- Removed back-end part of weekNumber (only FE now)
 - Fetch data from Google Spreadsheet in the BE (BugsHistory widget)
-- Fetch data from New Relic in the BE (newRelicErrors né BugsDiff) 
+- Fetch data from New Relic in the BE (newRelicErrors né BugsDiff)
 - Config per environment with dedicated .js files
 - Cache API results in Node.js/server-side
 - Test coverage: 35.35%
