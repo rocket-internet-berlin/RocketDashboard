@@ -5,20 +5,20 @@ import { getResponseSuccess } from '../helper/responseHelper';
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  const cacheKey = 'bugsHistory';
+  const cacheKey = req.baseUrl;
   const cacheService = req.app.locals.cacheService;
   const cachedPayload = cacheService.get(cacheKey);
 
   // TODO: Refactor to use Promise
   if (cachedPayload) {
-    res.json(cachedPayload);
+    res.json(getResponseSuccess(cachedPayload));
   } else {
     fetchSheet((err, json) => {
       if (err) {
         next(err);
       } else {
-        res.json(getResponseSuccess(json));
         cacheService.set(cacheKey, json);
+        res.json(getResponseSuccess(json));
       }
     });
   }

@@ -27,24 +27,24 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 7 DAYS AGO COMPARE WITH 1 week ago';
 
-  const cacheKey = 'newRelicErrors';
+  const cacheKey = req.baseUrl;
   const cacheService = req.app.locals.cacheService;
   const cachedPayload = cacheService.get(cacheKey);
 
   // TODO: Refactor to use Promise;
   if (cachedPayload) {
-    res.json(cachedPayload);
+    res.json(getResponseSuccess(cachedPayload));
   } else {
     insights.query(nrql, (err, insightsResponse) => {
       if (err) {
         next(err);
         return;
       }
-      const payload = getResponseSuccess({
-        lastWeek: _get(insightsResponse, 'previous.results[0].count'),
-        thisWeek: _get(insightsResponse, 'current.results[0].count'),
-      });
-      res.json(payload);
+      const payload = {
+        previous: _get(insightsResponse, 'previous.results[0].count'),
+        current: _get(insightsResponse, 'current.results[0].count'),
+      };
+      res.json(getResponseSuccess(payload));
       cacheService.set(cacheKey, payload);
     });
   }

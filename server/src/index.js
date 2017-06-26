@@ -5,10 +5,10 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import http from 'http';
 import chalk from 'chalk';
-import apicache from 'apicache';
 import config from './config';
 import CacheService from './service/cacheService';
 
+import cache from './routes/cache';
 import bugsHistory from './routes/bugsHistory';
 import newRelicErrors from './routes/newRelicErrors';
 
@@ -23,12 +23,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.locals.cacheService = new CacheService(config.defaultCacheTTL);
 
-// cache management endpoints
-app.get(`${ROUTE_PREFIX}/cache/index`, (req, res) => res.json(apicache.getIndex()));
-app.get(`${ROUTE_PREFIX}/cache/clear`, (req, res) => res.json(apicache.clear()));
-
-// Cache all routes. Note: cache could also be set-up per-route - see docs
-// app.use(apicache.middleware(config.globalEndpointCache));  // TODO: Remove when development of cache is done
+// cache endpoints
+app.use(`${ROUTE_PREFIX}/cache`, cache);
 
 // widget endpoints
 app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistory);
