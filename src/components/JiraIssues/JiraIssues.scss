@@ -3,25 +3,25 @@
 .JiraIssues {
   .labels-container {
     display: flex;
+    margin: 0 11%;
   }
 
   .label {
+    width: 33%;
+    text-align: center;
     font-size: $font-small;
-    color: $rocket-gray;
+    overflow: hidden;
   }
 
   .label-blockers {
-    margin-left: 59px;
     color: #ff2b19;
   }
 
   .label-criticals {
-    margin-left: 41px;
     color: #ff796e;
   }
 
   .label-others {
-    margin-left: 48px;
     color: #ffb8b2;
   }
 }
