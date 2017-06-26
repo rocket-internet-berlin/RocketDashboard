@@ -6,7 +6,6 @@
 - Remove data duplication in Weekly Report / CHANGELOG.md and use one for weekly report
 - Test production build and add production build+deploy instructions
 - Improve test coverage
-- Fetch from the real bugs history Google Sheet - WIP
 - Establish API connection to Jira and add a widget - WIP
 - Improve widget code structure
 - Background process for remote data loading and crunching
@@ -14,6 +13,10 @@
 #### Possible topics
 
 - Implement all widgets that Campsy has
+
+### current
+
+- Fetch from the real bugs history Google Spreadsheet
 
 ### 0.7.0
 
