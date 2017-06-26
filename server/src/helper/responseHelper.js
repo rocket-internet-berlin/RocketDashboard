@@ -4,7 +4,7 @@ const getResponseSuccess = (data) => ({
 });
 
 const getResponseError = (message) => ({
-  status: 'success',
+  status: 'error',
   message: message || '',
 });
 

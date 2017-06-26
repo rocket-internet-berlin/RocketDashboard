@@ -44,8 +44,8 @@ router.get('/', (req, res, next) => {
         previous: _get(insightsResponse, 'previous.results[0].count'),
         current: _get(insightsResponse, 'current.results[0].count'),
       };
-      res.json(getResponseSuccess(payload));
       cacheService.set(cacheKey, payload);
+      res.json(getResponseSuccess(payload));
     });
   }
 });
