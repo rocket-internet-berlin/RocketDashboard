@@ -9,7 +9,7 @@ import './JiraIssues.scss';
 const JiraIssues = ({ blockers, criticals, others }) => (
   <div className="panel JiraIssues">
     <div className="panel-heading">Jira Issues</div>
-    <div className="panel-body hidden-xs">
+    <div className="panel-body">
       <div className="row">
         <ResponsiveContainer width="100%" height={190}>
           <BarChart
