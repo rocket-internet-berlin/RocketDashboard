@@ -3,6 +3,7 @@ import Insights from 'node-insights';
 import _get from 'lodash/get';
 import Ajv from 'ajv';
 import config from '../config';
+import { getResponseSuccess } from '../helper/responseHelper';
 
 // validate required config props
 const ajv = new Ajv();
@@ -26,21 +27,27 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 7 DAYS AGO COMPARE WITH 1 week ago';
 
+  const cacheKey = req.baseUrl;
+  const cacheService = req.app.locals.services.cacheService;
+  const cachedPayload = cacheService.get(cacheKey);
+
   // TODO: Refactor to use Promise;
-  insights.query(nrql, (err, responseBody) => {
-    if (err) {
-      next(err);
-      return;
-    }
-    res.json({
-      status: 'success',
-      message: '',
-      data: {
-        lastWeek: _get(responseBody, 'previous.results[0].count'),
-        thisWeek: _get(responseBody, 'current.results[0].count'),
-      },
+  if (cachedPayload) {
+    res.json(getResponseSuccess(cachedPayload));
+  } else {
+    insights.query(nrql, (err, insightsResponse) => {
+      if (err) {
+        next(err);
+        return;
+      }
+      const payload = {
+        previous: _get(insightsResponse, 'previous.results[0].count'),
+        current: _get(insightsResponse, 'current.results[0].count'),
+      };
+      cacheService.set(cacheKey, payload);
+      res.json(getResponseSuccess(payload));
     });
-  });
+  }
 });
 
 export default router;

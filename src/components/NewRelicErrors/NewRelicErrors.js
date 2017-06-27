@@ -3,24 +3,24 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './NewRelicErrors.scss';
 
-const NewRelicErrors = ({ lastWeek, thisWeek }) => (
+const NewRelicErrors = ({ previous, current }) => (
   <div className="panel">
     <div className="panel-heading">New Relic Errors</div>
     <div className="panel-body">
-      <span className="this-week number-big">{thisWeek}</span>
-      <span className="last-week number-normal"> / {lastWeek}</span>
+      <span className="this-week number-big">{current}</span>
+      <span className="last-week number-normal"> / {previous}</span>
     </div>
   </div>
 );
 
 const mapStateToProps = state => ({
-  lastWeek: state.newRelicErrors.lastWeek,
-  thisWeek: state.newRelicErrors.thisWeek,
+  previous: state.newRelicErrors.previous,
+  current: state.newRelicErrors.current,
 });
 
 NewRelicErrors.propTypes = {
-  thisWeek: PropTypes.number.isRequired,
-  lastWeek: PropTypes.number.isRequired,
+  previous: PropTypes.number.isRequired,
+  current: PropTypes.number.isRequired,
 };
 
 export default connect(mapStateToProps)(NewRelicErrors);
