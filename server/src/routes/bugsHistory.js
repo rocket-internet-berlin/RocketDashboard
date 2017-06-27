@@ -1,12 +1,12 @@
 import express from 'express';
 import fetchSheet from '../fetchSheet';
 import { getResponseSuccess } from '../helper/responseHelper';
+import { cacheService } from '../service';
 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
   const cacheKey = req.baseUrl;
-  const cacheService = req.app.locals.services.cacheService;
   const cachedPayload = cacheService.get(cacheKey);
 
   // TODO: Refactor to use Promise
