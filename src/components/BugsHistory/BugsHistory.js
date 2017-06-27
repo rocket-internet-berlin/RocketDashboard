@@ -71,8 +71,9 @@ const mapStateToProps = state => ({
 BugsHistory.propTypes = {
   history: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      bugs: PropTypes.number.isRequired,
+      openBugs: PropTypes.number.isRequired,
+      solvedBugs: PropTypes.number.isRequired,
+      newBugs: PropTypes.number.isRequired,
     }),
   ).isRequired,
 };

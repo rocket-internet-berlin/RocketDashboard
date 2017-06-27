@@ -63,11 +63,7 @@ const fetchSheet = (callback) => {
         return { date, openBugs, solvedBugs, newBugs };
       });
       // TODO: Move building of API response to the "route"
-      callback(err, {
-        status: 'success',
-        message: '',
-        data: [...history],
-      });
+      callback(err, history);
     } catch (exception) {
       callback(exception);
     }
