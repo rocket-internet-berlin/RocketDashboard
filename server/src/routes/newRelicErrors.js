@@ -4,6 +4,7 @@ import _get from 'lodash/get';
 import Ajv from 'ajv';
 import config from '../config';
 import { getResponseSuccess } from '../helper/responseHelper';
+import { cacheService } from '../service';
 
 // validate required config props
 const ajv = new Ajv();
@@ -28,7 +29,6 @@ router.get('/', (req, res, next) => {
   const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 7 DAYS AGO COMPARE WITH 1 week ago';
 
   const cacheKey = req.baseUrl;
-  const cacheService = req.app.locals.services.cacheService;
   const cachedPayload = cacheService.get(cacheKey);
 
   // TODO: Refactor to use Promise;
