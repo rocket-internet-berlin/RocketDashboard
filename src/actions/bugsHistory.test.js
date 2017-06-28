@@ -5,25 +5,12 @@ describe('a bugs history receiving action', () => {
 
   it('creates an action with bugs history', () => {
     const json = {
-      data: {
-        period: '1 day period',
-        history: [{ label: 'yesterday', bugs: 99 }],
-      },
+      data: [{ openBbugs: 1, solvedBugs: 2, newBugs: 3 }],
     };
     const expectedAction = {
       type: 'RECEIVE_BUGSHISTORY',
-      payload: {
-        period: '1 day period',
-        history: [{ label: 'yesterday', bugs: 99 }],
-      },
+      payload: [{ openBbugs: 1, solvedBugs: 2, newBugs: 3 }],
     };
     expect(actions.receiveBugsHistory(json)).toEqual(expectedAction);
-  });
-
-  it('throws if parsing fails', () => {
-    const json = { broken_data: {} };
-    expect(() => {
-      actions.receiveBugsHistory(json);
-    }).toThrow();
   });
 });

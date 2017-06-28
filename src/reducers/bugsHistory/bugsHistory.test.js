@@ -6,35 +6,34 @@ describe('bugsHistory reducer', () => {
       bugsHistory(
         {
           history: [],
-          period: 'loading...',
         },
         {
           type: 'RECEIVE_BUGSHISTORY',
-          payload: {
-            period: 'Last 2 Days',
-            history: [
-              {
-                label: 'yesterday',
-                bugs: 9,
-              },
-              {
-                label: 'today',
-                bugs: 99,
-              },
-            ],
-          },
+          payload: [
+            {
+              openBugs: 1,
+              solvedBugs: 2,
+              newBugs: 3,
+            },
+            {
+              openBugs: 4,
+              solvedBugs: 5,
+              newBugs: 6,
+            },
+          ],
         },
       ),
     ).toEqual({
-      period: 'Last 2 Days',
       history: [
         {
-          label: 'yesterday',
-          bugs: 9,
+          openBugs: 1,
+          solvedBugs: 2,
+          newBugs: 3,
         },
         {
-          label: 'today',
-          bugs: 99,
+          openBugs: 4,
+          solvedBugs: 5,
+          newBugs: 6,
         },
       ],
     });
@@ -45,24 +44,20 @@ describe('bugsHistory reducer', () => {
       bugsHistory(
         {
           history: [],
-          period: 'loading...',
         },
         {
           type: 'RECEIVE_WEEKNUMBER',
-          payload: {
-            history: [
-              {
-                label: 'today',
-                bugs: 99,
-              },
-            ],
-            period: 'Only today',
-          },
+          payload: [
+            {
+              openBugs: 9,
+              solvedBugs: 9,
+              newBugs: 9,
+            },
+          ],
         },
       ),
     ).toEqual({
       history: [],
-      period: 'loading...',
     });
   });
 });
