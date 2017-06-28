@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import { createAction } from 'redux-actions';
-import fetchApi from './fetchApi';
+import fetchApi from '../../../actions/fetchApi';
 
 export const requestNewRelicErrors = createAction('NEWRELICERRORS_REQUEST');
 export const receiveNewRelicErrors = createAction(

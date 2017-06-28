@@ -3,7 +3,7 @@ import {
   requestNewRelicErrors,
   receiveNewRelicErrors,
   fetchNewRelicErrors,
-} from './newRelicErrors';
+} from '../widgets/NewRelicErrors/actions/newRelicErrors';
 import {
   requestBugsHistory,
   receiveBugsHistory,

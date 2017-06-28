@@ -1,7 +1,8 @@
 import React from 'react';
 import './WidgetList.scss';
 import WeekNumber from '../WeekNumber/WeekNumber';
-import NewRelicErrors from '../NewRelicErrors/NewRelicErrors';
+import NewRelicErrors
+  from '../../widgets/NewRelicErrors/components/NewRelicErrors';
 import BugsHistory from '../BugsHistory/BugsHistory';
 
 const WidgetList = () => (

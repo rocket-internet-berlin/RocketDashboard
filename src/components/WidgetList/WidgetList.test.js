@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { shallow } from 'enzyme';
 import WidgetList from './WidgetList';
 import WeekNumber from '../WeekNumber/WeekNumber';
-import NewRelicErrors from '../NewRelicErrors/NewRelicErrors';
+import NewRelicErrors
+  from '../../widgets/NewRelicErrors/components/NewRelicErrors';
 import BugsHistory from '../BugsHistory/BugsHistory';
 
 describe('WidgetList component', () => {
