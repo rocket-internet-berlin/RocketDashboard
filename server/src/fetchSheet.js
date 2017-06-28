@@ -60,14 +60,10 @@ const fetchSheet = (callback) => {
         const openBugs = columns[1][i] === undefined ? 0 : columns[1][i].numberValue;
         const solvedBugs = columns[2][i] === undefined ? 0 : columns[2][i].numberValue;
         const newBugs = columns[3][i] === undefined ? 0 : columns[3][i].numberValue;
-        return { date: date, openBugs, solvedBugs, newBugs };
+        return { date, openBugs, solvedBugs, newBugs };
       });
       // TODO: Move building of API response to the "route"
-      callback(err, {
-        status: 'success',
-        message: '',
-        data: [...history],
-      });
+      callback(err, history);
     } catch (exception) {
       callback(exception);
     }
