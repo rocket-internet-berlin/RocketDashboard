@@ -1,9 +1,10 @@
 import { receiveWeekNumber, fetchWeekNumber } from './weekNumber';
+
 import {
-  requestNewRelicErrors,
-  receiveNewRelicErrors,
-  fetchNewRelicErrors,
+  // onReceive,
+  refresh as refreshNewRelicErrors,
 } from '../widgets/NewRelicErrors/actions/newRelicErrors';
+
 import {
   requestBugsHistory,
   receiveBugsHistory,
@@ -13,16 +14,14 @@ import {
 export {
   receiveWeekNumber,
   fetchWeekNumber,
-  requestNewRelicErrors,
-  receiveNewRelicErrors,
-  fetchNewRelicErrors,
   requestBugsHistory,
   receiveBugsHistory,
   fetchBugsHistory,
 };
 
 export const refreshAll = () => dispatch => {
+  // eslint-disable-line import/prefer-default-export
   dispatch(fetchWeekNumber());
-  dispatch(fetchNewRelicErrors());
+  dispatch(refreshNewRelicErrors());
   dispatch(fetchBugsHistory());
 };

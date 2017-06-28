@@ -1,9 +1,9 @@
 import { handleActions } from 'redux-actions';
-import { receiveNewRelicErrors } from '../../actions';
+import { onReceive } from '../actions/newRelicErrors';
 
-const newRelicErrors = handleActions(
+const reducers = handleActions(
   {
-    [receiveNewRelicErrors]: (state, { payload }) => ({
+    [onReceive]: (state, { payload }) => ({
       previous: payload.previous,
       current: payload.current,
     }),
@@ -14,4 +14,4 @@ const newRelicErrors = handleActions(
   },
 );
 
-export default newRelicErrors;
+export default reducers;

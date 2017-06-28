@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import { createAction } from 'redux-actions';
-import fetchApi from './fetchApi';
+import fetchApi from '../lib/fetchApi';
 
 export const requestBugsHistory = createAction('REQUEST_BUGSHISTORY');
 export const receiveBugsHistory = createAction(

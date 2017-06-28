@@ -27,7 +27,7 @@ describe('newRelicErrors reducer', () => {
           current: 0,
         },
         {
-          type: 'RECEIVE_WEEKNUMBER',
+          type: 'OTHER_EVENT',
           payload: {
             previous: 9,
             current: 99,
