@@ -6,7 +6,6 @@
 - Remove data duplication in Weekly Report / CHANGELOG.md and use one for weekly report
 - Test production build and add production build+deploy instructions
 - Improve test coverage
-- Establish API connection to Jira and add a widget - WIP
 - Improve widget code structure
 - Background process for remote data loading and crunching
 
@@ -17,6 +16,7 @@
 ### current
 
 - Fetch from the real bugs history Google Spreadsheet
+- Establish API connection to Jira and add a widget
 
 ### 0.7.0
 
