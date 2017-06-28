@@ -9,23 +9,33 @@ const ajv = new Ajv({
   allErrors: true,
 });
 
-const validate = ajv.compile({
+// validate a google config
+const validateGoogle = ajv.compile({
   required: [
-    'spreadsheetId',
     'serviceAccountEmail',
     'serviceAccountPrivateKey',
   ],
 });
-if (!validate(config.bugsHistory)) {
-  throw ajv.errorsText(validate.errors);
+if (!validateGoogle(config.google)) {
+  throw ajv.errorsText(validateGoogle.errors);
+}
+
+// validate a bugs history config
+const validateBugsHistory = ajv.compile({
+  required: [
+    'spreadsheetId',
+  ],
+});
+if (!validateBugsHistory(config.bugsHistory)) {
+  throw ajv.errorsText(validateBugsHistory.errors);
 }
 
 const sheets = google.sheets('v4');
 
 const jwtClient = new google.auth.JWT(
-  config.bugsHistory.serviceAccountEmail,
+  config.google.serviceAccountEmail,
   null,
-  config.bugsHistory.serviceAccountPrivateKey,
+  config.google.serviceAccountPrivateKey,
   ['https://www.googleapis.com/auth/spreadsheets.readonly'],
   null,
 );
