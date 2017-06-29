@@ -6,7 +6,7 @@ describe('a bugs difference receiving action', () => {
   it('creates an action with bugs difference', () => {
     const json = { data: { previous: 99, current: 9 } };
     const expectedAction = {
-      type: 'NEWRELICERRORS_RECEIVE',
+      type: 'RECEIVE_NEWRELICERRORS',
       payload: {
         previous: 99,
         current: 9,

@@ -1,17 +1,13 @@
 import { handleActions } from 'redux-actions';
-import { onReceive } from '../actions/newRelicErrors';
+import { onReceive } from '../actions/weekNumber';
 
 const reducer = handleActions(
   {
     [onReceive]: (state, { payload }) => ({
-      previous: payload.previous,
-      current: payload.current,
+      week: payload,
     }),
   },
-  {
-    previous: 0,
-    current: 0,
-  },
+  { week: 0 },
 );
 
 export default reducer;

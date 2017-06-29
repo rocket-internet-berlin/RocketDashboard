@@ -9,6 +9,6 @@ describe('a week number receiving action', () => {
       type: 'RECEIVE_WEEKNUMBER',
       payload: week,
     };
-    expect(actions.receiveWeekNumber(week)).toEqual(expectedAction);
+    expect(actions.onReceive(week)).toEqual(expectedAction);
   });
 });

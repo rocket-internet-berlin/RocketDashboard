@@ -1,12 +1,12 @@
-import newRelicErrors from './newRelicErrors';
+import reducer from './newRelicErrors';
 
 describe('newRelicErrors reducer', () => {
-  it('updates the state with the data from a NEWRELICERRORS_RECEIVE action', () => {
+  it('updates the state with the data from a RECEIVE_NEWRELICERRORS action', () => {
     expect(
-      newRelicErrors(
+      reducer(
         {},
         {
-          type: 'NEWRELICERRORS_RECEIVE',
+          type: 'RECEIVE_NEWRELICERRORS',
           payload: {
             previous: 10,
             current: 20,
@@ -21,7 +21,7 @@ describe('newRelicErrors reducer', () => {
 
   it('does not handle other actions', () => {
     expect(
-      newRelicErrors(
+      reducer(
         {
           previous: 0,
           current: 0,

@@ -1,9 +1,9 @@
 import React from 'react';
 import './WidgetList.scss';
-import WeekNumber from '../WeekNumber/WeekNumber';
+import WeekNumber from '../../widgets/WeekNumber/components/WeekNumber';
 import NewRelicErrors
   from '../../widgets/NewRelicErrors/components/NewRelicErrors';
-import BugsHistory from '../BugsHistory/BugsHistory';
+import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 
 const WidgetList = () => (
   <div className="WidgetList container-fluid">
