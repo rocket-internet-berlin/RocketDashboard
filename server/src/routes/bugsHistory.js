@@ -1,14 +1,11 @@
 import express from 'express';
 import config from '../config';
 import { getResponseSuccess } from '../helper/responseHelper';
-import { cacheService } from '../service';
+import { cacheService, googleService } from '../service';
 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
-  const cacheService = req.app.locals.services.cacheService;
-  const googleService = req.app.locals.services.googleService;
-
   const cacheKey = req.baseUrl;
   const cachedPayload = cacheService.get(cacheKey);
 

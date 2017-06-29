@@ -14,7 +14,7 @@ class JiraService {
   }
 
   fetchStatus(callback) {
-    this.jira.searchJira("project = CC AND status in (Open, 'In Progress', Reopened)")
+    this.jira.searchJira("project = CC AND status in ('Selected for Development', Open, 'In Progress', Reopened)")
       .then(response => {
         const issues = response.issues;
         let blockers = 0;
@@ -31,10 +31,10 @@ class JiraService {
             others += 1;
           }
         });
-        callback({ blockers, criticals, others }, null);
+        callback(null, { blockers, criticals, others });
       })
       .catch(error => {
-        callback(null, error);
+        callback(error);
       });
   }
 }
