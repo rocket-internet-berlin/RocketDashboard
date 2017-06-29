@@ -1,0 +1,31 @@
+@import "variables";
+
+.JiraIssues {
+  .labels-container {
+    display: flex;
+    margin: 0 11%;
+  }
+
+  .label {
+    width: 33%;
+    text-align: center;
+    font-size: $font-small;
+    overflow: hidden;
+  }
+
+  .label-blockers {
+    color: #ff2b19;
+  }
+
+  .label-criticals {
+    color: #ff796e;
+  }
+
+  .label-others {
+    color: #ffb8b2;
+  }
+
+  .recharts-surface {
+    overflow: visible;
+  }
+}
