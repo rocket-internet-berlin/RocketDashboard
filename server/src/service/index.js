@@ -1,6 +1,11 @@
-import CacheService from './CacheService';
+import CacheService from './cacheService';
+import GoogleService from './googleService';
 import config from '../config';
 
 const cacheService = new CacheService(config.defaultCacheTTL);
+const googleService = new GoogleService(config.google.serviceAccountEmail, config.google.serviceAccountPrivateKey);
 
-export { cacheService }; // eslint-disable-line import/prefer-default-export
+export default {
+  cacheService,
+  googleService,
+};

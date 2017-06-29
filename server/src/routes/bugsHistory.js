@@ -1,11 +1,14 @@
 import express from 'express';
-import fetchSheet from '../fetchSheet';
+import config from '../config';
 import { getResponseSuccess } from '../helper/responseHelper';
 import { cacheService } from '../service';
 
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
+  const cacheService = req.app.locals.services.cacheService;
+  const googleService = req.app.locals.services.googleService;
+
   const cacheKey = req.baseUrl;
   const cachedPayload = cacheService.get(cacheKey);
 
@@ -13,7 +16,7 @@ router.get('/', (req, res, next) => {
   if (cachedPayload) {
     res.json(getResponseSuccess(cachedPayload));
   } else {
-    fetchSheet((err, json) => {
+    googleService.fetchSheet(config.bugsHistory.spreadsheetId, (err, json) => {
       if (err) {
         next(err);
       } else {
