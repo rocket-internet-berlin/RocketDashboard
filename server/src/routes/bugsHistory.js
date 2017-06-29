@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
   if (cachedPayload) {
     res.json(getResponseSuccess(cachedPayload));
   } else {
-    googleService.fetchSheet(config.bugsHistory.spreadsheetId, (err, json) => {
+    googleService.fetchSheet(config.bugsHistory.spreadsheetId, config.bugsHistory.dataRange, (err, json) => {
       if (err) {
         next(err);
       } else {

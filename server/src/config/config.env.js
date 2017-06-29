@@ -3,6 +3,7 @@ require('dotenv').config({ silent: true });
 module.exports = {
   bugsHistory: {
     spreadsheetId: process.env.BUGS_HISTORY_SPREADSHEET_ID,
+    dataRange: process.env.BUGS_HISTORY_DATA_RANGE,
   },
   google: {
     serviceAccountEmail: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
