@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import weekNumber from './weekNumber/weekNumber';
-import newRelicErrors from './newRelicErrors/newRelicErrors';
-import bugsHistory from './bugsHistory/bugsHistory';
+import weekNumber from '../widgets/WeekNumber/reducers/weekNumber';
+import newRelicErrors from '../widgets/NewRelicErrors/reducers/newRelicErrors';
+import bugsHistory from '../widgets/BugsHistory/reducers/bugsHistory';
 import jiraIssues from './jiraIssues/jiraIssues';
 
 const appReducers = combineReducers({

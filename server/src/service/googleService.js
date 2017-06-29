@@ -30,7 +30,7 @@ class GoogleService {
         return;
       }
       try {
-        const history = this.parseResponse(response);
+        const history = GoogleService.parseResponse(response);
         callback(err, history);
       } catch (exception) {
         callback(exception);
@@ -38,7 +38,7 @@ class GoogleService {
     });
   }
 
-  parseReponse(response) {
+  static parseReponse(response) {
     const data = _get(response, 'sheets[0].data');
     const columns = data.map((column) => column.rowData.map(cellData => _get(cellData, 'values[0].userEnteredValue')));
     return columns[0].map((timestamp, i) => {

@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import { createAction } from 'redux-actions';
-import fetchApi from './fetchApi';
+import fetchApi from '../lib/fetchApi';
 
 export const requestJiraIssues = createAction('JIRAISSUES_REQUEST');
 export const receiveJiraIssues = createAction(

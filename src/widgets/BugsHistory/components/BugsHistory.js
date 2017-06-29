@@ -11,7 +11,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import BasicTable from '../BasicTable/BasicTable';
+import BasicTable from '../../../components/BasicTable/BasicTable';
 
 import './BugsHistory.scss';
 

@@ -1,9 +1,10 @@
 import React from 'react';
 import './WidgetList.scss';
-import WeekNumber from '../WeekNumber/WeekNumber';
-import NewRelicErrors from '../NewRelicErrors/NewRelicErrors';
+import WeekNumber from '../../widgets/WeekNumber/components/WeekNumber';
+import NewRelicErrors
+  from '../../widgets/NewRelicErrors/components/NewRelicErrors';
+import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 import JiraIssues from '../JiraIssues/JiraIssues';
-import BugsHistory from '../BugsHistory/BugsHistory';
 
 const WidgetList = () => (
   <div className="WidgetList container-fluid">
