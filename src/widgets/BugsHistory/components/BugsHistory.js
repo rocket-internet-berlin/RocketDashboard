@@ -11,7 +11,7 @@ import {
   Tooltip,
   Legend,
 } from 'recharts';
-import BasicTable from '../BasicTable/BasicTable';
+import BasicTable from '../../../components/BasicTable/BasicTable';
 
 import './BugsHistory.scss';
 
@@ -79,6 +79,3 @@ BugsHistory.propTypes = {
 };
 
 export default connect(mapStateToProps)(BugsHistory);
-
-// Note: PureBugsHistory is BugsHistory without redux (for unit tests)
-export { BugsHistory as PureBugsHistory };
