@@ -2,21 +2,21 @@
 
 #### What’s the plan for next week
 
-- Adhered project to [Semantic Versioning](http://semver.org/)
-- Remove data duplication in Weekly Report / CHANGELOG.md and use one for weekly report
-- Test production build and add production build+deploy instructions
+- Implement all widgets that Campsy has
 - Improve test coverage
-- Establish API connection to Jira and add a widget - WIP
-- Improve widget code structure
-- Background process for remote data loading and crunching
 
 #### Possible topics
 
-- Implement all widgets that Campsy has
+- Test production build and add production build+deploy instructions
+- Background process for remote data loading and crunching
 
-### current
+### 0.8.0
 
 - Fetch from the real bugs history Google Spreadsheet
+- Establish API connection to Jira and add a widget
+- Adhered project to [Semantic Versioning](http://semver.org/)
+- Cleanup the Weekly Report / CHANGELOG.md
+- Improve widget code structure
 
 ### 0.7.0
 

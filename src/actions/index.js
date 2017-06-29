@@ -8,11 +8,14 @@ import {
   refresh as refreshBugsHistory,
 } from '../widgets/BugsHistory/actions/bugsHistory';
 
+import { fetchJiraIssues } from './jiraIssues';
+
 // TODO: Possibly refactor using Observers pattern. This way we won`t have to add widgets here manually.
 const refreshAll = () => dispatch => {
   dispatch(refreshWeekNumber());
   dispatch(refreshNewRelicErrors());
   dispatch(refreshBugsHistory());
+  dispatch(fetchJiraIssues());
 };
 
 export { refreshAll }; // eslint-disable-line import/prefer-default-export

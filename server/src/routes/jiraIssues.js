@@ -1,7 +1,6 @@
 import express from 'express';
-import config from '../config';
+import { cacheService, jiraService } from '../service';
 import { getResponseSuccess } from '../helper/responseHelper';
-import { cacheService, googleService } from '../service';
 
 const router = express.Router();
 
@@ -13,7 +12,7 @@ router.get('/', (req, res, next) => {
   if (cachedPayload) {
     res.json(getResponseSuccess(cachedPayload));
   } else {
-    googleService.fetchSheet(config.bugsHistory.spreadsheetId, config.bugsHistory.dataRange, (err, json) => {
+    jiraService.fetchStatus((err, json) => {
       if (err) {
         next(err);
       } else {
