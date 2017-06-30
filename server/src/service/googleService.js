@@ -38,9 +38,9 @@ class GoogleService {
   static parseResponse(response) {
     const columns = response.values;
     return columns[0].map((date, i) => {
-      const openBugs = columns[1][i] === undefined ? 0 : Number(columns[1][i]);
-      const solvedBugs = columns[2][i] === undefined ? 0 : Number(columns[2][i]);
-      const newBugs = columns[3][i] === undefined ? 0 : Number(columns[3][i]);
+      const openBugs = Number(columns[1][i] || 0);
+      const solvedBugs = Number(columns[2][i] || 0);
+      const newBugs = Number(columns[3][i] || 0);
       return { date, openBugs, solvedBugs, newBugs };
     });
   }
