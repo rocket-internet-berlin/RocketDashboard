@@ -6,7 +6,7 @@ import { ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 import './JiraIssues.scss';
 
-const JiraIssues = ({ blockers, criticals, others }) => (
+const JiraIssues = ({ blockers, criticals, others }) =>
   <div className="panel JiraIssues">
     <div className="panel-heading">Jira Issues</div>
     <div className="panel-body">
@@ -41,8 +41,7 @@ const JiraIssues = ({ blockers, criticals, others }) => (
         </div>
       </div>
     </div>
-  </div>
-);
+  </div>;
 
 const mapStateToProps = state => ({
   blockers: state.jiraIssues.blockers,
