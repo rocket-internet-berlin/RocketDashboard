@@ -8,7 +8,6 @@ router.get('/', (req, res, next) => {
   const cacheKey = req.baseUrl;
   const cachedPayload = cacheService.get(cacheKey);
 
-  // TODO: Refactor to use Promise;
   if (cachedPayload) {
     res.json(getResponseSuccess(cachedPayload));
     return;

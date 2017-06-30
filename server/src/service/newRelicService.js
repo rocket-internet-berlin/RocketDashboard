@@ -12,20 +12,25 @@ class NewRelicService {
     });
   }
 
+  getQueryResponse(nrql) {
+    return new Promise((resolve, reject) => {
+      this.insights.query(nrql, (err, insightsResponse) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(insightsResponse);
+      });
+    });
+  }
+
   getTransactionErrorsWeek() {
     const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 7 DAYS AGO COMPARE WITH 1 week ago';
 
-    return Promise(() => {
-      this.insights.query(nrql, (err, insightsResponse) => {
-        if (err) {
-          throw new Error(err);
-        }
-        return {
-          previous: _get(insightsResponse, 'previous.results[0].count'),
-          current: _get(insightsResponse, 'current.results[0].count'),
-        };
-      });
-    });
+    return this.getQueryResponse(nrql)
+      .then((insightsResponse) => ({
+        previous: _get(insightsResponse, 'previous.results[0].count'),
+        current: _get(insightsResponse, 'current.results[0].count'),
+      }));
   }
 
   static validateConfig(config) {
