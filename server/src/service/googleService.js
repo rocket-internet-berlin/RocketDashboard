@@ -38,7 +38,7 @@ class GoogleService {
     });
   }
 
-  static parseReponse(response) {
+  static parseResponse(response) {
     const data = _get(response, 'sheets[0].data');
     const columns = data.map((column) => column.rowData.map(cellData => _get(cellData, 'values[0].userEnteredValue')));
     return columns[0].map((timestamp, i) => {
