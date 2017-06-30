@@ -3,10 +3,7 @@ import { onReceive } from '../actions/jiraIssues';
 
 const jiraIssues = handleActions(
   {
-    [onReceive]: (state, { payload }) => {
-      console.log(`json: ${payload}`);
-      return { ...payload };
-    },
+    [onReceive]: (state, { payload }) => payload,
   },
   {
     blockers: 0,
