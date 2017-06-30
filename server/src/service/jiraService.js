@@ -14,7 +14,7 @@ class JiraService {
   }
 
   fetchStatus(callback) {
-    this.jira.searchJira("project = CC AND status in ('Selected for Development', Open, 'In Progress', Reopened)")
+    this.jira.searchJira("project = CC AND status in ('Selected for Development', 'In Progress', 'Waiting Approval')")
       .then(response => {
         const issues = response.issues;
         let blockers = 0;
