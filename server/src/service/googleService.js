@@ -1,6 +1,4 @@
-import _get from 'lodash/get';
 import google from 'googleapis';
-import moment from 'moment';
 
 const sheets = google.sheets('v4');
 
@@ -19,12 +17,11 @@ class GoogleService {
   fetchSheet(spreadsheetId, dataRange, callback) {
     const request = {
       spreadsheetId,
-      ranges: [dataRange],
-      includeGridData: true,
+      range: dataRange,
+      majorDimension: 'COLUMNS',
       auth: this.jwtClient,
-      fields: 'sheets(data(rowData(values(userEnteredValue))))',
     };
-    sheets.spreadsheets.get(request, (err, response) => {
+    sheets.spreadsheets.values.get(request, (err, response) => {
       if (err) {
         callback(err);
         return;
@@ -39,14 +36,11 @@ class GoogleService {
   }
 
   static parseResponse(response) {
-    const data = _get(response, 'sheets[0].data');
-    const columns = data.map((column) => column.rowData.map(cellData => _get(cellData, 'values[0].userEnteredValue')));
-    return columns[0].map((timestamp, i) => {
-      const googleTimestamp = timestamp.numberValue;
-      const date = moment(new Date(1899, 12, 30)).add(googleTimestamp, 'd').format('MMM, D'); // conversion from a Google's timestamp format
-      const openBugs = columns[1][i] === undefined ? 0 : columns[1][i].numberValue;
-      const solvedBugs = columns[2][i] === undefined ? 0 : columns[2][i].numberValue;
-      const newBugs = columns[3][i] === undefined ? 0 : columns[3][i].numberValue;
+    const columns = response.values;
+    return columns[0].map((date, i) => {
+      const openBugs = columns[1][i] === undefined ? 0 : Number(columns[1][i]);
+      const solvedBugs = columns[2][i] === undefined ? 0 : Number(columns[2][i]);
+      const newBugs = columns[3][i] === undefined ? 0 : Number(columns[3][i]);
       return { date, openBugs, solvedBugs, newBugs };
     });
   }
