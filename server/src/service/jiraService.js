@@ -19,7 +19,6 @@ class JiraService {
         const issues = response.issues;
         let blockers = 0;
         let criticals = 0;
-        let others = 0;
 
         issues.forEach(issue => {
           const priority = issue.fields.priority.name;
@@ -27,10 +26,9 @@ class JiraService {
             blockers += 1;
           } else if (priority === 'Critical') {
             criticals += 1;
-          } else {
-            others += 1;
           }
         });
+        const others = issues.length - blockers - criticals;
         callback(null, { blockers, criticals, others });
       })
       .catch(error => {
