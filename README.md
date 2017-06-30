@@ -9,7 +9,8 @@ Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashbo
 
 - **Bugs History** – bugs amount chart.
 - **Week Number** – the current week number.
-- **Bugs Difference** – contains two numbers: the current amount of bugs and the amount of bugs one week ago.
+- **New Relic Errors** – contains two numbers: the current amount of errors and previous.
+- **Jira Issues** – amount of blockers, criticals, and the rest.
 - and many more are coming.
 
 ## Installation
@@ -57,9 +58,17 @@ RocketDashboard consists of two quasi-separate parts - "client" and "server":
 
 Currently the `yarn start` commands will start the "Dev" servers for BOTH in parallel for convenience. However, you can run, test, compile etc. the client and server also separately. Just look at the available commands in the "scripts" section of `package.json` or with `yarn run` in the relevant folder.
 
-### Google spreadsheets
+### Google spreadsheets (the Bugs History widget)
 
 The best way to fetch data from a Google spreadsheet is to use a service account. This is not an account in the ordinary sense, it belongs to a certain project, there's an email for identification and token for authentication (no password). Thus, if you want to get data from a certain Google document, share it with a service account and use credentials of the latter reach content over API. As a benefit, users won't have to authorize. For more details please visit [this website](https://developers.google.com/identity/protocols/OAuth2ServiceAccount).
+
+To make the Bugs History widget work with your data this is what you need to do: 
+
+- Set a right ID as a value of `BUGS_HISTORY_SPREADSHEET_ID` in the `.env` configuration file. 
+
+- Data needs to be in a certain format. There should be 4 columns: 1st – formatted data, 2nd – open bugs amount, 3rd – solved bugs amount, 4th – new bugs amount.
+
+- Also, you should set a value for a `BUGS_HISTORY_DATA_RANGE` key in a `.env` config file to something like **'PageName'!A1:D100**. **PageName** may be omitted if the spreadsheet consists of a single page. The range **A1:D100** should include all 4 columns (see the previous step for details), in this example it's A, B, C, and D, but you may pick whatever you want. A limit (in the example – 100) may be different for you. You might even have less filled rows.
 
 ### Optional
 
