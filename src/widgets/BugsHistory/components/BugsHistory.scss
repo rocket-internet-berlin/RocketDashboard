@@ -5,8 +5,4 @@
     font-size: $font-big;
     color: $rocket-gray;
   }
-
-  .chart-container {
-    overflow: hidden;   // fixes a layout issue on IE11
-  }
 }

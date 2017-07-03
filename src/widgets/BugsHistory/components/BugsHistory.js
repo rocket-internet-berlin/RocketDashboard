@@ -19,7 +19,7 @@ const BugsHistory = ({ history }) =>
   <div className="panel BugsHistory">
     <div className="panel-heading">Bugs History</div>
     <div className="panel-body hidden-xs">
-      <div className="row chart-container">
+      <div className="row">
         <ResponsiveContainer width="100%" height={320}>
           <LineChart
             margin={{ top: 30, right: 45, left: 0, bottom: 15 }}
