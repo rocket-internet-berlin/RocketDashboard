@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './WeekNumber.scss';
 
-const WeekNumber = ({ week }) => (
+const WeekNumber = ({ week }) =>
   <div className="panel">
     <div className="panel-heading">Week Number</div>
     <div className="panel-body">
-      <span className="number-big">{week}</span>
+      <span className="number-big">
+        {week}
+      </span>
     </div>
-  </div>
-);
+  </div>;
 
 const mapStateToProps = state => ({
   week: state.weekNumber.week,

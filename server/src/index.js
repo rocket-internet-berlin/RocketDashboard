@@ -29,14 +29,14 @@ app.use(`${ROUTE_PREFIX}/newRelicErrors`, newRelicErrors);
 app.use(`${ROUTE_PREFIX}/jiraIssues`, jiraIssues);
 
 // catch 404 and forward to error handler
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -58,7 +58,7 @@ app.use(function (err, req, res, next) {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3001');
+const port = normalizePort(process.env.PORT || '3001'); // eslint-disable-line no-use-before-define
 app.set('port', port);
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
@@ -77,8 +77,8 @@ const server = http.createServer(app);
  */
 
 server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+server.on('error', onError);  // eslint-disable-line no-use-before-define
+server.on('listening', onListening);  // eslint-disable-line no-use-before-define
 
 /**
  * Normalize a port into a number, string, or false.
@@ -116,11 +116,11 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(chalk.red(bind + ' requires elevated privileges'));
+      console.error(chalk.red(`${bind} requires elevated privileges`));
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(chalk.red(bind + ' is already in use'));
+      console.error(chalk.red(`${bind} is already in use`));
       process.exit(1);
       break;
     default:
@@ -133,7 +133,7 @@ function onError(error) {
  */
 
 function onListening() {
-  console.log('Express is running at: ' + chalk.cyan(protocol + '://' + host + ':' + port + '/'));
+  console.log(`Express is running at: ${chalk.cyan(`${protocol}://${host}:${port}/`)}`);
   console.log();
 }
 
