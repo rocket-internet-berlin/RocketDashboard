@@ -5,12 +5,12 @@ describe('a bugs history receiving action', () => {
 
   it('creates an action with bugs history', () => {
     const json = {
-      data: [{ openBbugs: 1, solvedBugs: 2, newBugs: 3 }],
+      data: [{ openBugs: 1, solvedBugs: 2, newBugs: 3 }],
     };
     const expectedAction = {
       type: 'RECEIVE_BUGSHISTORY',
-      payload: [{ openBbugs: 1, solvedBugs: 2, newBugs: 3 }],
+      payload: [{ openBugs: 1, solvedBugs: 2, newBugs: 3 }],
     };
-    expect(actions.receiveBugsHistory(json)).toEqual(expectedAction);
+    expect(actions.onReceive(json)).toEqual(expectedAction);
   });
 });
