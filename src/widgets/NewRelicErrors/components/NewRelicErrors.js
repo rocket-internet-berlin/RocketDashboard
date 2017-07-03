@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import './NewRelicErrors.scss';
 
-const NewRelicErrors = ({ previous, current }) => (
+const NewRelicErrors = ({ previous, current }) =>
   <div className="panel">
     <div className="panel-heading">New Relic Errors</div>
     <div className="panel-body">
-      <span className="this-week number-big">{current}</span>
-      <span className="last-week number-normal"> / {previous}</span>
+      <span className="this-week number-big">
+        {current}
+      </span>
+      <span className="last-week number-normal">
+        {' '}/ {previous}
+      </span>
     </div>
-  </div>
-);
+  </div>;
 
 const mapStateToProps = state => ({
   previous: state.newRelicErrors.previous,
