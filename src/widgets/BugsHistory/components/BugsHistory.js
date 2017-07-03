@@ -15,7 +15,7 @@ import BasicTable from '../../../components/BasicTable/BasicTable';
 
 import './BugsHistory.scss';
 
-const BugsHistory = ({ history }) => (
+const BugsHistory = ({ history }) =>
   <div className="panel BugsHistory">
     <div className="panel-heading">Bugs History</div>
     <div className="panel-body hidden-xs">
@@ -61,8 +61,7 @@ const BugsHistory = ({ history }) => (
     <div className="panel-body visible-xs-block">
       <BasicTable data={history} />
     </div>
-  </div>
-);
+  </div>;
 
 const mapStateToProps = state => ({
   history: state.bugsHistory.history,
