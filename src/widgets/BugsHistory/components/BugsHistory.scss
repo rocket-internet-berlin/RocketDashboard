@@ -7,6 +7,6 @@
   }
 
   .chart-container {
-    overflow: hidden;
+    overflow: hidden;   // fixes a layout issue on IE11
   }
 }
