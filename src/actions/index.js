@@ -1,28 +1,15 @@
-import { receiveWeekNumber, fetchWeekNumber } from './weekNumber';
-import {
-  requestNewRelicErrors,
-  receiveNewRelicErrors,
-  fetchNewRelicErrors,
-} from './newRelicErrors';
-import {
-  requestBugsHistory,
-  receiveBugsHistory,
-  fetchBugsHistory,
-} from './bugsHistory';
+import { refresh as refreshWeekNumber } from '../widgets/WeekNumber/actions/weekNumber';
+import { refresh as refreshNewRelicErrors } from '../widgets/NewRelicErrors/actions/newRelicErrors';
+import { refresh as refreshBugsHistory } from '../widgets/BugsHistory/actions/bugsHistory';
 
-export {
-  receiveWeekNumber,
-  fetchWeekNumber,
-  requestNewRelicErrors,
-  receiveNewRelicErrors,
-  fetchNewRelicErrors,
-  requestBugsHistory,
-  receiveBugsHistory,
-  fetchBugsHistory,
+import { refresh as refreshJiraIssues } from '../widgets/JiraIssues/actions/jiraIssues';
+
+// TODO: Possibly refactor using Observers pattern. This way we won`t have to add widgets here manually.
+const refreshAll = () => dispatch => {
+  dispatch(refreshWeekNumber());
+  dispatch(refreshNewRelicErrors());
+  dispatch(refreshBugsHistory());
+  dispatch(refreshJiraIssues());
 };
 
-export const refreshAll = () => dispatch => {
-  dispatch(fetchWeekNumber());
-  dispatch(fetchNewRelicErrors());
-  dispatch(fetchBugsHistory());
-};
+export { refreshAll }; // eslint-disable-line import/prefer-default-export

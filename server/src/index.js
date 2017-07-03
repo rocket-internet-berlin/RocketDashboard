@@ -5,11 +5,11 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import http from 'http';
 import chalk from 'chalk';
-import services from './service';
 
 import cache from './routes/cache';
 import bugsHistory from './routes/bugsHistory';
 import newRelicErrors from './routes/newRelicErrors';
+import jiraIssues from './routes/jiraIssues';
 
 const app = express();
 const ROUTE_PREFIX = '/api';
@@ -20,15 +20,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// bootstrap services
-app.locals.services = services;
-
 // cache endpoints
 app.use(`${ROUTE_PREFIX}/cache`, cache);
 
 // widget endpoints
 app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistory);
 app.use(`${ROUTE_PREFIX}/newRelicErrors`, newRelicErrors);
+app.use(`${ROUTE_PREFIX}/jiraIssues`, jiraIssues);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -42,6 +40,10 @@ app.use((err, req, res) => {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  if (req.app.get('env') === 'development') {
+    console.log(err);
+  }
 
   // render the error page
   res.status(err.status || 500);

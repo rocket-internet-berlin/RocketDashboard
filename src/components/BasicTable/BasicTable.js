@@ -1,23 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './BasicTable.scss';
 
-const BasicTable = ({ data }) => (
+const BasicTable = ({ data }) =>
   <div className="table-responsive">
-    <table className="table">
+    <table className="BasicTable table">
       <tbody>
-        {data.map(item => (
-          <tr key={item.label}><td>{item.label}</td><td>{item.bugs}</td></tr>
-        ))}
+        {data.map(item =>
+          <tr key={item.date}>
+            <td className="date">
+              {item.date}
+            </td>
+            <td className="open-bugs">
+              {item.openBugs}
+            </td>
+            <td className="solved-bugs">
+              {item.solvedBugs}
+            </td>
+            <td className="new-bugs">
+              {item.newBugs}
+            </td>
+          </tr>,
+        )}
       </tbody>
     </table>
-  </div>
-);
+  </div>;
 
 BasicTable.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      label: PropTypes.string.isRequired,
-      bugs: PropTypes.isRequired,
+      date: PropTypes.string.isRequired,
+      openBugs: PropTypes.isRequired,
+      solvedBugs: PropTypes.isRequired,
+      newBugs: PropTypes.isRequired,
     }),
   ).isRequired,
 };
