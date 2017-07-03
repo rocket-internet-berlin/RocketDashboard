@@ -15,11 +15,11 @@ import BasicTable from '../../../components/BasicTable/BasicTable';
 
 import './BugsHistory.scss';
 
-const BugsHistory = ({ history }) => (
+const BugsHistory = ({ history }) =>
   <div className="panel BugsHistory">
     <div className="panel-heading">Bugs History</div>
     <div className="panel-body hidden-xs">
-      <div className="row">
+      <div className="row chart-container">
         <ResponsiveContainer width="100%" height={320}>
           <LineChart
             margin={{ top: 30, right: 45, left: 0, bottom: 15 }}
@@ -61,8 +61,7 @@ const BugsHistory = ({ history }) => (
     <div className="panel-body visible-xs-block">
       <BasicTable data={history} />
     </div>
-  </div>
-);
+  </div>;
 
 const mapStateToProps = state => ({
   history: state.bugsHistory.history,
