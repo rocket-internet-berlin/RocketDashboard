@@ -11,7 +11,7 @@ describe('weekNumber reducer', () => {
         },
       ),
     ).toEqual({
-      week: 10,
+      current: 10,
     });
   });
 
@@ -19,7 +19,7 @@ describe('weekNumber reducer', () => {
     expect(
       reducer(
         {
-          week: 0,
+          current: 0,
         },
         {
           type: 'OTHER_EVENT',
@@ -27,7 +27,7 @@ describe('weekNumber reducer', () => {
         },
       ),
     ).toEqual({
-      week: 0,
+      current: 0,
     });
   });
 });
