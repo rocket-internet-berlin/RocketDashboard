@@ -4,10 +4,10 @@ import { onReceive } from '../actions/weekNumber';
 const reducer = handleActions(
   {
     [onReceive]: (state, { payload }) => ({
-      week: payload,
+      current: payload,
     }),
   },
-  { week: 0 },
+  { current: 0 },
 );
 
 export default reducer;
