@@ -1,30 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import {
-  ResponsiveContainer,
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-} from 'recharts';
+import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 
 import './BugsHistory.scss';
 
-const BugsHistory = ({ history }) => (
+const BugsHistory = ({ history }) =>
   <div className="panel BugsHistory">
     <div className="panel-heading">Bugs History</div>
     <div className="panel-body hidden-xs">
       <div className="row">
         <ResponsiveContainer width="100%" height={320}>
-          <LineChart
-            margin={{ top: 30, right: 45, left: 0, bottom: 15 }}
-            data={history}
-          >
+          <LineChart margin={{ top: 30, right: 45, left: 0, bottom: 15 }} data={history}>
             <Line
               type="linear"
               dataKey="openBugs"
@@ -61,8 +49,7 @@ const BugsHistory = ({ history }) => (
     <div className="panel-body visible-xs-block">
       <BasicTable data={history} />
     </div>
-  </div>
-);
+  </div>;
 
 const mapStateToProps = state => ({
   history: state.bugsHistory.history,
