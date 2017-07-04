@@ -1,17 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import './WeekNumber.scss';
+import Number from '../../../../src/components/Number/Number';
 
-const WeekNumber = ({ week }) =>
-  <div className="panel">
-    <div className="panel-heading">Week Number</div>
-    <div className="panel-body">
-      <span className="number-big">
-        {week}
-      </span>
-    </div>
-  </div>;
+const WeekNumber = ({ week }) => <Number title="Week" current={week} />;
 
 const mapStateToProps = state => ({
   week: state.weekNumber.week,

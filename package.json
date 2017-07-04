@@ -5,6 +5,7 @@
   "dependencies": {
     "bootstrap": "^3.3.7",
     "concurrently": "^3.4.0",
+    "lodash": "^4.17.4",
     "moment": "^2.18.1",
     "prop-types": "^15.5.9",
     "react": "^15.5.4",
@@ -80,7 +81,7 @@
   },
   "lint-staged": {
     "src/**/*.js": [
-      "prettier --single-quote --trailing-comma all --write",
+      "prettier --print-width 120 --single-quote --trailing-comma all --write",
       "git add"
     ]
   },
