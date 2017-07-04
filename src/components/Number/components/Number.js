@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Number.scss';
 
-const Number = ({ title, key, numberState }) =>
+const Number = ({ title, dataKey, numberState }) =>
   <div className="Number panel">
     <div className="panel-heading">
       {title}
     </div>
     <div className="panel-body">
       <span className="this-week number-big">
-        {numberState[key].current}
+        {numberState[dataKey].current}
       </span>
-      {this.props.numberState[key].previous &&
+      {numberState[dataKey].previous &&
         <span className="last-week number-normal">
-          / {numberState[key].previous}
+          / {numberState[dataKey].previous}
         </span>}
     </div>
   </div>;
@@ -26,7 +26,7 @@ const mapStateToProps = state => ({
 
 Number.propTypes = {
   title: PropTypes.string.isRequired,
-  key: PropTypes.string.isRequired,
+  dataKey: PropTypes.string.isRequired,
   numberState: PropTypes.object.isRequired,
 };
 
