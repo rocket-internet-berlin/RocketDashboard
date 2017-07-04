@@ -28,7 +28,7 @@ Number.propTypes = {
 
 Number.defaultProps = {
   data: {
-    current: null,
+    current: 0,
     previous: null,
   },
 };
