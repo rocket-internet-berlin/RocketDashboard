@@ -1,19 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Number from '../../../../src/components/Number/Number';
 
 const NewRelicErrors = ({ previous, current }) =>
-  <div className="panel">
-    <div className="panel-heading">New Relic Errors</div>
-    <div className="panel-body">
-      <span className="this-week number-big">
-        {current}
-      </span>
-      <span className="last-week number-normal">
-        {' '}/ {previous}
-      </span>
-    </div>
-  </div>;
+  <Number title="Transaction Errors" current={current} previous={previous} />;
 
 const mapStateToProps = state => ({
   previous: state.newRelicErrors.previous,

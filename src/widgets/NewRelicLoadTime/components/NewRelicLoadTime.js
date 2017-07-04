@@ -1,16 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Number from '../../../../src/components/Number/Number';
 
-const NewRelicLoadTime = ({ current }) =>
-  <div className="panel">
-    <div className="panel-heading">Load Time</div>
-    <div className="panel-body">
-      <span className="this-week number-big">
-        {current}
-      </span>
-    </div>
-  </div>;
+const NewRelicLoadTime = ({ current }) => <Number title="Load Time" current={current} />;
 
 const mapStateToProps = state => ({
   current: state.newRelicLoadTime.current,

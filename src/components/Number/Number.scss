@@ -1,0 +1,13 @@
+@import "variables";
+
+.Number {
+  .number-big {
+    font-size: $font-huge;
+    color: $main-color;
+  }
+
+  .number-normal {
+    font-size: $font-big;
+    color: $rocket-gray;
+  }
+}
