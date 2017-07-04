@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import './WidgetList.scss';
-import Number from '../../components/Number/Number';
+import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 import JiraIssues from '../../widgets/JiraIssues/components/JiraIssues';
 
@@ -28,9 +28,9 @@ const WidgetList = props =>
   </div>;
 
 const mapStateToProps = state => ({
-  weekNumber: state.weekNumber,
-  newRelicLoadTime: state.newRelicLoadTime,
-  newRelicErrors: state.newRelicErrors,
+  weekNumber: state.number.weekNumber,
+  newRelicLoadTime: state.number.newRelicLoadTime,
+  newRelicErrors: state.number.newRelicErrors,
 });
 
 /* eslint-disable react/forbid-prop-types */
@@ -38,6 +38,12 @@ WidgetList.propTypes = {
   newRelicErrors: PropTypes.object.isRequired,
   newRelicLoadTime: PropTypes.object.isRequired,
   weekNumber: PropTypes.object.isRequired,
+};
+
+WidgetList.defaultProps = {
+  newRelicErrors: {},
+  newRelicLoadTime: {},
+  weekNumber: {},
 };
 
 export default connect(mapStateToProps)(WidgetList);

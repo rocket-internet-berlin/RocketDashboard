@@ -19,14 +19,15 @@ const Number = ({ title, data }) =>
   </div>;
 
 Number.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   data: PropTypes.shape({
-    current: PropTypes.number.isRequired,
+    current: PropTypes.number,
     previous: PropTypes.number,
   }),
 };
 
 Number.defaultProps = {
+  title: '',
   data: {
     current: 0,
     previous: null,

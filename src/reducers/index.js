@@ -1,14 +1,10 @@
 import { combineReducers } from 'redux';
-import weekNumber from '../widgets/WeekNumber/reducers/weekNumber';
-import newRelicErrors from '../widgets/NewRelicErrors/reducers/newRelicErrors';
-import newRelicLoadTime from '../widgets/NewRelicLoadTime/reducers/newRelicLoadTime';
 import bugsHistory from '../widgets/BugsHistory/reducers/bugsHistory';
 import jiraIssues from '../widgets/JiraIssues/reducers/jiraIssues';
+import number from '../widgets/Number/reducers/number';
 
 const appReducers = combineReducers({
-  weekNumber,
-  newRelicErrors,
-  newRelicLoadTime,
+  number,
   bugsHistory,
   jiraIssues,
 });

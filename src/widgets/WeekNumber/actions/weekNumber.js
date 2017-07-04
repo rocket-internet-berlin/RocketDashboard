@@ -1,9 +1,9 @@
-import { createAction } from 'redux-actions';
 import moment from 'moment';
+import onReceive from '../../Number/actions/number';
 
-export const onReceive = createAction('RECEIVE_WEEKNUMBER', week => week);
-
-export const refresh = () => dispatch => {
+const refreshWeekNumber = () => dispatch => {
   const getWeek = () => parseInt(moment().format('w'), 10);
-  return dispatch(onReceive(getWeek()));
+  return dispatch(onReceive('weekNumber', getWeek()));
 };
+
+export default refreshWeekNumber;

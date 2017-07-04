@@ -3,8 +3,8 @@ import { createAction } from 'redux-actions';
 
 const onReceive = createAction('RECEIVE_NUMBER', (key, current, previous) => ({
   key,
-  previous,
   current,
+  previous,
 }));
 
 export default onReceive;
