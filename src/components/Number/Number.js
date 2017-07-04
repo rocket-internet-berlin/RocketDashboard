@@ -1,31 +1,33 @@
+/* eslint-disable react/forbid-prop-types */
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './Number.scss';
 
-const Number = ({ title, current, previous }) =>
+const Number = ({ title, key, numberState }) =>
   <div className="Number panel">
     <div className="panel-heading">
       {title}
     </div>
     <div className="panel-body">
       <span className="this-week number-big">
-        {current}
+        {numberState[key].current}
       </span>
-      {previous &&
+      {this.props.numberState[key].previous &&
         <span className="last-week number-normal">
-          / {previous}
+          / {numberState[key].previous}
         </span>}
     </div>
   </div>;
 
+const mapStateToProps = state => ({
+  numberState: state.number,
+});
+
 Number.propTypes = {
   title: PropTypes.string.isRequired,
-  current: PropTypes.number.isRequired,
-  previous: PropTypes.number,
+  key: PropTypes.string.isRequired,
+  numberState: PropTypes.object.isRequired,
 };
 
-Number.defaultProps = {
-  previous: null,
-};
-
-export default Number;
+export default connect(mapStateToProps)(Number);
