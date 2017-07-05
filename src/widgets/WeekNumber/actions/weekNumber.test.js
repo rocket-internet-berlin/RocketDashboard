@@ -1,14 +1,10 @@
-import * as actions from './weekNumber';
+import onReceive from '../../Number/actions/number';
 
-describe('a week number receiving action', () => {
-  // parsing
+describe('onReceive function called by the weekNumber action', () => {
+  const actual = onReceive('weekNumber', 9);
+  const expected = { type: 'RECEIVE_NUMBER', payload: { key: 'weekNumber', current: 9 } };
 
-  it('creates an action with a week number', () => {
-    const week = 99;
-    const expectedAction = {
-      type: 'RECEIVE_WEEKNUMBER',
-      payload: week,
-    };
-    expect(actions.onReceive(week)).toEqual(expectedAction);
+  it('creates a correct action', () => {
+    expect(actual).toEqual(expected);
   });
 });
