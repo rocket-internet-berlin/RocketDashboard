@@ -1,17 +1,17 @@
 import { handleActions } from 'redux-actions';
-import { onReceive } from '../actions/newRelicErrors';
+import onReceive from '../actions/number';
 
 const reducer = handleActions(
   {
     [onReceive]: (state, { payload }) => ({
-      previous: payload.previous,
-      current: payload.current,
+      ...state,
+      [payload.key]: {
+        current: payload.current,
+        previous: payload.previous,
+      },
     }),
   },
-  {
-    previous: 0,
-    current: 0,
-  },
+  {},
 );
 
 export default reducer;

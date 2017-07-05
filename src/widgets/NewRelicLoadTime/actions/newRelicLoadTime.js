@@ -1,11 +1,10 @@
 import 'whatwg-fetch';
-import { createAction } from 'redux-actions';
+import _round from 'lodash/round';
 import fetchApi from '../../../lib/fetchApi';
+import onReceive from '../../Number/actions/number';
 
-export const onReceive = createAction('RECEIVE_NEWRELICLOADTIME', json => ({
-  current: json.data.current,
-}));
-
-export const refresh = () => dispatch => {
-  fetchApi('newRelic/loadTime').then(json => dispatch(onReceive(json)));
+const refreshNewRelicLoadTime = () => dispatch => {
+  fetchApi('newRelic/loadTime').then(json => dispatch(onReceive('newRelicLoadTime', _round(json.data.current, 2))));
 };
+
+export default refreshNewRelicLoadTime;
