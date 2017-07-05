@@ -4,11 +4,8 @@ import _round from 'lodash/round';
 import './Number.scss';
 
 const getRounded = decimal => _round(decimal, 2);
-const getChange = (current, previous) => (previous === 0 ? previous : (current - previous) / previous * 100);
-const getPreviousClass = number => {
-  const changeClass = number < 0 ? 'negativ' : 'positiv';
-  return `previous ${changeClass}`;
-};
+const getChange = (current, previous) => (previous === 0 ? previous : (current - previous) / previous * 100); // eslint-disable-line no-mixed-operators
+const getChangeIcon = number => (number < 0 ? <i className="fa fa-arrow-down" /> : <i className="fa fa-arrow-up" />);
 
 const Number = ({ title, data }) =>
   <div className="Number panel">
@@ -20,7 +17,8 @@ const Number = ({ title, data }) =>
         {getRounded(data.current)}
       </span>
       {typeof data.previous !== 'undefined' &&
-        <span className={getPreviousClass(getChange(data.current, data.previous))}>
+        <span className="previous">
+          {getChangeIcon(getChange(data.current, data.previous))}
           {getRounded(getChange(data.current, data.previous))}%
         </span>}
     </div>
