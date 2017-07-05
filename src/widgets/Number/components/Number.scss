@@ -1,13 +1,19 @@
 @import "variables";
 
 .Number {
-  .number-big {
+  .current {
     font-size: $font-huge;
     color: $main-color;
   }
 
-  .number-normal {
+  .previous {
     font-size: $font-big;
     color: $rocket-gray;
+    &.positiv:before {
+      content: '⬆️';
+    }
+    &.negativ:before {
+      content: '⬇️️';
+    }
   }
 }
