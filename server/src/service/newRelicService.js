@@ -24,7 +24,7 @@ class NewRelicService {
   }
 
   getTransactionErrors() {
-    const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 7 DAYS AGO COMPARE WITH 1 week ago';
+    const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 30 minutes AGO COMPARE WITH 30 minutes ago';
 
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => ({

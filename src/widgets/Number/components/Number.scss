@@ -1,13 +1,22 @@
 @import "variables";
 
 .Number {
-  .number-big {
-    font-size: $font-huge;
+  .current {
+    font-size: $font-size-huge;
     color: $main-color;
   }
 
-  .number-normal {
-    font-size: $font-big;
+  .change {
+    font-size: $font-size-normal;
     color: $rocket-gray;
+    &:before {
+      content: '\25b6';
+    }
+    &.increase:before {
+      content: '▲';
+    }
+    &.decrease:before {
+      content: '▼';
+    }
   }
 }

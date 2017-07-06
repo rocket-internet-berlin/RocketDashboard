@@ -20,5 +20,11 @@ module.exports = {
     'no-console': 0,
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'no-unused-vars': 1,
+    'no-mixed-operators': [
+      'error',
+      {
+        'allowSamePrecedence': true,
+      }
+    ]
   },
 };
