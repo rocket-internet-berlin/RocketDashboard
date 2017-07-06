@@ -3,7 +3,8 @@
 #### What’s the plan for next week
 
 - Improve test coverage (in progress)
-- Add New Relic Error Breakdown (pie-chart)
+- Add Error Breakdown (New Relic pie-chart)
+- Add Website Funnel (New Relic) 
 - Extract Graph, Table reusable components
 - Add UI thresholds
 - Setup CI tool, e.g. Travis CI
