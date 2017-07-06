@@ -10,8 +10,20 @@ Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashbo
 - **Bugs History** – bugs amount chart.
 - **Week Number** – the current week number.
 - **New Relic Errors** – contains two numbers: the current amount of errors and previous.
+- **New Relic CLI Errors** – contains two numbers: the current amount of errors and previous.
+- **New Relic Load Time**
+- **New Relic Successful Bookings**
+- **New Relic Unique Sessions**
 - **Jira Issues** – amount of blockers, criticals, and the rest.
 - and many more are coming.
+
+## Generic Widgets
+
+Some generic widget components are available for reuse, when developing custom widgets:
+
+- **Number**
+- **Graph**
+- **Table**
 
 ## Installation
 
