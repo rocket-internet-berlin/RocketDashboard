@@ -11,6 +11,7 @@
 
 #### Possible topics
 
+- Add documentation for required data-structure of generic widgets
 - Test production build and add production build+deploy instructions
 - Background process for remote data loading and crunching
 
