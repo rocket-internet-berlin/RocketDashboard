@@ -2,12 +2,12 @@
 
 .Number {
   .current {
-    font-size: $font-huge;
+    font-size: $font-size-huge;
     color: $main-color;
   }
 
-  .previous {
-    font-size: $font-big;
+  .change {
+    font-size: $font-size-big;
     color: $rocket-gray;
     &.positiv:before {
       content: '⬆️';

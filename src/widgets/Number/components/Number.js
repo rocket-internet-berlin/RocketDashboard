@@ -4,8 +4,24 @@ import _round from 'lodash/round';
 import './Number.scss';
 
 const getRounded = decimal => _round(decimal, 2);
-const getChange = (current, previous) => (previous === 0 ? previous : (current - previous) / previous * 100); // eslint-disable-line no-mixed-operators
-const getChangeIcon = number => (number < 0 ? <i className="fa fa-arrow-down" /> : <i className="fa fa-arrow-up" />);
+const getChange = (current, previous) => {
+  // https://ux.stackexchange.com/questions/60902/displaying-percentage-difference-from-zero
+  if (current > 0 && previous === 0) {
+    return current * 100;
+  } else if (current === 0 && previous === 0) {
+    return 0;
+  }
+  return (current - previous) / previous * 100;
+};
+
+const getChangeIcon = number => {
+  if (number < 0) {
+    return <i className="fa fa-arrow-down" />;
+  } else if (number > 0) {
+    return <i className="fa fa-arrow-up" />;
+  }
+  return <i className="fa fa-arrow-right" />;
+};
 
 const Number = ({ title, data }) =>
   <div className="Number panel">
@@ -17,7 +33,7 @@ const Number = ({ title, data }) =>
         {getRounded(data.current)}
       </span>
       {typeof data.previous !== 'undefined' &&
-        <span className="previous">
+        <span className="change">
           {getChangeIcon(getChange(data.current, data.previous))}
           {getRounded(getChange(data.current, data.previous))}%
         </span>}
