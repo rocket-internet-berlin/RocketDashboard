@@ -3,6 +3,18 @@ import Insights from 'node-insights';
 import validateSchema from '../helper/validator';
 
 class NewRelicService {
+  static validateConfig(config) {
+    const schema = {
+      required: [
+        'queryKey',
+        'accountId',
+      ],
+    };
+    if (!validateSchema(schema, config)) {
+      throw new Error('Invalid configuration properties');
+    }
+  }
+
   constructor(config) {
     NewRelicService.validateConfig(config);
 
@@ -52,16 +64,22 @@ class NewRelicService {
       }));
   }
 
-  static validateConfig(config) {
-    const schema = {
-      required: [
-        'queryKey',
-        'accountId',
-      ],
-    };
-    if (!validateSchema(schema, config)) {
-      throw new Error('Invalid configuration properties');
-    }
+  getSuccessBookings() {
+    const nrql = 'SELECT count(session) FROM PageView WHERE pageUrl like \'https://www.campsy.de/booking/%/success%\' and pageUrl not like \'%pay-later%\' SINCE 1 day ago';
+
+    return this.getQueryResponse(nrql)
+      .then((insightsResponse) => ({
+        current: _get(insightsResponse, 'results[0].count'),
+      }));
+  }
+
+  getCLIErrors() {
+    const nrql = 'SELECT count(*) from TransactionError WHERE appName = \'cli.campsy.de\' SINCE 30 minutes ago';
+
+    return this.getQueryResponse(nrql)
+      .then((insightsResponse) => ({
+        current: _get(insightsResponse, 'results[0].count'),
+      }));
   }
 }
 
