@@ -42,4 +42,61 @@ router.get('/loadTime', (req, res, next) => {
       });
 });
 
+router.get('/uniqueSessions', (req, res, next) => {
+  const cacheKey = req.originalUrl;
+  const cachedPayload = cacheService.get(cacheKey);
+
+  if (cachedPayload) {
+    res.json(getResponseSuccess(cachedPayload));
+    return;
+  }
+
+  newRelicService.getUniqueSessions()
+      .then((payload) => {
+        cacheService.set(cacheKey, payload);
+        res.json(getResponseSuccess(payload));
+      })
+      .catch((err) => {
+        next(err);
+      });
+});
+
+router.get('/successfulBookings', (req, res, next) => {
+  const cacheKey = req.originalUrl;
+  const cachedPayload = cacheService.get(cacheKey);
+
+  if (cachedPayload) {
+    res.json(getResponseSuccess(cachedPayload));
+    return;
+  }
+
+  newRelicService.getSuccessfulBookings()
+      .then((payload) => {
+        cacheService.set(cacheKey, payload);
+        res.json(getResponseSuccess(payload));
+      })
+      .catch((err) => {
+        next(err);
+      });
+});
+
+router.get('/cliErrors', (req, res, next) => {
+  const cacheKey = req.originalUrl;
+  const cachedPayload = cacheService.get(cacheKey);
+
+  if (cachedPayload) {
+    res.json(getResponseSuccess(cachedPayload));
+    return;
+  }
+
+  newRelicService.getCLIErrors()
+      .then((payload) => {
+        cacheService.set(cacheKey, payload);
+        res.json(getResponseSuccess(payload));
+      })
+      .catch((err) => {
+        next(err);
+      });
+});
+
 export default router;
