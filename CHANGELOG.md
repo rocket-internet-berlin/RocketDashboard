@@ -2,13 +2,23 @@
 
 #### What’s the plan for next week
 
-- Implement all widgets that Campsy has
-- Improve test coverage
+- Improve test coverage (in progress)
+- Add New Relic Error Breakdown (pie-chart)
+- Extract Graph, Table reusable components
+- Add UI thresholds
+- Setup CI tool, e.g. Travis CI
 
 #### Possible topics
 
 - Test production build and add production build+deploy instructions
 - Background process for remote data loading and crunching
+
+### 0.9.0
+
+- Implemented Campsy's NewRelic widgets (Site & CLI Errors, Load Time, Successful Bookings, Unique Sessions)
+- Ensured cross-browser compatiblity (fixed issues for IE11)
+- Extracted Number generic widget and improved structure (now re-use generic component, reducer, scss, etc.)
+- UI improvements (comparison percentage
 
 ### 0.8.0
 
