@@ -7,13 +7,16 @@
   }
 
   .change {
-    font-size: $font-size-big;
+    font-size: $font-size-normal;
     color: $rocket-gray;
-    &.positiv:before {
-      content: '⬆️';
+    &:before {
+      content: '\25b6';
     }
-    &.negativ:before {
-      content: '⬇️️';
+    &.increase:before {
+      content: '▲';
+    }
+    &.decrease:before {
+      content: '▼';
     }
   }
 }

@@ -7,20 +7,20 @@ const getRounded = decimal => _round(decimal, 2);
 const getChange = (current, previous) => {
   // https://ux.stackexchange.com/questions/60902/displaying-percentage-difference-from-zero
   if (current > 0 && previous === 0) {
-    return current * 100;
+    return 100;
   } else if (current === 0 && previous === 0) {
     return 0;
   }
   return (current - previous) / previous * 100;
 };
 
-const getChangeIcon = number => {
+const getChangeClassName = number => {
   if (number < 0) {
-    return <i className="fa fa-arrow-down" />;
+    return 'change decrease';
   } else if (number > 0) {
-    return <i className="fa fa-arrow-up" />;
+    return 'change increase';
   }
-  return <i className="fa fa-arrow-right" />;
+  return 'change';
 };
 
 const Number = ({ title, data }) =>
@@ -33,8 +33,7 @@ const Number = ({ title, data }) =>
         {getRounded(data.current)}
       </span>
       {typeof data.previous !== 'undefined' &&
-        <span className="change">
-          {getChangeIcon(getChange(data.current, data.previous))}
+        <span className={getChangeClassName(getChange(data.current, data.previous))}>
           {getRounded(getChange(data.current, data.previous))}%
         </span>}
     </div>
