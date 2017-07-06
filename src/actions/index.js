@@ -1,6 +1,7 @@
 import refreshWeekNumber from '../widgets/WeekNumber/actions/weekNumber';
 import refreshNewRelicErrors from '../widgets/NewRelicErrors/actions/newRelicErrors';
 import refreshNewRelicLoadTime from '../widgets/NewRelicLoadTime/actions/newRelicLoadTime';
+import { refresh as refreshNewRelicUniqueSessions } from '../widgets/NewRelicUniqueSessions/actions/newRelicUniqueSessions';
 import { refresh as refreshBugsHistory } from '../widgets/BugsHistory/actions/bugsHistory';
 import { refresh as refreshJiraIssues } from '../widgets/JiraIssues/actions/jiraIssues';
 
@@ -9,6 +10,7 @@ const refreshAll = () => dispatch => {
   dispatch(refreshWeekNumber());
   dispatch(refreshNewRelicErrors());
   dispatch(refreshNewRelicLoadTime());
+  dispatch(refreshNewRelicUniqueSessions());
   dispatch(refreshBugsHistory());
   dispatch(refreshJiraIssues());
 };

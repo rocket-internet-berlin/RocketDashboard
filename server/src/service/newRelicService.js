@@ -42,6 +42,16 @@ class NewRelicService {
       }));
   }
 
+  getUniqueSessions() {
+    const nrql = 'SELECT count(session) FROM PageView SINCE 20 minutes ago COMPARE WITH 20 minutes ago';
+
+    return this.getQueryResponse(nrql)
+      .then((insightsResponse) => ({
+        previous: _get(insightsResponse, 'previous.results[0].count'),
+        current: _get(insightsResponse, 'current.results[0].count'),
+      }));
+  }
+
   static validateConfig(config) {
     const schema = {
       required: [
