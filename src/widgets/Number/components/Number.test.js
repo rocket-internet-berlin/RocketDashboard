@@ -1,18 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { shallow } from 'enzyme';
 import Number from './Number';
 
 describe('Number component', () => {
-  const title = 'Test';
-  const data = {
-    current: 111,
-    previous: 222,
-  };
-  const widget = shallow(<Number title={title} data={data} />);
+  const widget = shallow(<Number title="Some number" data={{ current: 99, previous: 9 }} />);
 
-  it('contains the provided data', () => {
-    expect(widget.contains(title)).toEqual(true);
-    expect(widget.contains(data.current)).toEqual(true);
-    expect(widget.contains(data.previous)).toEqual(true);
+  it('contains a title', () => {
+    expect(widget.contains('Some number')).toEqual(true);
+  });
+  it('contains a current value', () => {
+    expect(widget.contains(99)).toEqual(true);
+  });
+  it('contains percentage', () => {
+    expect(widget.contains(1000)).toEqual(true);
   });
 });
