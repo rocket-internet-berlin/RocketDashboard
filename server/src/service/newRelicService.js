@@ -64,12 +64,13 @@ class NewRelicService {
       }));
   }
 
-  getSuccessBookings() {
-    const nrql = 'SELECT count(session) FROM PageView WHERE pageUrl like \'https://www.campsy.de/booking/%/success%\' and pageUrl not like \'%pay-later%\' SINCE 1 day ago';
+  getSuccessfulBookings() {
+    const nrql = 'SELECT count(session) FROM PageView WHERE pageUrl like \'https://www.campsy.de/booking/%/success%\' and pageUrl not like \'%pay-later%\' SINCE 1 day ago COMPARE WITH 1 day ago';
 
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => ({
-        current: _get(insightsResponse, 'results[0].count'),
+        previous: _get(insightsResponse, 'previous.results[0].count'),
+        current: _get(insightsResponse, 'current.results[0].count'),
       }));
   }
 

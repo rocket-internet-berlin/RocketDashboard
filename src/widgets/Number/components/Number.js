@@ -40,9 +40,9 @@ const Number = ({ title, data }) =>
   </div>;
 
 Number.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.string.isRequired,
   data: PropTypes.shape({
-    current: PropTypes.number,
+    current: PropTypes.number.isRequired,
     previous: PropTypes.number,
   }),
 };

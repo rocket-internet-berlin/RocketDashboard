@@ -61,7 +61,7 @@ router.get('/uniqueSessions', (req, res, next) => {
       });
 });
 
-router.get('/successBookings', (req, res, next) => {
+router.get('/successfulBookings', (req, res, next) => {
   const cacheKey = req.originalUrl;
   const cachedPayload = cacheService.get(cacheKey);
 
@@ -70,7 +70,7 @@ router.get('/successBookings', (req, res, next) => {
     return;
   }
 
-  newRelicService.getSuccessBookings()
+  newRelicService.getSuccessfulBookings()
       .then((payload) => {
         cacheService.set(cacheKey, payload);
         res.json(getResponseSuccess(payload));

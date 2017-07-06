@@ -9,25 +9,25 @@ import JiraIssues from '../../widgets/JiraIssues/components/JiraIssues';
 const WidgetList = props =>
   <div className="WidgetList container-fluid">
     <div className="row">
-      <div className="col-xs-12 col-sm-4">
+      <div className="col-xs-12 col-sm-3">
         <Number title="Week" data={props.weekNumber} />
       </div>
-      <div className="col-xs-12 col-sm-4">
+      <div className="col-xs-12 col-sm-3">
         <Number title="Load Time" data={props.newRelicLoadTime} />
       </div>
-      <div className="col-xs-12 col-sm-4">
+      <div className="col-xs-12 col-sm-3">
         <Number title="Transaction Errors" data={props.newRelicErrors} />
       </div>
-      <div className="col-xs-12 col-sm-4">
+      <div className="col-xs-12 col-sm-3">
         <Number title="Unique Sessions" data={props.newRelicUniqueSessions} />
       </div>
-      <div className="col-xs-12 col-sm-4">
-        <Number title="Success Bookings" data={props.newRelicSuccessBookings} />
+      <div className="col-xs-12 col-sm-3">
+        <Number title="Successful Bookings" data={props.newRelicSuccessfulBookings} />
       </div>
-      <div className="col-xs-12 col-sm-4">
-        <Number title="CLI Errors" data={props.newRelicCLIErrors} />
+      <div className="col-xs-12 col-sm-3">
+        <Number title="CLI Errors" data={props.newRelicCliErrors} />
       </div>
-      <div className="col-xs-12 col-sm-4">
+      <div className="col-xs-12 col-sm-3">
         <JiraIssues />
       </div>
       <div className="col-xs-12">
@@ -41,8 +41,8 @@ const mapStateToProps = state => ({
   newRelicLoadTime: state.number.newRelicLoadTime,
   newRelicErrors: state.number.newRelicErrors,
   newRelicUniqueSessions: state.number.newRelicUniqueSessions,
-  newRelicSuccessBookings: state.number.newRelicSuccessBookings,
-  newRelicCLIErrors: state.number.newRelicCLIErrors,
+  newRelicSuccessfulBookings: state.number.newRelicSuccessfulBookings,
+  newRelicCliErrors: state.number.newRelicCliErrors,
 });
 
 /* eslint-disable react/forbid-prop-types */
@@ -50,8 +50,8 @@ WidgetList.propTypes = {
   newRelicErrors: PropTypes.object.isRequired,
   newRelicLoadTime: PropTypes.object.isRequired,
   newRelicUniqueSessions: PropTypes.object.isRequired,
-  newRelicSuccessBookings: PropTypes.object.isRequired,
-  newRelicCLIErrors: PropTypes.object.isRequired,
+  newRelicSuccessfulBookings: PropTypes.object.isRequired,
+  newRelicCliErrors: PropTypes.object.isRequired,
   weekNumber: PropTypes.object.isRequired,
 };
 
@@ -59,8 +59,8 @@ WidgetList.defaultProps = {
   newRelicErrors: {},
   newRelicLoadTime: {},
   newRelicUniqueSessions: {},
-  newRelicSuccessBookings: {},
-  newRelicCLIErrors: {},
+  newRelicSuccessfulBookings: {},
+  newRelicCliErrors: {},
   weekNumber: {},
 };
 
