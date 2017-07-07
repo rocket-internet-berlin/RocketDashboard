@@ -99,4 +99,42 @@ router.get('/cliErrors', (req, res, next) => {
       });
 });
 
+router.get('/errorBreakdown', (req, res, next) => {
+  const cacheKey = req.originalUrl;
+  const cachedPayload = cacheService.get(cacheKey);
+
+  if (false && cachedPayload) { // @todo remove false
+    res.json(getResponseSuccess(cachedPayload));
+    return;
+  }
+
+  newRelicService.getErrorBreakdown()
+      .then((payload) => {
+        cacheService.set(cacheKey, payload);
+        res.json(getResponseSuccess(payload));
+      })
+      .catch((err) => {
+        next(err);
+      });
+});
+
+router.get('/websiteFunnel', (req, res, next) => {
+  const cacheKey = req.originalUrl;
+  const cachedPayload = cacheService.get(cacheKey);
+
+  if (false && cachedPayload) { // @todo remove false
+    res.json(getResponseSuccess(cachedPayload));
+    return;
+  }
+
+  newRelicService.getWebsiteFunnel()
+      .then((payload) => {
+        cacheService.set(cacheKey, payload);
+        res.json(getResponseSuccess(payload));
+      })
+      .catch((err) => {
+        next(err);
+      });
+});
+
 export default router;

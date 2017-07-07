@@ -82,6 +82,39 @@ class NewRelicService {
         current: _get(insightsResponse, 'results[0].count'),
       }));
   }
+
+  getErrorBreakdown() {
+    const nrql = 'SELECT count(*) from TransactionError WHERE appName = \'www.campsy.de\' SINCE 1 day ago FACET `error.class`';
+
+    return this.getQueryResponse(nrql)
+      .then((insightsResponse) => {
+        const errors = [];
+        _get(insightsResponse, 'facets').forEach(facet => {
+          errors.push({
+            name: _get(facet, 'name'),
+            count: _get(facet, 'results[0].count'),
+          });
+        });
+        return errors;
+      });
+  }
+
+  getWebsiteFunnel() {
+    const nrql = 'SELECT funnel(session, WHERE pageUrl LIKE \'https://www.campsy.%/\' AS \'Home Page\', WHERE pageUrl like \'https://www.campsy.%search/geo%\' AS \'Search Page\', WHERE pageUrl like \'https://www.campsy.%booking/checkout%\' AS \'Checkout Step 1\', WHERE pageUrl LIKE \'https://www.campsy.%booking/%/details%\' AS \'Checkout Step 2\', WHERE pageUrl like \'https://www.campsy.%booking/%/payment%\' AS \'Checkout Step 3\', WHERE pageUrl LIKE \'https://www.campsy.%/booking/%/success\' AS \'Checkout Success\') FROM PageView SINCE 1 day ago';
+
+    return this.getQueryResponse(nrql)
+      .then((insightsResponse) => {
+        const errors = [];
+        _get(insightsResponse, 'results[0].steps').forEach((value, index) => {
+          errors.push({
+            name: _get(insightsResponse, `metadata.contents[0].steps[${index}]`),
+            count: value,
+          });
+        });
+        console.log(errors);
+        return errors;
+      });
+  }
 }
 
 export default NewRelicService;
