@@ -6,6 +6,7 @@ import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 import JiraIssues from '../../widgets/JiraIssues/components/JiraIssues';
 import NewRelicErrorBreakdown from '../../widgets/NewRelicErrorBreakdown/components/NewRelicErrorBreakdown';
+import NewRelicWebsiteFunnel from '../../widgets/NewRelicWebsiteFunnel/components/NewRelicWebsiteFunnel';
 
 const WidgetList = props =>
   <div className="WidgetList">
@@ -31,8 +32,11 @@ const WidgetList = props =>
       <div className="col-xs-12 col-sm-3">
         <JiraIssues />
       </div>
-      <div className="col-xs-12 col-sm-3">
+      <div className="col-xs-12 col-sm-4">
         <NewRelicErrorBreakdown />
+      </div>
+      <div className="col-xs-12 col-sm-4">
+        <NewRelicWebsiteFunnel />
       </div>
       <div className="col-xs-12">
         <BugsHistory />
