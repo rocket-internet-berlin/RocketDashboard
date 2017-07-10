@@ -16,6 +16,7 @@ const BugsHistory = ({ history }) =>
             <Line
               type="linear"
               dataKey="openBugs"
+              name="Open"
               barSize={10}
               strokeWidth="1"
               dot={{ stroke: '#1986ff', strokeWidth: 1, r: 6 }}
@@ -24,6 +25,7 @@ const BugsHistory = ({ history }) =>
             <Line
               type="linear"
               dataKey="solvedBugs"
+              name="Solved"
               barSize={10}
               strokeWidth="1"
               dot={{ stroke: '#9BB209', strokeWidth: 1, r: 6 }}
@@ -32,6 +34,7 @@ const BugsHistory = ({ history }) =>
             <Line
               type="linear"
               dataKey="newBugs"
+              name="New"
               barSize={10}
               strokeWidth="1"
               dot={{ stroke: '#FF2B19', strokeWidth: 1, r: 6 }}
