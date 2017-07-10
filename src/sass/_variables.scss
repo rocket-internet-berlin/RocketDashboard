@@ -1,3 +1,6 @@
+// grid
+$grid-gutter-width: 20px;
+
 // colors
 $main-color: #1986ff;
 $default-bg-color: #f1f6f8;
@@ -8,7 +11,7 @@ $red: #ff2b19;
 
 // spaces
 $space-small : 5px;
-$space-medium: 15px;
+$space-medium: 10px;
 $space-large: 30px;
 $space-extra-large: 60px;
 
@@ -18,6 +21,11 @@ $font-size-big: 48px;
 $font-size-normal: 30px;
 $font-size-small: 18px;
 
+// navbar
+$navbar-height: 40px;
+$navbar-margin-bottom: 10px;
+
+// widget
 $widget-height: 260px;
 
 // bugs history chart

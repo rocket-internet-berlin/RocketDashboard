@@ -14,22 +14,17 @@ class NavigationBar extends Component {
   render() {
     return (
       <nav className="NavigationBar navbar">
-        <div className="container-fluid">
-          <div className="navbar-header">
-            <img className="navbar-brand" src={logo} alt="Logo" />
-          </div>
-          <div className="navbar-left">RocketDashboard</div>
-          <ul className="nav navbar-nav navbar-right">
-            <li className="active">
-              <button
-                className="NavigationBar__refresh btn btn-default navbar-btn"
-                onClick={this.handleRefresh}
-              >
-                Refresh
-              </button>
-            </li>
-          </ul>
+        <div className="navbar-header">
+          <img className="navbar-brand" src={logo} alt="Logo" />
         </div>
+        <div className="navbar-left">RocketDashboard</div>
+        <ul className="nav navbar-nav navbar-right">
+          <li className="active">
+            <button className="NavigationBar__refresh btn btn-default navbar-btn" onClick={this.handleRefresh}>
+              Refresh
+            </button>
+          </li>
+        </ul>
       </nav>
     );
   }

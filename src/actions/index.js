@@ -4,6 +4,7 @@ import refreshNewRelicLoadTime from '../widgets/NewRelicLoadTime/actions/newReli
 import refreshNewRelicUniqueSessions from '../widgets/NewRelicUniqueSessions/actions/newRelicUniqueSessions';
 import refreshNewRelicSuccessfulBookings from '../widgets/NewRelicSuccessfulBookings/actions/newRelicSuccessfulBookings';
 import refreshNewRelicCliErrors from '../widgets/NewRelicCliErrors/actions/newRelicCliErrors';
+import { refresh as refreshNewRelicErrorBreakdown } from '../widgets/NewRelicErrorBreakdown/actions/newRelicErrorBreakdown';
 import { refresh as refreshBugsHistory } from '../widgets/BugsHistory/actions/bugsHistory';
 import { refresh as refreshJiraIssues } from '../widgets/JiraIssues/actions/jiraIssues';
 
@@ -15,6 +16,7 @@ const refreshAll = () => dispatch => {
   dispatch(refreshNewRelicUniqueSessions());
   dispatch(refreshNewRelicSuccessfulBookings());
   dispatch(refreshNewRelicCliErrors());
+  dispatch(refreshNewRelicErrorBreakdown());
   dispatch(refreshBugsHistory());
   dispatch(refreshJiraIssues());
 };
