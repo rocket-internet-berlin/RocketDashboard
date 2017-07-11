@@ -6,6 +6,8 @@ import BasicTable from '../../../components/BasicTable/BasicTable';
 
 import './BugsHistory.scss';
 
+const dataToArray = data => data.map(item => [item.date, item.openBugs, item.solvedBugs, item.newBugs]);
+
 const BugsHistory = ({ history }) =>
   <div className="panel BugsHistory">
     <div className="panel-heading">Bugs History</div>
@@ -50,7 +52,7 @@ const BugsHistory = ({ history }) =>
       </div>
     </div>
     <div className="panel-body visible-xs-block">
-      <BasicTable data={history} />
+      <BasicTable data={dataToArray(history)} />
     </div>
   </div>;
 

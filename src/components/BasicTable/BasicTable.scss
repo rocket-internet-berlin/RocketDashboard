@@ -1,19 +1,1 @@
 @import 'variables';
-
-.BasicTable {
-  .date {
-    color: $rocket-gray;
-  }
-
-  .open-bugs {
-    color: $main-color;
-  }
-
-  .solved-bugs {
-    color: $green;
-  }
-
-  .new-bugs {
-    color: $red;
-  }
-}
