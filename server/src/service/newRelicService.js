@@ -104,15 +104,14 @@ class NewRelicService {
 
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => {
-        const errors = [];
+        const results = [];
         _get(insightsResponse, 'results[0].steps').forEach((value, index) => {
-          errors.push({
+          results.push({
             name: _get(insightsResponse, `metadata.contents[0].steps[${index}]`),
             count: value,
           });
         });
-        console.log(errors);
-        return errors;
+        return results;
       });
   }
 }

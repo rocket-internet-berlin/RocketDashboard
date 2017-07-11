@@ -1,63 +1,48 @@
-import newRelicWebsiteFunnel from './newRelicWebsiteFunnel';
+import reducer from './newRelicWebsiteFunnel';
 
-describe('newRelicWebsiteFunnel reducer', () => {
-  it('updates the state with the data from a RECEIVE_NewRelicWebsiteFunnel action', () => {
+describe('newRelicErrorBreakdown reducer', () => {
+  it('updates the state with the data from a RECEIVE_NEWRELICWEBSITEFUNNEL action', () => {
     expect(
-      newRelicWebsiteFunnel(
-        {
-          history: [],
-        },
-        {
-          type: 'RECEIVE_NEWRELICWebsiteFunnel',
-          payload: [
-            {
-              openBugs: 1,
-              solvedBugs: 2,
-              newBugs: 3,
-            },
-            {
-              openBugs: 4,
-              solvedBugs: 5,
-              newBugs: 6,
-            },
-          ],
-        },
-      ),
-    ).toEqual({
-      history: [
-        {
-          openBugs: 1,
-          solvedBugs: 2,
-          newBugs: 3,
-        },
-        {
-          openBugs: 4,
-          solvedBugs: 5,
-          newBugs: 6,
-        },
-      ],
-    });
+      reducer([], {
+        type: 'RECEIVE_NEWRELICWEBSITEFUNNEL',
+        payload: [
+          {
+            name: 'Page 1',
+            count: 99,
+          },
+          {
+            name: 'Page 2',
+            count: 88,
+          },
+        ],
+      }),
+    ).toEqual([
+      {
+        name: 'Page 1',
+        count: 99,
+      },
+      {
+        name: 'Page 2',
+        count: 88,
+      },
+    ]);
   });
 
   it('does not handle other actions', () => {
     expect(
-      newRelicWebsiteFunnel(
-        {
-          history: [],
-        },
-        {
-          type: 'RECEIVE_NEWRELICWebsiteFunnel',
-          payload: [
-            {
-              openBugs: 9,
-              solvedBugs: 9,
-              newBugs: 9,
-            },
-          ],
-        },
-      ),
-    ).toEqual({
-      history: [],
-    });
+      reducer([], {
+        type: 'OTHER_ACTION',
+        payload: [
+          {
+            name: 'Page 1',
+            count: 99,
+          },
+          {
+            name: 'Page 2',
+            count: 88,
+          },
+        ],
+      }),
+    ).toEqual([]);
   });
 });

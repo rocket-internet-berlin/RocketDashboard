@@ -103,7 +103,7 @@ router.get('/errorBreakdown', (req, res, next) => {
   const cacheKey = req.originalUrl;
   const cachedPayload = cacheService.get(cacheKey);
 
-  if (false && cachedPayload) { // @todo remove false
+  if (cachedPayload) {
     res.json(getResponseSuccess(cachedPayload));
     return;
   }
@@ -122,7 +122,7 @@ router.get('/websiteFunnel', (req, res, next) => {
   const cacheKey = req.originalUrl;
   const cachedPayload = cacheService.get(cacheKey);
 
-  if (false && cachedPayload) { // @todo remove false
+  if (cachedPayload) {
     res.json(getResponseSuccess(cachedPayload));
     return;
   }
