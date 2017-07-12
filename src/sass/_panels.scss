@@ -5,10 +5,10 @@
   overflow: hidden;   // fixes a layout issue on IE11
 
   .panel-heading {
-    min-height: 30px;
+    height: 52px;
     padding: $space-medium 0 $space-medium $space-medium;
     font-size: 22px;
-    color: $rocket-gray;
+    color: darken($rocket-gray, 25%);
     letter-spacing: .04em;
   }
   .panel-body {

@@ -8,7 +8,7 @@ const fixSilhouette = value => Math.abs(value * 2);
 
 const NewRelicWebsiteFunnel = ({ data }) =>
   <div className="panel NewRelicWebsiteFunnel">
-    <div className="panel-heading">Error Breakdown</div>
+    <div className="panel-heading">Website Funnel</div>
     <div className="panel-body hidden-xs">
       <div className="row">
         <ResponsiveContainer width="100%" height={195}>
@@ -21,7 +21,7 @@ const NewRelicWebsiteFunnel = ({ data }) =>
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
           >
             <XAxis tickFormatter={fixSilhouette} type="number" />
-            <YAxis dataKey="name" type="category" />
+            <YAxis width={140} dataKey="name" type="category" />
             <Tooltip />
             <Area type="monotone" dataKey="count" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
           </AreaChart>
