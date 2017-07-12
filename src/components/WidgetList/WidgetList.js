@@ -19,10 +19,10 @@ const WidgetList = props =>
         <Number title="Transaction Errors" data={props.newRelicErrors} />
       </div>
       <div className="col-xs-12 col-sm-3">
-        <Number title="Unique Sessions" data={props.newRelicUniqueSessions} />
+        <Number title="Unique Sessions" data={props.newRelicUniqueSessions} positive />
       </div>
       <div className="col-xs-12 col-sm-3">
-        <Number title="Successful Bookings" data={props.newRelicSuccessfulBookings} />
+        <Number title="Successful Bookings" data={props.newRelicSuccessfulBookings} positive />
       </div>
       <div className="col-xs-12 col-sm-3">
         <Number title="CLI Errors" data={props.newRelicCliErrors} />
