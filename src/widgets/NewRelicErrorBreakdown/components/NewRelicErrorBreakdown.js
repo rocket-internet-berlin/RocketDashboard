@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import BasicTable from '../../../components/BasicTable/BasicTable';
+import './NewRelicErrorBreakdown.scss';
 
 /* eslint-disable react/prop-types */
 const CustomizedAxisTick = ({ x, y, payload }) =>
