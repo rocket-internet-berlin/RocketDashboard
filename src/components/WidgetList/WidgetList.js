@@ -15,10 +15,10 @@ const WidgetList = props =>
         <Number title="Week" data={props.weekNumber} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Load Time" data={props.newRelicLoadTime} riseIsBad />
+        <Number title="Load Time" data={props.newRelicLoadTime} riseIsBad threshold={0.33} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Transaction Errors" data={props.newRelicErrors} riseIsBad />
+        <Number title="Transaction Errors" data={{ current: 1, stuff: props.newRelicErrors }} riseIsBad threshold={1} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number title="Unique Sessions" data={props.newRelicUniqueSessions} />
@@ -27,7 +27,7 @@ const WidgetList = props =>
         <Number title="Successful Bookings" data={props.newRelicSuccessfulBookings} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="CLI Errors" data={props.newRelicCliErrors} riseIsBad />
+        <Number title="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <JiraIssues />
