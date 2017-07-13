@@ -2,23 +2,32 @@
 
 #### What’s the plan for next week
 
-- Improve test coverage (in progress)
-- Add Error Breakdown (New Relic pie-chart)
-- Add Website Funnel (New Relic) 
-- Extract Graph, Table reusable components
-- Add UI thresholds
-- Setup CI tool, e.g. Travis CI
+- Jira widgets.
+- Implement custom data source for Number widgets
+- Add (explanation) sub-title to NewRelic widgets.
+- Setup CI tool, e.g. Travis CI.
 
 #### Possible topics
 
+- Test production build and add production build+deploy instructions.
+- Dockerize the app.
+- Improve test coverage.
+- Add a last update label on each widget.
+- Loading indicators.
+
+### 0.10.0
+
+- Add Error Breakdown (New Relic pie-chart)
+- Add Website Funnel (New Relic)
+- Extract Graph, Table reusable components
 - Add documentation for required data-structure of generic widgets
-- Test production build and add production build+deploy instructions
-- Background process for remote data loading and crunching
+- Numbers turn to red if a threshold is overcome.
+- Red and green to reflect if a dynamic is good.
 
 ### 0.9.0
 
 - Implemented Campsy's NewRelic widgets (Site & CLI Errors, Load Time, Successful Bookings, Unique Sessions)
-- Ensured cross-browser compatiblity (fixed issues for IE11)
+- Ensured cross-browser compatibility (fixed issues for IE11)
 - Extracted Number generic widget and improved structure (now re-use generic component, reducer, scss, etc.)
 - UI improvements (comparison percentage
 
