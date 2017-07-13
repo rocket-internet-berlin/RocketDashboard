@@ -1,9 +1,6 @@
 @import "variables";
 
-.VerticalBarChart {
-  .recharts-tooltip-wrapper {
-    z-index: 10;
-  }
+.HorizontalBarChart {
   .recharts-surface {
     overflow: visible;
   }
