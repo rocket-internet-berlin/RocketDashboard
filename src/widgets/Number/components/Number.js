@@ -14,16 +14,16 @@ const getChange = (current, previous) => {
   return (current - previous) / previous * 100;
 };
 
-const getChangeClassName = (number, riseIsGood) => {
+const getChangeClassName = (number, riseIsBad) => {
   if (number < 0) {
-    return riseIsGood ? 'change decrease negative' : 'change decrease positive';
+    return riseIsBad ? 'change decrease positive' : 'change decrease negative';
   } else if (number > 0) {
-    return riseIsGood ? 'change increase positive' : 'change increase negative';
+    return riseIsBad ? 'change increase negative' : 'change increase positive';
   }
   return 'change';
 };
 
-const Number = ({ title, data, riseIsGood }) =>
+const Number = ({ title, data, riseIsBad }) =>
   <div className="Number panel">
     <div className="panel-heading">
       {title}
@@ -33,7 +33,7 @@ const Number = ({ title, data, riseIsGood }) =>
         {getRounded(data.current)}
       </span>
       {typeof data.previous !== 'undefined' &&
-        <span className={getChangeClassName(getChange(data.current, data.previous), riseIsGood)}>
+        <span className={getChangeClassName(getChange(data.current, data.previous), riseIsBad)}>
           {getRounded(getChange(data.current, data.previous))}%
         </span>}
     </div>
@@ -41,7 +41,7 @@ const Number = ({ title, data, riseIsGood }) =>
 
 Number.propTypes = {
   title: PropTypes.string.isRequired,
-  riseIsGood: PropTypes.bool,
+  riseIsBad: PropTypes.bool,
   data: PropTypes.shape({
     current: PropTypes.number.isRequired,
     previous: PropTypes.number,
@@ -50,7 +50,7 @@ Number.propTypes = {
 
 Number.defaultProps = {
   title: '',
-  riseIsGood: true,
+  riseIsBad: false,
   data: {
     current: 0,
     previous: null,
