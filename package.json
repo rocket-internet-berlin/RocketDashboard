@@ -89,8 +89,7 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
       "!src/index.js",
-      "!src/actions/index.js",
-      "!src/reducers/index.js"
+      "!src/actions/index.js"
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
