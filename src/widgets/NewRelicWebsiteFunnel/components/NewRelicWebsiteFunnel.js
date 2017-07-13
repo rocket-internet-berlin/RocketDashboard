@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 
+const getTableData = data => data.map(el => [el.name, el.count]);
 const fixSilhouette = value => Math.abs(value * 2);
 
 const NewRelicWebsiteFunnel = ({ data }) =>
@@ -29,7 +30,7 @@ const NewRelicWebsiteFunnel = ({ data }) =>
       </div>
     </div>
     <div className="panel-body visible-xs-block">
-      <BasicTable data={data} />
+      <BasicTable data={getTableData(data)} />
     </div>
   </div>;
 

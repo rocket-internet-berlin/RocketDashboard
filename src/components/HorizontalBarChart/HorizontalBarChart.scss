@@ -1,0 +1,13 @@
+@import "variables";
+
+.HorizontalBarChart {
+  .recharts-surface {
+    overflow: visible;
+  }
+  .recharts-bar-rectangle {
+    fill: $charts-rectangle-fill;
+  }
+  .recharts-text {
+    fill: $charts-label-fill;
+  }
+}

@@ -5,4 +5,23 @@
     font-size: $font-size-big;
     color: $rocket-gray;
   }
+
+  .BasicTable {
+    .date {
+      color: $rocket-gray;
+    }
+
+    .open-bugs {
+      color: $main-color;
+    }
+
+    .solved-bugs {
+      color: $green;
+    }
+
+    .new-bugs {
+      color: $red;
+    }
+  }
+
 }

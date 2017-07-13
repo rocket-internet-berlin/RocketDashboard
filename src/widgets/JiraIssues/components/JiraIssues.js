@@ -2,41 +2,49 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { ResponsiveContainer, BarChart, Bar } from 'recharts';
+import HorizontalBarChart from '../../../components/HorizontalBarChart/HorizontalBarChart';
 
 import './JiraIssues.scss';
 
-const JiraIssues = ({ blockers, criticals, others }) =>
+const JiraIssues = ({ data }) =>
   <div className="panel JiraIssues">
     <div className="panel-heading">Jira Issues</div>
     <div className="panel-body">
       <div className="row">
-        <ResponsiveContainer width="100%" height={160}>
-          <BarChart width="100%" height="100%" data={[{ blockers, criticals, others }]}>
-            <Bar dataKey="blockers" fill="#ff2b19" label={{ fill: '#ff2b19', fontSize: 28 }} />
-            <Bar dataKey="criticals" fill="#ff796e" label={{ fill: '#ff796e', fontSize: 28 }} />
-            <Bar dataKey="others" fill="#ffb8b2" label={{ fill: '#ffb8b2', fontSize: 28 }} />
-          </BarChart>
-        </ResponsiveContainer>
+        <HorizontalBarChart data={data} />
         <div className="labels-container">
-          <div className="label label-blockers">blockers</div>
-          <div className="label label-criticals">criticals</div>
-          <div className="label label-others">others</div>
+          <div className="label label-blockers">Blockers</div>
+          <div className="label label-criticals">Criticals</div>
+          <div className="label label-others">Others</div>
         </div>
       </div>
     </div>
   </div>;
 
 const mapStateToProps = state => ({
-  blockers: state.jiraIssues.blockers,
-  criticals: state.jiraIssues.criticals,
-  others: state.jiraIssues.others,
+  data: [
+    {
+      key: 'blockers',
+      value: state.jiraIssues.blockers,
+    },
+    {
+      key: 'criticals',
+      value: state.jiraIssues.criticals,
+    },
+    {
+      key: 'others',
+      value: state.jiraIssues.others,
+    },
+  ],
 });
 
 JiraIssues.propTypes = {
-  blockers: PropTypes.number.isRequired,
-  criticals: PropTypes.number.isRequired,
-  others: PropTypes.number.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.isRequired,
+      value: PropTypes.isRequired,
+    }),
+  ).isRequired,
 };
 
 export default connect(mapStateToProps)(JiraIssues);
