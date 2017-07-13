@@ -6,7 +6,7 @@ import BasicTable from '../../../components/BasicTable/BasicTable';
 
 import './BugsHistory.scss';
 
-const dataToArray = data => data.map(item => [item.date, item.openBugs, item.solvedBugs, item.newBugs]);
+const getTableDataFromHistory = data => data.map(item => [item.date, item.openBugs, item.solvedBugs, item.newBugs]);
 
 const BugsHistory = ({ history }) =>
   <div className="panel BugsHistory">
@@ -52,7 +52,7 @@ const BugsHistory = ({ history }) =>
       </div>
     </div>
     <div className="panel-body visible-xs-block">
-      <BasicTable data={dataToArray(history)} />
+      <BasicTable data={getTableDataFromHistory(history)} headings={['Date', 'Open Bugs', 'Solved Bugs', 'New Bugs']} />
     </div>
   </div>;
 
