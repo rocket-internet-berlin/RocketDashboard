@@ -19,5 +19,11 @@
     &.decrease:before {
       content: '▼';
     }
+    &.positive {
+      color: $positive-color;
+    }
+    &.negative {
+      color: $negative-color;
+    }
   }
 }
