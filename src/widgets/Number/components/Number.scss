@@ -5,8 +5,10 @@
     font-size: $font-size-huge;
     color: $main-color;
     line-height: normal;
+    &.threshold-overcome {
+      color: $negative-color;
+    }
   }
-
   .change {
     font-size: $font-size-normal;
     color: $rocket-gray;
