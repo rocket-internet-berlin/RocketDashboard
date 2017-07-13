@@ -7,23 +7,25 @@ Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashbo
 
 ## Widgets
 
-- **Bugs History** – bugs amount chart.
+- **Bugs History** – bugs amount chart (Google Sheets).
 - **Week Number** – the current week number.
-- **New Relic Errors** – contains two numbers: the current amount of errors and previous.
-- **New Relic CLI Errors** – contains two numbers: the current amount of errors and previous.
-- **New Relic Load Time**
-- **New Relic Successful Bookings**
-- **New Relic Unique Sessions**
-- **Jira Issues** – amount of blockers, criticals, and the rest.
-- and many more are coming.
+- **Errors** – contains two numbers: the current amount of errors and previous (New Relic).
+- **CLI Errors** – contains two numbers: the current amount of errors and previous (New Relic).
+- **Load Time** (New Relic)
+- **Successful Bookings** (New Relic)
+- **Unique Sessions** (New Relic)
+- **Jira Issues** – amount of blockers, criticals, and the rest (Jira).
+- **Error Breakdown** (New Relic)
+- **Website Funnel** (New Relic)
 
 ## Generic Widgets
 
 Some generic widget components are available for reuse, when developing custom widgets:
 
 - **Number**
-- **Graph**
 - **Table**
+- **HorizontalBarChart**
+- **VerticalBarChart**
 
 ## Installation
 
@@ -62,6 +64,13 @@ In Chrome the page will reload automatically if you edit anything in the project
 
 You'll find build errors and lint warnings in the console.
 
+## Optional
+
+In order to have a better development experience, you can install the following Chrome extensions:
+
+- [Add](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) **Redux DevTools** extension to Chrome.
+- [Add](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) **React Developer Tools** extension to Chrome.
+
 ### For the curious
 
 RocketDashboard consists of two quasi-separate parts - "client" and "server":
@@ -69,6 +78,8 @@ RocketDashboard consists of two quasi-separate parts - "client" and "server":
 - "Server" is the back-end (Express) app. It resides in the `server` folder with its code similarly in the `server/src` sub-folder.
 
 Currently the `yarn start` commands will start the "Dev" servers for BOTH in parallel for convenience. However, you can run, test, compile etc. the client and server also separately. Just look at the available commands in the "scripts" section of `package.json` or with `yarn run` in the relevant folder.
+
+## Widgets / Data sources
 
 ### Google spreadsheets (the Bugs History widget)
 
@@ -82,12 +93,45 @@ To make the Bugs History widget work with your data this is what you need to do:
 
 - Also, you should set a value for a `BUGS_HISTORY_DATA_RANGE` key in a `.env` config file to something like **'PageName'!A1:D100**. **PageName** may be omitted if the spreadsheet consists of a single page. The range **A1:D100** should include all 4 columns (see the previous step for details), in this example it's A, B, C, and D, but you may pick whatever you want. A limit (in the example – 100) may be different for you. You might even have less filled rows.
 
-### Optional
+### Reusing Base Components
+Some components can be reused, when adding or modifying your custom widgets.
 
-In order to have a better development experience, you can install the following Chrome extensions:
+#### BasicTable.js
+Usage: `<BasicTable data={data} headings={headings} />`
 
-- [Add](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) **Redux DevTools** extension to Chrome.
-- [Add](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) **React Developer Tools** extension to Chrome.
+Expected data structure: 
+```
+const headings = ['Date', 'Open Bugs', 'Solved Bugs', ...]
+const data = ['7. July', 423, 'n/a', ...]
+```
+
+#### VerticalBarChart.js
+Usage: `<VerticalBarChart data={data} />`
+
+Expected data structure: 
+```
+const data = [
+  {
+    key: 'Home',
+    value: 123
+  },
+  ...
+]
+```
+
+#### HorizontalBarChart.js
+Usage: `<HorizontalBarChart data={data} />`
+
+Expected data structure: 
+```
+const data = [
+  {
+    key: 'Home',
+    value: 123
+  },
+  ...
+]
+```
 
 ## Collaboration
 
