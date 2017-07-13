@@ -13,16 +13,16 @@ const WidgetList = props =>
         <Number title="Week" data={props.weekNumber} />
       </div>
       <div className="col-xs-12 col-sm-3">
-        <Number title="Load Time" data={props.newRelicLoadTime} positive={false} />
+        <Number title="Load Time" data={props.newRelicLoadTime} riseIsGood={false} />
       </div>
       <div className="col-xs-12 col-sm-3">
-        <Number title="Transaction Errors" data={props.newRelicErrors} positive={false} />
+        <Number title="Transaction Errors" data={props.newRelicErrors} riseIsGood={false} />
       </div>
       <div className="col-xs-12 col-sm-3">
-        <Number title="Unique Sessions" data={props.newRelicUniqueSessions} positive />
+        <Number title="Unique Sessions" data={props.newRelicUniqueSessions} />
       </div>
       <div className="col-xs-12 col-sm-3">
-        <Number title="Successful Bookings" data={props.newRelicSuccessfulBookings} positive />
+        <Number title="Successful Bookings" data={props.newRelicSuccessfulBookings} />
       </div>
       <div className="col-xs-12 col-sm-3">
         <Number title="CLI Errors" data={props.newRelicCliErrors} positive={false} />
