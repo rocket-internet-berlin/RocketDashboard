@@ -4,16 +4,19 @@
   .current {
     font-size: $font-size-huge;
     color: $main-color;
-    line-height: normal;
+    line-height: $font-size-huge;
     &.threshold-overcome {
       color: $negative-color;
     }
   }
   .change {
+    display: inline-block;
     font-size: $font-size-normal;
     color: $rocket-gray;
     &:before {
       content: '\25b6';
+      margin: 0 4px 0 0;
+      font-size: 20px;
     }
     &.increase:before {
       content: '▲';

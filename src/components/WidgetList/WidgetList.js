@@ -11,31 +11,31 @@ import NewRelicWebsiteFunnel from '../../widgets/NewRelicWebsiteFunnel/component
 const WidgetList = props =>
   <div className="WidgetList">
     <div className="row">
-      <div className="col-xs-12 col-sm-3">
+      <div className="col-xs-12 col-sm-6 col-md-3">
         <Number title="Week" data={props.weekNumber} />
       </div>
-      <div className="col-xs-12 col-sm-3">
+      <div className="col-xs-12 col-sm-6 col-md-3">
         <Number title="Load Time" data={props.newRelicLoadTime} riseIsBad />
       </div>
-      <div className="col-xs-12 col-sm-3">
+      <div className="col-xs-12 col-sm-6 col-md-3">
         <Number title="Transaction Errors" data={props.newRelicErrors} riseIsBad />
       </div>
-      <div className="col-xs-12 col-sm-3">
+      <div className="col-xs-12 col-sm-6 col-md-3">
         <Number title="Unique Sessions" data={props.newRelicUniqueSessions} />
       </div>
-      <div className="col-xs-12 col-sm-3">
+      <div className="col-xs-12 col-sm-6 col-md-3">
         <Number title="Successful Bookings" data={props.newRelicSuccessfulBookings} />
       </div>
-      <div className="col-xs-12 col-sm-3">
+      <div className="col-xs-12 col-sm-6 col-md-3">
         <Number title="CLI Errors" data={props.newRelicCliErrors} riseIsBad />
       </div>
-      <div className="col-xs-12 col-sm-3">
+      <div className="col-xs-12 col-sm-6 col-md-3">
         <JiraIssues />
       </div>
-      <div className="col-xs-12 col-sm-4">
+      <div className="col-xs-12 col-sm-6 col-md-3">
         <NewRelicErrorBreakdown />
       </div>
-      <div className="col-xs-12 col-sm-4">
+      <div className="col-xs-12 col-sm-6 col-md-3">
         <NewRelicWebsiteFunnel />
       </div>
       <div className="col-xs-12">
