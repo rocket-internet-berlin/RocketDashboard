@@ -23,13 +23,20 @@ const getChangeClassName = (number, riseIsBad) => {
   return 'change';
 };
 
-const Number = ({ title, data, riseIsBad }) =>
+const getCurrentClassName = (current, threshold, riseIsBad) => {
+  if (threshold && ((riseIsBad && current >= threshold) || (!riseIsBad && current <= threshold))) {
+    return 'current threshold-overcome';
+  }
+  return 'current';
+};
+
+const Number = ({ title, data, riseIsBad, threshold }) =>
   <div className="Number panel">
     <div className="panel-heading">
       {title}
     </div>
     <div className="panel-body">
-      <span className="current">
+      <span className={getCurrentClassName(data.current, threshold, riseIsBad)}>
         {getRounded(data.current)}
       </span>
       {typeof data.previous !== 'undefined' &&
@@ -42,6 +49,7 @@ const Number = ({ title, data, riseIsBad }) =>
 Number.propTypes = {
   title: PropTypes.string.isRequired,
   riseIsBad: PropTypes.bool,
+  threshold: PropTypes.number,
   data: PropTypes.shape({
     current: PropTypes.number.isRequired,
     previous: PropTypes.number,
@@ -51,6 +59,7 @@ Number.propTypes = {
 Number.defaultProps = {
   title: '',
   riseIsBad: false,
+  threshold: null,
   data: {
     current: 0,
     previous: null,
