@@ -5,9 +5,11 @@ import './WidgetList.scss';
 import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 import JiraIssues from '../../widgets/JiraIssues/components/JiraIssues';
+import NewRelicErrorBreakdown from '../../widgets/NewRelicErrorBreakdown/components/NewRelicErrorBreakdown';
+import NewRelicWebsiteFunnel from '../../widgets/NewRelicWebsiteFunnel/components/NewRelicWebsiteFunnel';
 
 const WidgetList = props =>
-  <div className="WidgetList container-fluid">
+  <div className="WidgetList">
     <div className="row">
       <div className="col-xs-12 col-sm-3">
         <Number title="Week" data={props.weekNumber} />
@@ -29,6 +31,12 @@ const WidgetList = props =>
       </div>
       <div className="col-xs-12 col-sm-3">
         <JiraIssues />
+      </div>
+      <div className="col-xs-12 col-sm-4">
+        <NewRelicErrorBreakdown />
+      </div>
+      <div className="col-xs-12 col-sm-4">
+        <NewRelicWebsiteFunnel />
       </div>
       <div className="col-xs-12">
         <BugsHistory />

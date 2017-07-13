@@ -1,15 +1,10 @@
 @import 'variables';
 
 .NavigationBar {
-  margin-left: $space-medium;
-  margin-right: $space-medium;
-  padding-top: 15px;
-  border: 0;
-  border-radius: 0;
 
   .navbar-brand {
-    height: 50px;
-    width: 50px;
+    height: $navbar-height;
+    width: $navbar-height;
     padding: 0;
   }
 
@@ -18,8 +13,7 @@
     font-size: 22px;
     font-weight: bold;
     letter-spacing: .04em;
-    height: 50px;
-    line-height: 50px;
+    line-height: $navbar-height;
     margin-left: 10px;
   }
 
