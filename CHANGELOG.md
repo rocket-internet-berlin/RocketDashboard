@@ -2,17 +2,18 @@
 
 #### What’s the plan for next week
 
-- Add (explanation) sub-title to NewRelic widgets.
 - Jira widgets.
-- Add a last update label on each widget.
-- Loading indicators.
-- Improve test coverage.
+- Implement custom data source for Number widgets
+- Add (explanation) sub-title to NewRelic widgets.
+- Setup CI tool, e.g. Travis CI.
 
 #### Possible topics
 
 - Test production build and add production build+deploy instructions.
-- Setup CI tool, e.g. Travis CI.
 - Dockerize the app.
+- Improve test coverage.
+- Add a last update label on each widget.
+- Loading indicators.
 
 ### 0.10.0
 
