@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './BasicTable.scss';
 
 /* eslint-disable react/no-array-index-key */
-/* disable reason: we use shallow array which contains no "key". That's why we have to concat our own. */
+/* Disable reason: for `data` we expect shallow array, which contains no "key". That's why we concat our own, i.e. `${rowIndex}-${index}` */
 const BasicTable = ({ data, headings }) =>
   <div className="table-responsive">
     <table className="BasicTable table">
@@ -11,7 +11,7 @@ const BasicTable = ({ data, headings }) =>
         <thead>
           <tr>
             {headings.map(item =>
-              <td>
+              <td key={item}>
                 {item}
               </td>,
             )}

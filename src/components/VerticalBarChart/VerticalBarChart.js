@@ -11,7 +11,7 @@ const VerticalBarChart = ({ data }) =>
         width={600}
         height={195}
         data={data}
-        margin={{ top: 0, right: 20, bottom: 0, left: -40 }}
+        margin={{ top: 0, right: 40, bottom: 0, left: -40 }}
       >
         <XAxis type="number" hide />
         <YAxis dataKey="key" type="category" tick={<CustomizedAxisTick />} />
@@ -38,11 +38,19 @@ const CustomizedAxisTick = ({ x, y, payload }) =>
   </g>;
 
 CustomizedAxisTick.propTypes = {
-  x: PropTypes.number.isRequired,
-  y: PropTypes.number.isRequired,
+  x: PropTypes.number,
+  y: PropTypes.number,
   payload: PropTypes.shape({
     value: PropTypes.isRequired,
-  }).isRequired,
+  }),
+};
+
+CustomizedAxisTick.defaultProps = {
+  x: 0,
+  y: 0,
+  payload: {
+    value: '',
+  },
 };
 
 export default VerticalBarChart;

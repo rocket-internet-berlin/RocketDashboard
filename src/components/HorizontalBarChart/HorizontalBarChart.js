@@ -6,7 +6,7 @@ import './HorizontalBarChart.scss';
 const HorizontalBarChart = ({ data }) =>
   <div className="HorizontalBarChart">
     <ResponsiveContainer width="100%" height={160}>
-      <BarChart width="100%" height="100%" data={data}>
+      <BarChart data={data}>
         <Bar dataKey="value" label={{ fontSize: 28 }} />
         <XAxis dataKey="key" type="category" />
         <YAxis dataKey="value" type="number" />

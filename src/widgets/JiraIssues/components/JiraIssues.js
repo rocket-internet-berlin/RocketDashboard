@@ -2,7 +2,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
 import HorizontalBarChart from '../../../components/HorizontalBarChart/HorizontalBarChart';
 
 import './JiraIssues.scss';
@@ -26,15 +25,15 @@ const mapStateToProps = state => ({
   data: [
     {
       key: 'blockers',
-      value: 3,
+      value: state.jiraIssues.blockers,
     },
     {
       key: 'criticals',
-      value: 2,
+      value: state.jiraIssues.criticals,
     },
     {
       key: 'others',
-      value: 1,
+      value: state.jiraIssues.others,
     },
   ],
 });
