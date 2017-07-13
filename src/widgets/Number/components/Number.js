@@ -24,7 +24,9 @@ const getChangeClassName = (number, riseIsBad) => {
 };
 
 const getCurrentClassName = (current, threshold, riseIsBad) => {
-  if (threshold && ((riseIsBad && current >= threshold) || (!riseIsBad && current <= threshold))) {
+  const isBadAndAboveThreshold = riseIsBad && current >= threshold;
+  const isGoodAndBelowThreshold = !riseIsBad && current <= threshold;
+  if (threshold && (isBadAndAboveThreshold || isGoodAndBelowThreshold)) {
     return 'current threshold-overcome';
   }
   return 'current';
