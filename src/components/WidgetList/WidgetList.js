@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import './WidgetList.scss';
 import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
-import JiraIssues from '../../widgets/JiraIssues/components/JiraIssues';
 import NewRelicErrorBreakdown from '../../widgets/NewRelicErrorBreakdown/components/NewRelicErrorBreakdown';
 import NewRelicWebsiteFunnel from '../../widgets/NewRelicWebsiteFunnel/components/NewRelicWebsiteFunnel';
 
@@ -15,54 +14,25 @@ const WidgetList = props =>
         <Number heading="Week" data={props.weekNumber} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number
-          heading="Load Time (s)"
-          description="since 10 minutes ago"
-          data={props.newRelicLoadTime}
-          riseIsBad
-          threshold={0.33}
-        />
+        <Number heading="Load Time (s)" data={props.newRelicLoadTime} riseIsBad threshold={0.33} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number
-          heading="Transaction Errors"
-          description="since 30 minutes ago compare with 30 minutes ago"
-          data={props.newRelicErrors}
-          riseIsBad
-          threshold={1}
-        />
+        <Number heading="Transaction Errors" data={props.newRelicErrors} riseIsBad threshold={1} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number
-          heading="Unique Sessions"
-          description="since 20 minutes ago compare with 20 minutes ago"
-          data={props.newRelicUniqueSessions}
-        />
+        <Number heading="Unique Sessions" data={props.newRelicUniqueSessions} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number
-          heading="Successful Bookings"
-          description="since 1 day ago compare with 1 day ago"
-          data={props.newRelicSuccessfulBookings}
-        />
+        <Number heading="Successful Bookings" data={props.newRelicSuccessfulBookings} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number
-          heading="CLI Errors"
-          description="since 30 minutes ago"
-          data={props.newRelicCliErrors}
-          riseIsBad
-          threshold={1}
-        />
+        <Number heading="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <JiraIssues />
+        <NewRelicErrorBreakdown />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <NewRelicErrorBreakdown description="since 1 day ago" />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <NewRelicWebsiteFunnel description="since 1 day ago" />
+        <NewRelicWebsiteFunnel />
       </div>
       <div className="col-xs-12">
         <BugsHistory />

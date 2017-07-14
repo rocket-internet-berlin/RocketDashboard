@@ -46,20 +46,20 @@ const Number = ({ heading, description, data, riseIsBad, threshold }) =>
           {getRounded(getChange(data.current, data.previous))}%
         </span>}
     </div>
-    {description &&
-      <div className="panel-footer">
-        {description}
-      </div>}
+    <div className="panel-footer">
+      {description || data.description}
+    </div>
   </div>;
 
 Number.propTypes = {
   heading: PropTypes.string.isRequired,
-  description: PropTypes.string,
   riseIsBad: PropTypes.bool,
   threshold: PropTypes.number,
+  description: PropTypes.string,
   data: PropTypes.shape({
-    current: PropTypes.number.isRequired,
+    current: PropTypes.number,
     previous: PropTypes.number,
+    description: PropTypes.string,
   }),
 };
 
@@ -71,6 +71,7 @@ Number.defaultProps = {
   data: {
     current: 0,
     previous: null,
+    description: null,
   },
 };
 

@@ -5,7 +5,9 @@ const reducer = handleActions(
   {
     [onReceive]: (state, { payload }) => payload,
   },
-  [],
+  {
+    results: [],
+  },
 );
 
 export default reducer;

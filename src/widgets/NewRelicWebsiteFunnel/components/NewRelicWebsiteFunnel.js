@@ -14,7 +14,7 @@ const NewRelicWebsiteFunnel = ({ data, description }) =>
       <div className="row">
         <ResponsiveContainer width="100%" height={165}>
           <AreaChart
-            data={data}
+            data={data.results}
             layout="vertical"
             width={600}
             height={165}
@@ -30,10 +30,10 @@ const NewRelicWebsiteFunnel = ({ data, description }) =>
       </div>
     </div>
     <div className="panel-body visible-xs-block">
-      <BasicTable data={getTableData(data)} />
+      <BasicTable data={getTableData(data.results)} />
     </div>
     <div className="panel-footer">
-      {description}
+      {description || data.description}
     </div>
   </div>;
 
@@ -47,12 +47,15 @@ NewRelicWebsiteFunnel.defaultProps = {
 
 NewRelicWebsiteFunnel.propTypes = {
   description: PropTypes.string,
-  data: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      count: PropTypes.number.isRequired,
-    }),
-  ).isRequired,
+  data: PropTypes.shape({
+    results: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        count: PropTypes.number.isRequired,
+      }),
+    ).isRequired,
+    description: PropTypes.string,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps)(NewRelicWebsiteFunnel);
