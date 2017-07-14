@@ -5,11 +5,11 @@ import './VerticalBarChart.scss';
 
 const VerticalBarChart = ({ data }) =>
   <div className="VerticalBarChart">
-    <ResponsiveContainer width="100%" height={195}>
+    <ResponsiveContainer width="100%" height={155}>
       <BarChart
         layout="vertical"
         width={600}
-        height={195}
+        height={155}
         data={data}
         margin={{ top: 0, right: 40, bottom: 0, left: -40 }}
       >

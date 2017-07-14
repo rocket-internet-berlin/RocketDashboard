@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import './WidgetList.scss';
 import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
-import JiraIssues from '../../widgets/JiraIssues/components/JiraIssues';
 import NewRelicErrorBreakdown from '../../widgets/NewRelicErrorBreakdown/components/NewRelicErrorBreakdown';
 import NewRelicWebsiteFunnel from '../../widgets/NewRelicWebsiteFunnel/components/NewRelicWebsiteFunnel';
 
@@ -12,25 +11,22 @@ const WidgetList = props =>
   <div className="WidgetList">
     <div className="row">
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Week" data={props.weekNumber} />
+        <Number heading="Week" data={props.weekNumber} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Load Time" data={props.newRelicLoadTime} riseIsBad threshold={0.33} />
+        <Number heading="Load Time (s)" data={props.newRelicLoadTime} riseIsBad threshold={0.33} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Transaction Errors" data={{ current: 1, stuff: props.newRelicErrors }} riseIsBad threshold={1} />
+        <Number heading="Transaction Errors" data={props.newRelicErrors} riseIsBad threshold={1} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Unique Sessions" data={props.newRelicUniqueSessions} />
+        <Number heading="Unique Sessions" data={props.newRelicUniqueSessions} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Successful Bookings" data={props.newRelicSuccessfulBookings} />
+        <Number heading="Successful Bookings" data={props.newRelicSuccessfulBookings} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <JiraIssues />
+        <Number heading="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <NewRelicErrorBreakdown />

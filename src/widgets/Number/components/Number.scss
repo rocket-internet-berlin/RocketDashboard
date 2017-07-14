@@ -13,6 +13,8 @@
     display: inline-block;
     font-size: $font-size-normal;
     color: $rocket-gray;
+    line-height: 10px;
+
     &:before {
       content: '\25b6';
       margin: 0 4px 0 0;

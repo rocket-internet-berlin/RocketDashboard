@@ -7,28 +7,41 @@ import BasicTable from '../../../components/BasicTable/BasicTable';
 const getKeyValuePairs = errors => errors.map(el => ({ key: el.name, value: el.count }));
 const getTableData = errors => errors.map(el => [el.name, el.count]);
 
-const NewRelicErrorBreakdown = ({ errors }) =>
+const NewRelicErrorBreakdown = ({ data, description }) =>
   <div className="panel NewRelicErrorBreakdown">
     <div className="panel-heading">Error Breakdown</div>
     <div className="panel-body hidden-xs">
       <div className="row">
-        <VerticalBarChart data={getKeyValuePairs(errors)} />
+        <VerticalBarChart data={getKeyValuePairs(data.errors)} />
       </div>
     </div>
     <div className="panel-body visible-xs-block">
-      <BasicTable data={getTableData(errors)} />
+      <BasicTable data={getTableData(data.errors)} />
+    </div>
+    <div className="panel-footer">
+      {description || data.description}
     </div>
   </div>;
 
 const mapStateToProps = state => ({
-  errors: state.newRelicErrorBreakdown,
+  data: state.newRelicErrorBreakdown,
 });
 
-NewRelicErrorBreakdown.propTypes = PropTypes.arrayOf(
-  PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    count: PropTypes.number.isRequired,
-  }),
-).isRequired;
+NewRelicErrorBreakdown.defaultProps = {
+  description: null,
+};
+
+NewRelicErrorBreakdown.propTypes = {
+  description: PropTypes.string,
+  data: PropTypes.shape({
+    errors: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        count: PropTypes.number.isRequired,
+      }),
+    ).isRequired,
+    description: PropTypes.string,
+  }).isRequired,
+};
 
 export default connect(mapStateToProps)(NewRelicErrorBreakdown);

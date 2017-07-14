@@ -35,6 +35,13 @@ class NewRelicService {
     });
   }
 
+  static getDescription(insightsResponse) {
+    const since = _get(insightsResponse, 'metadata.rawSince');
+    const compareWith = _get(insightsResponse, 'metadata.rawCompareWith');
+    const description = compareWith ? `Since ${since} COMPARE WITH ${compareWith}` : `Since ${since}`;
+    return description.toLowerCase();
+  }
+
   getTransactionErrors() {
     const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 30 minutes AGO COMPARE WITH 30 minutes ago';
 
@@ -42,6 +49,7 @@ class NewRelicService {
       .then((insightsResponse) => ({
         previous: _get(insightsResponse, 'previous.results[0].count'),
         current: _get(insightsResponse, 'current.results[0].count'),
+        description: NewRelicService.getDescription(insightsResponse),
       }));
   }
 
@@ -51,6 +59,7 @@ class NewRelicService {
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => ({
         current: _get(insightsResponse, 'results[0].average'),
+        description: NewRelicService.getDescription(insightsResponse),
       }));
   }
 
@@ -61,6 +70,7 @@ class NewRelicService {
       .then((insightsResponse) => ({
         previous: _get(insightsResponse, 'previous.results[0].count'),
         current: _get(insightsResponse, 'current.results[0].count'),
+        description: NewRelicService.getDescription(insightsResponse),
       }));
   }
 
@@ -71,6 +81,7 @@ class NewRelicService {
       .then((insightsResponse) => ({
         previous: _get(insightsResponse, 'previous.results[0].count'),
         current: _get(insightsResponse, 'current.results[0].count'),
+        description: NewRelicService.getDescription(insightsResponse),
       }));
   }
 
@@ -80,6 +91,7 @@ class NewRelicService {
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => ({
         current: _get(insightsResponse, 'results[0].count'),
+        description: NewRelicService.getDescription(insightsResponse),
       }));
   }
 
@@ -95,7 +107,10 @@ class NewRelicService {
             count: _get(facet, 'results[0].count'),
           });
         });
-        return errors;
+        return {
+          errors,
+          description: NewRelicService.getDescription(insightsResponse),
+        };
       });
   }
 
@@ -111,7 +126,10 @@ class NewRelicService {
             count: value,
           });
         });
-        return results;
+        return {
+          results,
+          description: NewRelicService.getDescription(insightsResponse),
+        };
       });
   }
 }

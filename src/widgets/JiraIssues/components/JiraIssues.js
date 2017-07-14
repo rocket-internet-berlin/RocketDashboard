@@ -6,7 +6,7 @@ import HorizontalBarChart from '../../../components/HorizontalBarChart/Horizonta
 
 import './JiraIssues.scss';
 
-const JiraIssues = ({ data }) =>
+const JiraIssues = ({ data, description }) =>
   <div className="panel JiraIssues">
     <div className="panel-heading">Jira Issues</div>
     <div className="panel-body">
@@ -18,6 +18,9 @@ const JiraIssues = ({ data }) =>
           <div className="label label-others">Others</div>
         </div>
       </div>
+    </div>
+    <div className="panel-footer">
+      {description}
     </div>
   </div>;
 
@@ -45,6 +48,11 @@ JiraIssues.propTypes = {
       value: PropTypes.isRequired,
     }),
   ).isRequired,
+  description: PropTypes.string,
+};
+
+JiraIssues.defaultProps = {
+  description: null,
 };
 
 export default connect(mapStateToProps)(JiraIssues);

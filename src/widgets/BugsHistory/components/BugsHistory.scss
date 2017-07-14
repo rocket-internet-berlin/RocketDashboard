@@ -1,6 +1,10 @@
 @import 'variables';
 
 .BugsHistory {
+  &.panel {
+    height: 320px;
+  }
+
   .bugs-current {
     font-size: $font-size-big;
     color: $rocket-gray;

@@ -8,6 +8,7 @@ const reducer = handleActions(
       [payload.key]: {
         current: payload.current,
         previous: payload.previous,
+        description: payload.description,
       },
     }),
   },
