@@ -12,31 +12,57 @@ const WidgetList = props =>
   <div className="WidgetList">
     <div className="row">
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Week" data={props.weekNumber} />
+        <Number heading="Week" data={props.weekNumber} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Load Time" data={props.newRelicLoadTime} riseIsBad threshold={0.33} />
+        <Number
+          heading="Load Time (s)"
+          explain="since 10 minutes ago"
+          data={props.newRelicLoadTime}
+          riseIsBad
+          threshold={0.33}
+        />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Transaction Errors" data={{ current: 1, stuff: props.newRelicErrors }} riseIsBad threshold={1} />
+        <Number
+          heading="Transaction Errors"
+          explain="since 30 minutes ago compare with 30 minutes ago"
+          data={props.newRelicErrors}
+          riseIsBad
+          threshold={1}
+        />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Unique Sessions" data={props.newRelicUniqueSessions} />
+        <Number
+          heading="Unique Sessions"
+          explain="since 20 minutes ago compare with 20 minutes ago"
+          data={props.newRelicUniqueSessions}
+        />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Successful Bookings" data={props.newRelicSuccessfulBookings} />
+        <Number
+          heading="Successful Bookings"
+          explain="since 1 day ago compare with 1 day ago"
+          data={props.newRelicSuccessfulBookings}
+        />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
+        <Number
+          heading="CLI Errors"
+          explain="since 30 minutes ago"
+          data={props.newRelicCliErrors}
+          riseIsBad
+          threshold={1}
+        />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <JiraIssues />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <NewRelicErrorBreakdown />
+        <NewRelicErrorBreakdown explain="since 1 day ago" />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <NewRelicWebsiteFunnel />
+        <NewRelicWebsiteFunnel explain="since 1 day ago" />
       </div>
       <div className="col-xs-12">
         <BugsHistory />

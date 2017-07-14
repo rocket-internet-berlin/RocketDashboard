@@ -4,31 +4,41 @@ import { connect } from 'react-redux';
 import VerticalBarChart from '../../../components/VerticalBarChart/VerticalBarChart';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 
-const getKeyValuePairs = errors => errors.map(el => ({ key: el.name, value: el.count }));
-const getTableData = errors => errors.map(el => [el.name, el.count]);
+const getKeyValuePairs = data => data.map(el => ({ key: el.name, value: el.count }));
+const getTableData = data => data.map(el => [el.name, el.count]);
 
-const NewRelicErrorBreakdown = ({ errors }) =>
+const NewRelicErrorBreakdown = ({ data, explain }) =>
   <div className="panel NewRelicErrorBreakdown">
     <div className="panel-heading">Error Breakdown</div>
     <div className="panel-body hidden-xs">
       <div className="row">
-        <VerticalBarChart data={getKeyValuePairs(errors)} />
+        <VerticalBarChart data={getKeyValuePairs(data)} />
       </div>
     </div>
     <div className="panel-body visible-xs-block">
-      <BasicTable data={getTableData(errors)} />
+      <BasicTable data={getTableData(data)} />
+    </div>
+    <div className="panel-footer">
+      {explain}
     </div>
   </div>;
 
 const mapStateToProps = state => ({
-  errors: state.newRelicErrorBreakdown,
+  data: state.newRelicErrorBreakdown,
 });
 
-NewRelicErrorBreakdown.propTypes = PropTypes.arrayOf(
-  PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    count: PropTypes.number.isRequired,
-  }),
-).isRequired;
+NewRelicErrorBreakdown.defaultProps = {
+  explain: null,
+};
+
+NewRelicErrorBreakdown.propTypes = {
+  explain: PropTypes.string,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      count: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
+};
 
 export default connect(mapStateToProps)(NewRelicErrorBreakdown);

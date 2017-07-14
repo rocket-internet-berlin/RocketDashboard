@@ -32,10 +32,10 @@ const getCurrentClassName = (current, threshold, riseIsBad) => {
   return 'current';
 };
 
-const Number = ({ title, data, riseIsBad, threshold }) =>
+const Number = ({ heading, explain, data, riseIsBad, threshold }) =>
   <div className="Number panel">
     <div className="panel-heading">
-      {title}
+      {heading}
     </div>
     <div className="panel-body">
       <span className={getCurrentClassName(data.current, threshold, riseIsBad)}>
@@ -46,10 +46,15 @@ const Number = ({ title, data, riseIsBad, threshold }) =>
           {getRounded(getChange(data.current, data.previous))}%
         </span>}
     </div>
+    {explain &&
+      <div className="panel-footer">
+        {explain}
+      </div>}
   </div>;
 
 Number.propTypes = {
-  title: PropTypes.string.isRequired,
+  heading: PropTypes.string.isRequired,
+  explain: PropTypes.string,
   riseIsBad: PropTypes.bool,
   threshold: PropTypes.number,
   data: PropTypes.shape({
@@ -59,7 +64,8 @@ Number.propTypes = {
 };
 
 Number.defaultProps = {
-  title: '',
+  heading: '',
+  explain: null,
   riseIsBad: false,
   threshold: null,
   data: {

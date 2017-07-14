@@ -1,17 +1,38 @@
+@import 'variables';
+
 .panel {
-  margin-bottom: $grid-gutter-width;
+  position: relative;
   min-height: $widget-height;
+  margin-bottom: $grid-gutter-width;
   border-color: $widget-border-color;
   overflow: hidden;   // fixes a layout issue on IE11
+
+  @media(min-width:768px){
+    height: $widget-height;
+  }
 
   .panel-heading {
     height: 52px;
     padding: $space-medium 0 $space-medium $space-medium;
-    font-size: 22px;
-    color: darken($rocket-gray, 25%);
+    font-size: 24px;
+    color: $widget-heading-color;
     letter-spacing: .04em;
+    text-transform: capitalize;
   }
   .panel-body {
-    padding: 0 $space-medium $space-medium $space-medium;
+    min-height: 155px;
+    padding: 0 $space-medium 0 $space-medium;
   }
+  .panel-footer {
+    border: 0;
+    padding: $space-medium;
+    background: $panel-bg;
+    font-size: $font-size-small;
+    line-height: $font-size-small;
+    color: $widget-heading-color;
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
 }

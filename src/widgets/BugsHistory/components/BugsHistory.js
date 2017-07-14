@@ -8,13 +8,13 @@ import './BugsHistory.scss';
 
 const getTableDataFromHistory = data => data.map(item => [item.date, item.openBugs, item.solvedBugs, item.newBugs]);
 
-const BugsHistory = ({ history }) =>
+const BugsHistory = ({ history, explain }) =>
   <div className="panel BugsHistory">
     <div className="panel-heading">Bugs History</div>
     <div className="panel-body hidden-xs">
       <div className="row">
-        <ResponsiveContainer width="100%" height={320}>
-          <LineChart margin={{ top: 30, right: 45, left: 0, bottom: 15 }} data={history}>
+        <ResponsiveContainer width="100%" height={220}>
+          <LineChart margin={{ top: 0, right: 45, left: 0, bottom: 0 }} data={history}>
             <Line
               type="linear"
               dataKey="openBugs"
@@ -54,6 +54,9 @@ const BugsHistory = ({ history }) =>
     <div className="panel-body visible-xs-block">
       <BasicTable data={getTableDataFromHistory(history)} headings={['Date', 'Open Bugs', 'Solved Bugs', 'New Bugs']} />
     </div>
+    <div className="panel-footer">
+      {explain}
+    </div>
   </div>;
 
 const mapStateToProps = state => ({
@@ -68,6 +71,11 @@ BugsHistory.propTypes = {
       newBugs: PropTypes.number.isRequired,
     }),
   ).isRequired,
+  explain: PropTypes.string,
+};
+
+BugsHistory.defaultProps = {
+  explain: null,
 };
 
 export default connect(mapStateToProps)(BugsHistory);

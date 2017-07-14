@@ -5,7 +5,6 @@ $grid-gutter-width: 20px;
 $main-color: #1986ff;
 $default-bg-color: #f1f6f8;
 $rocket-gray: #b7b7b7;
-$widget-border-color: #e5e5e5;
 $green: #9bb209;
 $red: #ff2b19;
 $negative-color: $red;
@@ -18,7 +17,7 @@ $space-large: 30px;
 $space-extra-large: 60px;
 
 // font-sizes
-$font-size-huge: 144px;
+$font-size-huge: 134px;
 $font-size-big: 48px;
 $font-size-normal: 30px;
 $font-size-small: 18px;
@@ -29,6 +28,8 @@ $navbar-margin-bottom: 10px;
 
 // widget
 $widget-height: 260px;
+$widget-heading-color: darken($rocket-gray, 25%);
+$widget-border-color: #e5e5e5;
 
 // Charts
 $charts-rectangle-fill: #1986ff;
