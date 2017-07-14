@@ -38,7 +38,8 @@ class NewRelicService {
   static getDescription(insightsResponse) {
     const since = _get(insightsResponse, 'metadata.rawSince');
     const compareWith = _get(insightsResponse, 'metadata.rawCompareWith');
-    return compareWith ? `${since} COMPARE WITH ${compareWith}` : since;
+    const description = compareWith ? `Since ${since} COMPARE WITH ${compareWith}` : `Since ${since}`;
+    return description.toLowerCase();
   }
 
   getTransactionErrors() {
