@@ -17,7 +17,7 @@ const WidgetList = props =>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number
           heading="Load Time (s)"
-          explain="since 10 minutes ago"
+          description="since 10 minutes ago"
           data={props.newRelicLoadTime}
           riseIsBad
           threshold={0.33}
@@ -26,7 +26,7 @@ const WidgetList = props =>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number
           heading="Transaction Errors"
-          explain="since 30 minutes ago compare with 30 minutes ago"
+          description="since 30 minutes ago compare with 30 minutes ago"
           data={props.newRelicErrors}
           riseIsBad
           threshold={1}
@@ -35,21 +35,21 @@ const WidgetList = props =>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number
           heading="Unique Sessions"
-          explain="since 20 minutes ago compare with 20 minutes ago"
+          description="since 20 minutes ago compare with 20 minutes ago"
           data={props.newRelicUniqueSessions}
         />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number
           heading="Successful Bookings"
-          explain="since 1 day ago compare with 1 day ago"
+          description="since 1 day ago compare with 1 day ago"
           data={props.newRelicSuccessfulBookings}
         />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number
           heading="CLI Errors"
-          explain="since 30 minutes ago"
+          description="since 30 minutes ago"
           data={props.newRelicCliErrors}
           riseIsBad
           threshold={1}
@@ -59,10 +59,10 @@ const WidgetList = props =>
         <JiraIssues />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <NewRelicErrorBreakdown explain="since 1 day ago" />
+        <NewRelicErrorBreakdown description="since 1 day ago" />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <NewRelicWebsiteFunnel explain="since 1 day ago" />
+        <NewRelicWebsiteFunnel description="since 1 day ago" />
       </div>
       <div className="col-xs-12">
         <BugsHistory />

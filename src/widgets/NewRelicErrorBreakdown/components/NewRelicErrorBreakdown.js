@@ -7,7 +7,7 @@ import BasicTable from '../../../components/BasicTable/BasicTable';
 const getKeyValuePairs = data => data.map(el => ({ key: el.name, value: el.count }));
 const getTableData = data => data.map(el => [el.name, el.count]);
 
-const NewRelicErrorBreakdown = ({ data, explain }) =>
+const NewRelicErrorBreakdown = ({ data, description }) =>
   <div className="panel NewRelicErrorBreakdown">
     <div className="panel-heading">Error Breakdown</div>
     <div className="panel-body hidden-xs">
@@ -19,7 +19,7 @@ const NewRelicErrorBreakdown = ({ data, explain }) =>
       <BasicTable data={getTableData(data)} />
     </div>
     <div className="panel-footer">
-      {explain}
+      {description}
     </div>
   </div>;
 
@@ -28,11 +28,11 @@ const mapStateToProps = state => ({
 });
 
 NewRelicErrorBreakdown.defaultProps = {
-  explain: null,
+  description: null,
 };
 
 NewRelicErrorBreakdown.propTypes = {
-  explain: PropTypes.string,
+  description: PropTypes.string,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

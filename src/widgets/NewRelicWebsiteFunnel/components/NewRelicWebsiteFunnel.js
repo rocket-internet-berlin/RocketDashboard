@@ -7,7 +7,7 @@ import BasicTable from '../../../components/BasicTable/BasicTable';
 const getTableData = data => data.map(el => [el.name, el.count]);
 const fixSilhouette = value => Math.abs(value * 2);
 
-const NewRelicWebsiteFunnel = ({ data, explain }) =>
+const NewRelicWebsiteFunnel = ({ data, description }) =>
   <div className="panel NewRelicWebsiteFunnel">
     <div className="panel-heading">Website Funnel</div>
     <div className="panel-body hidden-xs">
@@ -33,7 +33,7 @@ const NewRelicWebsiteFunnel = ({ data, explain }) =>
       <BasicTable data={getTableData(data)} />
     </div>
     <div className="panel-footer">
-      {explain}
+      {description}
     </div>
   </div>;
 
@@ -42,11 +42,11 @@ const mapStateToProps = state => ({
 });
 
 NewRelicWebsiteFunnel.defaultProps = {
-  explain: null,
+  description: null,
 };
 
 NewRelicWebsiteFunnel.propTypes = {
-  explain: PropTypes.string,
+  description: PropTypes.string,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string.isRequired,

@@ -8,7 +8,7 @@ import './BugsHistory.scss';
 
 const getTableDataFromHistory = data => data.map(item => [item.date, item.openBugs, item.solvedBugs, item.newBugs]);
 
-const BugsHistory = ({ history, explain }) =>
+const BugsHistory = ({ history, description }) =>
   <div className="panel BugsHistory">
     <div className="panel-heading">Bugs History</div>
     <div className="panel-body hidden-xs">
@@ -55,7 +55,7 @@ const BugsHistory = ({ history, explain }) =>
       <BasicTable data={getTableDataFromHistory(history)} headings={['Date', 'Open Bugs', 'Solved Bugs', 'New Bugs']} />
     </div>
     <div className="panel-footer">
-      {explain}
+      {description}
     </div>
   </div>;
 
@@ -71,11 +71,11 @@ BugsHistory.propTypes = {
       newBugs: PropTypes.number.isRequired,
     }),
   ).isRequired,
-  explain: PropTypes.string,
+  description: PropTypes.string,
 };
 
 BugsHistory.defaultProps = {
-  explain: null,
+  description: null,
 };
 
 export default connect(mapStateToProps)(BugsHistory);
