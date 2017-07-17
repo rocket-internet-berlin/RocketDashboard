@@ -1,6 +1,5 @@
 import 'whatwg-fetch';
 import { createAction } from 'redux-actions';
-import { fetchUrl } from '../../../lib/fetchApi';
 
 const onReceive = createAction('RECEIVE_NUMBER', (key, { current, previous, description }) => ({
   key,
@@ -9,8 +8,8 @@ const onReceive = createAction('RECEIVE_NUMBER', (key, { current, previous, desc
   description,
 }));
 
-export const refreshNumber = (key, url) => dispatch => {
-  fetchUrl(url).then(json => dispatch(onReceive(key, json.data)));
+export const refreshNumber = ({ key, fetch }) => dispatch => {
+  fetch().then(json => dispatch(onReceive(key, json.data)));
 };
 
 export default onReceive;

@@ -23,11 +23,7 @@ const refreshAll = () => dispatch => {
   dispatch(refreshNewRelicWebsiteFunnel());
   dispatch(refreshBugsHistory());
   // dispatch(refreshJiraIssues());   // TODO: uncomment once we have access to Jira
-  dispatch(
-    customWidgets.forEach(widget => {
-      dispatch(refreshNumber(widget.key, widget.url));
-    }),
-  );
+  dispatch(customWidgets.forEach(widget => dispatch(refreshNumber(widget))));
 };
 
 export { refreshAll }; // eslint-disable-line import/prefer-default-export
