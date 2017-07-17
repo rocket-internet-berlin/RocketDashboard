@@ -9,6 +9,7 @@ import { refresh as refreshNewRelicWebsiteFunnel } from '../widgets/NewRelicWebs
 import { refresh as refreshBugsHistory } from '../widgets/BugsHistory/actions/bugsHistory';
 // import { refresh as refreshJiraIssues } from '../widgets/JiraIssues/actions/jiraIssues';
 import { refreshNumber } from '../widgets/Number/actions/number';
+import customWidgets from '../customWidgets/customWidgets';
 
 // TODO: Possibly refactor using Observers pattern. This way we won`t have to add widgets here manually.
 const refreshAll = () => dispatch => {
@@ -22,7 +23,11 @@ const refreshAll = () => dispatch => {
   dispatch(refreshNewRelicWebsiteFunnel());
   dispatch(refreshBugsHistory());
   // dispatch(refreshJiraIssues());   // TODO: uncomment once we have access to Jira
-  dispatch(refreshNumber('customWidget', 'http://www.mocky.io/v2/5968eb61110000090e614cbb'));
+  dispatch(
+    customWidgets.forEach(widget => {
+      dispatch(refreshNumber(widget.key, widget.url));
+    }),
+  );
 };
 
 export { refreshAll }; // eslint-disable-line import/prefer-default-export
