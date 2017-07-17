@@ -28,6 +28,9 @@ const WidgetList = props =>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
       </div>
+      <!--<div className="col-xs-12 col-sm-6 col-md-3">
+        <JiraIssues />
+      </div>-->
       <div className="col-xs-12 col-sm-6 col-md-3">
         <NewRelicErrorBreakdown />
       </div>
@@ -36,6 +39,9 @@ const WidgetList = props =>
       </div>
       <div className="col-xs-12">
         <BugsHistory />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Number title="Custom Widget" data={props.customWidget} riseIsBad threshold={5} />
       </div>
     </div>
   </div>;
@@ -47,6 +53,7 @@ const mapStateToProps = state => ({
   newRelicUniqueSessions: state.number.newRelicUniqueSessions,
   newRelicSuccessfulBookings: state.number.newRelicSuccessfulBookings,
   newRelicCliErrors: state.number.newRelicCliErrors,
+  customWidget: state.number.customWidget,
 });
 
 /* eslint-disable react/forbid-prop-types */
@@ -56,6 +63,7 @@ WidgetList.propTypes = {
   newRelicUniqueSessions: PropTypes.object.isRequired,
   newRelicSuccessfulBookings: PropTypes.object.isRequired,
   newRelicCliErrors: PropTypes.object.isRequired,
+  customWidget: PropTypes.object.isRequired,
   weekNumber: PropTypes.object.isRequired,
 };
 
@@ -65,6 +73,7 @@ WidgetList.defaultProps = {
   newRelicUniqueSessions: {},
   newRelicSuccessfulBookings: {},
   newRelicCliErrors: {},
+  сustomWidget: {},
   weekNumber: {},
 };
 

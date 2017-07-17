@@ -13,15 +13,12 @@ class Dashboard extends Component {
   }
 
   render() {
+    // const customWidgets = [{ key: 'customWidget', type: 'vert-chart', url: 'http://www.mocky.io/v2/5968ca17110000d30d614c4d' }];
     return (
       <div className="Dashboard">
         <NavigationBar />
         <WidgetList />
-        <ReactInterval
-          timeout={1000 * 60}
-          enabled
-          callback={this.props.refreshAll}
-        />
+        <ReactInterval timeout={1000 * 60} enabled callback={this.props.refreshAll} />
       </div>
     );
   }
