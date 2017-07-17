@@ -10,7 +10,7 @@ const onReceive = createAction('RECEIVE_NUMBER', (key, { current, previous, desc
 }));
 
 export const refreshNumber = (key, url) => dispatch => {
-  fetchUrl(url).then(json => dispatch(onReceive(key, json.data.current, json.data.previous)));
+  fetchUrl(url).then(json => dispatch(onReceive(key, json.data)));
 };
 
 export default onReceive;

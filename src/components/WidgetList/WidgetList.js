@@ -28,9 +28,6 @@ const WidgetList = props =>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
       </div>
-      <!--<div className="col-xs-12 col-sm-6 col-md-3">
-        <JiraIssues />
-      </div>-->
       <div className="col-xs-12 col-sm-6 col-md-3">
         <NewRelicErrorBreakdown />
       </div>
@@ -41,7 +38,7 @@ const WidgetList = props =>
         <BugsHistory />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number title="Custom Widget" data={props.customWidget} riseIsBad threshold={5} />
+        <Number heading="Custom Widget" data={props.customWidget} riseIsBad threshold={5} />
       </div>
     </div>
   </div>;
