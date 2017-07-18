@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import './WidgetList.scss';
 import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
-import NewRelicErrorBreakdown from '../../widgets/NewRelicErrorBreakdown/components/NewRelicErrorBreakdown';
+import Breakdown from '../../widgets/Breakdown/components/Breakdown';
 import NewRelicWebsiteFunnel from '../../widgets/NewRelicWebsiteFunnel/components/NewRelicWebsiteFunnel';
 
 const WidgetList = props =>
@@ -29,7 +29,7 @@ const WidgetList = props =>
         <Number heading="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <NewRelicErrorBreakdown />
+        <Breakdown />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <NewRelicWebsiteFunnel />

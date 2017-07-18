@@ -100,15 +100,12 @@ class NewRelicService {
 
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => {
-        const errors = [];
-        _get(insightsResponse, 'facets').forEach(facet => {
-          errors.push({
-            name: _get(facet, 'name'),
-            count: _get(facet, 'results[0].count'),
-          });
-        });
+        const results = _get(insightsResponse, 'facets').map(facet => ({
+          name: _get(facet, 'name'),
+          count: _get(facet, 'results[0].count'),
+        }));
         return {
-          errors,
+          results,
           description: NewRelicService.getDescription(insightsResponse),
         };
       });
@@ -119,13 +116,10 @@ class NewRelicService {
 
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => {
-        const results = [];
-        _get(insightsResponse, 'results[0].steps').forEach((value, index) => {
-          results.push({
-            name: _get(insightsResponse, `metadata.contents[0].steps[${index}]`),
-            count: value,
-          });
-        });
+        const results = _get(insightsResponse, 'results[0].steps').map((value, index) => ({
+          name: _get(insightsResponse, `metadata.contents[0].steps[${index}]`),
+          count: value,
+        }));
         return {
           results,
           description: NewRelicService.getDescription(insightsResponse),

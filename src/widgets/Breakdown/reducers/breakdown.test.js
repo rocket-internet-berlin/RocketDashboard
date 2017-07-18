@@ -1,6 +1,6 @@
-import reducer from './newRelicErrorBreakdown';
+import reducer from './breakdown';
 
-describe('newRelicErrorBreakdown reducer', () => {
+describe('breakdown reducer', () => {
   it('updates the state with the data from a RECEIVE_NEWRELICERRORBREAKDOWN action', () => {
     expect(
       reducer([], {
