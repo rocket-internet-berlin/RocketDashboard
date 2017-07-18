@@ -13,6 +13,7 @@ const customDataSources = [
     key: 'weekNumber',
     fetch: () => new Promise(resolve => resolve({ data: { current: parseInt(moment().format('w'), 10) } })),
   },
+  { key: 'newRelicUniqueSessions', fetch: () => fetchApi('newRelic/uniqueSessions') },
 ];
 
 export default customDataSources;

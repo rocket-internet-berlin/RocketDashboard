@@ -1,4 +1,3 @@
-import refreshNewRelicUniqueSessions from '../widgets/NewRelicUniqueSessions/actions/newRelicUniqueSessions';
 import { refresh as refreshNewRelicErrorBreakdown } from '../widgets/NewRelicErrorBreakdown/actions/newRelicErrorBreakdown';
 import { refresh as refreshNewRelicWebsiteFunnel } from '../widgets/NewRelicWebsiteFunnel/actions/newRelicWebsiteFunnel';
 import { refresh as refreshBugsHistory } from '../widgets/BugsHistory/actions/bugsHistory';
@@ -8,7 +7,6 @@ import customWidgets from '../customDataSources/customDataSources';
 
 // TODO: Possibly refactor using Observers pattern. This way we won`t have to add widgets here manually.
 const refreshAll = () => dispatch => {
-  dispatch(refreshNewRelicUniqueSessions());
   dispatch(refreshNewRelicErrorBreakdown());
   dispatch(refreshNewRelicWebsiteFunnel());
   dispatch(refreshBugsHistory());
