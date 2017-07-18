@@ -3,7 +3,6 @@ import refreshNewRelicErrors from '../widgets/NewRelicErrors/actions/newRelicErr
 import refreshNewRelicLoadTime from '../widgets/NewRelicLoadTime/actions/newRelicLoadTime';
 import refreshNewRelicUniqueSessions from '../widgets/NewRelicUniqueSessions/actions/newRelicUniqueSessions';
 import refreshNewRelicSuccessfulBookings from '../widgets/NewRelicSuccessfulBookings/actions/newRelicSuccessfulBookings';
-import refreshNewRelicCliErrors from '../widgets/NewRelicCliErrors/actions/newRelicCliErrors';
 import { refresh as refreshNewRelicErrorBreakdown } from '../widgets/NewRelicErrorBreakdown/actions/newRelicErrorBreakdown';
 import { refresh as refreshNewRelicWebsiteFunnel } from '../widgets/NewRelicWebsiteFunnel/actions/newRelicWebsiteFunnel';
 import { refresh as refreshBugsHistory } from '../widgets/BugsHistory/actions/bugsHistory';
@@ -18,7 +17,6 @@ const refreshAll = () => dispatch => {
   dispatch(refreshNewRelicLoadTime());
   dispatch(refreshNewRelicUniqueSessions());
   dispatch(refreshNewRelicSuccessfulBookings());
-  dispatch(refreshNewRelicCliErrors());
   dispatch(refreshNewRelicErrorBreakdown());
   dispatch(refreshNewRelicWebsiteFunnel());
   dispatch(refreshBugsHistory());
