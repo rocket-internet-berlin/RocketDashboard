@@ -53,18 +53,18 @@ const WidgetList = props =>
   </div>;
 
 const mapStateToProps = state => ({
-  weekNumber: state.number.weekNumber,
-  newRelicLoadTime: state.number.newRelicLoadTime,
-  newRelicErrors: state.number.newRelicErrors,
-  newRelicUniqueSessions: state.number.newRelicUniqueSessions,
-  newRelicSuccessfulBookings: state.number.newRelicSuccessfulBookings,
-  newRelicCliErrors: state.number.newRelicCliErrors,
-  customWidget: state.number.customWidget,
-  anotherCustomWidget: state.number.anotherCustomWidget,
-  newRelicErrorBreakdown: state.breakdown.newRelicErrorBreakdown,
-  newRelicWebsiteFunnel: state.funnel.newRelicWebsiteFunnel,
-  customFunnel: state.funnel.customFunnel,
-  customBreakdown: state.breakdown.customBreakdown,
+  weekNumber: state.generic.weekNumber,
+  newRelicLoadTime: state.generic.newRelicLoadTime,
+  newRelicErrors: state.generic.newRelicErrors,
+  newRelicUniqueSessions: state.generic.newRelicUniqueSessions,
+  newRelicSuccessfulBookings: state.generic.newRelicSuccessfulBookings,
+  newRelicCliErrors: state.generic.newRelicCliErrors,
+  customWidget: state.generic.customWidget,
+  anotherCustomWidget: state.generic.anotherCustomWidget,
+  newRelicErrorBreakdown: state.generic.newRelicErrorBreakdown,
+  newRelicWebsiteFunnel: state.generic.newRelicWebsiteFunnel,
+  customFunnel: state.generic.customFunnel,
+  customBreakdown: state.generic.customBreakdown,
 });
 
 /* eslint-disable react/forbid-prop-types */
