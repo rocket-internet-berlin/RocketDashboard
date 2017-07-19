@@ -29,7 +29,7 @@ const WidgetList = props =>
         <Number heading="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Breakdown />
+        <Breakdown data={props.newRelicErrorBreakdown} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <NewRelicWebsiteFunnel />
@@ -55,6 +55,7 @@ const mapStateToProps = state => ({
   newRelicCliErrors: state.number.newRelicCliErrors,
   customWidget: state.number.customWidget,
   anotherCustomWidget: state.number.anotherCustomWidget,
+  newRelicErrorBreakdown: state.breakdown.newRelicErrorBreakdown,
 });
 
 /* eslint-disable react/forbid-prop-types */
@@ -67,6 +68,7 @@ WidgetList.propTypes = {
   customWidget: PropTypes.object.isRequired,
   anotherCustomWidget: PropTypes.object.isRequired,
   weekNumber: PropTypes.object.isRequired,
+  newRelicErrorBreakdown: PropTypes.object.isRequired,
 };
 
 WidgetList.defaultProps = {
@@ -78,6 +80,7 @@ WidgetList.defaultProps = {
   customWidget: {},
   anotherCustomWidget: {},
   weekNumber: {},
+  newRelicErrorBreakdown: {},
 };
 
 export default connect(mapStateToProps)(WidgetList);

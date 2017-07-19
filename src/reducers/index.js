@@ -4,6 +4,7 @@ import jiraIssues from '../widgets/JiraIssues/reducers/jiraIssues';
 import breakdown from '../widgets/Breakdown/reducers/breakdown';
 import newRelicWebsiteFunnel from '../widgets/NewRelicWebsiteFunnel/reducers/newRelicWebsiteFunnel';
 import number from '../widgets/Number/reducers/number';
+// import generic from './generic/generic';
 
 const appReducers = combineReducers({
   number,
@@ -11,6 +12,7 @@ const appReducers = combineReducers({
   jiraIssues,
   breakdown,
   newRelicWebsiteFunnel,
+  // generic,
 });
 
 export default appReducers;
