@@ -20,6 +20,13 @@ const customDataSources = [
   },
   { type: 'number', key: 'newRelicUniqueSessions', fetch: () => fetchApi('newRelic/uniqueSessions') },
   { type: 'breakdown', key: 'newRelicErrorBreakdown', fetch: () => fetchApi('newRelic/errorBreakdown') },
+  {
+    type: 'breakdown',
+    key: 'customBreakdown',
+    fetch: () => fetchUrl('http://www.mocky.io/v2/596f52eb0f00008d036b7535'),
+  },
+  { type: 'funnel', key: 'newRelicWebsiteFunnel', fetch: () => fetchApi('newRelic/WebsiteFunnel') },
+  { type: 'funnel', key: 'customFunnel', fetch: () => fetchUrl('http://www.mocky.io/v2/596f52eb0f00008d036b7535') },
 ];
 
 export default customDataSources;

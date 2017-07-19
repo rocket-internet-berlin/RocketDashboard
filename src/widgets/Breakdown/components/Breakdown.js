@@ -6,9 +6,11 @@ import BasicTable from '../../../components/BasicTable/BasicTable';
 const getKeyValuePairs = results => results.map(el => ({ key: el.name, value: el.count }));
 const getTableData = results => results.map(el => [el.name, el.count]);
 
-const Breakdown = ({ data, description }) =>
+const Breakdown = ({ heading, data, description }) =>
   <div className="panel Breakdown">
-    <div className="panel-heading">Error Breakdown</div>
+    <div className="panel-heading">
+      {heading}
+    </div>
     <div className="panel-body hidden-xs">
       <div className="row">
         {data.results && <VerticalBarChart data={getKeyValuePairs(data.results)} />}
@@ -28,6 +30,7 @@ Breakdown.defaultProps = {
 };
 
 Breakdown.propTypes = {
+  heading: PropTypes.string.isRequired,
   description: PropTypes.string,
   data: PropTypes.shape({
     results: PropTypes.arrayOf(

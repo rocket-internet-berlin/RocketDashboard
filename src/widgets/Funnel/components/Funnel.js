@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 
 const getTableData = data => data.map(el => [el.name, el.count]);
 const fixSilhouette = value => Math.abs(value * 2);
 
-const NewRelicWebsiteFunnel = ({ data, description }) =>
+const Funnel = ({ heading, data, description }) =>
   <div className="panel NewRelicWebsiteFunnel">
-    <div className="panel-heading">Website Funnel</div>
+    <div className="panel-heading">
+      {heading}
+    </div>
     <div className="panel-body hidden-xs">
       <div className="row">
         <ResponsiveContainer width="100%" height={165}>
@@ -30,22 +31,19 @@ const NewRelicWebsiteFunnel = ({ data, description }) =>
       </div>
     </div>
     <div className="panel-body visible-xs-block">
-      <BasicTable data={getTableData(data.results)} />
+      {data.results && <BasicTable data={getTableData(data.results)} />}
     </div>
     <div className="panel-footer">
       {description || data.description}
     </div>
   </div>;
 
-const mapStateToProps = state => ({
-  data: state.newRelicWebsiteFunnel,
-});
-
-NewRelicWebsiteFunnel.defaultProps = {
+Funnel.defaultProps = {
   description: null,
 };
 
-NewRelicWebsiteFunnel.propTypes = {
+Funnel.propTypes = {
+  heading: PropTypes.string.isRequired,
   description: PropTypes.string,
   data: PropTypes.shape({
     results: PropTypes.arrayOf(
@@ -53,9 +51,9 @@ NewRelicWebsiteFunnel.propTypes = {
         name: PropTypes.string.isRequired,
         count: PropTypes.number.isRequired,
       }),
-    ).isRequired,
+    ),
     description: PropTypes.string,
   }).isRequired,
 };
 
-export default connect(mapStateToProps)(NewRelicWebsiteFunnel);
+export default Funnel;

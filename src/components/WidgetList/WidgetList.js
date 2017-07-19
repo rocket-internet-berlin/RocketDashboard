@@ -5,13 +5,16 @@ import './WidgetList.scss';
 import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 import Breakdown from '../../widgets/Breakdown/components/Breakdown';
-import NewRelicWebsiteFunnel from '../../widgets/NewRelicWebsiteFunnel/components/NewRelicWebsiteFunnel';
+import Funnel from '../../widgets/Funnel/components/Funnel';
 
 const WidgetList = props =>
   <div className="WidgetList">
     <div className="row">
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="Week" data={props.weekNumber} />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Breakdown heading="Custom Breakdown" data={props.customBreakdown} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="Load Time (s)" data={props.newRelicLoadTime} riseIsBad threshold={0.33} />
@@ -29,10 +32,13 @@ const WidgetList = props =>
         <Number heading="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Breakdown data={props.newRelicErrorBreakdown} />
+        <Breakdown heading="Error Breakdown" data={props.newRelicErrorBreakdown} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <NewRelicWebsiteFunnel />
+        <Funnel heading="Custom Funnel" data={props.customFunnel} />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Funnel heading="Website Funnel" data={props.newRelicWebsiteFunnel} />
       </div>
       <div className="col-xs-12">
         <BugsHistory />
@@ -56,6 +62,9 @@ const mapStateToProps = state => ({
   customWidget: state.number.customWidget,
   anotherCustomWidget: state.number.anotherCustomWidget,
   newRelicErrorBreakdown: state.breakdown.newRelicErrorBreakdown,
+  newRelicWebsiteFunnel: state.funnel.newRelicWebsiteFunnel,
+  customFunnel: state.funnel.customFunnel,
+  customBreakdown: state.breakdown.customBreakdown,
 });
 
 /* eslint-disable react/forbid-prop-types */
@@ -69,6 +78,9 @@ WidgetList.propTypes = {
   anotherCustomWidget: PropTypes.object.isRequired,
   weekNumber: PropTypes.object.isRequired,
   newRelicErrorBreakdown: PropTypes.object.isRequired,
+  newRelicWebsiteFunnel: PropTypes.object.isRequired,
+  customFunnel: PropTypes.object.isRequired,
+  customBreakdown: PropTypes.object.isRequired,
 };
 
 WidgetList.defaultProps = {
@@ -81,6 +93,9 @@ WidgetList.defaultProps = {
   anotherCustomWidget: {},
   weekNumber: {},
   newRelicErrorBreakdown: {},
+  newRelicWebsiteFunnel: {},
+  customFunnel: {},
+  customBreakdown: {},
 };
 
 export default connect(mapStateToProps)(WidgetList);

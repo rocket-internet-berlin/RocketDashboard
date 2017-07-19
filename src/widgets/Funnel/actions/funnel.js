@@ -1,12 +1,13 @@
+import 'whatwg-fetch';
 import { createAction } from 'redux-actions';
 
-const onReceive = createAction('RECEIVE_BREAKDOWN', (key, { results, description }) => ({
+const onReceive = createAction('RECEIVE_FUNNEL', (key, { results, description }) => ({
   key,
   results,
   description,
 }));
 
-export const refreshBreakdown = ({ key, fetch }) => dispatch => {
+export const refreshFunnel = ({ key, fetch }) => dispatch => {
   fetch().then(json => dispatch(onReceive(key, json.data)));
 };
 
