@@ -7,22 +7,49 @@ Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashbo
 
 ## Widgets
 
-- **Bugs History** – bugs amount chart (Google Sheets).
-- **Week Number** – the current week number.
-- **Errors** – contains two numbers: the current amount of errors and previous (New Relic).
-- **CLI Errors** – contains two numbers: the current amount of errors and previous (New Relic).
+- **Week** – the current week number.
 - **Load Time** (New Relic)
-- **Successful Bookings** (New Relic)
+- **Transaction Errors** – contains two numbers: the current amount of errors and previous (New Relic).
 - **Unique Sessions** (New Relic)
-- **Jira Issues** – amount of blockers, criticals, and the rest (Jira).
+- **Successful Bookings** (New Relic)
+- **CLI Errors** (New Relic).
 - **Error Breakdown** (New Relic)
 - **Website Funnel** (New Relic)
+- **Bugs History** – bugs amount chart (Google Sheets).
 
-## Generic Widgets
+## Two ways to add new widgets
 
-Some generic widget components are available for reuse, when developing custom widgets:
+### Easy way
 
-- **Number**
+The Redux architecture is complex so we've taken care of it for you. This is how it works:
+ 
+ *Data source (model)*
+ 
+ - open `/src/dataSources/dataSources.js`, you'll find there a list of data sources we already use (feel free to remove any of them you don't need);
+ - add a new entry to the array, it should contain a unique key and a method returning `Promise`;
+
+*React (UI)*
+
+- open `/src/components/WidgetList/WidgetList.js`;
+- there's a `WidgetList` React component with all the widgets to be shown inside;
+- we support three types of generic widgets: `Number`, `Breakdown`, and `Funel`, choose one;
+- add a desired widget in the same way the rest have been already added, you might want to change Bootstrap classes to adjust its size;
+- set a `heading` (a string) property and a `data` (an object);
+- `data`:
+  - add an entry to `mapStateToProps`, it should match this pattern: `<arbitrary-name>: state.generic.<data-source-key>,`;
+  - add an entry to `WidgetList.propTypes`: `<the-same-name>: PropTypes.object.isRequired,`;
+  - add an entry to `WidgetList.defaultProps`: `<the-same-name>: {},`;
+
+Restart a develoment server and, hopefully, you'll see the new widget.
+
+### Hard way
+
+// TODO
+
+## Generic components
+
+Some generic components are available for reuse when developing custom widgets:
+
 - **Table**
 - **HorizontalBarChart**
 - **VerticalBarChart**
