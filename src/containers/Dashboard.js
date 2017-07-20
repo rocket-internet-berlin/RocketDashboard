@@ -17,11 +17,7 @@ class Dashboard extends Component {
       <div className="Dashboard">
         <NavigationBar />
         <WidgetList />
-        <ReactInterval
-          timeout={1000 * 60}
-          enabled
-          callback={this.props.refreshAll}
-        />
+        <ReactInterval timeout={1000 * 60} enabled callback={this.props.refreshAll} />
       </div>
     );
   }

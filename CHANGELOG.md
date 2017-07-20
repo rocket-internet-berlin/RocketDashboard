@@ -3,8 +3,6 @@
 #### What’s the plan for next week
 
 - Jira widgets.
-- Implement custom data source for Number widgets
-- Add (explanation) sub-title to NewRelic widgets.
 - Setup CI tool, e.g. Travis CI.
 
 #### Possible topics
@@ -14,6 +12,11 @@
 - Improve test coverage.
 - Add a last update label on each widget.
 - Loading indicators.
+
+### 0.11.0
+
+- Implement custom data source for Number, Breakdown, and Funnel widgets.
+- Add (explanation) sub-title to NewRelic widgets.
 
 ### 0.10.0
 

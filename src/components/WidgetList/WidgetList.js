@@ -4,14 +4,17 @@ import { connect } from 'react-redux';
 import './WidgetList.scss';
 import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
-import NewRelicErrorBreakdown from '../../widgets/NewRelicErrorBreakdown/components/NewRelicErrorBreakdown';
-import NewRelicWebsiteFunnel from '../../widgets/NewRelicWebsiteFunnel/components/NewRelicWebsiteFunnel';
+import Breakdown from '../../widgets/Breakdown/components/Breakdown';
+import Funnel from '../../widgets/Funnel/components/Funnel';
 
 const WidgetList = props =>
   <div className="WidgetList">
     <div className="row">
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="Week" data={props.weekNumber} />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Breakdown heading="Custom Breakdown" data={props.customBreakdown} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="Load Time (s)" data={props.newRelicLoadTime} riseIsBad threshold={0.33} />
@@ -29,24 +32,39 @@ const WidgetList = props =>
         <Number heading="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <NewRelicErrorBreakdown />
+        <Breakdown heading="Error Breakdown" data={props.newRelicErrorBreakdown} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <NewRelicWebsiteFunnel />
+        <Funnel heading="Custom Funnel" data={props.customFunnel} />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Funnel heading="Website Funnel" data={props.newRelicWebsiteFunnel} />
       </div>
       <div className="col-xs-12">
         <BugsHistory />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Number heading="Custom Widget" data={props.customWidget} riseIsBad threshold={5} />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Number heading="Another Custom Widget" data={props.anotherCustomWidget} riseIsBad threshold={5} />
       </div>
     </div>
   </div>;
 
 const mapStateToProps = state => ({
-  weekNumber: state.number.weekNumber,
-  newRelicLoadTime: state.number.newRelicLoadTime,
-  newRelicErrors: state.number.newRelicErrors,
-  newRelicUniqueSessions: state.number.newRelicUniqueSessions,
-  newRelicSuccessfulBookings: state.number.newRelicSuccessfulBookings,
-  newRelicCliErrors: state.number.newRelicCliErrors,
+  weekNumber: state.generic.weekNumber,
+  newRelicLoadTime: state.generic.newRelicLoadTime,
+  newRelicErrors: state.generic.newRelicErrors,
+  newRelicUniqueSessions: state.generic.newRelicUniqueSessions,
+  newRelicSuccessfulBookings: state.generic.newRelicSuccessfulBookings,
+  newRelicCliErrors: state.generic.newRelicCliErrors,
+  customWidget: state.generic.customWidget,
+  anotherCustomWidget: state.generic.anotherCustomWidget,
+  newRelicErrorBreakdown: state.generic.newRelicErrorBreakdown,
+  newRelicWebsiteFunnel: state.generic.newRelicWebsiteFunnel,
+  customFunnel: state.generic.customFunnel,
+  customBreakdown: state.generic.customBreakdown,
 });
 
 /* eslint-disable react/forbid-prop-types */
@@ -56,7 +74,13 @@ WidgetList.propTypes = {
   newRelicUniqueSessions: PropTypes.object.isRequired,
   newRelicSuccessfulBookings: PropTypes.object.isRequired,
   newRelicCliErrors: PropTypes.object.isRequired,
+  customWidget: PropTypes.object.isRequired,
+  anotherCustomWidget: PropTypes.object.isRequired,
   weekNumber: PropTypes.object.isRequired,
+  newRelicErrorBreakdown: PropTypes.object.isRequired,
+  newRelicWebsiteFunnel: PropTypes.object.isRequired,
+  customFunnel: PropTypes.object.isRequired,
+  customBreakdown: PropTypes.object.isRequired,
 };
 
 WidgetList.defaultProps = {
@@ -65,7 +89,13 @@ WidgetList.defaultProps = {
   newRelicUniqueSessions: {},
   newRelicSuccessfulBookings: {},
   newRelicCliErrors: {},
+  customWidget: {},
+  anotherCustomWidget: {},
   weekNumber: {},
+  newRelicErrorBreakdown: {},
+  newRelicWebsiteFunnel: {},
+  customFunnel: {},
+  customBreakdown: {},
 };
 
 export default connect(mapStateToProps)(WidgetList);
