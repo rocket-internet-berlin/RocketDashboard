@@ -6,7 +6,7 @@ const customDataSources = [
   { key: 'customWidget', fetch: () => fetchUrl('http://www.mocky.io/v2/5968eb61110000090e614cbb') },
   {
     key: 'anotherCustomWidget',
-    fetch: () => fetchUrl('http://www.mocky.io/v2/596ce7c3100000bf047e2302'),
+    fetch: () => fetchUrl('http://www.mocky.io/v2/59707da9100000a30471d9b6'),
   },
   { key: 'newRelicCliErrors', fetch: () => fetchApi('newRelic/cliErrors') },
   { key: 'newRelicLoadTime', fetch: () => fetchApi('newRelic/loadTime') },

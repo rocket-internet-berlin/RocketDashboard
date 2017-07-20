@@ -21,12 +21,61 @@ Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashbo
 
 ### Easy way
 
-The Redux architecture is complex so we've taken care of it for you. This is how it works:
+The Redux architecture is complex so we've taken care of it for you. Steps to add a new widget:
  
  *Data source (model)*
  
- - open `/src/dataSources/dataSources.js`, you'll find there a list of data sources we already use (feel free to remove any of them you don't need);
- - add a new entry to the array, it should contain a unique key and a method returning `Promise`;
+ - open `/src/dataSources/dataSources.js`, you'll find there a list of data sources we already use (feel free to remove any of those you don't need);
+ - add a new entry to the array, it should contain a unique key (a `key` parameter) and a method returning a `Promise` (a `fetch` parameter);
+ 
+*Data*
+ 
+ We support three types of generic widgets. They work as intended only if the data returned by the `fetch` conforms to the expected structure.
+
+- a `Number` widget
+
+```json
+{
+    "status": "sucess",
+    "data": {
+        "current": 9,
+        "previous": 19,
+        "description": "This is the new Number widget"
+    }
+}
+```
+
+- a `Breakdown` widget
+
+```json
+{
+  "status": "success",
+  "data": {
+    "results": [
+      { "name": "A", "count": 99 },
+      { "name": "B", "count": 19 },
+      { "name": "C", "count": 9 }
+    ],
+    "description": "Example of a breakdown"
+  }
+}
+```
+
+- a `Funnel` widget
+
+```json
+{
+  "status": "success",
+  "data": {
+    "results": [
+      { "name": "A", "count": 99 },
+      { "name": "B", "count": 19 },
+      { "name": "C", "count": 9 }
+    ],
+    "description": "Example of a funnel"
+  }
+}
+```
 
 *React (UI)*
 
