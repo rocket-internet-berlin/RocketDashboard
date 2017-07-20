@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 import moment from 'moment';
 import fetchApi, { fetchUrl } from '../lib/fetchApi';
 
-const customDataSources = [
+const dataSources = [
   { key: 'customWidget', fetch: () => fetchUrl('http://www.mocky.io/v2/5968eb61110000090e614cbb') },
   {
     key: 'anotherCustomWidget',
@@ -26,4 +26,4 @@ const customDataSources = [
   { key: 'customFunnel', fetch: () => fetchUrl('http://www.mocky.io/v2/596f52eb0f00008d036b7535') },
 ];
 
-export default customDataSources;
+export default dataSources;
