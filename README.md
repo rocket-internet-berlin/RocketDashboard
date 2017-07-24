@@ -23,16 +23,18 @@ Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashbo
 
 The Redux architecture is complex so we've taken care of it for you. Steps to add a new widget:
  
- *Data source (model)*
+#### Data source (model)
  
  - open `/src/dataSources/dataSources.js`, you'll find there a list of data sources we already use (feel free to remove any of those you don't need);
  - add a new entry to the array, it should contain a unique key (a `key` parameter) and a method returning a `Promise` (a `fetch` parameter);
  
-*Data*
- 
- We support three types of generic widgets. They work as intended only if the data returned by the `fetch` conforms to the expected structure.
+#### Data structure
 
-- a `Number` widget
+We support three types of generic widgets: `Number`, `Breakdown`, and `Funel`. Choose the one best suited for your needs.
+
+They work as intended only if the data returned by the `fetch` conforms to the expected structure.
+
+- `Number` widget
 
 ![](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/readme-res/number-widget.png)
 
@@ -46,6 +48,7 @@ The Redux architecture is complex so we've taken care of it for you. Steps to ad
     }
 }
 ```
+**NB!** The `previous` and `description` properties of the the `data` object are *optional*. Alternatively, *the description may be passed in the JSX* when adding the widget's Component. 
 
 - a `Breakdown` widget
 
@@ -64,6 +67,7 @@ The Redux architecture is complex so we've taken care of it for you. Steps to ad
   }
 }
 ```
+**NB!** As above, the `description` property of the the `data` object is *optional*. Alternatively, it may be passed in the JSX. 
 
 - a `Funnel` widget
 
@@ -82,26 +86,35 @@ The Redux architecture is complex so we've taken care of it for you. Steps to ad
   }
 }
 ```
+**NB!** As above, the `description` property of the the `data` object is *optional*. Alternatively, it may be passed in the JSX. 
 
-*React (UI)*
+#### React (UI)
 
 - open `/src/components/WidgetList/WidgetList.js`;
 - there's a `WidgetList` React component with all the widgets to be shown inside;
-- we support three types of generic widgets: `Number`, `Breakdown`, and `Funel`, choose one;
-- add a desired widget in the same way the rest have been already added, you might want to change Bootstrap classes to adjust its size;
-- set a `heading` (a string) property and a `data` (an object);
-- `data`:
+
+
+- add the desired widget in the same way the rest have been already added;
+- set a `heading` (string) property and `data` (object, see requirements above);
+- optionally, you may set a `description` too;
+- optionally, you might want to change Bootstrap classes to adjust the widget's size;
+- in order to pass your data (you should have [already set it up](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/README.md#easy-way)) to your widget:
   - add an entry to `mapStateToProps`, it should match this pattern: `<arbitrary-name>: state.generic.<data-source-key>,`;
   - add an entry to `WidgetList.propTypes`: `<the-same-name>: PropTypes.object.isRequired,`;
   - add an entry to `WidgetList.defaultProps`: `<the-same-name>: {},`;
 
-Restart a develoment server and, hopefully, you'll see the new widget.
+The JSX code for your new widget should look similar to:
+```
+<Breakdown heading="Custom Breakdown" data={props.customBreakdown} description="Your custom description" />
+```
+
+Restart the develoment server and, hopefully, you'll see the new widget.
 
 ### Hard way
 
 If you want to present in the dashboard something different, you would have to mess with Redux. As an example, please, check how a `BugsHistory` widget is implemented.
 
-*Frontend*
+#### Frontend
 
 - add a new folder inside the `/src/widgets`;
 - the newly created folder should contain folders `components`, `actions`, and `reducers`;
@@ -110,7 +123,7 @@ If you want to present in the dashboard something different, you would have to m
 - you should have an action to update data in your widget, trigger it inside a `refreshAll` function (`/src/actions/index.js`);
 - add your reducer to an `appReducers` list (`/src/reducers/index.js`);
 
-*Backend*
+#### Backend
 
 Optionaly you may want to create a new route on our backend (a `/server` folder) where you would be able to implement any logic of fetching, transforming, and caching data received from third-party services.
 
