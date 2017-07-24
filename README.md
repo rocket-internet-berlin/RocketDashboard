@@ -1,6 +1,6 @@
 # RocketDashboard
 
-A dashboard with Jira integration.
+A dashboard with Jira, New Relic, Google Sheets and custom data sources integration. 
 It's perfect for development teams who want to be aware of their progress in real time.
 
 Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/CHANGELOG.md) for recent updates.
