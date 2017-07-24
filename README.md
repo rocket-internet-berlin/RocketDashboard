@@ -1,11 +1,93 @@
+<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [RocketDashboard](#rocketdashboard)
+	- [Installation](#installation)
+	- [Adding configuration](#adding-configuration)
+	- [Development](#development)
+		- [Starting the "dev" server](#starting-the-dev-server)
+		- [Optional](#optional)
+	- [Widgets](#widgets)
+	- [Adding new widgets](#adding-new-widgets)
+		- [Easy way](#easy-way)
+			- [Data source (model)](#data-source-model)
+			- [React (UI)](#react-ui)
+		- [Generic Widgets](#generic-widgets)
+			- [`Number` widget](#number-widget)
+			- [`Breakdown` widget](#breakdown-widget)
+			- [`Funnel` widget](#funnel-widget)
+		- [Hard way](#hard-way)
+			- [Frontend](#frontend)
+			- [Backend](#backend)
+	- [Generic components](#generic-components)
+			- [BasicTable.js](#basictablejs)
+			- [VerticalBarChart.js](#verticalbarchartjs)
+			- [HorizontalBarChart.js](#horizontalbarchartjs)
+		- [For the curious](#for-the-curious)
+	- [Widgets / Data sources](#widgets-data-sources)
+		- [Google spreadsheets (the Bugs History widget)](#google-spreadsheets-the-bugs-history-widget)
+	- [Collaboration](#collaboration)
+	- [License](#license)
+	- [Background](#background)
+
+<!-- /TOC -->
+
 # RocketDashboard
 
-A dashboard with Jira, New Relic, Google Sheets and custom data sources integration. 
+A dashboard with Jira, New Relic, Google Sheets and custom data sources integration.
 It's perfect for development teams who want to be aware of their progress in real time.
 
 Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/CHANGELOG.md) for recent updates.
 
+## Installation
+
+Note: Make sure you have [yarn](https://yarnpkg.com) or [npm](https://nodejs.org) or installed. We recommend **yarn** due to performance and consistency reasons._
+
+- Clone (SSH or [HTTPS](https://github.com/rocket-internet-berlin/RocketDashboard.git)) or [download](https://github.com/rocket-internet-berlin/RocketDashboard/archive/master.zip) our sources.
+- Go to the project folder:
+```
+cd <path-to-the-project-folder>
+```
+- Install all dependencies by running:
+```
+yarn && cd server && yarn && cd ..
+```
+or using `npm`:
+```
+npm install && cd server && npm install && cd ..
+```
+
+## Adding configuration
+
+Since the current widgets fetch data remotely, **some configuration parameters are required**.
+
+According to the [recommended best practices](https://devcenter.heroku.com/articles/node-best-practices#be-environmentally-aware) for local development the configuration is loaded from a `server/.env` in the project's folder.
+
+- Copy the provided `server/.env.SAMPLE` to a new file `server/.env`. Open `.env` and fill-out the required credentials accordingly.
+
+In production the configuration should be set as environment variables.
+
+## Development
+
+###  Starting the "dev" server
+
+- Run `yarn start` (or `npm start`) to run the development and backend servers
+
+- Open [http://localhost:3000](http://localhost:3000) in a browser to see your app.
+
+In Chrome the page will reload automatically if you edit anything in the project.
+
+You'll find build errors and lint warnings in the console.
+
+### Optional
+
+In order to have a better development experience, you can install the following Chrome extensions:
+
+- [Add](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) **Redux DevTools** extension to Chrome.
+- [Add](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) **React Developer Tools** extension to Chrome.
+
 ## Widgets
+
+Currently shown widgets in the Dashboard:
 
 - **Week** – the current week number.
 - **Load Time** (New Relic)
@@ -16,31 +98,62 @@ Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashbo
 - **Error Breakdown** (New Relic)
 - **Website Funnel** (New Relic)
 - **Bugs History** – bugs amount chart (Google Sheets).
+- Custom Widget Samples
 
-## Two ways to add new widgets
+## Adding new widgets
 
 ### Easy way
 
-The Redux architecture is complex so we've taken care of it for you. Steps to add a new widget:
- 
+The common Redux architecture patterns are not very plugin-friendly, so we've made it possible for you to add new widgets easily by reusing the existing generic ones and custom data source.
+
 #### Data source (model)
- 
- - open `/src/dataSources/dataSources.js`, you'll find there a list of data sources we already use (feel free to remove any of those you don't need);
- - add a new entry to the array, it should contain a unique key (a `key` parameter) and a method returning a `Promise` (a `fetch` parameter);
- 
-#### Data structure
 
-We support three types of generic widgets: `Number`, `Breakdown`, and `Funel`. Choose the one best suited for your needs.
+- open `/src/dataSources/dataSources.js`, you'll find there a list of data sources we already use (feel free to remove any of those you don't need);
+- add a new entry to the array, it should contain a unique key (`key`) and a `Promise` method returning (`fetchFunction`);
+- make sure that the `fetchFunction` resolved with data object, which conforms to the [expected structure](#generic-widgets);
 
-They work as intended only if the data returned by the `fetch` conforms to the expected structure.
+You entry should look similar to:
+```
+  {
+    key: 'customNumber',
+    fetchFunction: () => new Promise(resolve => resolve({ data: { current: 9, previous: 19 } })),
+  },
+```
+or
+```
+  {
+    key: 'customBreakdown',
+    fetchFunction: () => fetchUrl('http://www.mocky.io/v2/596f52eb0f00008d036b7535'),
+  },
+```
 
-- `Number` widget
+#### React (UI)
+
+- open `/src/components/WidgetList/WidgetList.js`;
+- there's a `WidgetList` React component with all the widgets to be shown inside;
+- add the desired widget in the same way the rest have been already added;
+- set a `heading` (string) property and `data` (object, see requirements above);
+- optionally, you may set a `description` too or tweak the layout (we're using Bootstrap);
+- in order to pass your data (you should have [already set it up](#easy-way)) to your widget:
+  - add an entry to `mapStateToProps`, it should match this pattern: `<arbitrary-name>: state.generic.<data-source-key>,`;
+  - add an entry to `WidgetList.propTypes`: `<the-same-name>: PropTypes.object.isRequired,`;
+  - add an entry to `WidgetList.defaultProps`: `<the-same-name>: {},`;
+
+Check the possible [arguments and sample JSX](#generic-widgets).
+
+Restart the development server and, hopefully, you'll see the new widget.
+
+### Generic Widgets
+
+#### `Number` widget
 
 ![](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/readme-res/number-widget.png)
 
+**Data structure of the resolved `fetchFunction`**
+
 ```json
 {
-    "status": "sucess",
+    "status": "success",
     "data": {
         "current": 9,
         "previous": 19,
@@ -48,11 +161,25 @@ They work as intended only if the data returned by the `fetch` conforms to the e
     }
 }
 ```
-**NB!** The `previous` and `description` properties of the the `data` object are *optional*. Alternatively, *the description may be passed in the JSX* when adding the widget's Component. 
+*NB!* The `previous` and `description` properties of the the `data` object are *optional*. Alternatively, *the description may be passed in the JSX* when adding the widget's Component.
 
-- a `Breakdown` widget
+**JSX**
+```
+<Number heading="Custom Widget" data={props.customWidget} riseIsBad threshold={5} />
+```
+
+**Arguments**
+- `heading` (String) Heading of your widget.
+- `data` (Object) Data to be displayed (see above for structure).
+- `[description]` (String) Optional description to be displayed the numbers. Default: null.
+- `[riseIsBad]` (Boolean) Optional switch to highlight the change symbol red, when `current` is higher than `previous`, i.e. has risen. Default: false.
+- `threshold` (Number) Optional threshold to highlight `current` when it's gone over / sunk below. Default: null.
+
+#### `Breakdown` widget
 
 ![](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/readme-res/breakdown-widget.png)
+
+**Data structure of the resolved `fetchFunction`**
 
 ```json
 {
@@ -67,11 +194,23 @@ They work as intended only if the data returned by the `fetch` conforms to the e
   }
 }
 ```
-**NB!** As above, the `description` property of the the `data` object is *optional*. Alternatively, it may be passed in the JSX. 
+*NB!* As before, the `description` property of the the `data` object is *optional*. Alternatively, it may be passed in the JSX.
 
-- a `Funnel` widget
+**JSX**
+```
+<Breakdown heading="Custom Breakdown" data={props.customBreakdown} />
+```
+
+**Arguments**
+- `heading` (String) Heading of your widget.
+- `data` (Object) Data to be displayed (see above for structure).
+- `[description]` (String) Optional description to be displayed the numbers. Default: null.
+
+#### `Funnel` widget
 
 ![](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/readme-res/funnel-widget.png)
+
+**Data structure of the resolved `fetchFunction`**
 
 ```json
 {
@@ -86,33 +225,22 @@ They work as intended only if the data returned by the `fetch` conforms to the e
   }
 }
 ```
-**NB!** As above, the `description` property of the the `data` object is *optional*. Alternatively, it may be passed in the JSX. 
+*NB!* As before, the `description` property of the the `data` object is *optional*. Alternatively, it may be passed in the JSX.
 
-#### React (UI)
-
-- open `/src/components/WidgetList/WidgetList.js`;
-- there's a `WidgetList` React component with all the widgets to be shown inside;
-
-
-- add the desired widget in the same way the rest have been already added;
-- set a `heading` (string) property and `data` (object, see requirements above);
-- optionally, you may set a `description` too;
-- optionally, you might want to change Bootstrap classes to adjust the widget's size;
-- in order to pass your data (you should have [already set it up](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/README.md#easy-way)) to your widget:
-  - add an entry to `mapStateToProps`, it should match this pattern: `<arbitrary-name>: state.generic.<data-source-key>,`;
-  - add an entry to `WidgetList.propTypes`: `<the-same-name>: PropTypes.object.isRequired,`;
-  - add an entry to `WidgetList.defaultProps`: `<the-same-name>: {},`;
-
-The JSX code for your new widget should look similar to:
+**JSX**
 ```
-<Breakdown heading="Custom Breakdown" data={props.customBreakdown} description="Your custom description" />
+<Funnel heading="Custom Funnel" data={props.customFunnel} />
 ```
 
-Restart the develoment server and, hopefully, you'll see the new widget.
+**Arguments**
+- `heading` (String) Heading of your widget.
+- `data` (Object) Data to be displayed (see above for structure).
+- `[description]` (String) Optional description to be displayed the numbers. Default: null.
+
 
 ### Hard way
 
-If you want to present in the dashboard something different, you would have to mess with Redux. As an example, please, check how a `BugsHistory` widget is implemented.
+If the provided generic widgets and flow are enough and you need something different, you will have create your own widget or API endpoint. As an example, please, check how a `BugsHistory` widget is implemented.
 
 #### Frontend
 
@@ -121,11 +249,14 @@ If you want to present in the dashboard something different, you would have to m
 - implement a component, action, and reducer (check the `BugsHistory` to get insight);
 - include your component to the `WidgetList` component;
 - you should have an action to update data in your widget, trigger it inside a `refreshAll` function (`/src/actions/index.js`);
-- add your reducer to an `appReducers` list (`/src/reducers/index.js`);
+- add your reducer to the `appReducers` list (`/src/reducers/index.js`);
 
 #### Backend
 
-Optionaly you may want to create a new route on our backend (a `/server` folder) where you would be able to implement any logic of fetching, transforming, and caching data received from third-party services.
+You may want to create a new route on our backend (a `/server` folder) where you would be able to implement any logic of fetching, transforming, and caching data received from third-party services.
+
+- set the route to your new endpoint up (`/server/src/index.js`);
+- add the endpoint code (check `/server/src/routes/bugsHistory.js` or `/server/src/routes/newRelic.js` for insight);
 
 ## Generic components
 
@@ -139,7 +270,7 @@ Some generic components are available for reuse when developing custom widgets:
 
 Usage: `<BasicTable data={data} headings={headings} />`
 
-Expected data structure: 
+Expected data structure:
 ```
 const headings = ['Date', 'Open Bugs', 'Solved Bugs', ...]
 const data = ['7. July', 423, 'n/a', ...]
@@ -149,7 +280,7 @@ const data = ['7. July', 423, 'n/a', ...]
 
 Usage: `<VerticalBarChart data={data} />`
 
-Expected data structure: 
+Expected data structure:
 ```
 const data = [
   {
@@ -190,57 +321,13 @@ Currently the `yarn start` commands will start the "Dev" servers for BOTH in par
 
 The best way to fetch data from a Google spreadsheet is to use a service account. This is not an account in the ordinary sense, it belongs to a certain project, there's an email for identification and token for authentication (no password). Thus, if you want to get data from a certain Google document, share it with a service account and use credentials of the latter reach content over API. As a benefit, users won't have to authorize. For more details please visit [this website](https://developers.google.com/identity/protocols/OAuth2ServiceAccount).
 
-To make the Bugs History widget work with your data this is what you need to do: 
+To make the Bugs History widget work with your data this is what you need to do:
 
-- Set a right ID as a value of `BUGS_HISTORY_SPREADSHEET_ID` in the `.env` configuration file. 
+- Set a right ID as a value of `BUGS_HISTORY_SPREADSHEET_ID` in the `.env` configuration file.
 
 - Data needs to be in a certain format. There should be 4 columns: 1st – formatted data, 2nd – open bugs amount, 3rd – solved bugs amount, 4th – new bugs amount.
 
 - Also, you should set a value for a `BUGS_HISTORY_DATA_RANGE` key in a `.env` config file to something like **'PageName'!A1:D100**. **PageName** may be omitted if the spreadsheet consists of a single page. The range **A1:D100** should include all 4 columns (see the previous step for details), in this example it's A, B, C, and D, but you may pick whatever you want. A limit (in the example – 100) may be different for you. You might even have less filled rows.
-
-## Installation
-
-_Note: Make sure you have [yarn](https://yarnpkg.com) or [npm](https://nodejs.org) or installed. We recommend **yarn** due to performance and consistency reasons._
-
-- Clone (SSH or [HTTPS](https://github.com/rocket-internet-berlin/RocketDashboard.git)) or [download](https://github.com/rocket-internet-berlin/RocketDashboard/archive/master.zip) our sources.
-- Go to the project folder:
-```
-cd <path-to-the-project-folder>
-```
-- Install all dependencies by running:
-```
-yarn && cd server && yarn && cd ..
-```
-or using `npm`:
-```
-npm install && cd server && npm install && cd ..
-```
-## Adding configuration
-
-Since the current widgets fetch data remotely, **some configuration parameters are required**.
-
-According to the [recommended best practices](https://devcenter.heroku.com/articles/node-best-practices#be-environmentally-aware) for local development the configuration is loaded from a `server/.env` in the project's folder.
-
-- Copy the provided `server/.env.SAMPLE` to a new file `server/.env`. Open `.env` and fill-out the required credentials accordingly.
-
-In production the configuration should be set as environment variables.
-
-## Starting the "dev" server
-
-- Then `yarn start` (or `npm start`) to run the development and backend servers
-
-- Open [http://localhost:3000](http://localhost:3000) in a browser to see your app.
-
-In Chrome the page will reload automatically if you edit anything in the project.
-
-You'll find build errors and lint warnings in the console.
-
-## Optional
-
-In order to have a better development experience, you can install the following Chrome extensions:
-
-- [Add](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) **Redux DevTools** extension to Chrome.
-- [Add](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) **React Developer Tools** extension to Chrome.
 
 ## Collaboration
 

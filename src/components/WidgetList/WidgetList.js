@@ -14,9 +14,6 @@ const WidgetList = props =>
         <Number heading="Week" data={props.weekNumber} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Breakdown heading="Custom Breakdown" data={props.customBreakdown} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="Load Time (s)" data={props.newRelicLoadTime} riseIsBad threshold={0.33} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
@@ -35,19 +32,25 @@ const WidgetList = props =>
         <Breakdown heading="Error Breakdown" data={props.newRelicErrorBreakdown} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Funnel heading="Custom Funnel" data={props.customFunnel} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
         <Funnel heading="Website Funnel" data={props.newRelicWebsiteFunnel} />
       </div>
       <div className="col-xs-12">
         <BugsHistory />
       </div>
+
+      <h2>Custom Widget Samples</h2>
+
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="Custom Widget" data={props.customWidget} riseIsBad threshold={5} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="Another Custom Widget" data={props.anotherCustomWidget} riseIsBad threshold={5} />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Breakdown heading="Custom Breakdown" data={props.customBreakdown} />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Funnel heading="Custom Funnel" data={props.customFunnel} />
       </div>
     </div>
   </div>;

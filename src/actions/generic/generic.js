@@ -5,8 +5,8 @@ const onReceive = createAction('RECEIVE_DATA', (key, data) => ({
   ...data,
 }));
 
-export const refresh = ({ key, fetch }) => dispatch => {
-  fetch().then(json => dispatch(onReceive(key, json.data)));
+export const refresh = ({ key, fetchFunction }) => dispatch => {
+  fetchFunction().then(json => dispatch(onReceive(key, json.data)));
 };
 
 export default onReceive;
