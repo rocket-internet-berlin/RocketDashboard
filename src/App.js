@@ -1,12 +1,11 @@
 import React from 'react';
 
 import './App.scss';
-import Dashboard from './containers/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 
-const App = () => (
+const App = () =>
   <div className="App">
     <Dashboard />
-  </div>
-);
+  </div>;
 
 export default App;

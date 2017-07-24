@@ -38,7 +38,9 @@ const WidgetList = props =>
         <BugsHistory />
       </div>
 
-      <h2>Custom Widget Samples</h2>
+      <div className="col-xs-12">
+        <h2>Custom Widget Samples</h2>
+      </div>
 
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="Custom Widget" data={props.customWidget} riseIsBad threshold={5} />
