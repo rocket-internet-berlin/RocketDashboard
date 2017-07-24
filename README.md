@@ -104,7 +104,7 @@ Currently shown widgets in the Dashboard:
 
 ### Easy way
 
-The common Redux architecture patterns are not very plugin-friendly, so we've made it possible for you to add new widgets easily by reusing the existing generic ones and custom data source.
+As the common Redux architecture pattern is not very plugin-friendly, we've developed some tools to make adding new widgets easier. Those include reusable generic widgets and streamlined data-binding with a custom data source.
 
 #### Data source (model)
 
