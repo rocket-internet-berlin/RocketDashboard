@@ -1,44 +1,42 @@
+# RocketDashboard 
 [![Build Status](https://travis-ci.org/rocket-internet-berlin/RocketDashboard.svg?branch=master)](https://travis-ci.org/rocket-internet-berlin/RocketDashboard)
-
-<!-- TOC depthFrom:1 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
-
-- [RocketDashboard](#rocketdashboard)
-	- [Installation](#installation)
-	- [Adding configuration](#adding-configuration)
-	- [Development](#development)
-		- [Starting the "dev" server](#starting-the-dev-server)
-		- [Optional](#optional)
-	- [Widgets](#widgets)
-	- [Adding new widgets](#adding-new-widgets)
-		- [Easy way](#easy-way)
-			- [Data source (model)](#data-source-model)
-			- [React (UI)](#react-ui)
-		- [Generic Widgets](#generic-widgets)
-			- [`Number` widget](#number-widget)
-			- [`Breakdown` widget](#breakdown-widget)
-			- [`Funnel` widget](#funnel-widget)
-		- [Hard way](#hard-way)
-			- [Frontend](#frontend)
-			- [Backend](#backend)
-	- [Generic components](#generic-components)
-			- [BasicTable.js](#basictablejs)
-			- [VerticalBarChart.js](#verticalbarchartjs)
-			- [HorizontalBarChart.js](#horizontalbarchartjs)
-		- [For the curious](#for-the-curious)
-	- [Widgets / Data sources](#widgets-data-sources)
-		- [Google spreadsheets (the Bugs History widget)](#google-spreadsheets-the-bugs-history-widget)
-	- [Collaboration](#collaboration)
-	- [License](#license)
-	- [Background](#background)
-
-<!-- /TOC -->
-
-# RocketDashboard
 
 A dashboard with Jira, New Relic, Google Sheets and custom data sources integration.
 It's perfect for development teams who want to be aware of their progress in real time.
 
 Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/CHANGELOG.md) for recent updates.
+
+<!-- TOC depthFrom:2 depthTo:6 withLinks:1 updateOnSave:1 orderedList:0 -->
+
+- [Installation](#installation)
+- [Adding configuration](#adding-configuration)
+- [Development](#development)
+	- [Starting the "dev" server](#starting-the-dev-server)
+	- [Optional](#optional)
+- [Widgets](#widgets)
+- [Adding new widgets](#adding-new-widgets)
+	- [Easy way](#easy-way)
+		- [Data source (model)](#data-source-model)
+		- [React (UI)](#react-ui)
+	- [Generic Widgets](#generic-widgets)
+		- [`Number` widget](#number-widget)
+		- [`Breakdown` widget](#breakdown-widget)
+		- [`Funnel` widget](#funnel-widget)
+	- [Hard way](#hard-way)
+		- [Frontend](#frontend)
+		- [Backend](#backend)
+- [Generic components](#generic-components)
+		- [BasicTable.js](#basictablejs)
+		- [VerticalBarChart.js](#verticalbarchartjs)
+		- [HorizontalBarChart.js](#horizontalbarchartjs)
+	- [For the curious](#for-the-curious)
+- [Widgets / Data sources](#widgets-data-sources)
+	- [Google spreadsheets (the Bugs History widget)](#google-spreadsheets-the-bugs-history-widget)
+- [Collaboration](#collaboration)
+- [License](#license)
+- [Background](#background)
+
+<!-- /TOC -->
 
 ## Installation
 
