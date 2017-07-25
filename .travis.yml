@@ -7,3 +7,4 @@ node_js:
   - "7"
 notifications:
   email: false
+script: yarn test:coverage && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
