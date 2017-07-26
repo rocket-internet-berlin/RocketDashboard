@@ -4,7 +4,7 @@
   .current {
     font-size: $font-size-huge;
     color: $main-color;
-    line-height: $font-size-huge;
+    line-height: ($font-size-huge * 1.1);
     &.threshold-overcome {
       color: $negative-color;
     }
