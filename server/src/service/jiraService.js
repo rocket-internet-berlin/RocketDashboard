@@ -30,15 +30,26 @@ class JiraService {
     }
   }
 
-  fetchStatus() {
-    return this.jira.searchJira('project = INTCAT AND status in ("Selected for Development", "In Progress")')
-      .then(response => {
-        const issues = response.issues;
-        const blockers = issues.filter(issue => issue.fields.priority.name === 'Blocker').length;
-        const criticals = issues.filter(issue => issue.fields.priority.name === 'Critical').length;
-        const others = issues.length - blockers - criticals;
-        return { blockers, criticals, others };
-      });
+  fetchInProgress() {
+    return this.jira.searchJira('project = INTCAT AND type != Epic AND status in ("In Progress", "In Development")')
+      .then(response => ({
+        current: response.total,
+      }));
+  }
+
+  fetchSelectedForDevelopment() {
+    return this.jira.searchJira('project = INTCAT AND type != Epic AND status in ("Selected for Development")')
+      .then(response => ({
+        current: response.total,
+      }));
+  }
+
+  fetchReadyForQA() {
+    return this.jira.searchJira('project = INTCAT AND type != Epic AND status in ("Ready for QA", "Ready for QA (Stage)", "Ready for QA (Testsystem)")')
+      .then(response => ({
+        current: response.total,
+        description: '(incl. Stage, Testsystem)',
+      }));
   }
 }
 
