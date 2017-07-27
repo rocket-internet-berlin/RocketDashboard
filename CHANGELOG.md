@@ -1,18 +1,20 @@
 # Change Log
 
-
-#### What’s the plan for next week
-
-- Jira widgets.
-- Setup CI tool, e.g. Travis CI.
-
 #### Possible topics
 
-- Test production build and add production build+deploy instructions.
 - Dockerize the app.
-- Improve test coverage.
-- Add a last update label on each widget.
+- Improve test coverage
+- Add update state on widgets.
 - Loading indicators.
+
+#### 0.12.0
+
+- Added Jira widgets
+- Refactored Jira service with Promises
+- Configured Travis CI (tests) and Coveralls.io (test coverage)
+- Fixed production build, added script commands and instructions
+- Updated the RI logo
+- Test coverage: 58% ↗
 
 ### 0.11.0
 

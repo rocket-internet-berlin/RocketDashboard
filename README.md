@@ -125,6 +125,9 @@ Currently shown widgets in the Dashboard:
 - **Error Breakdown** (New Relic)
 - **Website Funnel** (New Relic)
 - **Bugs History** – bugs amount chart (Google Sheets).
+- **In Progress** - number of the issues (Jira).
+- **Selected For Development** - number of the issues (Jira).
+- **Ready For QA** - number of the issues (Jira).
 - Custom Widget Samples
 
 ## Adding new widgets
