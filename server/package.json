@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start:dev": "nodemon -w src --exec \"export NODE_ENV=development && npm run lint:js && babel-node src --presets env\"",
-    "start:build": "export NODE_ENV=production && node build",
+    "start:production": "export NODE_ENV=production && node build",
     "build": "babel src -d build",
     "lint:js": "eslint --ext .js src",
     "lint:js-fix": "eslint --fix --ext .js src"
