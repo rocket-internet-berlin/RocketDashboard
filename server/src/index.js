@@ -7,9 +7,9 @@ import http from 'http';
 import chalk from 'chalk';
 
 import cache from './routes/cache';
-import bugsHistory from './routes/bugsHistory';
-import newRelic from './routes/newRelic';
-import jiraIssues from './routes/jiraIssues';
+import bugsHistoryRoute from './routes/bugsHistory';
+import newRelicRoute from './routes/newRelic';
+import jiraRoute from './routes/jira';
 
 const app = express();
 const ROUTE_PREFIX = '/api';
@@ -33,9 +33,9 @@ app.use((req, res, next) => {
 app.use(`${ROUTE_PREFIX}/cache`, cache);
 
 // widget endpoints
-app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistory);
-app.use(`${ROUTE_PREFIX}/newRelic`, newRelic);
-app.use(`${ROUTE_PREFIX}/jiraIssues`, jiraIssues);
+app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistoryRoute);
+app.use(`${ROUTE_PREFIX}/newRelic`, newRelicRoute);
+app.use(`${ROUTE_PREFIX}/jira`, jiraRoute);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

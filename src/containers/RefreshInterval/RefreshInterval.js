@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 import ReactInterval from 'react-interval';
 import { refreshAll } from '../../actions';
 
-class RefreshInterval extends Component {
+// Use named export for unconnected component (for tests)
+export class RefreshInterval extends Component {
   componentDidMount() {
     this.props.refreshAll();
   }
@@ -22,4 +23,5 @@ RefreshInterval.propTypes = {
   refreshAll: PropTypes.func.isRequired,
 };
 
+// Use default export for the connected component (for app)
 export default connect(state => state, mapDispatchToProps)(RefreshInterval);

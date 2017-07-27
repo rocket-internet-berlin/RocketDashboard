@@ -3,7 +3,7 @@ import { getResponseSuccess } from '../helper/responseHelper';
 
 const createCachedRouterCallback = fetchFunction => {
   if (typeof fetchFunction !== 'function') {
-    throw Error('Invalid parameter provided: "fetchFunction" is expected to be a function definition.');
+    throw Error('Invalid parameter provided: "fetchFunction" is expected to be a function definition. It should return a Promise.');
   }
   return (req, res, next) => {
     const cacheKey = req.originalUrl;
