@@ -20,6 +20,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// CORS middleware
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+
+  next();
+});
+
 // cache endpoints
 app.use(`${ROUTE_PREFIX}/cache`, cache);
 
@@ -58,7 +67,7 @@ app.use((err, req, res, next) => {  // eslint-disable-line no-unused-vars
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3002'); // eslint-disable-line no-use-before-define
+const port = normalizePort(process.env.PORT || '3001'); // eslint-disable-line no-use-before-define
 app.set('port', port);
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
