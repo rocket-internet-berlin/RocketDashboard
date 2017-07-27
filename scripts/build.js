@@ -139,11 +139,16 @@ function build(previousFileSizes) {
       console.log('The ' + chalk.cyan(build) + ' folder is ready to be deployed.');
       console.log('You may serve it with a static server:');
       console.log();
-      if (useYarn) {
-        console.log(`  ${chalk.cyan('yarn')} global add serve`);
-      } else {
-        console.log(`  ${chalk.cyan('npm')} install -g serve`);
-      }
+
+      // We always suggest to use `npm` to add `serve`, due to a bug, where `yarn global add serve` will not create symlink to the `serve` binary
+      // https://github.com/yarnpkg/yarn/issues/2360
+      console.log(`  ${chalk.cyan('npm')} install -g serve`);
+      // if (useYarn) {
+      //   console.log(`  ${chalk.cyan('yarn')} global add serve`);
+      // } else {
+      //   console.log(`  ${chalk.cyan('npm')} install -g serve`);
+      // }
+
       console.log(`  ${chalk.cyan('serve')} -s build`);
       console.log();
     }

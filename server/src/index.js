@@ -58,7 +58,7 @@ app.use((err, req, res, next) => {  // eslint-disable-line no-unused-vars
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3001'); // eslint-disable-line no-use-before-define
+const port = normalizePort(process.env.PORT || '3002'); // eslint-disable-line no-use-before-define
 app.set('port', port);
 
 const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
