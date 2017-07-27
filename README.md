@@ -1,4 +1,4 @@
-# RocketDashboard 
+# RocketDashboard
 [![Build Status](https://travis-ci.org/rocket-internet-berlin/RocketDashboard.svg?branch=master)](https://travis-ci.org/rocket-internet-berlin/RocketDashboard) [![Coverage Status](https://coveralls.io/repos/github/rocket-internet-berlin/RocketDashboard/badge.svg?branch=master)](https://coveralls.io/github/rocket-internet-berlin/RocketDashboard?branch=master)
 
 A dashboard with Jira, New Relic, Google Sheets and custom data sources integration.
@@ -13,6 +13,7 @@ Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashbo
 - [Development](#development)
 	- [Starting the "dev" server](#starting-the-dev-server)
 	- [Optional](#optional)
+- [Deployment](#deployment)
 - [Widgets](#widgets)
 - [Adding new widgets](#adding-new-widgets)
 	- [Easy way](#easy-way)
@@ -84,6 +85,32 @@ In order to have a better development experience, you can install the following 
 
 - [Add](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) **Redux DevTools** extension to Chrome.
 - [Add](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) **React Developer Tools** extension to Chrome.
+
+## Deployment
+
+The included production build scripts will create the following folders ready to be deployed:
+ - `build` containing the optimized build files for the client. This is the front-end part, thus should be served as static folder.
+ - `server/build` containing the optimized build files for the api, respectively. This is the back-end/Express part, so it should be run in Node environment.
+
+Depending on you hosting environment, you might want to either serve/run one or both of the above. Here are the available script commands to help you with that:
+
+*(if using `npm`, type `npm run …` instead of `yarn …` in the below examples)*
+
+
+- `yarn cs:build` to start the build processes for both the client and server
+- `yarn cs:start` starts both
+  - a static server for the client on port 3000 (`localhost:3000`)
+  - an Express server for the api on port 3001 (`localhost:3000`)
+- `yarn build` create production build only for the client/React app
+- `yarn start:production` serve the client production build on port 3000
+- `cd server && yarn build` create production build only for the api/Express
+- `cd server && yarn start:production` serve the production build on port 3001
+
+The port for either client and server can be changed by setting the `PORT` environment variable. E.g. `export PORT=8888 && yarn cs:start`.
+
+All necessary credentials should be set as environment variables (or inside `.env`). See [Adding configuration](#adding-configuration) for details.
+
+HTTPS can be used by setting `HTTPS=true` as environment variable.
 
 ## Widgets
 
