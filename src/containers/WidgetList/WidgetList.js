@@ -34,6 +34,16 @@ const WidgetList = props =>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Funnel heading="Website Funnel" data={props.newRelicWebsiteFunnel} />
       </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Number heading="In Progress" data={props.jiraInProgress} riseIsBad threshold={10} />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Number heading="Selected For Development" data={props.jiraSelectedForDevelopment} />
+      </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Number heading="Ready For QA" data={props.jiraReadyForQa} />
+      </div>
+
       <div className="col-xs-12">
         <BugsHistory />
       </div>
@@ -43,10 +53,7 @@ const WidgetList = props =>
       </div>
 
       <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="Custom Widget" data={props.customWidget} riseIsBad threshold={5} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="Another Custom Widget" data={props.anotherCustomWidget} riseIsBad threshold={5} />
+        <Number heading="Custom Number" data={props.customNumber} riseIsBad threshold={5} />
       </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Breakdown heading="Custom Breakdown" data={props.customBreakdown} />
@@ -64,10 +71,12 @@ const mapStateToProps = state => ({
   newRelicUniqueSessions: state.generic.newRelicUniqueSessions,
   newRelicSuccessfulBookings: state.generic.newRelicSuccessfulBookings,
   newRelicCliErrors: state.generic.newRelicCliErrors,
-  customWidget: state.generic.customWidget,
-  anotherCustomWidget: state.generic.anotherCustomWidget,
   newRelicErrorBreakdown: state.generic.newRelicErrorBreakdown,
   newRelicWebsiteFunnel: state.generic.newRelicWebsiteFunnel,
+  jiraInProgress: state.generic.jiraInProgress,
+  jiraSelectedForDevelopment: state.generic.jiraSelectedForDevelopment,
+  jiraReadyForQa: state.generic.jiraReadyForQa,
+  customNumber: state.generic.customNumber,
   customFunnel: state.generic.customFunnel,
   customBreakdown: state.generic.customBreakdown,
 });
@@ -79,10 +88,12 @@ WidgetList.propTypes = {
   newRelicUniqueSessions: PropTypes.object.isRequired,
   newRelicSuccessfulBookings: PropTypes.object.isRequired,
   newRelicCliErrors: PropTypes.object.isRequired,
-  customWidget: PropTypes.object.isRequired,
-  anotherCustomWidget: PropTypes.object.isRequired,
   weekNumber: PropTypes.object.isRequired,
   newRelicErrorBreakdown: PropTypes.object.isRequired,
+  jiraInProgress: PropTypes.object.isRequired,
+  jiraSelectedForDevelopment: PropTypes.object.isRequired,
+  jiraReadyForQa: PropTypes.object.isRequired,
+  customNumber: PropTypes.object.isRequired,
   newRelicWebsiteFunnel: PropTypes.object.isRequired,
   customFunnel: PropTypes.object.isRequired,
   customBreakdown: PropTypes.object.isRequired,
@@ -94,11 +105,13 @@ WidgetList.defaultProps = {
   newRelicUniqueSessions: {},
   newRelicSuccessfulBookings: {},
   newRelicCliErrors: {},
-  customWidget: {},
-  anotherCustomWidget: {},
   weekNumber: {},
   newRelicErrorBreakdown: {},
   newRelicWebsiteFunnel: {},
+  jiraInProgress: {},
+  jiraSelectedForDevelopment: {},
+  jiraReadyForQa: {},
+  customNumber: {},
   customFunnel: {},
   customBreakdown: {},
 };
