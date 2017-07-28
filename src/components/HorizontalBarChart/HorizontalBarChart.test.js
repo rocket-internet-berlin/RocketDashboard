@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
-import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
+import { BarChart } from 'recharts';
 import HorizontalBarChart from './HorizontalBarChart';
 
 const dataValid = [{ key: 1, value: 'value 1' }, { key: 2, value: 'value 2' }];
