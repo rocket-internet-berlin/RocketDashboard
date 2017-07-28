@@ -62,6 +62,7 @@
     "react-test-renderer": "^15.5.4",
     "sass-loader": "^6.0.3",
     "sinon": "^2.4.0",
+    "sinon-stub-promise": "^4.0.0",
     "style-loader": "^0.17.0",
     "url-loader": "0.5.7",
     "webpack": "^2.4.1",

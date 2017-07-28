@@ -4,10 +4,17 @@ import _round from 'lodash/round';
 import './Number.scss';
 
 const getRounded = decimal => _round(decimal, 2);
+const formatChange = decimal => {
+  if (isFinite(decimal)) {
+    return `${_round(decimal, 2)}%`;
+  }
+  return 'Infinity';
+};
+
 const getChange = (current, previous) => {
   // https://ux.stackexchange.com/questions/60902/displaying-percentage-difference-from-zero
   if (current > 0 && previous === 0) {
-    return 100;
+    return Infinity;
   } else if (current === 0 && previous === 0) {
     return 0;
   }
@@ -43,7 +50,7 @@ const Number = ({ heading, description, data, riseIsBad, threshold }) =>
       </span>
       {typeof data.previous !== 'undefined' &&
         <span className={getChangeClassName(getChange(data.current, data.previous), riseIsBad)}>
-          {getRounded(getChange(data.current, data.previous))}%
+          {formatChange(getChange(data.current, data.previous))}
         </span>}
     </div>
     <div className="panel-footer">

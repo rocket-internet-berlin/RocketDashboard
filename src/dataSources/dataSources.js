@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 import moment from 'moment';
-import fetchApi, { fetchUrl } from '../lib/fetchApi';
+import { fetchApi, fetchUrl } from '../lib/fetchApi';
 
 const dataSources = [
   { key: 'newRelicCliErrors', fetchFunction: () => fetchApi('newRelic/cliErrors') },

@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import onReceive from '../../actions/generic/generic';
+import { onReceive } from '../../actions/generic/generic';
 
 const reducer = handleActions(
   {

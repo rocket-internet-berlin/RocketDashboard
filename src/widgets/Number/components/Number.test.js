@@ -16,7 +16,16 @@ describe('Number component', () => {
   it('contains a current value', () => {
     expect(widget.contains(99)).toEqual(true);
   });
+
   it('contains percentage', () => {
-    expect(widget.contains(1000)).toEqual(true);
+    expect(widget.contains('1000%')).toEqual(true);
+  });
+
+  it('contains Infinity when comparing to zero', () => {
+    const widgetInf = shallow(
+      <Number heading="Some number" description="Explanation" data={{ current: 99, previous: 0 }} />,
+    );
+
+    expect(widgetInf.contains('Infinity')).toEqual(true);
   });
 });
