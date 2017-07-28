@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 
-const getTableData = data => data.map(el => [el.name, el.count]);
-const fixSilhouette = value => Math.abs(value * 2);
+export const getTableData = data => data.map(el => [el.name, el.count]);
+export const fixSilhouette = value => Math.abs(value * 2);
 
 const Funnel = ({ heading, data, description }) =>
   <div className="panel NewRelicWebsiteFunnel">
