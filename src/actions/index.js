@@ -1,4 +1,4 @@
-import { refresh } from './generic/generic';
+import { refresh as refreshGeneric } from './generic/generic';
 import { refresh as refreshBugsHistory } from '../widgets/BugsHistory/actions/bugsHistory';
 import dataSources from '../dataSources/dataSources';
 
@@ -6,7 +6,7 @@ import dataSources from '../dataSources/dataSources';
 const refreshAll = () => dispatch => {
   dispatch(refreshBugsHistory());
   dataSources.forEach(dataSource => {
-    dispatch(refresh(dataSource));
+    dispatch(refreshGeneric(dataSource));
   });
 };
 
