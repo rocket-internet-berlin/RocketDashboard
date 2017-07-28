@@ -12,9 +12,10 @@ Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashbo
 - [Adding configuration](#adding-configuration)
 - [Development](#development)
 	- [Starting the "dev" server](#starting-the-dev-server)
+	- [For the curious](#for-the-curious)
 	- [Optional](#optional)
 - [Deployment](#deployment)
-- [Widgets](#widgets)
+- [Current widgets](#current-widgets)
 - [Adding new widgets](#adding-new-widgets)
 	- [Easy way](#easy-way)
 		- [Data source (model)](#data-source-model)
@@ -27,10 +28,9 @@ Please see [CHANGELOG.md](https://github.com/rocket-internet-berlin/RocketDashbo
 		- [Frontend](#frontend)
 		- [Backend](#backend)
 - [Generic components](#generic-components)
-		- [BasicTable.js](#basictablejs)
-		- [VerticalBarChart.js](#verticalbarchartjs)
-		- [HorizontalBarChart.js](#horizontalbarchartjs)
-	- [For the curious](#for-the-curious)
+	- [BasicTable.js](#basictablejs)
+	- [VerticalBarChart.js](#verticalbarchartjs)
+	- [HorizontalBarChart.js](#horizontalbarchartjs)
 - [Widgets / Data sources](#widgets-data-sources)
 	- [Google spreadsheets (the Bugs History widget)](#google-spreadsheets-the-bugs-history-widget)
 - [Collaboration](#collaboration)
@@ -79,6 +79,14 @@ In Chrome the page will reload automatically if you edit anything in the project
 
 You'll find build errors and lint warnings in the console.
 
+### For the curious
+
+RocketDashboard consists of two quasi-separate parts - "client" and "server":
+- "Client" is the front-end (React) app. It resides in the root folder of the project with its code in the `src` sub-folder.
+- "Server" is the back-end (Express) app. It resides in the `server` folder with its code similarly in the `server/src` sub-folder.
+
+Currently the `yarn start` commands will start the "Dev" servers for BOTH in parallel for convenience. However, you can run, test, compile etc. the client and server also separately. Just look at the available commands in the "scripts" section of `package.json` or with `yarn run` in the relevant folder.
+
 ### Optional
 
 In order to have a better development experience, you can install the following Chrome extensions:
@@ -112,7 +120,7 @@ All necessary credentials should be set as environment variables (or inside `.en
 
 HTTPS can be used by setting `HTTPS=true` as environment variable.
 
-## Widgets
+## Current widgets
 
 Currently shown widgets in the Dashboard:
 
@@ -296,7 +304,7 @@ Some generic components are available for reuse when developing custom widgets:
 - **HorizontalBarChart**
 - **VerticalBarChart**
 
-#### BasicTable.js
+### BasicTable.js
 
 Usage: `<BasicTable data={data} headings={headings} />`
 
@@ -306,7 +314,7 @@ const headings = ['Date', 'Open Bugs', 'Solved Bugs', ...]
 const data = ['7. July', 423, 'n/a', ...]
 ```
 
-#### VerticalBarChart.js
+### VerticalBarChart.js
 
 Usage: `<VerticalBarChart data={data} />`
 
@@ -321,7 +329,7 @@ const data = [
 ]
 ```
 
-#### HorizontalBarChart.js
+### HorizontalBarChart.js
 
 Usage: `<HorizontalBarChart data={data} />`
 
@@ -336,14 +344,6 @@ const data = [
   ...
 ]
 ```
-
-### For the curious
-
-RocketDashboard consists of two quasi-separate parts - "client" and "server":
-- "Client" is the front-end (React) app. It resides in the root folder of the project with its code in the `src` sub-folder.
-- "Server" is the back-end (Express) app. It resides in the `server` folder with its code similarly in the `server/src` sub-folder.
-
-Currently the `yarn start` commands will start the "Dev" servers for BOTH in parallel for convenience. However, you can run, test, compile etc. the client and server also separately. Just look at the available commands in the "scripts" section of `package.json` or with `yarn run` in the relevant folder.
 
 ## Widgets / Data sources
 
