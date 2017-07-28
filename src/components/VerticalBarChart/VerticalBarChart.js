@@ -24,8 +24,8 @@ const VerticalBarChart = ({ data }) =>
 VerticalBarChart.propTypes = {
   data: PropTypes.arrayOf(
     PropTypes.shape({
-      key: PropTypes.isRequired,
-      value: PropTypes.isRequired,
+      key: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+      value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     }),
   ).isRequired,
 };
