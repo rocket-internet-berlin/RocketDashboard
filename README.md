@@ -1,5 +1,5 @@
 # RocketDashboard
-[![Build Status](https://travis-ci.org/rocket-internet-berlin/RocketDashboard.svg?branch=master)](https://travis-ci.org/rocket-internet-berlin/RocketDashboard) [![Coverage Status](https://coveralls.io/repos/github/rocket-internet-berlin/RocketDashboard/badge.svg?branch=master&1)](https://coveralls.io/github/rocket-internet-berlin/RocketDashboard?branch=master)
+[![Build Status](https://travis-ci.org/rocket-internet-berlin/RocketDashboard.svg?branch=master)](https://travis-ci.org/rocket-internet-berlin/RocketDashboard) [![Coverage Status](https://coveralls.io/repos/github/rocket-internet-berlin/RocketDashboard/badge.svg?branch=master)](https://coveralls.io/github/rocket-internet-berlin/RocketDashboard?branch=master)
 
 A dashboard with Jira, New Relic, Google Sheets and custom data sources integration.
 It's perfect for development teams who want to be aware of their progress in real time.
