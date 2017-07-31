@@ -26,10 +26,10 @@
     &.decrease:before {
       content: '▼';
     }
-    &.positive {
+    &.good {
       color: $positive-color;
     }
-    &.negative {
+    &.bad {
       color: $negative-color;
     }
   }

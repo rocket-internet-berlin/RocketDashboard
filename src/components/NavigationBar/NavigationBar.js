@@ -6,7 +6,7 @@ import { refreshAll } from '../../actions';
 import './NavigationBar.scss';
 import logo from './Images/logo.png';
 
-class NavigationBar extends Component {
+export class NavigationBar extends Component {
   handleRefresh = () => {
     this.props.refreshAll();
   };

@@ -23,9 +23,9 @@ const getChange = (current, previous) => {
 
 const getChangeClassName = (number, riseIsBad) => {
   if (number < 0) {
-    return riseIsBad ? 'change decrease positive' : 'change decrease negative';
+    return riseIsBad ? 'change decrease good' : 'change decrease bad';
   } else if (number > 0) {
-    return riseIsBad ? 'change increase negative' : 'change increase positive';
+    return riseIsBad ? 'change increase bad' : 'change increase good';
   }
   return 'change';
 };

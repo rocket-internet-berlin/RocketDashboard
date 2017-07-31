@@ -25,6 +25,7 @@ module.exports = {
       {
         'allowSamePrecedence': true,
       }
-    ]
+    ],
+    'import/no-named-as-default': 0,
   },
 };

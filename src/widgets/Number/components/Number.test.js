@@ -14,18 +14,54 @@ describe('Number component', () => {
     expect(widget.contains('Explanation')).toEqual(true);
   });
   it('contains a current value', () => {
-    expect(widget.contains(99)).toEqual(true);
+    expect(widget.find('.current').contains(99)).toEqual(true);
   });
 
   it('contains percentage', () => {
-    expect(widget.contains('1000%')).toEqual(true);
+    expect(widget.find('.change').contains('1000%')).toEqual(true);
   });
 
-  it('contains Infinity when comparing to zero', () => {
-    const widgetInf = shallow(
-      <Number heading="Some number" description="Explanation" data={{ current: 99, previous: 0 }} />,
+  it('contains change Infinity when comparing to zero', () => {
+    const anotherWidget = shallow(<Number heading="Some number" data={{ current: 99, previous: 0 }} />);
+
+    expect(anotherWidget.find('.change').contains('Infinity')).toEqual(true);
+  });
+  it('contains change 0 when current is zero and comparing to zero', () => {
+    const anotherWidget = shallow(<Number heading="Some number" data={{ current: 0, previous: 0 }} />);
+
+    expect(anotherWidget.find('.change').contains('0%')).toEqual(true);
+  });
+
+  it('highlights increase as `bad` when `riseIsBad` is set', () => {
+    const anotherWidget = shallow(<Number heading="Some number" data={{ current: 5, previous: 1 }} riseIsBad />);
+
+    expect(anotherWidget.find('.change.increase.bad').length).toEqual(1);
+  });
+  it('highlights decrease as `good` when `riseIsBad` is set', () => {
+    const anotherWidget = shallow(<Number heading="Some number" data={{ current: 1, previous: 5 }} riseIsBad />);
+
+    expect(anotherWidget.find('.change.decrease.good').length).toEqual(1);
+  });
+  it('highlights decrease as `good` when `riseIsBad` is set', () => {
+    const anotherWidget = shallow(
+      <Number heading="Some number" data={{ current: 1, previous: 5 }} riseIsBad={false} />,
     );
 
-    expect(widgetInf.contains('Infinity')).toEqual(true);
+    expect(anotherWidget.find('.change.decrease.bad').length).toEqual(1);
+  });
+
+  it('highlights `current` when over `threshold`', () => {
+    const anotherWidget = shallow(
+      <Number heading="Some number" data={{ current: 5, previous: 0 }} riseIsBad threshold={3} />,
+    );
+
+    expect(anotherWidget.find('.current.threshold-overcome').length).toEqual(1);
+  });
+  it('does not highlight `current` when under `threshold`', () => {
+    const anotherWidget = shallow(
+      <Number heading="Some number" data={{ current: 5, previous: 0 }} riseIsBad threshold={10} />,
+    );
+
+    expect(anotherWidget.find('.current.threshold-overcome').length).toEqual(0);
   });
 });
