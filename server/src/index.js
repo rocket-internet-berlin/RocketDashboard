@@ -10,6 +10,7 @@ import bugsHistoryRoute from './routes/bugsHistory';
 import newRelicRoute from './routes/newRelic';
 import jiraRoute from './routes/jira';
 import loggerMiddleware from './middleware/loggerMiddleware';
+import triviaRoute from './routes/trivia';
 
 const app = express();
 const ROUTE_PREFIX = '/api';
@@ -38,6 +39,7 @@ app.use(`${ROUTE_PREFIX}/cache`, cache);
 app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistoryRoute);
 app.use(`${ROUTE_PREFIX}/newRelic`, newRelicRoute);
 app.use(`${ROUTE_PREFIX}/jira`, jiraRoute);
+app.use(`${ROUTE_PREFIX}/trivia`, triviaRoute);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

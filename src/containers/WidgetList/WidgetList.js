@@ -6,6 +6,7 @@ import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 import Breakdown from '../../widgets/Breakdown/components/Breakdown';
 import Funnel from '../../widgets/Funnel/components/Funnel';
+import Trivia from '../../widgets/Trivia/components/Trivia';
 
 export const WidgetList = props =>
   <div className="WidgetList">
@@ -43,6 +44,9 @@ export const WidgetList = props =>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="Ready For QA" data={props.jiraReadyForQa} />
       </div>
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Trivia heading="Trivia" data={props.trivia} />
+      </div>
 
       <div className="col-xs-12">
         <BugsHistory />
@@ -79,6 +83,7 @@ const mapStateToProps = state => ({
   customNumber: state.generic.customNumber,
   customFunnel: state.generic.customFunnel,
   customBreakdown: state.generic.customBreakdown,
+  trivia: state.generic.trivia,
 });
 
 /* eslint-disable react/forbid-prop-types */
@@ -97,6 +102,7 @@ WidgetList.propTypes = {
   newRelicWebsiteFunnel: PropTypes.object.isRequired,
   customFunnel: PropTypes.object.isRequired,
   customBreakdown: PropTypes.object.isRequired,
+  trivia: PropTypes.object.isRequired,
 };
 
 WidgetList.defaultProps = {
@@ -114,6 +120,7 @@ WidgetList.defaultProps = {
   customNumber: {},
   customFunnel: {},
   customBreakdown: {},
+  trivia: {},
 };
 
 export default connect(mapStateToProps)(WidgetList);

@@ -23,6 +23,10 @@ const dataSources = [
     fetchFunction: () => fetchUrl('http://www.mocky.io/v2/596f52eb0f00008d036b7535'),
   },
   { key: 'customFunnel', fetchFunction: () => fetchUrl('http://www.mocky.io/v2/596f52eb0f00008d036b7535') },
+  {
+    key: 'trivia',
+    fetchFunction: () => fetchApi('trivia/today'),
+  },
 ];
 
 export default dataSources;
