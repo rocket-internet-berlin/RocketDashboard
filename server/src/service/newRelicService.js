@@ -1,6 +1,7 @@
 import _get from 'lodash/get';
 import Insights from 'node-insights';
 import validateSchema from '../helper/validator';
+import constants from '../config/constants';
 
 class NewRelicService {
   static validateConfig(config) {
@@ -36,10 +37,16 @@ class NewRelicService {
   }
 
   static getDescription(insightsResponse) {
-    const since = _get(insightsResponse, 'metadata.rawSince');
-    const compareWith = _get(insightsResponse, 'metadata.rawCompareWith');
-    const description = compareWith ? `Since ${since} COMPARE WITH ${compareWith}` : `Since ${since}`;
-    return description.toLowerCase();
+    const since = _get(insightsResponse, 'metadata.rawSince', null);
+    const compareWith = _get(insightsResponse, 'metadata.rawCompareWith', null);
+    const setUpError = 'Newrelic is probably not setup correctly.';
+
+    if (since && compareWith) {
+      const description = compareWith ? `Since ${since} COMPARE WITH ${compareWith}` : `Since ${since}`;
+      return description.toLowerCase();
+    }
+
+    return setUpError;
   }
 
   getTransactionErrors() {
@@ -47,8 +54,8 @@ class NewRelicService {
 
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => ({
-        previous: _get(insightsResponse, 'previous.results[0].count'),
-        current: _get(insightsResponse, 'current.results[0].count'),
+        previous: _get(insightsResponse, 'previous.results[0].count', constants.unknown),
+        current: _get(insightsResponse, 'current.results[0].count', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
       }));
   }
@@ -58,7 +65,7 @@ class NewRelicService {
 
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => ({
-        current: _get(insightsResponse, 'results[0].average'),
+        current: _get(insightsResponse, 'results[0].average', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
       }));
   }
@@ -68,8 +75,8 @@ class NewRelicService {
 
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => ({
-        previous: _get(insightsResponse, 'previous.results[0].count'),
-        current: _get(insightsResponse, 'current.results[0].count'),
+        previous: _get(insightsResponse, 'previous.results[0].count', constants.unknown),
+        current: _get(insightsResponse, 'current.results[0].count', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
       }));
   }
@@ -79,8 +86,8 @@ class NewRelicService {
 
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => ({
-        previous: _get(insightsResponse, 'previous.results[0].count'),
-        current: _get(insightsResponse, 'current.results[0].count'),
+        previous: _get(insightsResponse, 'previous.results[0].count', constants.unknown),
+        current: _get(insightsResponse, 'current.results[0].count', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
       }));
   }
@@ -90,7 +97,7 @@ class NewRelicService {
 
     return this.getQueryResponse(nrql)
       .then((insightsResponse) => ({
-        current: _get(insightsResponse, 'results[0].count'),
+        current: _get(insightsResponse, 'results[0].count', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
       }));
   }
