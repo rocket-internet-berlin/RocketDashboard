@@ -1,6 +1,5 @@
 import express from 'express';
 import path from 'path';
-import logger from 'morgan';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import http from 'http';
@@ -10,11 +9,14 @@ import cache from './routes/cache';
 import bugsHistoryRoute from './routes/bugsHistory';
 import newRelicRoute from './routes/newRelic';
 import jiraRoute from './routes/jira';
+import loggerMiddleware from './middleware/loggerMiddleware';
 
 const app = express();
 const ROUTE_PREFIX = '/api';
 
-app.use(logger('dev'));
+app.use((req, res, next) => {
+  loggerMiddleware.accessLog(req, res, next);
+});
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -46,21 +48,7 @@ app.use((req, res, next) => {
 
 // error handler
 app.use((err, req, res, next) => {  // eslint-disable-line no-unused-vars
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err.message : {};
-
-  if (req.app.get('env') === 'development') {
-    console.error(err.stack);
-  }
-
-  // render the error page
-  res.status(err.status || 500);
-  res.send({
-    status: 'error',
-    message: 'Something went terribly wrong!',
-    error: res.locals.error,
-  });
+  loggerMiddleware.errorLog(err, req, res);
 });
 
 /**
