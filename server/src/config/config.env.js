@@ -18,4 +18,8 @@ module.exports = {
     username: process.env.JIRA_USERNAME,
     password: process.env.JIRA_PASSWORD,
   },
+  finance: {
+    stockTicker: process.env.STOCK_TICKER,
+    company: process.env.COMPANY_NAME,
+  },
 };
