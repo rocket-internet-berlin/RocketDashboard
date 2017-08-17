@@ -7,8 +7,8 @@ class NewRelicService {
   static validateConfig(config) {
     const schema = {
       required: [
-        'queryKey',
         'accountId',
+        'queryKey',
       ],
     };
     if (!validateSchema(schema, config)) {
@@ -19,15 +19,13 @@ class NewRelicService {
   constructor(config) {
     NewRelicService.validateConfig(config);
 
-    this.insights = new Insights({
-      queryKey: config.queryKey,
-      accountId: config.accountId,
-    });
+    this.insights = null;
+    this.config = config;
   }
 
   getQueryResponse(nrql) {
     return new Promise((resolve, reject) => {
-      this.insights.query(nrql, (err, insightsResponse) => {
+      this.getInstance().query(nrql, (err, insightsResponse) => {
         if (err) {
           return reject(err);
         }
@@ -132,6 +130,23 @@ class NewRelicService {
           description: NewRelicService.getDescription(insightsResponse),
         };
       });
+  }
+
+  getInstance() {
+    if (this.insights) {
+      return this.insights;
+    }
+
+    if (!this.config.accountId) {
+      throw new Error('NewRelic Insights accountId may not be empty.');
+    }
+
+    this.insights = new Insights({
+      accountId: this.config.accountId,
+      queryKey: this.config.queryKey,
+    });
+
+    return this.insights;
   }
 }
 
