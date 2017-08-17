@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _round from 'lodash/round';
+
+import constants from '../../../config/constants';
 import './Number.scss';
 
 const getRounded = decimal => _round(decimal, 2);
@@ -31,12 +33,26 @@ const getChangeClassName = (number, riseIsBad) => {
 };
 
 const getCurrentClassName = (current, threshold, riseIsBad) => {
+  if (!current || current === constants.unknown) {
+    return constants.loading;
+  }
+
   const isBadAndAboveThreshold = riseIsBad && current >= threshold;
   const isGoodAndBelowThreshold = !riseIsBad && current <= threshold;
   if (threshold && (isBadAndAboveThreshold || isGoodAndBelowThreshold)) {
     return 'current threshold-overcome';
   }
   return 'current';
+};
+
+const getFormattedData = current => {
+  if (current === constants.unknown) {
+    return current;
+  } else if (!current) {
+    return constants.loadingData;
+  }
+
+  return getRounded(current);
 };
 
 const Number = ({ heading, description, data, riseIsBad, threshold }) =>
@@ -46,9 +62,10 @@ const Number = ({ heading, description, data, riseIsBad, threshold }) =>
     </div>
     <div className="panel-body">
       <span className={getCurrentClassName(data.current, threshold, riseIsBad)}>
-        {getRounded(data.current)}
+        {getFormattedData(data.current)}
       </span>
       {typeof data.previous !== 'undefined' &&
+        data.previous !== constants.unknown &&
         <span className={getChangeClassName(getChange(data.current, data.previous), riseIsBad)}>
           {formatChange(getChange(data.current, data.previous))}
         </span>}

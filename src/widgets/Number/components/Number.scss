@@ -1,6 +1,10 @@
 @import "variables";
 
 .Number {
+  .loading {
+    color: $main-color;
+    font-size: 32px;
+  }
   .current {
     font-size: $font-size-huge;
     color: $main-color;
