@@ -1,0 +1,16 @@
+version: '3'
+services:
+  front:
+    build: .
+    ports:
+     - "3000:3000"
+    volumes:
+     - .:/code
+     - /code/node_modules/
+  back:
+    build: ./server
+    ports:
+     - "3001:3001"
+    volumes:
+     - ./server:/code
+     - /code/node_modules/
