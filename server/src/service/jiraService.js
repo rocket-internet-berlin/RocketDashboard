@@ -34,6 +34,7 @@ class JiraService {
     return this.jira.searchJira('project = INTCAT AND type != Epic AND status in ("In Progress", "In Development")')
       .then(response => ({
         current: response.total,
+        updated: new Date(),
       }));
   }
 
@@ -41,6 +42,7 @@ class JiraService {
     return this.jira.searchJira('project = INTCAT AND type != Epic AND status in ("Selected for Development")')
       .then(response => ({
         current: response.total,
+        updated: new Date(),
       }));
   }
 
@@ -49,6 +51,7 @@ class JiraService {
       .then(response => ({
         current: response.total,
         description: '(incl. Stage, Testsystem)',
+        updated: new Date(),
       }));
   }
 }

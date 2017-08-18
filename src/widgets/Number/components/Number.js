@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _round from 'lodash/round';
+import RelativeTime from 'react-relative-time';
 
 import constants from '../../../config/constants';
 import './Number.scss';
@@ -45,6 +46,17 @@ const getCurrentClassName = (current, threshold, riseIsBad) => {
   return 'current';
 };
 
+const updatedTime = updated => {
+  if (updated) {
+    return (
+      <em className="pull-right">
+        <RelativeTime value={updated} titleFormat="YYYY/MM/DD HH:mm" />
+      </em>
+    );
+  }
+  return null;
+};
+
 const getFormattedData = current => {
   if (current === constants.unknown) {
     return current;
@@ -72,6 +84,7 @@ const Number = ({ heading, description, data, riseIsBad, threshold }) =>
     </div>
     <div className="panel-footer">
       {description || data.description}
+      {updatedTime(data.updated)}
     </div>
   </div>;
 
@@ -84,6 +97,7 @@ Number.propTypes = {
     current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     previous: PropTypes.number,
     description: PropTypes.string,
+    updated: PropTypes.updated,
   }),
 };
 
@@ -96,6 +110,7 @@ Number.defaultProps = {
     current: null,
     previous: null,
     description: null,
+    updated: null,
   },
 };
 

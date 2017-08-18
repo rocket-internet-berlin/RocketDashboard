@@ -72,6 +72,7 @@ class NewRelicService {
       .then((insightsResponse) => ({
         current: _get(insightsResponse, 'results[0].average', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
+        updated: new Date(),
       }), NewRelicService.errorHandler);
   }
 
@@ -104,6 +105,7 @@ class NewRelicService {
       .then((insightsResponse) => ({
         current: _get(insightsResponse, 'results[0].count', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
+        updated: new Date(),
       }), NewRelicService.errorHandler);
   }
 

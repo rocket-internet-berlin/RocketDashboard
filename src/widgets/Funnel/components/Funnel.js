@@ -1,10 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RelativeTime from 'react-relative-time';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 
 export const getTableData = data => data.map(el => [el.name, el.count]);
 export const fixSilhouette = value => Math.abs(value * 2);
+
+const updatedTime = updated => {
+  if (updated) {
+    return (
+      <em className="pull-right">
+        <RelativeTime value={updated} titleFormat="YYYY/MM/DD HH:mm" />
+      </em>
+    );
+  }
+  return null;
+};
 
 const Funnel = ({ heading, data, description }) =>
   <div className="panel NewRelicWebsiteFunnel">
@@ -35,6 +47,7 @@ const Funnel = ({ heading, data, description }) =>
     </div>
     <div className="panel-footer">
       {description || data.description}
+      {updatedTime(data.updated)}
     </div>
   </div>;
 
