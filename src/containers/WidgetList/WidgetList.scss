@@ -1,0 +1,11 @@
+@import "variables";
+
+.WidgetList {
+  margin: $space-small;
+}
+
+@media (min-width: $screen-md-min) {
+  .WidgetList {
+    margin: $space-large;
+  }
+}
