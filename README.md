@@ -79,6 +79,18 @@ In Chrome the page will reload automatically if you edit anything in the project
 
 You'll find build errors and lint warnings in the console.
 
+###  Running with docker
+
+You'll need docker-ce and docker-compose. The frontend and backend have been set up to run in their own containers with their own dependencies despite the code folders being mounted as shared volumes on the local machine. 
+
+To get the cluster up and running, just run `docker-compose up` from the repo root. Add a `--build` flag at the end to trigger a rebuild if needed.
+
+As the code folders are shared with the local machine, any code change will lead to an immediate recompile in the affected container, so changes should be noticeable within seconds. For config changes, you'll have to restart the cluster as the .env file is only read on boot. 
+
+Because of the setup with separate dependencies inside the containers, changes in package.json files may not trigger dependency updates inside the containers on build due to docker's cached layers. To get around this and force an update, just run `docker-compose down && docker-compose up --build`.
+
+If you need to access the shell in a container, you may do so like this: `docker exec -it rocketdashboard_front_1 sh` where "rocketdashboard_front_1" is the container name. You'll see it in the terminal when starting the cluster or in the list of running containers from `docker ps`.
+
 ### For the curious
 
 RocketDashboard consists of two quasi-separate parts - "client" and "server":
@@ -119,6 +131,14 @@ The port for either client and server can be changed by setting the `PORT` envir
 All necessary credentials should be set as environment variables (or inside `.env`). See [Adding configuration](#adding-configuration) for details.
 
 HTTPS can be used by setting `HTTPS=true` as environment variable.
+
+## Deployment with docker
+
+Configs for the production cluster have been prepared but not yet used in production. You'll need to add setting the environment vars in the server container for the cluster to be deployable from a fresh repo checkout.
+
+To run the production cluster locally, go to repo root and run `docker-compose -f docker-compose-prod.yml up`. As with the development cluster, the `--build` flag is available to trigger a rebuild.
+
+It should go without saying that the production cluster does not mount the local code folders as shared volumes; the code is copied in to each container during container build and that's that. To update the code, you'll need to rebuild the containers.  
 
 ## Current widgets
 
