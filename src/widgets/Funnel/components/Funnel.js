@@ -22,8 +22,8 @@ const Funnel = ({ heading, data, description }) =>
             stackOffset="silhouette"
             margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
           >
-            <XAxis tickFormatter={fixSilhouette} type="number" />
-            <YAxis width={140} dataKey="name" type="category" />
+            <XAxis tickFormatter={fixSilhouette} type="number" stroke="#b7b7b7" fill="#b7b7b7" />
+            <YAxis width={140} dataKey="name" type="category" stroke="#b7b7b7" fill="#b7b7b7" />
             <Tooltip />
             <Area type="monotone" dataKey="count" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
           </AreaChart>

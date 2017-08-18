@@ -9,22 +9,22 @@
   }
 
   .navbar-left {
-    color: $rocket-dark;
+    color: $primary-text-color;
     font-size: 22px;
     font-weight: bold;
     letter-spacing: .04em;
     line-height: $navbar-height;
-    margin-left: 10px;
   }
 
   .navbar-right {
     padding: 0 $space-small;
+    margin-right: 0;
 
     button {
       font-size: $font-size-small;
       border-color: transparent;
       background-color: transparent;
-      color: $main-color;
+      color: $primary-text-color;
       outline: none;
       cursor: pointer;
     }
@@ -35,7 +35,7 @@
 
     button:active {
       box-shadow: none;
-      color: $rocket-gray;
+      color: $white;
       background-color: transparent;
       border-color: transparent;
       outline: none;
