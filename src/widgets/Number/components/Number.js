@@ -33,7 +33,7 @@ const getChangeClassName = (number, riseIsBad) => {
 };
 
 const getCurrentClassName = (current, threshold, riseIsBad) => {
-  if (!current || current === constants.unknown) {
+  if (current === null || current === 'undefined' || current === constants.unknown) {
     return constants.loading;
   }
 
@@ -48,7 +48,7 @@ const getCurrentClassName = (current, threshold, riseIsBad) => {
 const getFormattedData = current => {
   if (current === constants.unknown) {
     return current;
-  } else if (!current) {
+  } else if (current === null || current === 'undefined') {
     return constants.loadingData;
   }
 
@@ -81,7 +81,7 @@ Number.propTypes = {
   threshold: PropTypes.number,
   description: PropTypes.string,
   data: PropTypes.shape({
-    current: PropTypes.number,
+    current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     previous: PropTypes.number,
     description: PropTypes.string,
   }),
@@ -93,7 +93,7 @@ Number.defaultProps = {
   riseIsBad: false,
   threshold: null,
   data: {
-    current: 0,
+    current: null,
     previous: null,
     description: null,
   },
