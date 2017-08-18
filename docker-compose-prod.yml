@@ -1,0 +1,14 @@
+version: '3'
+services:
+  front:
+    build:
+      context: .
+      dockerfile: Dockerfile-prod
+    ports:
+     - "3000:3000"
+  back:
+    build:
+      context: ./server
+      dockerfile: Dockerfile-prod
+    ports:
+     - "3001:3001"
