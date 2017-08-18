@@ -1,4 +1,5 @@
 import _get from 'lodash/get';
+import { isEmpty, isUndefined } from 'lodash/core';
 import Insights from 'node-insights';
 import validateSchema from '../helper/validator';
 import constants from '../config/constants';
@@ -26,7 +27,7 @@ class NewRelicService {
   getQueryResponse(nrql) {
     return new Promise((resolve, reject) => {
       this.getInstance().query(nrql, (err, insightsResponse) => {
-        if (err) {
+        if (err || (!isUndefined(insightsResponse.error) && !isEmpty(insightsResponse.error))) {
           return reject(err);
         }
         return resolve(insightsResponse);
@@ -37,14 +38,20 @@ class NewRelicService {
   static getDescription(insightsResponse) {
     const since = _get(insightsResponse, 'metadata.rawSince', null);
     const compareWith = _get(insightsResponse, 'metadata.rawCompareWith', null);
-    const setUpError = 'Newrelic is probably not setup correctly.';
 
     if (since && compareWith) {
       const description = compareWith ? `Since ${since} COMPARE WITH ${compareWith}` : `Since ${since}`;
       return description.toLowerCase();
     }
 
-    return setUpError;
+    return '';
+  }
+
+  static errorHandler() {
+    return {
+      current: constants.unknown,
+      description: 'Newrelic is probably not setup correctly.',
+    };
   }
 
   getTransactionErrors() {
@@ -55,7 +62,7 @@ class NewRelicService {
         previous: _get(insightsResponse, 'previous.results[0].count', constants.unknown),
         current: _get(insightsResponse, 'current.results[0].count', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
-      }));
+      }), NewRelicService.errorHandler);
   }
 
   getLoadTime() {
@@ -65,7 +72,7 @@ class NewRelicService {
       .then((insightsResponse) => ({
         current: _get(insightsResponse, 'results[0].average', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
-      }));
+      }), NewRelicService.errorHandler);
   }
 
   getUniqueSessions() {
@@ -76,7 +83,7 @@ class NewRelicService {
         previous: _get(insightsResponse, 'previous.results[0].count', constants.unknown),
         current: _get(insightsResponse, 'current.results[0].count', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
-      }));
+      }), NewRelicService.errorHandler);
   }
 
   getSuccessfulBookings() {
@@ -87,7 +94,7 @@ class NewRelicService {
         previous: _get(insightsResponse, 'previous.results[0].count', constants.unknown),
         current: _get(insightsResponse, 'current.results[0].count', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
-      }));
+      }), NewRelicService.errorHandler);
   }
 
   getCLIErrors() {
@@ -97,7 +104,7 @@ class NewRelicService {
       .then((insightsResponse) => ({
         current: _get(insightsResponse, 'results[0].count', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
-      }));
+      }), NewRelicService.errorHandler);
   }
 
   getErrorBreakdown() {
@@ -113,7 +120,7 @@ class NewRelicService {
           results,
           description: NewRelicService.getDescription(insightsResponse),
         };
-      });
+      }, NewRelicService.errorHandler);
   }
 
   getWebsiteFunnel() {
@@ -129,7 +136,7 @@ class NewRelicService {
           results,
           description: NewRelicService.getDescription(insightsResponse),
         };
-      });
+      }, NewRelicService.errorHandler);
   }
 
   getInstance() {
