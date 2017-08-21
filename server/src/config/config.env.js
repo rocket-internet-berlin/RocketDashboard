@@ -22,4 +22,8 @@ module.exports = {
     stockTicker: process.env.STOCK_TICKER,
     company: process.env.COMPANY_NAME,
   },
+  weather: {
+    apiKey: process.env.WEATHER_API_KEY,
+    apiCityId: process.env.WEATHER_API_CITY_ID,
+  },
 };

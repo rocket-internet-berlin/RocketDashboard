@@ -11,6 +11,7 @@ import Breakdown from '../../widgets/Breakdown/components/Breakdown';
 import Funnel from '../../widgets/Funnel/components/Funnel';
 import Trivia from '../../widgets/Trivia/components/Trivia';
 import Finance from '../../widgets/Finance/components/Finance';
+import Weather from '../../widgets/Weather/components/Weather';
 import constants from '../../config/constants';
 import userSettings from '../../config/userSettings';
 
@@ -87,6 +88,14 @@ export const WidgetList = props => {
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
               <Finance finance={props[key]} iconType={widget.iconType} />
+            </div>,
+          );
+          break;
+
+        case widgetType.weather:
+          widgetComponents.push(
+            <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+              <Weather />
             </div>,
           );
           break;
