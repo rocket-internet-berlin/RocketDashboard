@@ -3,6 +3,7 @@ import GoogleService from './googleService';
 import JiraService from './jiraService';
 import NewRelicService from './newRelicService';
 import TriviaService from './triviaService';
+import FinanceService from './financeService';
 import config from '../config';
 
 const cacheService = new CacheService(config.defaultCacheTTL);
@@ -10,6 +11,7 @@ const googleService = new GoogleService(config.google.serviceAccountEmail, confi
 const jiraService = new JiraService(config.jira);
 const newRelicService = new NewRelicService(config.newRelic);
 const triviaService = new TriviaService();
+const financeService = new FinanceService(config.finance);
 
 export {
   cacheService,
@@ -17,4 +19,5 @@ export {
   jiraService,
   newRelicService,
   triviaService,
+  financeService,
 };

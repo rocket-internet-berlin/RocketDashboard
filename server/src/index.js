@@ -9,6 +9,7 @@ import cache from './routes/cache';
 import bugsHistoryRoute from './routes/bugsHistory';
 import newRelicRoute from './routes/newRelic';
 import jiraRoute from './routes/jira';
+import financeRoute from './routes/finance';
 import loggerMiddleware from './middleware/loggerMiddleware';
 import triviaRoute from './routes/trivia';
 
@@ -37,6 +38,7 @@ app.use(`${ROUTE_PREFIX}/cache`, cache);
 
 // widget endpoints
 app.use(`${ROUTE_PREFIX}/bugsHistory`, bugsHistoryRoute);
+app.use(`${ROUTE_PREFIX}/finance`, financeRoute);
 app.use(`${ROUTE_PREFIX}/newRelic`, newRelicRoute);
 app.use(`${ROUTE_PREFIX}/jira`, jiraRoute);
 app.use(`${ROUTE_PREFIX}/trivia`, triviaRoute);

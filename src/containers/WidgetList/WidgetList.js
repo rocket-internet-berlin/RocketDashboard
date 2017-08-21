@@ -7,10 +7,14 @@ import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 import Breakdown from '../../widgets/Breakdown/components/Breakdown';
 import Funnel from '../../widgets/Funnel/components/Funnel';
 import Trivia from '../../widgets/Trivia/components/Trivia';
+import Finance from '../../widgets/Finance/components/Finance';
 
 export const WidgetList = props =>
   <div className="WidgetList">
     <div className="row">
+      <div className="col-xs-12 col-sm-6 col-md-3">
+        <Finance />
+      </div>
       <div className="col-xs-12 col-sm-6 col-md-3">
         <Number heading="Week" data={props.weekNumber} />
       </div>
