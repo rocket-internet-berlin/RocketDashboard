@@ -1,6 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import assign from 'lodash/assign';
+import forEach from 'lodash/forEach';
+import isEmpty from 'lodash/isEmpty';
+
 import './WidgetList.scss';
 import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
@@ -8,69 +11,101 @@ import Breakdown from '../../widgets/Breakdown/components/Breakdown';
 import Funnel from '../../widgets/Funnel/components/Funnel';
 import Trivia from '../../widgets/Trivia/components/Trivia';
 import Finance from '../../widgets/Finance/components/Finance';
+import constants from '../../config/constants';
+import userSettings from '../../config/userSettings';
 
-export const WidgetList = props =>
-  <div className="WidgetList">
-    <div className="row">
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Finance />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="Week" data={props.weekNumber} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="Load Time (s)" data={props.newRelicLoadTime} riseIsBad threshold={0.33} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="Transaction Errors" data={props.newRelicErrors} riseIsBad threshold={1} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="Unique Sessions" data={props.newRelicUniqueSessions} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="Successful Bookings" data={props.newRelicSuccessfulBookings} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="CLI Errors" data={props.newRelicCliErrors} riseIsBad threshold={1} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Breakdown heading="Error Breakdown" data={props.newRelicErrorBreakdown} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Funnel heading="Website Funnel" data={props.newRelicWebsiteFunnel} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="In Progress" data={props.jiraInProgress} riseIsBad threshold={10} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="Selected For Development" data={props.jiraSelectedForDevelopment} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="Ready For QA" data={props.jiraReadyForQa} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Trivia heading="Trivia" data={props.trivia} />
-      </div>
+export const WidgetList = props => {
+  let widgetList = {};
+  const localSettings = localStorage.getItem('userSettings');
 
-      <div className="col-xs-12">
-        <BugsHistory />
-      </div>
+  try {
+    widgetList = JSON.parse(localSettings).widgetList;
+  } catch (e) {
+    widgetList = null;
+  }
 
-      <div className="col-xs-12">
-        <h2>Custom Widget Samples</h2>
-      </div>
+  if (isEmpty(widgetList)) {
+    widgetList = userSettings.widgetList;
+    localStorage.setItem('userSettings', JSON.stringify({ widgetList }));
+  } else {
+    widgetList = assign(userSettings.widgetList, widgetList);
+  }
 
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Number heading="Custom Number" data={props.customNumber} riseIsBad threshold={5} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Breakdown heading="Custom Breakdown" data={props.customBreakdown} />
-      </div>
-      <div className="col-xs-12 col-sm-6 col-md-3">
-        <Funnel heading="Custom Funnel" data={props.customFunnel} />
+  const displayWidgetInOrder = widgetListSettings => {
+    const widgetComponents = [];
+    const widgetType = constants.widgetType;
+
+    forEach(widgetListSettings, (widget, key) => {
+      switch (widget.type) {
+        case widgetType.number:
+          widgetComponents.push(
+            <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+              <Number
+                heading={widget.heading}
+                data={props[key]}
+                threshold={widget.threshold}
+                riseIsBad={widget.riseIsBad}
+              />
+            </div>,
+          );
+          break;
+
+        case widgetType.breakdown:
+          widgetComponents.push(
+            <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+              <Breakdown heading={widget.heading} data={props[key]} />
+            </div>,
+          );
+          break;
+
+        case widgetType.funnel:
+          widgetComponents.push(
+            <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+              <Funnel heading={widget.heading} data={props[key]} />
+            </div>,
+          );
+          break;
+
+        case widgetType.bugsHistory:
+          widgetComponents.push(
+            <div className="col-xs-12" key={key}>
+              <BugsHistory />
+            </div>,
+          );
+          break;
+
+        case widgetType.trivia:
+          widgetComponents.push(
+            <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+              <Trivia data={props[key]} />
+            </div>,
+          );
+          break;
+
+        case widgetType.finance:
+          widgetComponents.push(
+            <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+              <Finance />
+            </div>,
+          );
+          break;
+
+        default:
+          break;
+      }
+    });
+
+    return widgetComponents;
+  };
+
+  return (
+    <div className="WidgetList">
+      <div className="row">
+        {displayWidgetInOrder(widgetList)}
       </div>
     </div>
-  </div>;
+  );
+};
 
 const mapStateToProps = state => ({
   weekNumber: state.generic.weekNumber,
@@ -89,25 +124,6 @@ const mapStateToProps = state => ({
   customBreakdown: state.generic.customBreakdown,
   trivia: state.generic.trivia,
 });
-
-/* eslint-disable react/forbid-prop-types */
-WidgetList.propTypes = {
-  newRelicErrors: PropTypes.object.isRequired,
-  newRelicLoadTime: PropTypes.object.isRequired,
-  newRelicUniqueSessions: PropTypes.object.isRequired,
-  newRelicSuccessfulBookings: PropTypes.object.isRequired,
-  newRelicCliErrors: PropTypes.object.isRequired,
-  weekNumber: PropTypes.object.isRequired,
-  newRelicErrorBreakdown: PropTypes.object.isRequired,
-  jiraInProgress: PropTypes.object.isRequired,
-  jiraSelectedForDevelopment: PropTypes.object.isRequired,
-  jiraReadyForQa: PropTypes.object.isRequired,
-  customNumber: PropTypes.object.isRequired,
-  newRelicWebsiteFunnel: PropTypes.object.isRequired,
-  customFunnel: PropTypes.object.isRequired,
-  customBreakdown: PropTypes.object.isRequired,
-  trivia: PropTypes.object.isRequired,
-};
 
 WidgetList.defaultProps = {
   newRelicErrors: {},
