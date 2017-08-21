@@ -9,7 +9,12 @@ const dataSources = [
   { key: 'newRelicSuccessfulBookings', fetchFunction: () => fetchApi('newRelic/successfulBookings') },
   {
     key: 'weekNumber',
-    fetchFunction: () => new Promise(resolve => resolve({ data: { current: parseInt(moment().format('w'), 10) } })),
+    fetchFunction: () =>
+      new Promise(resolve =>
+        resolve({
+          data: { current: parseInt(moment().format('w'), 10), updated: new Date() },
+        }),
+      ),
   },
   { key: 'newRelicUniqueSessions', fetchFunction: () => fetchApi('newRelic/uniqueSessions') },
   { key: 'newRelicErrorBreakdown', fetchFunction: () => fetchApi('newRelic/errorBreakdown') },
@@ -17,12 +22,12 @@ const dataSources = [
   { key: 'jiraInProgress', fetchFunction: () => fetchApi('jira/in-progress') },
   { key: 'jiraSelectedForDevelopment', fetchFunction: () => fetchApi('jira/selected-for-development') },
   { key: 'jiraReadyForQa', fetchFunction: () => fetchApi('jira/ready-for-qa') },
-  { key: 'customNumber', fetchFunction: () => fetchUrl('http://www.mocky.io/v2/5968eb61110000090e614cbb') },
+  { key: 'customNumber', fetchFunction: () => fetchUrl('http://www.mocky.io/v2/5996ec35130000c4008b77f9') },
   {
     key: 'customBreakdown',
-    fetchFunction: () => fetchUrl('http://www.mocky.io/v2/596f52eb0f00008d036b7535'),
+    fetchFunction: () => fetchUrl('http://www.mocky.io/v2/5996ecef130000bd008b77fd'),
   },
-  { key: 'customFunnel', fetchFunction: () => fetchUrl('http://www.mocky.io/v2/596f52eb0f00008d036b7535') },
+  { key: 'customFunnel', fetchFunction: () => fetchUrl('http://www.mocky.io/v2/5996ed98130000d9008b7801') },
   {
     key: 'trivia',
     fetchFunction: () => fetchApi('trivia/today'),

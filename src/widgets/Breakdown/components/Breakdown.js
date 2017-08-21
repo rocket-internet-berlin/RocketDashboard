@@ -1,10 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RelativeTime from 'react-relative-time';
 import VerticalBarChart from '../../../components/VerticalBarChart/VerticalBarChart';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 
 const getKeyValuePairs = results => results.map(el => ({ key: el.name, value: el.count }));
 const getTableData = results => results.map(el => [el.name, el.count]);
+
+const updatedTime = updated => {
+  if (updated) {
+    return (
+      <em className="pull-right">
+        <RelativeTime value={updated} titleFormat="YYYY/MM/DD HH:mm" />
+      </em>
+    );
+  }
+  return null;
+};
 
 const Breakdown = ({ heading, data, description }) =>
   <div className="panel Breakdown">
@@ -21,6 +33,7 @@ const Breakdown = ({ heading, data, description }) =>
     </div>
     <div className="panel-footer">
       {description || data.description}
+      {updatedTime(data.updated)}
     </div>
   </div>;
 
