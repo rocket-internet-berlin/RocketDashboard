@@ -4,3 +4,24 @@
   font-size: 22px;
   color: $rocket-gray;
 }
+
+// Laptop screen
+@media (min-width: $screen-md-min) {
+  .Trivia {
+    font-size: 18px;
+  }
+}
+
+// Desktop screen
+@media (min-width: $screen-lg-min) {
+  .Trivia {
+    font-size: 20px;
+  }
+}
+
+// Wide screen desktop
+@media (min-width: $screen-wide-min) {
+  .Trivia {
+    font-size: 22px;
+  }
+}
