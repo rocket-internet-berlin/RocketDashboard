@@ -91,6 +91,14 @@ Because of the setup with separate dependencies inside the containers, changes i
 
 If you need to access the shell in a container, you may do so like this: `docker exec -it rocketdashboard_front_1 sh` where "rocketdashboard_front_1" is the container name. You'll see it in the terminal when starting the cluster or in the list of running containers from `docker ps`.
 
+###  Running on Windows
+
+Download Docker for Windows (not Docker Toolbox) and follow the commands above. Due to a line ending style discrepancy, the ES Linter will throw errors during container boot and not let the applications start. You will need to add the following line to the rules section in both `./.eslintrc.js` and `./server/.eslintrc.js` temporarily to circumvent this:
+```
+'linebreak-style': ["error", "windows"],
+```
+This should not be seen as a permanent solution but should be enough to get started. 
+
 ### For the curious
 
 RocketDashboard consists of two quasi-separate parts - "client" and "server":
