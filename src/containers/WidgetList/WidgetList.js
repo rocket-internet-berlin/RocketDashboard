@@ -42,6 +42,7 @@ export const WidgetList = props => {
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
               <Number
                 heading={widget.heading}
+                iconType={widget.iconType}
                 data={props[key]}
                 threshold={widget.threshold}
                 riseIsBad={widget.riseIsBad}
@@ -53,7 +54,7 @@ export const WidgetList = props => {
         case widgetType.breakdown:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Breakdown heading={widget.heading} data={props[key]} />
+              <Breakdown heading={widget.heading} data={props[key]} iconType={widget.iconType} />
             </div>,
           );
           break;
@@ -61,7 +62,7 @@ export const WidgetList = props => {
         case widgetType.funnel:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Funnel heading={widget.heading} data={props[key]} />
+              <Funnel heading={widget.heading} data={props[key]} iconType={widget.iconType} />
             </div>,
           );
           break;
@@ -69,7 +70,7 @@ export const WidgetList = props => {
         case widgetType.bugsHistory:
           widgetComponents.push(
             <div className="col-xs-12" key={key}>
-              <BugsHistory />
+              <BugsHistory history={props[key]} description={widget.description} iconType={widget.iconType} />
             </div>,
           );
           break;
@@ -77,7 +78,7 @@ export const WidgetList = props => {
         case widgetType.trivia:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Trivia data={props[key]} />
+              <Trivia data={props[key]} iconType={widget.iconType} />
             </div>,
           );
           break;
@@ -85,7 +86,7 @@ export const WidgetList = props => {
         case widgetType.finance:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Finance />
+              <Finance finance={props[key]} iconType={widget.iconType} />
             </div>,
           );
           break;

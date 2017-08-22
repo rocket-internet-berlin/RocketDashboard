@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RelativeTime from 'react-relative-time';
+import getIcon from '../../../lib/getIcon';
 
 const updatedTime = updated => {
   if (updated) {
@@ -14,10 +15,25 @@ const updatedTime = updated => {
   return null;
 };
 
-const Finance = ({ finance }) =>
+const getChangeSection = change => {
+  let classNames = 'change decrease bad';
+
+  if (change > 0) {
+    classNames = 'change increase good';
+  }
+
+  return (
+    <span className={classNames}>
+      {change}
+    </span>
+  );
+};
+
+const Finance = ({ finance, iconType }) =>
   <div className="panel Number">
     <div className="panel-heading">
       {finance.finance.company} Stock Price
+      {getIcon(iconType)}
     </div>
     <div className="panel-body">
       <span className="current">
@@ -25,13 +41,7 @@ const Finance = ({ finance }) =>
       </span>
     </div>
     <div className="panel-footer">
-      {finance.finance.change > 0
-        ? <span className="change increase good">
-          {finance.finance.change}
-        </span>
-        : <span className="change decrease bad">
-          {finance.finance.change}
-        </span>}
+      {getChangeSection(finance.finance.change)}
       {updatedTime(finance.finance.updated)}
     </div>
   </div>;
@@ -47,10 +57,12 @@ Finance.propTypes = {
     updated: PropTypes.string,
     company: PropTypes.string,
   }).isRequired,
+  iconType: PropTypes.string,
 };
 
 Finance.defaultProps = {
   finance: {},
+  iconType: null,
 };
 
 export default connect(mapStateToProps)(Finance);

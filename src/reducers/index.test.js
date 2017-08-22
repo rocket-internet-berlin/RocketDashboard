@@ -122,7 +122,7 @@ test('reducers sequence', () => {
           key: 'newRelicErrors',
           previous: 0,
           current: 0,
-          description: 'since 30 minutes ago compare with 30 minutes ago',
+          description: 'since 30 minutes ago compared to 30 minutes ago',
         },
       },
     );
@@ -147,7 +147,7 @@ test('reducers sequence', () => {
           key: 'newRelicErrors',
           previous: 0,
           current: 0,
-          description: 'since 30 minutes ago compare with 30 minutes ago',
+          description: 'since 30 minutes ago compared to 30 minutes ago',
         },
       },
     });

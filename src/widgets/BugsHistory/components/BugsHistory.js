@@ -3,14 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import BasicTable from '../../../components/BasicTable/BasicTable';
+import getIcon from '../../../lib/getIcon';
 
 import './BugsHistory.scss';
 
 const getTableDataFromHistory = data => data.map(item => [item.date, item.openBugs, item.solvedBugs, item.newBugs]);
 
-const BugsHistory = ({ history, description }) =>
+const BugsHistory = ({ iconType, history, description }) =>
   <div className="panel BugsHistory">
-    <div className="panel-heading">Bugs History</div>
+    <div className="panel-heading">
+      Bugs History
+      {getIcon(iconType)}
+    </div>
     <div className="panel-body hidden-xs">
       <div className="row">
         <ResponsiveContainer width="100%" height={220}>
@@ -72,10 +76,12 @@ BugsHistory.propTypes = {
     }),
   ).isRequired,
   description: PropTypes.string,
+  iconType: PropTypes.string,
 };
 
 BugsHistory.defaultProps = {
   description: null,
+  iconType: null,
 };
 
 export default connect(mapStateToProps)(BugsHistory);

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RelativeTime from 'react-relative-time';
 import VerticalBarChart from '../../../components/VerticalBarChart/VerticalBarChart';
 import BasicTable from '../../../components/BasicTable/BasicTable';
+import getIcon from '../../../lib/getIcon';
 
 const getKeyValuePairs = results => results.map(el => ({ key: el.name, value: el.count }));
 const getTableData = results => results.map(el => [el.name, el.count]);
@@ -18,10 +19,11 @@ const updatedTime = updated => {
   return null;
 };
 
-const Breakdown = ({ heading, data, description }) =>
+const Breakdown = ({ heading, iconType, data, description }) =>
   <div className="panel Breakdown">
     <div className="panel-heading">
       {heading}
+      {getIcon(iconType)}
     </div>
     <div className="panel-body hidden-xs">
       <div className="row">
@@ -38,6 +40,7 @@ const Breakdown = ({ heading, data, description }) =>
   </div>;
 
 Breakdown.defaultProps = {
+  iconType: null,
   description: null,
   results: [],
 };
@@ -45,6 +48,7 @@ Breakdown.defaultProps = {
 Breakdown.propTypes = {
   heading: PropTypes.string.isRequired,
   description: PropTypes.string,
+  iconType: PropTypes.string,
   data: PropTypes.shape({
     results: PropTypes.arrayOf(
       PropTypes.shape({

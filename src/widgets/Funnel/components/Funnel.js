@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import RelativeTime from 'react-relative-time';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 import BasicTable from '../../../components/BasicTable/BasicTable';
+import getIcon from '../../../lib/getIcon';
 
 export const getTableData = data => data.map(el => [el.name, el.count]);
 export const fixSilhouette = value => Math.abs(value * 2);
@@ -18,10 +19,11 @@ const updatedTime = updated => {
   return null;
 };
 
-const Funnel = ({ heading, data, description }) =>
+const Funnel = ({ heading, iconType, data, description }) =>
   <div className="panel NewRelicWebsiteFunnel">
     <div className="panel-heading">
       {heading}
+      {getIcon(iconType)}
     </div>
     <div className="panel-body hidden-xs">
       <div className="row">
@@ -52,11 +54,13 @@ const Funnel = ({ heading, data, description }) =>
   </div>;
 
 Funnel.defaultProps = {
+  iconType: null,
   description: null,
 };
 
 Funnel.propTypes = {
   heading: PropTypes.string.isRequired,
+  iconType: PropTypes.string,
   description: PropTypes.string,
   data: PropTypes.shape({
     results: PropTypes.arrayOf(
