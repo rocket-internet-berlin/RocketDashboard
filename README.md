@@ -187,8 +187,8 @@ or
 
 #### React (UI)
 
-- open `/src/components/WidgetList/WidgetList.js`;
-- there's a `WidgetList` React component with all the widgets to be shown inside;
+- open `/src/config/userSettings.js`;
+- there's a `WidgetList` property which has list of widget to be displayed in given order;
 - add the desired widget in the same way the rest have been already added;
 - set a `heading` (string) property and `data` (object, see requirements above);
 - optionally, you may set a `description` too or tweak the layout (we're using Bootstrap);
