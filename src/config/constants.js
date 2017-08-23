@@ -25,6 +25,10 @@ const constants = {
     calendar: 'icons/icon-calendar-logo.png',
     weather: 'icons/icon-weather-logo.png',
   },
+  draggableType: {
+    smallWidget: 'smallWidget',
+  },
+  draggingOpacity: 0.5,
 };
 
 export default constants;
