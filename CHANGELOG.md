@@ -2,10 +2,21 @@
 
 #### Possible topics
 
-- Dockerize the app.
-- Improve test coverage
-- Add update state on widgets.
-- Loading indicators.
+- Improve test coverage for frontend.
+- Backend tests.
+- Drag & drop and persistent ordering.
+- Hiding functionality for each widget + persistence of setting.
+
+#### 0.13.0
+
+- Docker containers for both development and production use.
+- Label for last server-side update on many widgets to indicate data freshness.
+- Widget displaying trivia for today's date.
+- Not letting the backend crash if NewRelic Insights config is set but empty.
+- Improved logging; console for dev mode and access/error log files for production mode. 
+- Material design theme.
+- Friendlier default values for widgets for when data has not been fetched yet.
+- Widget for tracking a stock price using Google Finance. 
 
 #### 0.12.0
 
