@@ -14,6 +14,7 @@ class TriviaService {
 
     return axios.get(url).then(response => ({
       trivia: response.data,
+      updated: today,
     }));
   }
 }

@@ -1,12 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import RelativeTime from 'react-relative-time';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
 import getIcon from '../../../lib/getIcon';
-import './Trivia.scss';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
+import './Trivia.scss';
+
+const updatedTime = updated => {
+  if (updated) {
+    return (
+      <em className="pull-right">
+        <RelativeTime value={updated} titleFormat="YYYY/MM/DD HH:mm" />
+      </em>
+    );
+  }
+  return null;
+};
 
 const Trivia = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...props }) =>
   compose(connectDragSource, connectDropTarget)(
@@ -19,6 +31,9 @@ const Trivia = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...p
         <div>
           {props.data.trivia}
         </div>
+      </div>
+      <div className="panel-footer">
+        {updatedTime(props.data.updated)}
       </div>
     </div>,
   );
@@ -37,7 +52,6 @@ Trivia.defaultProps = {
   iconType: null,
 };
 
-// export default Trivia;
 export default compose(
   DragSource(constants.draggableType.smallWidget, dragSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
