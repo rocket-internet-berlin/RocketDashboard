@@ -2,9 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _round from 'lodash/round';
 import RelativeTime from 'react-relative-time';
-import getIcon from '../../../lib/getIcon';
+import { compose } from 'redux';
+import { DragSource, DropTarget } from 'react-dnd';
 
+import getIcon from '../../../lib/getIcon';
 import constants from '../../../config/constants';
+import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import './Number.scss';
 
 const getRounded = decimal => _round(decimal, 2);
@@ -68,27 +71,29 @@ const getFormattedData = current => {
   return getRounded(current);
 };
 
-const Number = ({ heading, iconType, description, data, riseIsBad, threshold }) =>
-  <div className="Number panel">
-    <div className="panel-heading">
-      {heading}
-      {getIcon(iconType)}
-    </div>
-    <div className="panel-body">
-      <span className={getCurrentClassName(data.current, threshold, riseIsBad)}>
-        {getFormattedData(data.current)}
-      </span>
-      {typeof data.previous !== 'undefined' &&
-        data.previous !== constants.unknown &&
-        <span className={getChangeClassName(getChange(data.current, data.previous), riseIsBad)}>
-          {formatChange(getChange(data.current, data.previous))}
-        </span>}
-    </div>
-    <div className="panel-footer">
-      {description || data.description}
-      {updatedTime(data.updated)}
-    </div>
-  </div>;
+const Number = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...props }) =>
+  compose(connectDragSource, connectDropTarget)(
+    <div className="Number panel" style={draggingStyle(isDragging, isOver)}>
+      <div className="panel-heading">
+        {props.heading}
+        {getIcon(props.iconType)}
+      </div>
+      <div className="panel-body">
+        <span className={getCurrentClassName(props.data.current, props.threshold, props.riseIsBad)}>
+          {getFormattedData(props.data.current)}
+        </span>
+        {typeof props.data.previous !== 'undefined' &&
+          props.data.previous !== constants.unknown &&
+          <span className={getChangeClassName(getChange(props.data.current, props.data.previous), props.riseIsBad)}>
+            {formatChange(getChange(props.data.current, props.data.previous))}
+          </span>}
+      </div>
+      <div className="panel-footer">
+        {props.description || props.data.description}
+        {updatedTime(props.data.updated)}
+      </div>
+    </div>,
+  );
 
 Number.propTypes = {
   heading: PropTypes.string.isRequired,
@@ -118,4 +123,13 @@ Number.defaultProps = {
   },
 };
 
-export default Number;
+export default compose(
+  DragSource(constants.draggableType.smallWidget, dragSource, (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging(),
+  })),
+  DropTarget(constants.draggableType.smallWidget, dropTarget, (connect, monitor) => ({
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+  })),
+)(Number);

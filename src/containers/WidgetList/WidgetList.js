@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import assign from 'lodash/assign';
+import { compose } from 'redux';
+import { DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 import forEach from 'lodash/forEach';
-import isEmpty from 'lodash/isEmpty';
 
 import './WidgetList.scss';
+import { move as moveWidget, hover as hoverWidget } from './actions/widgetList';
 import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 import Breakdown from '../../widgets/Breakdown/components/Breakdown';
@@ -13,35 +15,24 @@ import Trivia from '../../widgets/Trivia/components/Trivia';
 import Finance from '../../widgets/Finance/components/Finance';
 import Weather from '../../widgets/Weather/components/Weather';
 import constants from '../../config/constants';
-import userSettings from '../../config/userSettings';
 
 export const WidgetList = props => {
-  let widgetList = {};
-  const localSettings = localStorage.getItem('userSettings');
-
-  try {
-    widgetList = JSON.parse(localSettings).widgetList;
-  } catch (e) {
-    widgetList = null;
-  }
-
-  if (isEmpty(widgetList)) {
-    widgetList = userSettings.widgetList;
-    localStorage.setItem('userSettings', JSON.stringify({ widgetList }));
-  } else {
-    widgetList = assign(userSettings.widgetList, widgetList);
-  }
+  const widgetList = props.widgetList; // eslint-disable-line
 
   const displayWidgetInOrder = widgetListSettings => {
     const widgetComponents = [];
     const widgetType = constants.widgetType;
 
-    forEach(widgetListSettings, (widget, key) => {
+    forEach(widgetListSettings, widget => {
+      const key = widget.key;
       switch (widget.type) {
         case widgetType.number:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
               <Number
+                id={widget.id}
+                onMove={props.onMove}
+                onHover={props.onHover}
                 heading={widget.heading}
                 iconType={widget.iconType}
                 data={props[key]}
@@ -55,7 +46,14 @@ export const WidgetList = props => {
         case widgetType.breakdown:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Breakdown heading={widget.heading} data={props[key]} iconType={widget.iconType} />
+              <Breakdown
+                id={widget.id}
+                onMove={props.onMove}
+                onHover={props.onHover}
+                heading={widget.heading}
+                data={props[key]}
+                iconType={widget.iconType}
+              />
             </div>,
           );
           break;
@@ -63,7 +61,14 @@ export const WidgetList = props => {
         case widgetType.funnel:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Funnel heading={widget.heading} data={props[key]} iconType={widget.iconType} />
+              <Funnel
+                id={widget.id}
+                onMove={props.onMove}
+                onHover={props.onHover}
+                heading={widget.heading}
+                data={props[key]}
+                iconType={widget.iconType}
+              />
             </div>,
           );
           break;
@@ -71,7 +76,14 @@ export const WidgetList = props => {
         case widgetType.bugsHistory:
           widgetComponents.push(
             <div className="col-xs-12" key={key}>
-              <BugsHistory history={props[key]} description={widget.description} iconType={widget.iconType} />
+              <BugsHistory
+                id={widget.id}
+                onMove={props.onMove}
+                onHover={props.onHover}
+                history={props[key]}
+                description={widget.description}
+                iconType={widget.iconType}
+              />
             </div>,
           );
           break;
@@ -79,7 +91,13 @@ export const WidgetList = props => {
         case widgetType.trivia:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Trivia data={props[key]} iconType={widget.iconType} />
+              <Trivia
+                id={widget.id}
+                onMove={props.onMove}
+                onHover={props.onHover}
+                data={props[key]}
+                iconType={widget.iconType}
+              />
             </div>,
           );
           break;
@@ -87,7 +105,13 @@ export const WidgetList = props => {
         case widgetType.finance:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Finance finance={props[key]} iconType={widget.iconType} />
+              <Finance
+                id={widget.id}
+                onMove={props.onMove}
+                onHover={props.onHover}
+                finance={props[key]}
+                iconType={widget.iconType}
+              />
             </div>,
           );
           break;
@@ -95,7 +119,13 @@ export const WidgetList = props => {
         case widgetType.weather:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Weather weather={props[key]} iconType={widget.iconType} />
+              <Weather
+                id={widget.id}
+                onMove={props.onMove}
+                onHover={props.onHover}
+                weather={props[key]}
+                iconType={widget.iconType}
+              />
             </div>,
           );
           break;
@@ -118,6 +148,7 @@ export const WidgetList = props => {
 };
 
 const mapStateToProps = state => ({
+  widgetList: state.widgetList.widgetList,
   weekNumber: state.generic.weekNumber,
   newRelicLoadTime: state.generic.newRelicLoadTime,
   newRelicErrors: state.generic.newRelicErrors,
@@ -153,4 +184,13 @@ WidgetList.defaultProps = {
   trivia: {},
 };
 
-export default connect(mapStateToProps)(WidgetList);
+const mapDispatchToProps = dispatch => ({
+  onHover: data => {
+    dispatch(hoverWidget(data));
+  },
+  onMove: data => {
+    dispatch(moveWidget(data));
+  },
+});
+
+export default compose(DragDropContext(HTML5Backend), connect(mapStateToProps, mapDispatchToProps))(WidgetList);

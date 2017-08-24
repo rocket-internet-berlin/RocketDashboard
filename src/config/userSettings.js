@@ -1,21 +1,29 @@
+import uuidv4 from 'uuid/v4';
+
 import constants from './constants';
 
 const widgetType = constants.widgetType;
 const iconType = constants.iconType;
 
 const userSettings = {
-  widgetList: {
-    finance: {
+  widgetList: [
+    {
+      id: uuidv4(),
+      key: 'finance',
       display: true,
       iconType: iconType.google,
       type: widgetType.finance,
     },
-    weather: {
+    {
+      id: uuidv4(),
+      key: 'weather',
       display: true,
       iconType: iconType.weather,
       type: widgetType.weather,
     },
-    newRelicErrors: {
+    {
+      id: uuidv4(),
+      key: 'newRelicErrors',
       display: true,
       heading: 'Transaction Errors',
       iconType: iconType.newrelic,
@@ -23,7 +31,9 @@ const userSettings = {
       riseIsBad: true,
       type: widgetType.number,
     },
-    newRelicLoadTime: {
+    {
+      id: uuidv4(),
+      key: 'newRelicLoadTime',
       display: true,
       heading: 'Load Time (s)',
       iconType: iconType.newrelic,
@@ -31,19 +41,25 @@ const userSettings = {
       riseIsBad: true,
       type: widgetType.number,
     },
-    newRelicUniqueSessions: {
+    {
+      id: uuidv4(),
+      key: 'newRelicUniqueSessions',
       display: true,
       heading: 'Unique Sessions',
       iconType: iconType.newrelic,
       type: widgetType.number,
     },
-    newRelicSuccessfulBookings: {
+    {
+      id: uuidv4(),
+      key: 'newRelicSuccessfulBookings',
       display: true,
       heading: 'Successful Bookings',
       iconType: iconType.newrelic,
       type: widgetType.number,
     },
-    newRelicCliErrors: {
+    {
+      id: uuidv4(),
+      key: 'newRelicCliErrors',
       display: true,
       heading: 'CLI Errors',
       iconType: iconType.newrelic,
@@ -51,25 +67,33 @@ const userSettings = {
       threshold: 1,
       riseIsBad: true,
     },
-    weekNumber: {
+    {
+      id: uuidv4(),
+      key: 'weekNumber',
       display: true,
       iconType: iconType.calendar,
       heading: 'Week',
       type: widgetType.number,
     },
-    newRelicErrorBreakdown: {
+    {
+      id: uuidv4(),
+      key: 'newRelicErrorBreakdown',
       display: true,
       heading: 'Error Breakdown',
       iconType: iconType.newrelic,
       type: widgetType.breakdown,
     },
-    newRelicWebsiteFunnel: {
+    {
+      id: uuidv4(),
+      key: 'newRelicWebsiteFunnel',
       display: true,
       heading: 'Website Funnel',
       iconType: iconType.newrelic,
       type: widgetType.funnel,
     },
-    jiraInProgress: {
+    {
+      id: uuidv4(),
+      key: 'jiraInProgress',
       display: true,
       iconType: iconType.jira,
       heading: 'In Progress',
@@ -77,30 +101,40 @@ const userSettings = {
       riseIsBad: true,
       type: widgetType.number,
     },
-    jiraSelectedForDevelopment: {
+    {
+      id: uuidv4(),
+      key: 'jiraSelectedForDevelopment',
       display: true,
       iconType: iconType.jira,
       heading: 'Selected For Development',
       type: widgetType.number,
     },
-    jiraReadyForQa: {
+    {
+      id: uuidv4(),
+      key: 'jiraReadyForQa',
       display: true,
       iconType: iconType.jira,
       heading: 'Ready For QA',
       type: widgetType.number,
     },
-    trivia: {
+    {
+      id: uuidv4(),
+      key: 'trivia',
       display: true,
       iconType: iconType.calendar,
       heading: "Today's trivia",
       type: widgetType.trivia,
     },
-    bugsHistory: {
+    {
+      id: uuidv4(),
+      key: 'bugeHistory',
       display: true,
       iconType: iconType.jira,
       type: widgetType.bugsHistory,
     },
-    customNumber: {
+    {
+      id: uuidv4(),
+      key: 'customNumber',
       display: true,
       heading: 'Custom Number',
       iconType: null,
@@ -108,17 +142,21 @@ const userSettings = {
       threshold: 5,
       riseIsBad: true,
     },
-    customFunnel: {
+    {
+      id: uuidv4(),
+      key: 'customFunnel',
       display: true,
       heading: 'Custom Funnel',
       type: widgetType.funnel,
     },
-    customBreakdown: {
+    {
+      id: uuidv4(),
+      key: 'customBreakdown',
       display: true,
       heading: 'Custom Breakdown',
       type: widgetType.breakdown,
     },
-  },
+  ],
 };
 
 export default userSettings;

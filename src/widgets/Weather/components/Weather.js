@@ -2,6 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RelativeTime from 'react-relative-time';
+import { compose } from 'redux';
+import { DragSource, DropTarget } from 'react-dnd';
+
+import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
+import constants from '../../../config/constants';
 import getIcon from '../../../lib/getIcon';
 
 const updatedTime = updated => {
@@ -35,23 +40,25 @@ const getTemperature = temp => {
   return <span>Loading data...</span>;
 };
 
-const Weather = ({ weather, iconType }) =>
-  <div className="panel Number">
-    <div className="panel-heading">
-      Weather for {weather.weather.city}
-      {getIcon(iconType)}
-    </div>
-    <div className="panel-body">
-      {getTemperature(weather.weather.temp)}
-      {weatherIcon(weather.weather.icon)}
-    </div>
-    <div className="panel-footer">
-      <span>
-        {weather.weather.description}
-        {updatedTime(weather.weather.updated)}
-      </span>
-    </div>
-  </div>;
+const Weather = ({ connectDragSource, connectDropTarget, isDragging, isOver, iconType, weather }) =>
+  compose(connectDragSource, connectDropTarget)(
+    <div className="panel Number" style={draggingStyle(isDragging, isOver)}>
+      <div className="panel-heading">
+        Weather for {weather.weather.city}
+        {getIcon(iconType)}
+      </div>
+      <div className="panel-body">
+        {getTemperature(weather.weather.temp)}
+        {weatherIcon(weather.weather.icon)}
+      </div>
+      <div className="panel-footer">
+        <span>
+          {weather.weather.description}
+          {updatedTime(weather.weather.updated)}
+        </span>
+      </div>
+    </div>,
+  );
 
 const mapStateToProps = state => ({
   weather: state.weather,
@@ -79,4 +86,14 @@ Weather.defaultProps = {
   iconType: null,
 };
 
-export default connect(mapStateToProps)(Weather);
+export default compose(
+  DragSource(constants.draggableType.smallWidget, dragSource, (conn, monitor) => ({
+    connectDragSource: conn.dragSource(),
+    isDragging: monitor.isDragging(),
+  })),
+  DropTarget(constants.draggableType.smallWidget, dropTarget, (conn, monitor) => ({
+    connectDropTarget: conn.dropTarget(),
+    isOver: monitor.isOver(),
+  })),
+  connect(mapStateToProps),
+)(Weather);

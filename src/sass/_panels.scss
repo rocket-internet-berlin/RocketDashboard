@@ -6,6 +6,7 @@
   margin-bottom: $grid-gutter-width;
   overflow: hidden;   // fixes a layout issue on IE11
   background-color: $panel-bg;
+  cursor: move;
 
   @media(min-width:768px){
     height: $widget-height;

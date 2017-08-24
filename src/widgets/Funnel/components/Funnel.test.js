@@ -4,12 +4,28 @@ import Funnel, { getTableData, fixSilhouette } from './Funnel';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 
 describe('Funnel component', () => {
+  // Obtain the reference to the component before React DnD wrapping
+  const OriginalFunnel = Funnel.DecoratedComponent;
+
+  // Stub the React DnD connector functions with an identity function
+  const identity = el => el;
+  const preview = el => el;
+
   const dataValid = {
     results: [{ name: 'name 1', count: 1 }, { name: 'name 2', count: 2 }],
   };
   const heading = 'Some Heading';
   const description = 'Some Explanation';
-  const widget = shallow(<Funnel heading={heading} description={description} data={dataValid} />);
+  const widget = shallow(
+    <OriginalFunnel
+      connectDragSource={identity}
+      connectDragPreview={preview}
+      connectDropTarget={identity}
+      heading={heading}
+      description={description}
+      data={dataValid}
+    />,
+  );
 
   it('contains the heading', () => {
     expect(widget.contains(heading)).toEqual(true);
@@ -26,12 +42,28 @@ describe('Funnel component', () => {
   it('does not contain BasicTable is no data.results are passed', () => {
     const dataNoResults = Object.assign({}, dataValid);
     delete dataNoResults.results;
-    const widgetNoDescription = shallow(<Funnel heading={heading} data={dataNoResults} />);
+    const widgetNoDescription = shallow(
+      <OriginalFunnel
+        connectDragSource={identity}
+        connectDragPreview={preview}
+        connectDropTarget={identity}
+        heading={heading}
+        data={dataNoResults}
+      />,
+    );
     expect(widgetNoDescription.find(BasicTable).length).toBe(0);
   });
 
   it('does not contain the description', () => {
-    const widgetNoDescription = shallow(<Funnel heading={heading} data={dataValid} />);
+    const widgetNoDescription = shallow(
+      <OriginalFunnel
+        connectDragSource={identity}
+        connectDragPreview={preview}
+        connectDropTarget={identity}
+        heading={heading}
+        data={dataValid}
+      />,
+    );
     expect(widgetNoDescription.contains(description)).toEqual(false);
   });
 });
