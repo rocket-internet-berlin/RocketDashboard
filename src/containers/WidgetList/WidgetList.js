@@ -95,7 +95,7 @@ export const WidgetList = props => {
         case widgetType.weather:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Weather />
+              <Weather weather={props[key]} iconType={widget.iconType} />
             </div>,
           );
           break;
