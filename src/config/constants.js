@@ -9,6 +9,7 @@ const constants = {
     bugsHistory: 'bugsHistory',
     trivia: 'trivia',
     finance: 'finance',
+    weather: 'weather',
   },
   iconType: {
     jira: 'jira',

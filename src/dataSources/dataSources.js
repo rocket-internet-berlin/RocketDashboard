@@ -32,6 +32,7 @@ const dataSources = [
     key: 'trivia',
     fetchFunction: () => fetchApi('trivia/today'),
   },
+  { key: 'weather', fetchFunction: () => fetchApi('weather/current') },
 ];
 
 export default dataSources;

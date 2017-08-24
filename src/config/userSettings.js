@@ -10,6 +10,10 @@ const userSettings = {
       iconType: iconType.google,
       type: widgetType.finance,
     },
+    weather: {
+      display: true,
+      type: widgetType.weather,
+    },
     newRelicErrors: {
       display: true,
       heading: 'Transaction Errors',
