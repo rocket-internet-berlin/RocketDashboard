@@ -18,7 +18,7 @@ const BugsHistory = ({ connectDragSource, connectDragPreview, connectDropTarget,
     <div className="panel BugsHistory" style={draggingStyle(isDragging, isOver)}>
       {connectDragPreview(
         <div className="panel-heading">
-          Bugs History
+          <div className="panel-title-text">Bugs History</div>
           {getIcon(props.iconType)}
         </div>,
       )}

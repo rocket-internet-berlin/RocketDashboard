@@ -44,7 +44,9 @@ const Weather = ({ connectDragSource, connectDropTarget, isDragging, isOver, ico
   compose(connectDragSource, connectDropTarget)(
     <div className="panel Number" style={draggingStyle(isDragging, isOver)}>
       <div className="panel-heading">
-        Weather for {weather.weather.city}
+        <div className="panel-title-text">
+          Weather for {weather.weather.city}
+        </div>
         {getIcon(iconType)}
       </div>
       <div className="panel-body">

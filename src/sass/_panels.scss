@@ -24,24 +24,32 @@
       margin-right: 10px;
     }
     .logo.jira {
-      max-height: 28px;
-      vertical-align: text-bottom;
+      width: 58px;
+      margin-top: 1px;
     }
     .logo.newrelic {
-      max-height: 25px;
-      vertical-align: middle;
+      width: 100px;
+      margin-top: 7px;
     }
     .logo.google {
-      max-height: 22px;
-      vertical-align: middle;
+      width: 65px;
+      margin-top: 5px;
     }
     .logo.calendar {
-      max-height: 28px;
-      vertical-align: sub;
+      width: 25px;
+      margin-top: 2px;
     }
     .logo.weather {
-      max-height: 28px;
-      vertical-align: sub;
+      width: 32px;
+      margin-top: -4px;
+    }
+
+    .panel-title-text {
+      display: inline-block;
+      max-width: 75%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
   .panel-body {
@@ -60,6 +68,7 @@
     }
   }
 
+
   &:not([class*="panel-"]) > .panel-heading {
     color: $widget-heading-color;
     border: 0;
@@ -71,6 +80,30 @@
   .panel {
     .panel-heading {
       font-size: 16px;
+
+      .logo {
+        margin-right: 5px;
+      }
+      .logo.jira {
+        width: 45px;
+        margin-top: -2px;
+      }
+      .logo.newrelic {
+        width: 55px;
+        margin-top: 6px;
+      }
+      .logo.google {
+        width: 42px;
+        margin-top: 5px;
+      }
+      .logo.calendar {
+        width: 20px;
+        margin-top: -1px;
+      }
+      .logo.weather {
+        width: 23px;
+        margin-top: -4px;
+      }
     }
   }
 }
@@ -80,6 +113,30 @@
   .panel {
     .panel-heading {
       font-size: 20px;
+
+      .logo {
+        margin-right: 8px;
+      }
+      .logo.jira {
+        width: 52px;
+        margin-top: 1px;
+      }
+      .logo.newrelic {
+        width: 70px;
+        margin-top: 10px;
+      }
+      .logo.google {
+        width: 52px;
+        margin-top: 8px;
+      }
+      .logo.calendar {
+        width: 25px;
+        margin-top: 0;
+      }
+      .logo.weather {
+        width: 28px;
+        margin-top: -3px;
+      }
     }
   }
 }
@@ -89,6 +146,30 @@
   .panel {
     .panel-heading {
       font-size: 24px;
+
+      .logo {
+        margin-right: 8px;
+      }
+      .logo.jira {
+        width: 58px;
+        margin-top: 2px;
+      }
+      .logo.newrelic {
+        width: 90px;
+        margin-top: 10px;
+      }
+      .logo.google {
+        width: 65px;
+        margin-top: 9px;
+      }
+      .logo.calendar {
+        width: 27px;
+        margin-top: 1px;
+      }
+      .logo.weather {
+        width: 32px;
+        margin-top: 0;
+      }
     }
   }
 }

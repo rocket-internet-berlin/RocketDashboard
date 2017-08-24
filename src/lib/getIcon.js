@@ -3,11 +3,7 @@ import constants from '../config/constants';
 
 const getIcon = iconType => {
   if (iconType) {
-    return (
-      <span className="pull-right">
-        <img className={`logo ${iconType}`} src={constants.iconSrc[iconType]} alt="Logo" />
-      </span>
-    );
+    return <img className={`pull-right logo ${iconType}`} src={constants.iconSrc[iconType]} alt="Logo" />;
   }
   return null;
 };

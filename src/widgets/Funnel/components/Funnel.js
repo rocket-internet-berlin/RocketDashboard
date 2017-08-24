@@ -29,7 +29,9 @@ const Funnel = ({ connectDragSource, connectDragPreview, connectDropTarget, isDr
     <div className="panel NewRelicWebsiteFunnel" style={draggingStyle(isDragging, isOver)}>
       {connectDragPreview(
         <div className="panel-heading">
-          {props.heading}
+          <div className="panel-title-text">
+            {props.heading}
+          </div>
           {getIcon(props.iconType)}
         </div>,
       )}

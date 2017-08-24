@@ -29,7 +29,9 @@ const Breakdown = ({ connectDragSource, connectDragPreview, connectDropTarget, i
     <div className="panel Breakdown" style={draggingStyle(isDragging, isOver)}>
       {connectDragPreview(
         <div className="panel-heading">
-          {props.heading}
+          <div className="panel-title-text">
+            {props.heading}
+          </div>
           {getIcon(props.iconType)}
         </div>,
       )}
