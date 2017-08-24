@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import RelativeTime from 'react-relative-time';
+import getIcon from '../../../lib/getIcon';
 
 const updatedTime = updated => {
   if (updated) {
@@ -22,19 +23,26 @@ const weatherIcon = icon => {
   return <img className="pull-right" src={iconUrl} alt="Icon depicting current weather" />;
 };
 
-const Weather = ({ weather }) =>
+const getTemperature = temp => {
+  if (temp) {
+    return (
+      <span className="current">
+        {temp} &deg;
+      </span>
+    );
+  }
+
+  return <span>Loading data...</span>;
+};
+
+const Weather = ({ weather, iconType }) =>
   <div className="panel Number">
     <div className="panel-heading">
       Weather for {weather.weather.city}
+      {getIcon(iconType)}
     </div>
     <div className="panel-body">
-      {weather.weather.temp
-        ? <span className="current">
-          {weather.weather.temp} &deg;
-        </span>
-        : <span>
-          Loading data...
-        </span>}
+      {getTemperature(weather.weather.temp)}
       {weatherIcon(weather.weather.icon)}
     </div>
     <div className="panel-footer">
@@ -57,6 +65,7 @@ Weather.propTypes = {
     description: PropTypes.string,
     updated: PropTypes.string,
   }).isRequired,
+  iconType: PropTypes.string,
 };
 
 Weather.defaultProps = {
@@ -67,6 +76,7 @@ Weather.defaultProps = {
     description: null,
     updated: null,
   },
+  iconType: null,
 };
 
 export default connect(mapStateToProps)(Weather);

@@ -16,12 +16,14 @@ const constants = {
     newrelic: 'newrelic',
     google: 'google',
     calendar: 'calendar',
+    weather: 'weather',
   },
   iconSrc: {
     jira: 'icons/icon-jira-logo.png',
     newrelic: 'icons/icon-newrelic-logo.png',
     google: 'icons/icon-google-logo.png',
     calendar: 'icons/icon-calendar-logo.png',
+    weather: 'icons/icon-weather-logo.png',
   },
 };
 

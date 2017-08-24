@@ -12,6 +12,7 @@ const userSettings = {
     },
     weather: {
       display: true,
+      iconType: iconType.weather,
       type: widgetType.weather,
     },
     newRelicErrors: {
