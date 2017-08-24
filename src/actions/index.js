@@ -3,7 +3,7 @@ import { refresh as refreshBugsHistory } from '../widgets/BugsHistory/actions/bu
 import { refresh as refreshFinance } from '../widgets/Finance/actions/finance';
 import dataSources from '../dataSources/dataSources';
 
-// TODO: Possibly refactor using Observers pattern. This way we won`t have to add widgets here manually.
+// TODO: Possibly refactor using Observers pattern. This way we won't have to add widgets here manually.
 const refreshAll = () => dispatch => {
   dispatch(refreshBugsHistory());
   dispatch(refreshFinance());

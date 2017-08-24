@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _round from 'lodash/round';
 import RelativeTime from 'react-relative-time';
+import getIcon from '../../../lib/getIcon';
 
 import constants from '../../../config/constants';
 import './Number.scss';
@@ -67,10 +68,11 @@ const getFormattedData = current => {
   return getRounded(current);
 };
 
-const Number = ({ heading, description, data, riseIsBad, threshold }) =>
+const Number = ({ heading, iconType, description, data, riseIsBad, threshold }) =>
   <div className="Number panel">
     <div className="panel-heading">
       {heading}
+      {getIcon(iconType)}
     </div>
     <div className="panel-body">
       <span className={getCurrentClassName(data.current, threshold, riseIsBad)}>
@@ -90,6 +92,7 @@ const Number = ({ heading, description, data, riseIsBad, threshold }) =>
 
 Number.propTypes = {
   heading: PropTypes.string.isRequired,
+  iconType: PropTypes.string,
   riseIsBad: PropTypes.bool,
   threshold: PropTypes.number,
   description: PropTypes.string,
@@ -103,6 +106,7 @@ Number.propTypes = {
 
 Number.defaultProps = {
   heading: '',
+  iconType: null,
   description: null,
   riseIsBad: false,
   threshold: null,
