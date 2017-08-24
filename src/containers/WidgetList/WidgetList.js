@@ -11,7 +11,7 @@ import Number from '../../widgets/Number/components/Number';
 import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 import Breakdown from '../../widgets/Breakdown/components/Breakdown';
 import Funnel from '../../widgets/Funnel/components/Funnel';
-import Trivia from '../../widgets/Trivia/components/Trivia';
+import Text from '../../widgets/Text/components/Text';
 import Finance from '../../widgets/Finance/components/Finance';
 import Weather from '../../widgets/Weather/components/Weather';
 import constants from '../../config/constants';
@@ -88,14 +88,15 @@ export const WidgetList = props => {
           );
           break;
 
-        case widgetType.trivia:
+        case widgetType.text:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Trivia
+              <Text
                 id={widget.id}
                 onMove={props.onMove}
                 onHover={props.onHover}
                 data={props[key]}
+                heading={widget.heading}
                 iconType={widget.iconType}
               />
             </div>,

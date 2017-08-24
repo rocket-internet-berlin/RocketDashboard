@@ -7,7 +7,7 @@ import { DragSource, DropTarget } from 'react-dnd';
 import getIcon from '../../../lib/getIcon';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
-import './Trivia.scss';
+import './Text.scss';
 
 const updatedTime = updated => {
   if (updated) {
@@ -20,7 +20,7 @@ const updatedTime = updated => {
   return null;
 };
 
-const Trivia = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...props }) =>
+const Text = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...props }) =>
   compose(connectDragSource, connectDropTarget)(
     <div className="panel Trivia" style={draggingStyle(isDragging, isOver)}>
       <div className="panel-heading">
@@ -29,7 +29,7 @@ const Trivia = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...p
       </div>
       <div className="panel-body">
         <div>
-          {props.data.trivia}
+          {props.data.body}
         </div>
       </div>
       <div className="panel-footer">
@@ -38,17 +38,19 @@ const Trivia = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...p
     </div>,
   );
 
-Trivia.propTypes = {
+Text.propTypes = {
   data: PropTypes.shape({
-    trivia: PropTypes.string,
+    body: PropTypes.string,
   }),
+  heading: PropTypes.string,
   iconType: PropTypes.string,
 };
 
-Trivia.defaultProps = {
+Text.defaultProps = {
   data: {
-    trivia: null,
+    body: null,
   },
+  heading: null,
   iconType: null,
 };
 
@@ -61,4 +63,4 @@ export default compose(
     connectDropTarget: connect.dropTarget(),
     isOver: monitor.isOver(),
   })),
-)(Trivia);
+)(Text);

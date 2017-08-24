@@ -7,7 +7,7 @@ const constants = {
     funnel: 'funnel',
     breakdown: 'breakdown',
     bugsHistory: 'bugsHistory',
-    trivia: 'trivia',
+    text: 'text',
     finance: 'finance',
     weather: 'weather',
   },
