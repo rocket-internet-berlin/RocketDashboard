@@ -1,21 +1,34 @@
-import Cache from 'node-cache';
+import redis from 'redis';
 
 class CacheService {
-  constructor(stdTTL) {
-    this.cache = new Cache({ stdTTL });
+  constructor(cacheConfig) {
+    console.log('Starting redis cache service.');
+    this.client = redis.createClient(
+      {
+        host: cacheConfig.redisHost,
+        redisPort: cacheConfig.redisPort,
+        db: cacheConfig.redisDatabaseNumber,
+      },
+    );
+    this.stdTTL = cacheConfig.defaultCacheTTL;
   }
-
-  get(key) {
-    return this.cache.get(key);
+  get(key, callback) {
+    // Do standard callback like (err, result) => { callback function }
+    // The result var will be null if nothing found for that key.
+    return this.client.get(key, callback);
   }
-  set(key, value) {
-    return this.cache.set(key, value);
+  set(key, value, ttl = null) {
+    const ttlToUse = ttl !== null ? ttl : this.stdTTL;
+    return this.client.set(key, JSON.stringify(value), 'EX', ttlToUse);
   }
-  keys() {
-    return this.cache.keys();
+  exists(key, callback) {
+    return this.client.exists(key, callback);
+  }
+  keys(callback) {
+    return this.client.keys('*', callback);
   }
   clear() {
-    return this.cache.flushAll();
+    return this.client.flushdb();
   }
 }
 

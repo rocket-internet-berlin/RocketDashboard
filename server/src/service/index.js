@@ -7,8 +7,8 @@ import GoogleFinanceService from './googleFinanceService';
 import WeatherService from './weatherService';
 import config from '../config';
 
-const cacheService = new CacheService(config.defaultCacheTTL);
 const googleSheetsService = new GoogleSheetsService(config.google.serviceAccountEmail, config.google.serviceAccountPrivateKey);
+const cacheService = new CacheService(config.cache);
 const jiraService = new JiraService(config.jira);
 const newRelicService = new NewRelicService(config.newRelic);
 const triviaService = new TriviaService();
