@@ -15,6 +15,7 @@ const userSettings = {
       iconType: iconType.google,
       type: widgetType.number,
       formatter: financeFormatter,
+      heading: 'Stock Widget', // Only for displaying widget name in settings modal
     },
     {
       id: uuidv4(),
@@ -22,6 +23,7 @@ const userSettings = {
       display: true,
       iconType: iconType.weather,
       type: widgetType.weather,
+      heading: 'Weather Widget', // Only for displaying widget name in settings modal
     },
     {
       id: uuidv4(),
@@ -129,10 +131,11 @@ const userSettings = {
     },
     {
       id: uuidv4(),
-      key: 'bugeHistory',
+      key: 'bugsHistory',
       display: true,
       iconType: iconType.jira,
       type: widgetType.bugsHistory,
+      heading: 'Bugs History',
     },
     {
       id: uuidv4(),

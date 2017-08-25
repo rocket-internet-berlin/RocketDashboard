@@ -75,6 +75,34 @@ class WidgetStore {
       this.widgetList.splice(target, 0, sourceWidget[0]);
     }
   }
+
+  toggleDisplay(id) {
+    this.readFromLocalStorage();
+    const index = findIndex(this.widgetList, { id });
+
+    if (index > -1) {
+      const widget = this.widgetList[index];
+      widget.display = !widget.display;
+      this.widgetList[index] = widget;
+      this.save();
+    }
+
+    return new Promise(resolve =>
+      resolve({
+        widgetList: this.widgetList,
+      }),
+    );
+  }
+
+  getWidget(key) {
+    const index = findIndex(this.widgetList, { key });
+
+    if (index > -1) {
+      return this.widgetList[index];
+    }
+
+    return null;
+  }
 }
 
 const widgetStore = new WidgetStore();

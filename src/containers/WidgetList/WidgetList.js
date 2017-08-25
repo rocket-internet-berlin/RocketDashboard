@@ -23,6 +23,10 @@ export const WidgetList = props => {
     const widgetType = constants.widgetType;
 
     forEach(widgetListSettings, widget => {
+      if (!widget.display) {
+        return;
+      }
+
       const key = widget.key;
       switch (widget.type) {
         case widgetType.number:

@@ -5,3 +5,14 @@ body {
   font-family: 'Assistant', sans-serif;
   font-weight: 300;
 }
+
+.icon {
+  font-family: "FontAwesome";
+}
+
+@media (max-width: $screen-xs-max) {
+  .container-fluid {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
