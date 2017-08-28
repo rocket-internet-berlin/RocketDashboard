@@ -19,6 +19,30 @@
     color: $widget-heading-color;
     letter-spacing: .04em;
     background-color: $light-bg-color;
+
+    .logo {
+      margin-right: 10px;
+    }
+    .logo.jira {
+      max-height: 28px;
+      vertical-align: text-bottom;
+    }
+    .logo.newrelic {
+      max-height: 25px;
+      vertical-align: middle;
+    }
+    .logo.google {
+      max-height: 22px;
+      vertical-align: middle;
+    }
+    .logo.calendar {
+      max-height: 28px;
+      vertical-align: sub;
+    }
+    .logo.weather {
+      max-height: 28px;
+      vertical-align: sub;
+    }
   }
   .panel-body {
     min-height: 155px;

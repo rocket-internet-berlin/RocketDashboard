@@ -1,6 +1,6 @@
 import { refresh as refreshGeneric } from './generic/generic';
 import { refresh as refreshBugsHistory } from '../widgets/BugsHistory/actions/bugsHistory';
-import { refresh as refreshFinance } from '../widgets/Finance/actions/finance';
+import { refresh as refreshFinance } from './finance/finance';
 import { refresh as refreshWeather } from '../widgets/Weather/actions/weather';
 import dataSources from '../dataSources/dataSources';
 

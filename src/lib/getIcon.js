@@ -1,6 +1,5 @@
 import React from 'react';
 import constants from '../config/constants';
-import './Icons.scss';
 
 const getIcon = iconType => {
   if (iconType) {

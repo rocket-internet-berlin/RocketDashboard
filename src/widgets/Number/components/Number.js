@@ -75,12 +75,12 @@ const Number = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...p
   compose(connectDragSource, connectDropTarget)(
     <div className="Number panel" style={draggingStyle(isDragging, isOver)}>
       <div className="panel-heading">
-        {props.heading}
+        {props.heading || props.data.heading}
         {getIcon(props.iconType)}
       </div>
       <div className="panel-body">
         <span className={getCurrentClassName(props.data.current, props.threshold, props.riseIsBad)}>
-          {getFormattedData(props.data.current)}
+          {props.formatter ? props.formatter(props.data.current) : getFormattedData(props.data.current)}
         </span>
         {typeof props.data.previous !== 'undefined' &&
           props.data.previous !== constants.unknown &&
@@ -101,6 +101,7 @@ Number.propTypes = {
   riseIsBad: PropTypes.bool,
   threshold: PropTypes.number,
   description: PropTypes.string,
+  formatter: PropTypes.func,
   data: PropTypes.shape({
     current: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     previous: PropTypes.number,

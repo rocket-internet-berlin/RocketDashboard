@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { onReceive } from '../actions/finance';
+import { onReceive } from '../../actions/finance/finance';
 
 const reducer = handleActions(
   {
