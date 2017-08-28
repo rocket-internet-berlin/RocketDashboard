@@ -123,7 +123,7 @@ const userSettings = {
       display: true,
       iconType: iconType.calendar,
       heading: "Today's trivia",
-      type: widgetType.trivia,
+      type: widgetType.text,
     },
     {
       id: uuidv4(),

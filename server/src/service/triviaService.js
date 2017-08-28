@@ -13,7 +13,7 @@ class TriviaService {
     const url = `${this.baseUrl}/${month}/${date}/date`;
 
     return axios.get(url).then(response => ({
-      trivia: response.data,
+      body: response.data,
       updated: today,
     }));
   }
