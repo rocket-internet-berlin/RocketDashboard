@@ -75,7 +75,9 @@ const Number = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...p
   compose(connectDragSource, connectDropTarget)(
     <div className="Number panel" style={draggingStyle(isDragging, isOver)}>
       <div className="panel-heading">
-        {props.heading || props.data.heading}
+        <div className="panel-title-text">
+          {props.heading || props.data.heading}
+        </div>
         {getIcon(props.iconType)}
       </div>
       <div className="panel-body">

@@ -24,7 +24,7 @@ const Text = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...pro
   compose(connectDragSource, connectDropTarget)(
     <div className="panel Trivia" style={draggingStyle(isDragging, isOver)}>
       <div className="panel-heading">
-        Date Trivia
+        <div className="panel-title-text">Date Trivia</div>
         {getIcon(props.iconType)}
       </div>
       <div className="panel-body">
