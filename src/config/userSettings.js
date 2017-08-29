@@ -1,6 +1,7 @@
 import uuidv4 from 'uuid/v4';
 
 import constants from './constants';
+import { financeFormatter } from '../lib/formatter';
 
 const widgetType = constants.widgetType;
 const iconType = constants.iconType;
@@ -12,7 +13,8 @@ const userSettings = {
       key: 'finance',
       display: true,
       iconType: iconType.google,
-      type: widgetType.finance,
+      type: widgetType.number,
+      formatter: financeFormatter,
     },
     {
       id: uuidv4(),

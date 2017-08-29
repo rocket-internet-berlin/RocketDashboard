@@ -12,7 +12,6 @@ import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
 import Breakdown from '../../widgets/Breakdown/components/Breakdown';
 import Funnel from '../../widgets/Funnel/components/Funnel';
 import Text from '../../widgets/Text/components/Text';
-import Finance from '../../widgets/Finance/components/Finance';
 import Weather from '../../widgets/Weather/components/Weather';
 import constants from '../../config/constants';
 
@@ -38,6 +37,7 @@ export const WidgetList = props => {
                 data={props[key]}
                 threshold={widget.threshold}
                 riseIsBad={widget.riseIsBad}
+                formatter={widget.formatter}
               />
             </div>,
           );
@@ -103,20 +103,6 @@ export const WidgetList = props => {
           );
           break;
 
-        case widgetType.finance:
-          widgetComponents.push(
-            <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
-              <Finance
-                id={widget.id}
-                onMove={props.onMove}
-                onHover={props.onHover}
-                finance={props[key]}
-                iconType={widget.iconType}
-              />
-            </div>,
-          );
-          break;
-
         case widgetType.weather:
           widgetComponents.push(
             <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
@@ -165,6 +151,7 @@ const mapStateToProps = state => ({
   customFunnel: state.generic.customFunnel,
   customBreakdown: state.generic.customBreakdown,
   trivia: state.generic.trivia,
+  finance: state.finance.finance,
 });
 
 WidgetList.defaultProps = {
@@ -183,6 +170,7 @@ WidgetList.defaultProps = {
   customFunnel: {},
   customBreakdown: {},
   trivia: {},
+  finance: {},
 };
 
 const mapDispatchToProps = dispatch => ({

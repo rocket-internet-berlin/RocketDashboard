@@ -9,10 +9,11 @@ const parseStockData = (payload) => {
   return ({
     status: 'success',
     data: {
-      price: stockData.l_fix,
-      change: stockData.c_fix,
+      current: stockData.l_fix,
+      change: parseFloat(stockData.c_fix),
+      previous: parseFloat(stockData.l_fix - stockData.c_fix),
       updated: new Date(),
-      company: config.finance.company,
+      heading: config.finance.company,
     },
   });
 };
