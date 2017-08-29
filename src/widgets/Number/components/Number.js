@@ -70,9 +70,10 @@ const Number = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...p
         {getIcon(props.iconType)}
       </div>
       <div className="panel-body">
-        <span className={getCurrentClassName(props.data.current, props.threshold, props.riseIsBad)}>
-          {props.formatter ? props.formatter(props.data.current) : getFormattedData(props.data.current)}
-        </span>
+        {typeof props.data.current !== 'undefined' &&
+          <span className={getCurrentClassName(props.data.current, props.threshold, props.riseIsBad)}>
+            {props.formatter ? props.formatter(props.data.current) : getFormattedData(props.data.current)}
+          </span>}
         {typeof props.data.previous !== 'undefined' &&
           props.data.previous !== constants.unknown &&
           <span className={getChangeClassName(getChange(props.data.current, props.data.previous), props.riseIsBad)}>

@@ -10,6 +10,7 @@ const constants = {
     text: 'text',
     finance: 'finance',
     weather: 'weather',
+    github: 'githubPr',
   },
   iconType: {
     jira: 'jira',
@@ -18,6 +19,7 @@ const constants = {
     calendar: 'calendar',
     weather: 'weather',
     twitter: 'twitter',
+    github: 'github',
   },
   iconSrc: {
     jira: 'icons/icon-jira-logo.png',
@@ -26,6 +28,7 @@ const constants = {
     calendar: 'icons/icon-calendar-logo.png',
     weather: 'icons/icon-weather-logo.png',
     twitter: 'icons/icon-twitter-logo.png',
+    github: 'icons/icon-github-logo.png',
   },
   draggableType: {
     smallWidget: 'smallWidget',

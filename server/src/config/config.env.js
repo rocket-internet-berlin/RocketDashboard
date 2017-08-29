@@ -29,4 +29,9 @@ module.exports = {
   twitter: {
     query: process.env.TWITTER_QUERY,
   },
+  github: {
+    user: process.env.GITHUB_USER,
+    project: process.env.GITHUB_PROJECT,
+    authToken: process.env.GITHUB_AUTH_TOKEN,
+  },
 };
