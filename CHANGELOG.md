@@ -2,13 +2,20 @@
 
 #### Possible topics
 
-- Improve test coverage for frontend.
-- Backend tests.
+- Suggestions welcome. 
+
+#### 0.15.0
+
+- Git widget that shows the current amount of open PRs in a repo.
+- StatusCake history widget that shows a StatusCake test's uptime in a given time span.
+- Improved test coverage on both server and frontend side.
+- Instagram widget that displays a random image from a given hashtag.
+- ...
 
 #### 0.14.0
 
 - Widget to display the current temperature and weather conditions in a configurable city.
-- Twitter widget.
+- Twitter widget that displays a tweet from a given url query (e.g. hashtag or user).
 - Widget instantiation through FactoryPattern.
 - Persistent re-ordering of widgets using drag & drop.
 - Settings modal dialog to select which widget should be active. Selection is persistent in local storage.
