@@ -6,7 +6,7 @@
   border: none;
 }
 
-@media(max-width: $screen-sm) {
+@media(max-width: $screen-xs-max) {
   .navbar {
     .navbar-header {
       width: 16.66%;
@@ -34,5 +34,11 @@
     .icon {
       font-size: 24px;
     }
+  }
+}
+
+@media (min-width: $screen-xs-max) {
+  .navbar-nav {
+    margin: 0 20px;
   }
 }

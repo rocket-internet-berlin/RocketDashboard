@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import forEach from 'lodash/forEach';
+import Slider from 'react-slick';
 
 import './WidgetList.scss';
 import { move as moveWidget, hover as hoverWidget } from './actions/widgetList';
@@ -129,10 +130,33 @@ export const WidgetList = props => {
     return widgetComponents;
   };
 
+  const settings = {
+    autoplay: true,
+    dots: false,
+    arrows: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  const renderWidgetList = () => {
+    // eslint-disable-next-line
+    if (props.fullScreenMode) {
+      return (
+        <Slider {...settings}>
+          {displayWidgetInOrder(widgetList)}
+        </Slider>
+      );
+    }
+
+    return displayWidgetInOrder(widgetList);
+  };
+
   return (
     <div className="WidgetList">
       <div className="row">
-        {displayWidgetInOrder(widgetList)}
+        {renderWidgetList()}
       </div>
     </div>
   );

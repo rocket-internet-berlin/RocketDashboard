@@ -9,6 +9,7 @@ import BasicTable from '../../../components/BasicTable/BasicTable';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
 import getIcon from '../../../lib/getIcon';
+import './Funnel.scss';
 
 export const getTableData = data => data.map(el => [el.name, el.count]);
 export const fixSilhouette = value => Math.abs(value * 2);
@@ -26,7 +27,7 @@ const updatedTime = updated => {
 
 const Funnel = ({ connectDragSource, connectDragPreview, connectDropTarget, isDragging, isOver, ...props }) =>
   compose(connectDragSource, connectDropTarget)(
-    <div className="panel NewRelicWebsiteFunnel" style={draggingStyle(isDragging, isOver)}>
+    <div className="panel Funnel NewRelicWebsiteFunnel" style={draggingStyle(isDragging, isOver)}>
       {connectDragPreview(
         <div className="panel-heading">
           <div className="panel-title-text">
@@ -37,7 +38,7 @@ const Funnel = ({ connectDragSource, connectDragPreview, connectDropTarget, isDr
       )}
       <div className="panel-body hidden-xs">
         <div className="row">
-          <ResponsiveContainer width="100%" height={165}>
+          <ResponsiveContainer width="100%">
             <AreaChart
               data={props.data.results}
               layout="vertical"

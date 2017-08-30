@@ -11,6 +11,10 @@ export class NavigationBar extends Component {
     this.props.refreshAll();
   };
 
+  handleFullScreenMode = () => {
+    this.props.enterFullScreenMode();
+  };
+
   showModal = () => {
     this.props.showWidgetModal();
   };
@@ -26,7 +30,18 @@ export class NavigationBar extends Component {
           <div className="navbar-right">
             <ul className="nav navbar-nav">
               <li className="active">
-                <button className="widget-settings btn btn-default navbar-btn hidden-xs" onClick={this.showModal}>
+                <button
+                  className="NavigationBar__fullscreen btn btn-default navbar-btn visible-md-inline visible-lg-inline"
+                  onClick={this.handleFullScreenMode}
+                >
+                  {this.props.fullScreenMode ? 'Exit Full Screen' : 'Full Screen'}
+                </button>
+              </li>
+              <li className="active">
+                <button
+                  className="NavigationBar__widget-settings btn btn-default navbar-btn hidden-xs"
+                  onClick={this.showModal}
+                >
                   Settings
                 </button>
                 {/* eslint-disable jsx-a11y/no-static-element-interactions */}
@@ -60,6 +75,8 @@ const mapDispatchToProps = {
 
 NavigationBar.propTypes = {
   refreshAll: PropTypes.func.isRequired,
+  enterFullScreenMode: PropTypes.func.isRequired,
+  fullScreenMode: PropTypes.bool.isRequired,
   showWidgetModal: PropTypes.func.isRequired,
 };
 
