@@ -1,6 +1,6 @@
 import express from 'express';
 import config from '../config';
-import { financeService } from '../service';
+import { googleFinanceService } from '../service';
 
 const router = express.Router();
 
@@ -19,7 +19,7 @@ const parseStockData = (payload) => {
 };
 
 router.get('/stock', (req, res, next) => {
-  financeService.fetchStockPrice()
+  googleFinanceService.fetchStockPrice()
     .then(payload => {
       res.send(parseStockData(payload));
     })

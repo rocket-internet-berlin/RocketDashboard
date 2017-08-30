@@ -1,26 +1,26 @@
 import CacheService from './cacheService';
-import GoogleService from './googleService';
+import GoogleSheetsService from './googleSheetsService';
 import JiraService from './jiraService';
 import NewRelicService from './newRelicService';
 import TriviaService from './triviaService';
-import FinanceService from './financeService';
+import GoogleFinanceService from './googleFinanceService';
 import WeatherService from './weatherService';
 import config from '../config';
 
 const cacheService = new CacheService(config.defaultCacheTTL);
-const googleService = new GoogleService(config.google.serviceAccountEmail, config.google.serviceAccountPrivateKey);
+const googleSheetsService = new GoogleSheetsService(config.google.serviceAccountEmail, config.google.serviceAccountPrivateKey);
 const jiraService = new JiraService(config.jira);
 const newRelicService = new NewRelicService(config.newRelic);
 const triviaService = new TriviaService();
-const financeService = new FinanceService(config.finance);
+const googleFinanceService = new GoogleFinanceService(config.finance);
 const weatherService = new WeatherService(config.weather);
 
 export {
   cacheService,
-  googleService,
+  googleSheetsService,
   jiraService,
   newRelicService,
   triviaService,
-  financeService,
+  googleFinanceService,
   weatherService,
 };
