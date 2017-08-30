@@ -42,3 +42,18 @@
     }
   }
 }
+
+@media (max-width: $screen-xs-max) {
+  .navbar-right {
+    line-height: 60px;
+  }
+
+  ul {
+    font-size: 19px;
+  }
+
+  .nav > li {
+    float: left;
+    margin-left: 8px;
+  }
+}

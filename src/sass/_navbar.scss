@@ -16,7 +16,7 @@
     }
 
     .navbar-nav {
-      margin: 0 -15px;
+      margin: 0 -20px;
     }
 
     .navbar-left {
@@ -28,7 +28,11 @@
 
     .navbar-right {
       width: 16.66%;
-      float: left;
+      float: right;
+    }
+
+    .icon {
+      font-size: 24px;
     }
   }
 }
