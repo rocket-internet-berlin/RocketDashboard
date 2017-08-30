@@ -1,7 +1,7 @@
 import axios from 'axios';
 import validateSchema from '../helper/validator';
 
-class FinanceService {
+class GoogleFinanceService {
   static validateConfig(config) {
     const schema = {
       required: [
@@ -14,7 +14,7 @@ class FinanceService {
   }
 
   constructor(config) {
-    FinanceService.validateConfig(config);
+    GoogleFinanceService.validateConfig(config);
 
     this.stockTicker = config.stockTicker;
   }
@@ -24,4 +24,4 @@ class FinanceService {
   }
 }
 
-export default FinanceService;
+export default GoogleFinanceService;

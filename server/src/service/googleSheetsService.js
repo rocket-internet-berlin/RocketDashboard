@@ -2,7 +2,7 @@ import google from 'googleapis';
 
 const sheets = google.sheets('v4');
 
-class GoogleService {
+class GoogleSheetsService {
 
   constructor(serviceAccountEmail, serviceAccountPrivateKey) {
     this.jwtClient = new google.auth.JWT(
@@ -27,7 +27,7 @@ class GoogleService {
         return;
       }
       try {
-        const history = GoogleService.parseResponse(response);
+        const history = GoogleSheetsService.parseResponse(response);
         callback(err, history);
       } catch (exception) {
         callback(exception);
@@ -46,4 +46,4 @@ class GoogleService {
   }
 }
 
-export default GoogleService;
+export default GoogleSheetsService;
