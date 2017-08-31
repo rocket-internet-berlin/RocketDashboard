@@ -22,7 +22,17 @@ class WeatherService {
   }
 
   fetchWeatherInfo() {
-    return axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${this.apiCityId}&appid=${this.apiKey}&units=metric`);
+    return axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${this.apiCityId}&appid=${this.apiKey}&units=metric`)
+      .then((payload) => {
+        const weatherData = payload.data;
+        return ({
+          city: weatherData.name,
+          temp: parseInt(weatherData.main.temp, 10),
+          icon: weatherData.weather[0].icon,
+          description: weatherData.weather[0].description,
+          updated: new Date(),
+        });
+      });
   }
 }
 
