@@ -24,7 +24,7 @@ const BugsHistory = ({ connectDragSource, connectDragPreview, connectDropTarget,
       )}
       <div className="panel-body hidden-xs">
         <div className="row">
-          <ResponsiveContainer width="100%" height={220}>
+          <ResponsiveContainer width="100%">
             <LineChart margin={{ top: 0, right: 45, left: 0, bottom: 0 }} data={props.history}>
               <Line
                 type="linear"

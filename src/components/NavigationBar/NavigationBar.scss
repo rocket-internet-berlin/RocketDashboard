@@ -57,3 +57,16 @@
     margin-left: 8px;
   }
 }
+
+// Hide settings and refresh button in full screen mode
+*:fullscreen {
+  .NavigationBar {
+    .NavigationBar__widget-settings {
+      display: none !important;
+    }
+
+    .NavigationBar__refresh {
+      display: none !important;
+    }
+  }
+}

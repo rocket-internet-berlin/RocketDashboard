@@ -5,6 +5,13 @@
   color: $rocket-gray;
 }
 
+*:fullscreen{
+  .Trivia {
+    font-size: $font-size-big;
+    color: $rocket-gray;
+  }
+}
+
 // Laptop screen
 @media (min-width: $screen-md-min) {
   .Trivia {

@@ -5,6 +5,14 @@
     height: 320px;
   }
 
+  .panel-body {
+    height: 75%;
+  }
+
+  .row {
+    height: 100%;
+  }
+
   .bugs-current {
     font-size: $font-size-big;
     color: $rocket-gray;
@@ -27,5 +35,12 @@
       color: $red;
     }
   }
+}
 
+*:fullscreen {
+  .BugsHistory {
+    &.panel {
+      height: 100%;
+    }
+  }
 }

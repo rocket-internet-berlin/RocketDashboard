@@ -38,3 +38,12 @@
     }
   }
 }
+
+*:fullscreen {
+  .Number {
+    .current {
+      font-size: $font-size-fullscreen;
+      line-height: 1.5;
+    }
+  }
+}

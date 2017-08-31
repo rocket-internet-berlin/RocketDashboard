@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'full-screen';
 
 .panel {
   position: relative;
@@ -68,10 +69,59 @@
     }
   }
 
-
   &:not([class*="panel-"]) > .panel-heading {
     color: $widget-heading-color;
     border: 0;
+  }
+}
+
+*:fullscreen {
+  .panel {
+    @extend %fullscreen;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: default;
+
+    .panel-heading {
+      height: 100px;
+      font-size: $font-size-big;
+      width: 100%;
+
+      .logo {
+        margin-right: 10px;
+      }
+      .logo.jira {
+        width: 100px;
+        margin-top: 10px;
+      }
+      .logo.newrelic {
+        width: 125px;
+        margin-top: 25px;
+      }
+      .logo.google {
+        width: 100px;
+        margin-top: 21px;
+      }
+      .logo.calendar {
+        width: 70px;
+        margin-top: 2px;
+      }
+      .logo.weather {
+        width: 100px;
+        margin-top: -10px;
+      }
+    }
+
+    .panel-body {
+      width: 100%;
+    }
+
+    .panel-footer {
+      width: 100%;
+      font-size: $font-size-big;
+    }
   }
 }
 
