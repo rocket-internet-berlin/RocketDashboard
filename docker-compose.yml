@@ -14,3 +14,5 @@ services:
     volumes:
      - ./server:/code
      - /code/node_modules/
+  redis:
+    image: "redis:4.0-alpine"

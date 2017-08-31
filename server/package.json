@@ -26,6 +26,7 @@
     "node-cache": "^4.1.1",
     "node-insights": "^1.0.15",
     "path": "^0.12.7",
+    "redis": "^2.8.0",
     "rotating-file-stream": "^1.2.2"
   },
   "devDependencies": {
