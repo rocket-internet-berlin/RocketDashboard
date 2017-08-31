@@ -28,7 +28,8 @@ class GoogleSheetsService {
       }
       try {
         const history = GoogleSheetsService.parseResponse(response);
-        callback(err, history);
+        const updated = new Date();
+        callback(err, { history, updated });
       } catch (exception) {
         callback(exception);
       }

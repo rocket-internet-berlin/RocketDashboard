@@ -5,6 +5,7 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
+import { timeFormatter } from '../../../lib/formatter';
 import getIcon from '../../../lib/getIcon';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 import './BugsHistory.scss';
@@ -70,12 +71,14 @@ const BugsHistory = ({ connectDragSource, connectDragPreview, connectDropTarget,
       </div>
       <div className="panel-footer">
         {props.description}
+        {timeFormatter(props.updated)}
       </div>
     </div>,
   );
 
 const mapStateToProps = state => ({
   history: state.bugsHistory.history,
+  updated: state.bugsHistory.updated,
 });
 
 BugsHistory.propTypes = {
@@ -88,11 +91,13 @@ BugsHistory.propTypes = {
   ).isRequired,
   description: PropTypes.string,
   iconType: PropTypes.string,
+  updated: PropTypes.string,
 };
 
 BugsHistory.defaultProps = {
   description: null,
   iconType: null,
+  updated: null,
 };
 
 // export default connect(mapStateToProps)(BugsHistory);

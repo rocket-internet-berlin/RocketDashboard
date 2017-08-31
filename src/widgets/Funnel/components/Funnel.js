@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RelativeTime from 'react-relative-time';
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'recharts';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
+import { timeFormatter } from '../../../lib/formatter';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
@@ -13,17 +13,6 @@ import './Funnel.scss';
 
 export const getTableData = data => data.map(el => [el.name, el.count]);
 export const fixSilhouette = value => Math.abs(value * 2);
-
-const updatedTime = updated => {
-  if (updated) {
-    return (
-      <em className="pull-right">
-        <RelativeTime value={updated} titleFormat="YYYY/MM/DD HH:mm" />
-      </em>
-    );
-  }
-  return null;
-};
 
 const Funnel = ({ connectDragSource, connectDragPreview, connectDropTarget, isDragging, isOver, ...props }) =>
   compose(connectDragSource, connectDropTarget)(
@@ -60,7 +49,7 @@ const Funnel = ({ connectDragSource, connectDragPreview, connectDropTarget, isDr
       </div>
       <div className="panel-footer">
         {props.description || props.data.description}
-        {updatedTime(props.data.updated)}
+        {timeFormatter(props.data.updated)}
       </div>
     </div>,
   );

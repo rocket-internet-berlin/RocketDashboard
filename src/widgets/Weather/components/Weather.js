@@ -1,24 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import RelativeTime from 'react-relative-time';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
+import { timeFormatter } from '../../../lib/formatter';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
 import getIcon from '../../../lib/getIcon';
-
-const updatedTime = updated => {
-  if (updated) {
-    return (
-      <em className="pull-right">
-        <RelativeTime value={updated} titleFormat="YYYY/MM/DD HH:mm" />
-      </em>
-    );
-  }
-  return null;
-};
 
 const weatherIcon = icon => {
   if (!icon) {
@@ -56,7 +45,7 @@ const Weather = ({ connectDragSource, connectDropTarget, isDragging, isOver, ico
       <div className="panel-footer">
         <span>
           {weather.weather.description}
-          {updatedTime(weather.weather.updated)}
+          {timeFormatter(weather.weather.updated)}
         </span>
       </div>
     </div>,

@@ -121,6 +121,7 @@ class NewRelicService {
         return {
           results,
           description: NewRelicService.getDescription(insightsResponse),
+          updated: new Date(),
         };
       }, NewRelicService.errorHandler);
   }
@@ -137,6 +138,7 @@ class NewRelicService {
         return {
           results,
           description: NewRelicService.getDescription(insightsResponse),
+          updated: new Date(),
         };
       }, NewRelicService.errorHandler);
   }

@@ -3,10 +3,11 @@ import { onReceive } from '../actions/bugsHistory';
 
 const reducer = handleActions(
   {
-    [onReceive]: (state, { payload }) => ({ history: payload }),
+    [onReceive]: (state, { payload }) => ({ history: payload.history, updated: payload.updated }),
   },
   {
     history: [],
+    updated: null,
   },
 );
 
