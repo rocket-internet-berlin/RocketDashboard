@@ -1,4 +1,5 @@
 import { handleActions } from 'redux-actions';
+import { onMove } from '../../../containers/WidgetList/actions/widgetList';
 import { showModal, closeModal, onSave } from '../actions/widgetSettings';
 import WidgetStore from '../../../containers/WidgetList/stores/WidgetStore';
 
@@ -14,6 +15,10 @@ const reducer = handleActions(
     },
     [onSave]: (state, { payload }) => {
       const newState = Object.assign({}, state, { widgetList: payload });
+      return newState;
+    },
+    [onMove]: (state, { payload }) => {
+      const newState = Object.assign({}, state, { widgetList: payload.data });
       return newState;
     },
   },
