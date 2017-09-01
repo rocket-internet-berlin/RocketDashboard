@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Dashboard from './Dashboard';
-import WidgetList from '../../containers/WidgetList/WidgetList';
-import RefreshAll from '../../containers/RefreshInterval/RefreshInterval';
-import WidgetSettings from '../WidgetSettings/WidgetSettings';
-import FullScreen from '../FullScreen/FullScreen';
+import Dashboard from '../../../src/components/Dashboard/Dashboard';
+import WidgetList from '../../../src/containers/WidgetList/WidgetList';
+import RefreshAll from '../../../src/containers/RefreshInterval/RefreshInterval';
+import WidgetSettings from '../../../src/components/WidgetSettings/WidgetSettings';
+import FullScreen from '../../../src/components/FullScreen/FullScreen';
 
 describe('<Dashboard />', () => {
   const component = shallow(<Dashboard />);

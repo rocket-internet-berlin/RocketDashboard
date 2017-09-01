@@ -1,7 +1,7 @@
 import React from 'react';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
-import { NavigationBar } from './NavigationBar';
+import { NavigationBar } from '../../../src/components/NavigationBar/NavigationBar';
 
 describe('NavigationBar', () => {
   const refreshAll = sinon.spy();

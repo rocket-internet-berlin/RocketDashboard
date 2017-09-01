@@ -1,4 +1,4 @@
-import { fetchApi, fetchUrl } from './fetchApi';
+import { fetchApi, fetchUrl } from '../../src/lib/fetchApi';
 
 describe('fetchApi helper', () => {
   it('fetchApi should be async', done => {

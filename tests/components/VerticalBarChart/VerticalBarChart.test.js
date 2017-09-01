@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import { BarChart } from 'recharts';
-import HorizontalBarChart from './HorizontalBarChart';
+import VerticalBarChart from '../../../src/components/VerticalBarChart/VerticalBarChart';
 
 const dataValid = [{ key: 1, value: 'value 1' }, { key: 2, value: 'value 2' }];
 const dataInvalid = [{ key: 1 }];
@@ -20,15 +20,15 @@ afterAll(() => {
   console.error.restore();
 });
 
-describe('<HorizontalBarChart />', () => {
+describe('<VerticalBarChart />', () => {
   it('contains BarChart with the provided data', () => {
-    const component = shallow(<HorizontalBarChart data={dataValid} />);
+    const component = shallow(<VerticalBarChart data={dataValid} />);
 
     expect(component.find(BarChart).length).toBe(1);
     expect(component.find(BarChart).props().data).toEqual(dataValid);
   });
 
   it('throws exception when invalid data', () => {
-    expect(() => mount(<HorizontalBarChart data={dataInvalid} />)).toThrow(Error);
+    expect(() => mount(<VerticalBarChart data={dataInvalid} />)).toThrow(Error);
   });
 });

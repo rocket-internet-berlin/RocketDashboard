@@ -3,14 +3,14 @@ import { shallow } from 'enzyme';
 import Slider from 'react-slick';
 import uuidv4 from 'uuid/v4';
 
-import { WidgetList } from './WidgetList';
-import constants from '../../config/constants';
-import Number from '../../widgets/Number/components/Number';
-import BugsHistory from '../../widgets/BugsHistory/components/BugsHistory';
-import Breakdown from '../../widgets/Breakdown/components/Breakdown';
-import Funnel from '../../widgets/Funnel/components/Funnel';
-import Text from '../../widgets/Text/components/Text';
-import Weather from '../../widgets/Weather/components/Weather';
+import { WidgetList } from '../../../src/containers/WidgetList/WidgetList';
+import constants from '../../../src/config/constants';
+import Number from '../../../src/widgets/Number/components/Number';
+import BugsHistory from '../../../src/widgets/BugsHistory/components/BugsHistory';
+import Breakdown from '../../../src/widgets/Breakdown/components/Breakdown';
+import Funnel from '../../../src/widgets/Funnel/components/Funnel';
+import Text from '../../../src/widgets/Text/components/Text';
+import Weather from '../../../src/widgets/Weather/components/Weather';
 
 const widgetType = constants.widgetType;
 

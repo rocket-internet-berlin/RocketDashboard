@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Breakdown from './Breakdown';
+import Breakdown from '../../../src/widgets/Breakdown/components/Breakdown';
 
 describe('Breakdown component', () => {
   // Obtain the reference to the component before React DnD wrapping

@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Number from './Number';
+import Number from '../../../src/widgets/Number/components/Number';
 
 describe('Number component', () => {
   // Obtain the reference to the component before React DnD wrapping

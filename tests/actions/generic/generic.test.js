@@ -2,7 +2,7 @@ import React from 'react';
 import sinon from 'sinon';
 import sinonStubPromise from 'sinon-stub-promise';
 import { shallow, mount } from 'enzyme';
-import { onReceive, refresh } from './generic';
+import { onReceive, refresh } from '../../../src/actions/generic/generic';
 
 sinonStubPromise(sinon);
 

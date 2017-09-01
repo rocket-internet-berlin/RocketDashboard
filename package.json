@@ -88,6 +88,7 @@
     "cs:start": "concurrently \"npm run start:production\" \"npm run --prefix server start:production\"",
     "test": "node scripts/test.js --env=jsdom",
     "test:coverage": "yarn test -- --coverage",
+    "test:watch": "yarn test -- --watchAll",
     "lint:js": "eslint --ext .js src/**/*.js",
     "lint:js-fix": "eslint --fix --ext .js src/**/*.js",
     "precommit": "lint-staged"
@@ -109,10 +110,10 @@
       "<rootDir>/scripts/local-storage-mock.js"
     ],
     "testPathIgnorePatterns": [
-      "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
+      "<rootDir>[/\\\\](build|docs|node_modules|scripts|server)[/\\\\]"
     ],
     "modulePathIgnorePatterns": [
-      "<rootDir>[/\\\\](build|docs|node_modules|scripts)[/\\\\]"
+      "<rootDir>[/\\\\](build|docs|node_modules|scripts|server)[/\\\\]"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",

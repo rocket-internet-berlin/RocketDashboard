@@ -7,14 +7,10 @@ process.env.PUBLIC_URL = '';
 // if this file is missing. dotenv will never modify any environment variables
 // that have already been set.
 // https://github.com/motdotla/dotenv
-require('dotenv').config({ silent: true });
+// require('dotenv').config({ silent: true });
+// No need for the above line as we shouldn't be loading config values from file for unit tests. Eric 1 Sep 2017
 
 const jest = require('jest');
 const argv = process.argv.slice(2);
-
-// Watch unless on CI or in coverage mode
-if (!process.env.CI && argv.indexOf('--coverage') < 0) {
-  argv.push('--watchAll');
-}
 
 jest.run(argv);

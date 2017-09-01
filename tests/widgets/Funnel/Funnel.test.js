@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Funnel, { getTableData, fixSilhouette } from './Funnel';
-import BasicTable from '../../../components/BasicTable/BasicTable';
+import Funnel, { getTableData, fixSilhouette } from '../../../src/widgets/Funnel/components/Funnel';
+import BasicTable from '../../../src/components/BasicTable/BasicTable';
 
 describe('Funnel component', () => {
   // Obtain the reference to the component before React DnD wrapping

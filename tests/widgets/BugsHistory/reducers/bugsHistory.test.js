@@ -1,4 +1,4 @@
-import bugsHistory from './bugsHistory';
+import bugsHistory from '../../../../src/widgets/BugsHistory/reducers/bugsHistory';
 
 describe('bugsHistory reducer', () => {
   it('updates the state with the data from a RECEIVE_BUGSHISTORY action', () => {
