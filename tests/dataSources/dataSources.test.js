@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import dataSources from './dataSources';
+import dataSources from '../../src/dataSources/dataSources';
 
 describe('dataSources', () => {
   it('contains is an array', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
-import { RefreshInterval } from './RefreshInterval';
+import { RefreshInterval } from '../../../src/containers/RefreshInterval/RefreshInterval';
 
 describe('<RefreshInterval />', () => {
   const refreshAll = () => {};

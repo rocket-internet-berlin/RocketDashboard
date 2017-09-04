@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import sinon from 'sinon';
 
-import FullScreen from './FullScreen';
+import FullScreen from '../../../src/components/FullScreen/FullScreen';
 
 describe('FullScreen', () => {
   const handleExitFullScreen = sinon.spy();

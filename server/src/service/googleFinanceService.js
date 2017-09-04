@@ -21,17 +21,31 @@ class GoogleFinanceService {
   }
 
   fetchStockPrice() {
-    return axios.get(`http://www.google.com/finance/info?q=${this.stockTicker}`)
+    return axios.get(this.buildStockPriceFetchUrl())
       .then(payload => {
-        const stockData = JSON.parse(payload.data.replace('//', ''))[0];
+        let stockData = null;
+        try {
+          stockData = JSON.parse(payload.data.replace('//', ''))[0];
+        } catch (e) {
+          return {};
+        }
+
+        if (!('l_fix' in stockData)) {
+          return {}; // Could not find the current stock price in the response
+        }
+
         return ({
-          current: stockData.l_fix,
-          change: parseFloat(stockData.c_fix),
-          previous: parseFloat(stockData.l_fix - stockData.c_fix),
+          current: parseFloat(stockData.l_fix).toFixed(2),
+          change: parseFloat(stockData.c_fix).toFixed(2),
+          previous: parseFloat(stockData.l_fix - stockData.c_fix).toFixed(2),
           updated: new Date(),
           heading: this.company,
         });
       });
+  }
+
+  buildStockPriceFetchUrl() {
+    return `http://www.google.com/finance/info?q=${this.stockTicker}`;
   }
 }
 

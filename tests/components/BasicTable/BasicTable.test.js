@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import BasicTable from './BasicTable';
+import BasicTable from '../../../src/components/BasicTable/BasicTable';
 
 const headings = ['Heading 1', 'Heading 2', 'Heading 3', 'Heading 4'];
 const dataValid = [['Row 1', 11, 12, 13], ['Row 2', 21, 22, 23]];

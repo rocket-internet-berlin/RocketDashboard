@@ -1,4 +1,4 @@
-import * as actions from './bugsHistory';
+import * as actions from '../../../../src/widgets/BugsHistory/actions/bugsHistory';
 
 describe('bugsHistory response parsing', () => {
   it('creates a correct action', () => {

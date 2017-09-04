@@ -1,4 +1,4 @@
-import reducers from './index';
+import reducers from '../../src/reducers/index';
 
 test('reducers sequence', () => {
   // Maintenance: This test can be easy updated using the "Redux DevTools" extension for Chrome
