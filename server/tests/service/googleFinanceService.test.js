@@ -49,7 +49,12 @@ describe('GoogleFinanceService', () => {
 
         forEach(expectedResult, function (value, key) {
           expect(key in result).toBe(true);
-          expect(result[key]).toBe(value.toString());
+
+          if (typeof value === 'number') {
+            expect(result[key]).toBeCloseTo(value);
+          } else {
+            expect(result[key]).toBe(value);
+          }
         });
 
         // Don't know what the updated timestamp value will be. Can just check if it exists and is valid date.
@@ -70,7 +75,17 @@ describe('GoogleFinanceService', () => {
 
     it('Returns empty object when Google returns valid JSON but without the stock price', () => {
       axiosMock.onGet(googleFinanceService.buildStockPriceFetchUrl()).reply(200,
-        '// [ { "data": "some_data" } ]',
+        '// [ { "id": "343738966354611" ,"t" : "RKET" ,"e" : "FRA" ,"l" : "19.21", "c_fix" : "-0.17" } ]',
+      );
+
+      return googleFinanceService.fetchStockPrice().then(function (result) {
+        expect(result).toEqual({});
+      });
+    });
+
+    it('Returns empty object when Google returns valid JSON but without the last change in stock price', () => {
+      axiosMock.onGet(googleFinanceService.buildStockPriceFetchUrl()).reply(200,
+        '// [ { "id": "343738966354611" ,"t" : "RKET" ,"e" : "FRA" ,"l" : "19.21", "l_fix" : "-0.17" } ]',
       );
 
       return googleFinanceService.fetchStockPrice().then(function (result) {
