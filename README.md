@@ -48,7 +48,7 @@ Note: Make sure you have [yarn](https://yarnpkg.com) or [npm](https://nodejs.org
 ```
 cd <path-to-the-project-folder>
 ```
-- Install all dependencies by running:
+- (Only needed for running locally - skip if using Docker) Install all dependencies by running:
 ```
 yarn && cd server && yarn && cd ..
 ```
@@ -65,11 +65,13 @@ According to the [recommended best practices](https://devcenter.heroku.com/artic
 
 - Copy the provided `server/.env.SAMPLE` to a new file `server/.env`. Open `.env` and fill-out the required credentials accordingly.
 
+The configuration file is read once on boot of the server application. If you change any values in this file, you'll have to restart the server application for the changes to come into effect.
+
 In production the configuration should be set as environment variables.
 
 ## Development
 
-###  Starting the "dev" server
+###  Starting the "dev" server locally
 
 - Run `yarn start` (or `npm start`) to run the development and backend servers
 
@@ -83,7 +85,7 @@ You'll find build errors and lint warnings in the console.
 
 You'll need docker-ce and docker-compose. The frontend and backend have been set up to run in their own containers with their own dependencies despite the code folders being mounted as shared volumes on the local machine. 
 
-To get the cluster up and running, just run `docker-compose up` from the repo root. Add a `--build` flag at the end to trigger a rebuild if needed.
+To get the cluster up and running, just run `docker-compose up` from the repo root. Add a `--build` flag at the end to trigger a rebuild if needed. Open [http://localhost:3000](http://localhost:3000) in a browser to see your app.
 
 As the code folders are shared with the local machine, any code change will lead to an immediate recompile in the affected container, so changes should be noticeable within seconds. For config changes, you'll have to restart the cluster as the .env file is only read on boot. 
 
@@ -163,8 +165,18 @@ Currently shown widgets in the Dashboard:
 - **Bugs History** – bugs amount chart (Google Sheets).
 - **In Progress** - number of the issues (Jira).
 - **Selected For Development** - number of the issues (Jira).
-- **Ready For QA** - number of the issues (Jira).
+- **Ready For QA** – number of the issues (Jira).
+- **Stock ticker** – current stock price of e.g. Rocket Internet (Google Finance)
+- **Weather widget** – current temperature and weather conditions in a given city, e.g. Berlin (OpenWeather)
+- **Trivia widget** – shows trivia pertaining to today's date.
 - Custom Widget Samples
+
+## Functionality
+
+- Refresh button to force update the widget data.
+- A settings modal dialog to choose which widgets should be displayed. Widgets that are hidden do not trigger any API calls.
+- Re-ordering widgets by drag & drop. Order is persistent in browser local storage.
+- Full screen mode that scrolls through displayed widgets in a carousel.  
 
 ## Adding new widgets
 
@@ -207,7 +219,9 @@ or
 
 Check the possible [arguments and sample JSX](#generic-widgets).
 
-Restart the development server and, hopefully, you'll see the new widget.
+Save your code and clear the userSettings var in the browser's local storage. Hopefully, you'll see the new widget.
+
+Note that you will have to clear the userSettings var in the local storage for every single change in userSettings.js. There's a ticket in our Trello to handle this smoother for future oblivious customers, as frontend releases otherwise will not be noticeable on the client side until the userSettings are cleared. 
 
 ### Generic Widgets
 
@@ -223,7 +237,8 @@ Restart the development server and, hopefully, you'll see the new widget.
     "data": {
         "current": 9,
         "previous": 19,
-        "description": "This is the new Number widget"
+        "description": "This is the new Number widget",
+        "updated": "2017-08-29T16:16:33.312Z"
     }
 }
 ```
@@ -231,7 +246,7 @@ Restart the development server and, hopefully, you'll see the new widget.
 
 **JSX**
 ```
-<Number heading="Custom Widget" data={props.customWidget} riseIsBad threshold={5} />
+<Number heading="Custom Widget" data={props.customWidget} riseIsBad threshold={5} iconType={widget.iconType} />
 ```
 
 **Arguments**
@@ -240,6 +255,33 @@ Restart the development server and, hopefully, you'll see the new widget.
 - `[description]` (String) Optional description to be displayed the numbers. Default: null.
 - `[riseIsBad]` (Boolean) Optional switch to highlight the change symbol red, when `current` is higher than `previous`, i.e. has risen. Default: false.
 - `threshold` (Number) Optional threshold to highlight `current` when it's gone over / sunk below. Default: null.
+- `iconType` (String) Which icon type is to be used in the header. Optional.
+
+#### `Text` widget
+
+![](https://github.com/rocket-internet-berlin/RocketDashboard/blob/master/readme-res/text-widget.png)
+
+**Data structure of the resolved `fetchFunction`**
+
+```json
+{
+    "status": "success",
+    "data": {
+        "body": "Lorem ipsum bacon ...",
+        "updated": "2017-08-29T16:16:33.312Z"
+    }
+}
+```
+
+**JSX**
+```
+<Text heading="Some heading" data={props.customWidget} iconType={widget.iconType} />
+```
+
+**Arguments**
+- `heading` (String) Heading of your widget.
+- `data` (Object) Data to be displayed (see above for structure).
+- `iconType` (String) Which icon type is to be used in the header. Optional.
 
 #### `Breakdown` widget
 
@@ -264,13 +306,14 @@ Restart the development server and, hopefully, you'll see the new widget.
 
 **JSX**
 ```
-<Breakdown heading="Custom Breakdown" data={props.customBreakdown} />
+<Breakdown heading="Custom Breakdown" data={props.customBreakdown} iconType={widget.iconType} />
 ```
 
 **Arguments**
 - `heading` (String) Heading of your widget.
 - `data` (Object) Data to be displayed (see above for structure).
 - `[description]` (String) Optional description to be displayed the numbers. Default: null.
+- `iconType` (String) Which icon type is to be used in the header. Optional.
 
 #### `Funnel` widget
 
@@ -295,13 +338,14 @@ Restart the development server and, hopefully, you'll see the new widget.
 
 **JSX**
 ```
-<Funnel heading="Custom Funnel" data={props.customFunnel} />
+<Funnel heading="Custom Funnel" data={props.customFunnel} iconType={widget.iconType} />
 ```
 
 **Arguments**
 - `heading` (String) Heading of your widget.
 - `data` (Object) Data to be displayed (see above for structure).
 - `[description]` (String) Optional description to be displayed the numbers. Default: null.
+- `iconType` (String) Which icon type is to be used in the header. Optional.
 
 
 ### Hard way
@@ -323,6 +367,17 @@ You may want to create a new route on our backend (a `/server` folder) where you
 
 - set the route to your new endpoint up (`/server/src/index.js`);
 - add the endpoint code (check `/server/src/routes/bugsHistory.js` or `/server/src/routes/newRelic.js` for insight);
+
+### Supported icon type values
+
+- google, jira, newrelic, calendar, weather
+
+To add more:
+ - Put the transparent PNG file in `public/icons`.
+ - Add the new type as a key in `src/config/constants.js` and connect the key to the file path.
+ - Add styling in `src/sass/_panels.scss`, preferably for all of the defined screen breakpoints.
+ - Apply your new icon type to a widget in `src/config/userSettings.js`.
+ - Clear the `userSettings` var in your browser's local storage and reload the window. Enjoy. 
 
 ## Generic components
 
