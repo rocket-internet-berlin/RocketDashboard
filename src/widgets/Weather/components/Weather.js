@@ -8,20 +8,21 @@ import { timeFormatter } from '../../../lib/formatter';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
 import getIcon from '../../../lib/getIcon';
+import './Weather.scss';
 
 const weatherIcon = icon => {
   if (!icon) {
     return null;
   }
-  const iconUrl = `http://openweathermap.org/img/w100/${icon}.png`;
-  return <img className="pull-right" src={iconUrl} alt="Icon depicting current weather" />;
+  const iconUrl = `http://openweathermap.org/img/w/${icon}.png`;
+  return <img className="pull-right weather-image" src={iconUrl} alt="Icon depicting current weather" />;
 };
 
 const getTemperature = temp => {
   if (temp) {
     return (
       <span className="current">
-        {temp} &deg;
+        {temp}&deg;
       </span>
     );
   }
