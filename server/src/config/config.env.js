@@ -26,6 +26,13 @@ module.exports = {
     apiKey: process.env.WEATHER_API_KEY,
     apiCityId: process.env.WEATHER_API_CITY_ID,
   },
+  statusCake: {
+    apiKey: process.env.STATUSCAKE_API_KEY,
+    username: process.env.STATUSCAKE_USERNAME,
+    testId: process.env.STATUSCAKE_TEST_ID,
+    period: process.env.STATUSCAKE_HISTORY_PERIOD,
+    interval: process.env.STATUSCAKE_HISTORY_INTERVAL,
+  },
   twitter: {
     query: process.env.TWITTER_QUERY,
   },

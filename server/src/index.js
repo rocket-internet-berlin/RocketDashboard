@@ -14,6 +14,7 @@ import weatherRoute from './routes/weather';
 import githubRoute from './routes/github';
 import loggerMiddleware from './middleware/loggerMiddleware';
 import triviaRoute from './routes/trivia';
+import statusCakeRoute from './routes/statusCakeHistory';
 import twitterRoute from './routes/twitter';
 
 const app = express();
@@ -48,6 +49,7 @@ app.use(`${ROUTE_PREFIX}/newRelic`, newRelicRoute);
 app.use(`${ROUTE_PREFIX}/jira`, jiraRoute);
 app.use(`${ROUTE_PREFIX}/trivia`, triviaRoute);
 app.use(`${ROUTE_PREFIX}/twitter`, twitterRoute);
+app.use(`${ROUTE_PREFIX}/statusCakeHistory`, statusCakeRoute);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

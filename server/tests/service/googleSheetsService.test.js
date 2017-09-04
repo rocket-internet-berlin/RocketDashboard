@@ -80,6 +80,7 @@ describe('GoogleSheetsService', () => {
     it('Returns no data when Google returns an error', () => {
       const googleSheetsService = new GoogleSheetsService(validConfig);
       const expectedError = 'ERROR';
+      const expectedErrorResponse = { status: 'error', history: [], error: 'An error occurred!' };
 
       // Don't need this to be anything real - it's just passed into the black box of Google Sheets
       googleSheetsService.jwtClient = {};
@@ -101,11 +102,14 @@ describe('GoogleSheetsService', () => {
       anonymousCallback(expectedError, {});
 
       expect(callbackStub.calledOnce).toBe(true); // Should have only been run once in the anonymous callback
-      expect(callbackStub.getCalls()[0].args.length).toBe(1); // Check if called with 'err' param ONLY
+      expect(callbackStub.getCalls()[0].args.length).toBe(2); // Check if called with 'err' and errObject ONLY
 
       // Check 'err' param in callbackStub was the expected error from above
       const errParam = callbackStub.getCalls()[0].args[0];
       expect(errParam).toBe(expectedError);
+
+      const errResponse = callbackStub.getCalls()[0].args[1];
+      expect(errResponse).toEqual(expectedErrorResponse);
     });
 
     it('Returns no data when Google returns no error but malformed data', () => {

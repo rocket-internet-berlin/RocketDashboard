@@ -38,7 +38,7 @@ class GoogleSheetsService {
     };
     this.sheets.spreadsheets.values.get(request, (err, response) => {
       if (err) {
-        callback(err);
+        callback(err, { status: 'error', history: [], error: 'An error occurred!' });
         return;
       }
       try {

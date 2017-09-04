@@ -5,23 +5,23 @@ test('reducers sequence', () => {
   // Go to the Redux tab, Shift-select all actions on the left side and go to "Tests" on the right side.
   test('reducers', () => {
     const state = reducers(undefined, {});
-    expect(state).toEqual({ bugsHistory: { history: [] }, generic: { results: {} } });
+    expect(state).toEqual({ history: { history: [] }, generic: { results: {} } });
   });
 
   test('week number received', () => {
     const state = reducers(
-      { bugsHistory: { history: [] }, generic: { results: {} } },
+      { history: { history: [] }, generic: { results: {} } },
       { type: 'RECEIVE_DATA', payload: { key: 'weekNumber', current: 29 } },
     );
     expect(state).toEqual({
-      bugsHistory: { history: [] },
+      history: { history: [] },
       generic: { results: {}, weekNumber: { key: 'weekNumber', current: 29 } },
     });
   });
 
   test('a bugs history received', () => {
     const state = reducers(
-      { bugsHistory: { history: [] }, generic: { results: {}, weekNumber: { key: 'weekNumber', current: 29 } } },
+      { history: { history: [] }, generic: { results: {}, weekNumber: { key: 'weekNumber', current: 29 } } },
       {
         type: 'RECEIVE_BUGSHISTORY',
         payload: [
@@ -58,7 +58,7 @@ test('reducers sequence', () => {
       },
     );
     expect(state).toEqual({
-      bugsHistory: {
+      history: {
         history: [
           { date: '4. Januar', openBugs: 23, solvedBugs: 0, newBugs: 0 },
           { date: '19. Januar', openBugs: 28, solvedBugs: 8, newBugs: 0 },
@@ -98,7 +98,7 @@ test('reducers sequence', () => {
   test('new data received', () => {
     const state = reducers(
       {
-        bugsHistory: { history: [] },
+        history: { history: [] },
         generic: {
           results: {},
           weekNumber: { key: 'weekNumber', current: 29 },
@@ -127,7 +127,7 @@ test('reducers sequence', () => {
       },
     );
     expect(state).toEqual({
-      bugsHistory: { history: [] },
+      history: { history: [] },
       generic: {
         results: {},
         weekNumber: { key: 'weekNumber', current: 29 },

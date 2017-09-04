@@ -6,7 +6,7 @@ import uuidv4 from 'uuid/v4';
 import { WidgetList } from '../../../src/containers/WidgetList/WidgetList';
 import constants from '../../../src/config/constants';
 import Number from '../../../src/widgets/Number/components/Number';
-import BugsHistory from '../../../src/widgets/BugsHistory/components/BugsHistory';
+import History from '../../../src/widgets/History/components/History';
 import Breakdown from '../../../src/widgets/Breakdown/components/Breakdown';
 import Funnel from '../../../src/widgets/Funnel/components/Funnel';
 import Text from '../../../src/widgets/Text/components/Text';
@@ -72,10 +72,10 @@ describe('WidgetList', () => {
       },
       {
         id: uuidv4(),
-        key: 'bugsHistory',
+        key: 'history',
         display: true,
         iconType: 'test',
-        type: widgetType.bugsHistory,
+        type: widgetType.history,
         heading: 'Bugs History',
       },
     ];
@@ -93,7 +93,7 @@ describe('WidgetList', () => {
     //   <Breakdown />,
     //   <Funnel />,
     //   <Text />,
-    //   <BugsHistory />,
+    //   <History />,
     // ])).toBe(true);
 
     expect(component.containsAllMatchingElements([<Number />])).toBe(true);
@@ -101,6 +101,6 @@ describe('WidgetList', () => {
     expect(component.containsAllMatchingElements([<Breakdown />])).toBe(true);
     expect(component.containsAllMatchingElements([<Funnel />])).toBe(true);
     expect(component.containsAllMatchingElements([<Text />])).toBe(true);
-    expect(component.containsAllMatchingElements([<BugsHistory />])).toBe(true);
+    expect(component.containsAllMatchingElements([<History />])).toBe(true);
   });
 });

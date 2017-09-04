@@ -73,6 +73,8 @@ const mapStateToProps = state => ({
   trivia: state.generic.trivia,
   finance: state.finance.finance,
   twitterFeed: state.generic.twitterFeed,
+  bugsHistory: state.bugsHistory,
+  statusCakeHistory: state.statusCakeHistory,
 });
 
 WidgetList.defaultProps = {
@@ -94,6 +96,7 @@ WidgetList.defaultProps = {
   trivia: {},
   finance: {},
   twitterFeed: {},
+  bugsHistory: [],
 };
 
 const mapDispatchToProps = dispatch => ({
