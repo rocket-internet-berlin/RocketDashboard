@@ -90,6 +90,7 @@ class WidgetComponentFactory {
       heading: widget.heading,
       iconType: widget.iconType,
       data: props[widget.key],
+      widgetName: widget.key,
     };
   }
 

@@ -5,6 +5,7 @@ import NewRelicService from './newRelicService';
 import TriviaService from './triviaService';
 import GoogleFinanceService from './googleFinanceService';
 import WeatherService from './weatherService';
+import TwitterService from './twitterService';
 import config from '../config';
 
 const googleSheetsService = new GoogleSheetsService(config.google);
@@ -14,6 +15,7 @@ const newRelicService = new NewRelicService(config.newRelic);
 const triviaService = new TriviaService();
 const googleFinanceService = new GoogleFinanceService(config.finance);
 const weatherService = new WeatherService(config.weather);
+const twitterService = new TwitterService(config.twitter);
 
 export {
   cacheService,
@@ -23,4 +25,5 @@ export {
   triviaService,
   googleFinanceService,
   weatherService,
+  twitterService,
 };

@@ -1,34 +1,54 @@
 @import "variables";
 
-.Trivia {
+.Text {
   font-size: 22px;
   color: $rocket-gray;
+
+  &.twitterFeed {
+    font-size: 18px;
+  }
 }
 
 *:fullscreen{
-  .Trivia {
-    font-size: $font-size-big;
+  .Text {
+    font-size: $font-size-fullscreen-text;
     color: $rocket-gray;
+
+    &.twitterFeed {
+      font-size: $font-size-fullscreen-text;
+    }
   }
 }
 
 // Laptop screen
 @media (min-width: $screen-md-min) {
-  .Trivia {
+  .Text {
     font-size: 18px;
+
+    &.twitterFeed {
+      font-size: 16px;
+    }
   }
 }
 
 // Desktop screen
 @media (min-width: $screen-lg-min) {
-  .Trivia {
+  .Text {
     font-size: 20px;
+
+    &.twitterFeed {
+      font-size: 18px;
+    }
   }
 }
 
 // Wide screen desktop
 @media (min-width: $screen-wide-min) {
-  .Trivia {
+  .Text {
     font-size: 22px;
+
+    &.twitterFeed {
+      font-size: 20px;
+    }
   }
 }

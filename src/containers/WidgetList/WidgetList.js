@@ -40,11 +40,7 @@ export const WidgetList = props => {
   const renderWidgetList = () => {
     // eslint-disable-next-line
     if (props.fullScreenMode) {
-      return (
-        <Slider {...settings}>
-          {displayWidgetInOrder(widgetList)}
-        </Slider>
-      );
+      return <Slider {...settings}>{displayWidgetInOrder(widgetList)}</Slider>;
     }
 
     return displayWidgetInOrder(widgetList);
@@ -52,9 +48,7 @@ export const WidgetList = props => {
 
   return (
     <div className="WidgetList">
-      <div className="row">
-        {renderWidgetList()}
-      </div>
+      <div className="row">{renderWidgetList()}</div>
     </div>
   );
 };
@@ -77,6 +71,7 @@ const mapStateToProps = state => ({
   customBreakdown: state.generic.customBreakdown,
   trivia: state.generic.trivia,
   finance: state.finance.finance,
+  twitterFeed: state.generic.twitterFeed,
 });
 
 WidgetList.defaultProps = {
@@ -96,6 +91,7 @@ WidgetList.defaultProps = {
   customBreakdown: {},
   trivia: {},
   finance: {},
+  twitterFeed: {},
 };
 
 const mapDispatchToProps = dispatch => ({

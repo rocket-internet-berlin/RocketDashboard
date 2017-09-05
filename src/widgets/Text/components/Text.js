@@ -9,21 +9,24 @@ import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
 import './Text.scss';
 
+const createRawHtml = rawText => ({
+  __html: rawText,
+});
+
+const getClassNames = widgetName => `panel Text ${widgetName}`;
+
 const Text = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...props }) =>
   compose(connectDragSource, connectDropTarget)(
-    <div className="panel Trivia" style={draggingStyle(isDragging, isOver)}>
+    <div className={getClassNames(props.widgetName)} style={draggingStyle(isDragging, isOver)}>
       <div className="panel-heading">
-        <div className="panel-title-text">Date Trivia</div>
+        <div className="panel-title-text">{props.data.heading || props.heading}</div>
         {getIcon(props.iconType)}
       </div>
       <div className="panel-body">
-        <div>
-          {props.data.body}
-        </div>
+        {/* eslint-disable react/no-danger */}
+        <div dangerouslySetInnerHTML={createRawHtml(props.data.body)} />
       </div>
-      <div className="panel-footer">
-        {timeFormatter(props.data.updated)}
-      </div>
+      <div className="panel-footer">{timeFormatter(props.data.updated)}</div>
     </div>,
   );
 
@@ -33,6 +36,7 @@ Text.propTypes = {
   }),
   heading: PropTypes.string,
   iconType: PropTypes.string,
+  widgetName: PropTypes.string,
 };
 
 Text.defaultProps = {
@@ -41,6 +45,7 @@ Text.defaultProps = {
   },
   heading: null,
   iconType: null,
+  widgetName: null,
 };
 
 export default compose(

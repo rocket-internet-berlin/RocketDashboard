@@ -26,4 +26,7 @@ module.exports = {
     apiKey: process.env.WEATHER_API_KEY,
     apiCityId: process.env.WEATHER_API_CITY_ID,
   },
+  twitter: {
+    query: process.env.TWITTER_QUERY,
+  },
 };
