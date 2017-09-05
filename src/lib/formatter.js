@@ -1,3 +1,6 @@
+import React from 'react';
+import RelativeTime from 'react-relative-time';
+
 /**
  * Custom widget formatter functions
  */
@@ -8,4 +11,15 @@ function financeFormatter(n) {
   return n;
 }
 
-export { financeFormatter }; // eslint-disable-line import/prefer-default-export
+function timeFormatter(updated) {
+  if (updated) {
+    return (
+      <em className="pull-right">
+        <RelativeTime value={updated} titleFormat="YYYY/MM/DD HH:mm" />
+      </em>
+    );
+  }
+  return null;
+}
+
+export { financeFormatter, timeFormatter };

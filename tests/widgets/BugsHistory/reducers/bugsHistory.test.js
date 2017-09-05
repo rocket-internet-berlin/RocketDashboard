@@ -2,6 +2,8 @@ import bugsHistory from '../../../../src/widgets/BugsHistory/reducers/bugsHistor
 
 describe('bugsHistory reducer', () => {
   it('updates the state with the data from a RECEIVE_BUGSHISTORY action', () => {
+    const date = new Date();
+
     expect(
       bugsHistory(
         {
@@ -9,18 +11,21 @@ describe('bugsHistory reducer', () => {
         },
         {
           type: 'RECEIVE_BUGSHISTORY',
-          payload: [
-            {
-              openBugs: 1,
-              solvedBugs: 2,
-              newBugs: 3,
-            },
-            {
-              openBugs: 4,
-              solvedBugs: 5,
-              newBugs: 6,
-            },
-          ],
+          payload: {
+            history: [
+              {
+                openBugs: 1,
+                solvedBugs: 2,
+                newBugs: 3,
+              },
+              {
+                openBugs: 4,
+                solvedBugs: 5,
+                newBugs: 6,
+              },
+            ],
+            updated: date,
+          },
         },
       ),
     ).toEqual({
@@ -36,6 +41,7 @@ describe('bugsHistory reducer', () => {
           newBugs: 6,
         },
       ],
+      updated: date,
     });
   });
 

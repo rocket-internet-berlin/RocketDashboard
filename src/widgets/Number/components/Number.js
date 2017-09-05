@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _round from 'lodash/round';
-import RelativeTime from 'react-relative-time';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
+import { timeFormatter } from '../../../lib/formatter';
 import getIcon from '../../../lib/getIcon';
 import constants from '../../../config/constants';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
@@ -50,17 +50,6 @@ const getCurrentClassName = (current, threshold, riseIsBad) => {
   return 'current';
 };
 
-const updatedTime = updated => {
-  if (updated) {
-    return (
-      <em className="pull-right">
-        <RelativeTime value={updated} titleFormat="YYYY/MM/DD HH:mm" />
-      </em>
-    );
-  }
-  return null;
-};
-
 const getFormattedData = current => {
   if (current === constants.unknown) {
     return current;
@@ -92,7 +81,7 @@ const Number = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...p
       </div>
       <div className="panel-footer">
         {props.description || props.data.description}
-        {updatedTime(props.data.updated)}
+        {timeFormatter(props.data.updated)}
       </div>
     </div>,
   );

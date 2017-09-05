@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import RelativeTime from 'react-relative-time';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
+import { timeFormatter } from '../../../lib/formatter';
 import VerticalBarChart from '../../../components/VerticalBarChart/VerticalBarChart';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
@@ -12,17 +12,6 @@ import getIcon from '../../../lib/getIcon';
 
 const getKeyValuePairs = results => results.map(el => ({ key: el.name, value: el.count }));
 const getTableData = results => results.map(el => [el.name, el.count]);
-
-const updatedTime = updated => {
-  if (updated) {
-    return (
-      <em className="pull-right">
-        <RelativeTime value={updated} titleFormat="YYYY/MM/DD HH:mm" />
-      </em>
-    );
-  }
-  return null;
-};
 
 const Breakdown = ({ connectDragSource, connectDragPreview, connectDropTarget, isDragging, isOver, ...props }) =>
   compose(connectDragSource, connectDropTarget)(
@@ -45,7 +34,7 @@ const Breakdown = ({ connectDragSource, connectDragPreview, connectDropTarget, i
       </div>
       <div className="panel-footer">
         {props.description || props.data.description}
-        {updatedTime(props.data.updated)}
+        {timeFormatter(props.data.updated)}
       </div>
     </div>,
   );
