@@ -1,14 +1,29 @@
 import google from 'googleapis';
-
-const sheets = google.sheets('v4');
+import validateSchema from '../helper/validator';
 
 class GoogleSheetsService {
 
-  constructor(serviceAccountEmail, serviceAccountPrivateKey) {
+  static validateConfig(config) {
+    const schema = {
+      required: [
+        'serviceAccountEmail',
+        'serviceAccountPrivateKey',
+      ],
+    };
+    if (!validateSchema(schema, config)) {
+      throw new Error('Invalid configuration properties');
+    }
+  }
+
+  constructor(config) {
+    GoogleSheetsService.validateConfig(config);
+
+    this.sheets = google.sheets('v4');
+
     this.jwtClient = new google.auth.JWT(
-      serviceAccountEmail,
+      config.serviceAccountEmail,
       null,
-      serviceAccountPrivateKey,
+      config.serviceAccountPrivateKey,
       ['https://www.googleapis.com/auth/spreadsheets.readonly'],
       null,
     );
@@ -21,7 +36,7 @@ class GoogleSheetsService {
       majorDimension: 'COLUMNS',
       auth: this.jwtClient,
     };
-    sheets.spreadsheets.values.get(request, (err, response) => {
+    this.sheets.spreadsheets.values.get(request, (err, response) => {
       if (err) {
         callback(err);
         return;
