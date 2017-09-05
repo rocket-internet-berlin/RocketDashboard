@@ -8,6 +8,7 @@ import Funnel from '../widgets/Funnel/components/Funnel';
 import Text from '../widgets/Text/components/Text';
 import Weather from '../widgets/Weather/components/Weather';
 import PieChartWidget from '../widgets/PieChart/components/PieChartWidget';
+import Instagram from '../widgets/Instagram/components/Instagram';
 import constants from '../config/constants';
 
 const widgetType = constants.widgetType;
@@ -87,6 +88,16 @@ class WidgetComponentFactory {
         );
       }
 
+      case widgetType.instagram: {
+        const instaProps = WidgetComponentFactory.getInstaProps(widget, props);
+
+        return (
+          <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+            <Instagram {...instaProps} />
+          </div>
+        );
+      }
+
       default:
         break;
     }
@@ -143,6 +154,12 @@ class WidgetComponentFactory {
 
   static getPieChartProps(widget, props) {
     return Object.assign({}, WidgetComponentFactory.getGenericProps(widget, props));
+  }
+
+  static getInstaProps(widget, props) {
+    return Object.assign({}, WidgetComponentFactory.getGenericProps(widget, props), {
+      instagram: props[widget.key],
+    });
   }
 }
 

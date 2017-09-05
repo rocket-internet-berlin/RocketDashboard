@@ -41,4 +41,9 @@ module.exports = {
     project: process.env.GITHUB_PROJECT,
     authToken: process.env.GITHUB_AUTH_TOKEN,
   },
+  instagram: {
+    key: process.env.INSTAGRAM_KEY,
+    value: process.env.INSTAGRAM_VALUE,
+    token: process.env.INSTAGRAM_TOKEN,
+  },
 };
