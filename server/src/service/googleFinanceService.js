@@ -30,14 +30,18 @@ class GoogleFinanceService {
           return {};
         }
 
-        if (!('l_fix' in stockData)) {
-          return {}; // Could not find the current stock price in the response
+        if (!('l_fix' in stockData) || !('c_fix' in stockData)) {
+          return {}; // Could not find the current stock price or last change in the response
         }
 
+        const current = parseFloat(stockData.l_fix);
+        const change = parseFloat(stockData.c_fix);
+        const previous = current - change;
+
         return ({
-          current: parseFloat(stockData.l_fix).toFixed(2),
-          change: parseFloat(stockData.c_fix).toFixed(2),
-          previous: parseFloat(stockData.l_fix - stockData.c_fix).toFixed(2),
+          current,
+          change,
+          previous,
           updated: new Date(),
           heading: this.company,
         });
