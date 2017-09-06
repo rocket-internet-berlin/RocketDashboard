@@ -4,6 +4,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
 import GoogleFinanceService from '../../src/service/googleFinanceService';
+import constants from '../../src/config/constants';
 
 describe('GoogleFinanceService', () => {
   const testCompany = 'testCompany';
@@ -54,7 +55,7 @@ describe('GoogleFinanceService', () => {
 
         // Don't know what the updated timestamp value will be. Can just check if it exists and is valid date.
         expect('updated' in result).toBe(true);
-        expect(new Date(result.updated)).not.toBe('Invalid date');
+        expect(new Date(result.updated)).not.toBe(constants.testing.invalidDateString);
       });
     });
 
