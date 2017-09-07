@@ -6,4 +6,7 @@ module.exports = {
     defaultCacheTTL: 60 * 2, // 2 minutes
     triviaWidgetTTL: 60 * 60 * 2, // 2 hours
   },
+  trivia: {
+    baseUrl: 'http://numbersapi.com',
+  },
 };

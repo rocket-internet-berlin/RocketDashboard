@@ -22,6 +22,8 @@ class NewRelicService {
 
     this.insights = null;
     this.config = config;
+    this.newrelicSite = 'www.campsy.de';
+    this.newrelicCliSite = 'cli.campsy.de';
   }
 
   getQueryResponse(nrql) {
@@ -35,12 +37,60 @@ class NewRelicService {
     });
   }
 
+  buildTransactionErrorQuery() {
+    return `SELECT count(*) FROM TransactionError WHERE appName = '${this.newrelicSite}' SINCE 30 minutes AGO COMPARE WITH 30 minutes ago`;
+  }
+
+  buildLoadTimeQuery() {
+    return `SELECT average(duration) from Transaction WHERE appName = '${this.newrelicSite}' since 10 minutes ago`;
+  }
+
+  buildUniqueSessionsQuery() {
+    return `SELECT count(session) FROM PageView WHERE appName = '${this.newrelicSite}' SINCE 20 minutes ago COMPARE WITH 20 minutes ago`;
+  }
+
+  buildSuccessfulBookingsQuery() {
+    return `
+      SELECT count(session)
+      FROM PageView
+      WHERE pageUrl like 'https://${this.newrelicSite}/booking/%/success%'
+        and pageUrl not like '%pay-later%'
+      SINCE 1 day ago
+      COMPARE WITH 1 day ago
+    `;
+  }
+
+  buildCliErrorsQuery() {
+    return `SELECT count(*) from TransactionError WHERE appName = '${this.newrelicCliSite}' SINCE 30 minutes ago`;
+  }
+
+  buildErrorBreakdownQuery() {
+    return `SELECT count(*) from TransactionError WHERE appName = '${this.newrelicSite}' SINCE 1 day ago FACET \`error.class\``;
+  }
+
+  buildWebsiteFunnelQuery() { // eslint-disable-line
+    return `SELECT funnel(
+        session,
+        WHERE pageUrl LIKE 'https://www.campsy.%/' AS 'Home Page',
+        WHERE pageUrl like 'https://www.campsy.%search/geo%' AS 'Search Page',
+        WHERE pageUrl like 'https://www.campsy.%booking/checkout%' AS 'Checkout Step 1',
+        WHERE pageUrl LIKE 'https://www.campsy.%booking/%/details%' AS 'Checkout Step 2',
+        WHERE pageUrl like 'https://www.campsy.%booking/%/payment%' AS 'Checkout Step 3',
+        WHERE pageUrl LIKE 'https://www.campsy.%/booking/%/success' AS 'Checkout Success'
+      )
+      FROM PageView SINCE 1 day ago
+    `;
+  }
+
   static getDescription(insightsResponse) {
     const since = _get(insightsResponse, 'metadata.rawSince', null);
     const compareWith = _get(insightsResponse, 'metadata.rawCompareWith', null);
 
+    if (since && !compareWith) {
+      return `Since ${since}`;
+    }
     if (since && compareWith) {
-      const description = compareWith ? `Since ${since} COMPARE WITH ${compareWith}` : `Since ${since}`;
+      const description = `Since ${since} COMPARE WITH ${compareWith}`;
       return description.toLowerCase();
     }
 
@@ -55,9 +105,7 @@ class NewRelicService {
   }
 
   getTransactionErrors() {
-    const nrql = 'SELECT count(*) FROM TransactionError WHERE appName = \'www.campsy.de\' SINCE 30 minutes AGO COMPARE WITH 30 minutes ago';
-
-    return this.getQueryResponse(nrql)
+    return this.getQueryResponse(this.buildTransactionErrorQuery())
       .then((insightsResponse) => ({
         previous: _get(insightsResponse, 'previous.results[0].count', constants.unknown),
         current: _get(insightsResponse, 'current.results[0].count', constants.unknown),
@@ -66,9 +114,7 @@ class NewRelicService {
   }
 
   getLoadTime() {
-    const nrql = 'SELECT average(duration) from Transaction WHERE appName = \'www.campsy.de\' since 10 minutes ago';
-
-    return this.getQueryResponse(nrql)
+    return this.getQueryResponse(this.buildLoadTimeQuery())
       .then((insightsResponse) => ({
         current: _get(insightsResponse, 'results[0].average', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
@@ -77,9 +123,7 @@ class NewRelicService {
   }
 
   getUniqueSessions() {
-    const nrql = 'SELECT count(session) FROM PageView SINCE 20 minutes ago COMPARE WITH 20 minutes ago';
-
-    return this.getQueryResponse(nrql)
+    return this.getQueryResponse(this.buildUniqueSessionsQuery())
       .then((insightsResponse) => ({
         previous: _get(insightsResponse, 'previous.results[0].count', constants.unknown),
         current: _get(insightsResponse, 'current.results[0].count', constants.unknown),
@@ -88,9 +132,7 @@ class NewRelicService {
   }
 
   getSuccessfulBookings() {
-    const nrql = 'SELECT count(session) FROM PageView WHERE pageUrl like \'https://www.campsy.de/booking/%/success%\' and pageUrl not like \'%pay-later%\' SINCE 1 day ago COMPARE WITH 1 day ago';
-
-    return this.getQueryResponse(nrql)
+    return this.getQueryResponse(this.buildSuccessfulBookingsQuery())
       .then((insightsResponse) => ({
         previous: _get(insightsResponse, 'previous.results[0].count', constants.unknown),
         current: _get(insightsResponse, 'current.results[0].count', constants.unknown),
@@ -99,9 +141,7 @@ class NewRelicService {
   }
 
   getCLIErrors() {
-    const nrql = 'SELECT count(*) from TransactionError WHERE appName = \'cli.campsy.de\' SINCE 30 minutes ago';
-
-    return this.getQueryResponse(nrql)
+    return this.getQueryResponse(this.buildCliErrorsQuery())
       .then((insightsResponse) => ({
         current: _get(insightsResponse, 'results[0].count', constants.unknown),
         description: NewRelicService.getDescription(insightsResponse),
@@ -110,9 +150,7 @@ class NewRelicService {
   }
 
   getErrorBreakdown() {
-    const nrql = 'SELECT count(*) from TransactionError WHERE appName = \'www.campsy.de\' SINCE 1 day ago FACET `error.class`';
-
-    return this.getQueryResponse(nrql)
+    return this.getQueryResponse(this.buildErrorBreakdownQuery())
       .then((insightsResponse) => {
         const results = _get(insightsResponse, 'facets').map(facet => ({
           name: _get(facet, 'name'),
@@ -127,9 +165,7 @@ class NewRelicService {
   }
 
   getWebsiteFunnel() {
-    const nrql = 'SELECT funnel(session, WHERE pageUrl LIKE \'https://www.campsy.%/\' AS \'Home Page\', WHERE pageUrl like \'https://www.campsy.%search/geo%\' AS \'Search Page\', WHERE pageUrl like \'https://www.campsy.%booking/checkout%\' AS \'Checkout Step 1\', WHERE pageUrl LIKE \'https://www.campsy.%booking/%/details%\' AS \'Checkout Step 2\', WHERE pageUrl like \'https://www.campsy.%booking/%/payment%\' AS \'Checkout Step 3\', WHERE pageUrl LIKE \'https://www.campsy.%/booking/%/success\' AS \'Checkout Success\') FROM PageView SINCE 1 day ago';
-
-    return this.getQueryResponse(nrql)
+    return this.getQueryResponse(this.buildWebsiteFunnelQuery())
       .then((insightsResponse) => {
         const results = _get(insightsResponse, 'results[0].steps').map((value, index) => ({
           name: _get(insightsResponse, `metadata.contents[0].steps[${index}]`),
@@ -148,7 +184,8 @@ class NewRelicService {
       return this.insights;
     }
 
-    if (!this.config.accountId) {
+    // Lodash/isEmpty function requires accountId to be string
+    if (isEmpty(this.config.accountId)) {
       throw new Error('NewRelic Insights accountId may not be empty.');
     }
 
