@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Number from '../../../src/widgets/Number/components/Number';
+import constants from '../../../src/config/constants';
 
 describe('Number component', () => {
   // Obtain the reference to the component before React DnD wrapping
@@ -20,17 +21,19 @@ describe('Number component', () => {
   );
 
   it('contains the heading', () => {
-    expect(widget.contains('Some number')).toEqual(true);
+    expect(widget.contains('Some number')).toBe(true);
   });
   it('contains the explanation', () => {
-    expect(widget.contains('Explanation')).toEqual(true);
+    expect(widget.contains('Explanation')).toBe(true);
   });
   it('contains a current value', () => {
-    expect(widget.find('.current').contains(99)).toEqual(true);
+    expect(widget.find('.current').length).toBe(1);
+    expect(widget.find('.current').contains(99)).toBe(true);
+    expect(widget.find('.loading').length).toBe(0); // No loading indicator since we actually have a value
   });
 
   it('contains percentage', () => {
-    expect(widget.find('.change').contains('1000%')).toEqual(true);
+    expect(widget.find('.change').contains('1000%')).toBe(true);
   });
 
   it('contains change Infinity when comparing to zero', () => {
@@ -43,7 +46,7 @@ describe('Number component', () => {
       />,
     );
 
-    expect(anotherWidget.find('.change').contains('Infinity')).toEqual(true);
+    expect(anotherWidget.find('.change').contains('Infinity')).toBe(true);
   });
   it('contains change 0 when current is zero and comparing to zero', () => {
     const anotherWidget = shallow(
@@ -55,7 +58,10 @@ describe('Number component', () => {
       />,
     );
 
-    expect(anotherWidget.find('.change').contains('0%')).toEqual(true);
+    expect(anotherWidget.find('.change').contains('0%')).toBe(true);
+  });
+  it('highlights increase as `good` when `riseIsBad` is not set', () => {
+    expect(widget.find('.change.increase.good').length).toBe(1);
   });
 
   it('highlights increase as `bad` when `riseIsBad` is set', () => {
@@ -69,7 +75,7 @@ describe('Number component', () => {
       />,
     );
 
-    expect(anotherWidget.find('.change.increase.bad').length).toEqual(1);
+    expect(anotherWidget.find('.change.increase.bad').length).toBe(1);
   });
 
   it('highlights decrease as `good` when `riseIsBad` is set', () => {
@@ -83,10 +89,10 @@ describe('Number component', () => {
       />,
     );
 
-    expect(anotherWidget.find('.change.decrease.good').length).toEqual(1);
+    expect(anotherWidget.find('.change.decrease.good').length).toBe(1);
   });
 
-  it('highlights decrease as `good` when `riseIsBad` is set', () => {
+  it('highlights decrease as `good` when `riseIsBad` is not set', () => {
     const anotherWidget = shallow(
       <OriginalNumber
         connectDragSource={identity}
@@ -97,7 +103,7 @@ describe('Number component', () => {
       />,
     );
 
-    expect(anotherWidget.find('.change.decrease.bad').length).toEqual(1);
+    expect(anotherWidget.find('.change.decrease.bad').length).toBe(1);
   });
 
   it('highlights `current` when over `threshold`', () => {
@@ -112,7 +118,7 @@ describe('Number component', () => {
       />,
     );
 
-    expect(anotherWidget.find('.current.threshold-overcome').length).toEqual(1);
+    expect(anotherWidget.find('.current.threshold-overcome').length).toBe(1);
   });
 
   it('does not highlight `current` when under `threshold`', () => {
@@ -127,6 +133,36 @@ describe('Number component', () => {
       />,
     );
 
-    expect(anotherWidget.find('.current.threshold-overcome').length).toEqual(0);
+    expect(anotherWidget.find('.current.threshold-overcome').length).toBe(0);
+  });
+
+  it('displays a loading placeholder if the current data is not set', () => {
+    const anotherWidget = shallow(
+      <OriginalNumber
+        connectDragSource={identity}
+        connectDropTarget={identity}
+        heading="Some number"
+        data={{ current: null }}
+      />,
+    );
+
+    expect(anotherWidget.find('.current').length).toBe(0);
+    expect(anotherWidget.find('.loading').length).toBe(1);
+    expect(anotherWidget.find('.loading').contains(constants.loadingData)).toBe(true);
+  });
+
+  it('displays an unknown placeholder if the current data is unknown', () => {
+    const anotherWidget = shallow(
+      <OriginalNumber
+        connectDragSource={identity}
+        connectDropTarget={identity}
+        heading="Some number"
+        data={{ current: constants.unknown }}
+      />,
+    );
+
+    expect(anotherWidget.find('.current').length).toBe(0);
+    expect(anotherWidget.find('.loading').length).toBe(1);
+    expect(anotherWidget.find('.loading').contains(constants.unknown)).toBe(true);
   });
 });
