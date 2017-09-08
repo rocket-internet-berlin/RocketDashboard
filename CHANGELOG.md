@@ -4,8 +4,19 @@
 
 - Improve test coverage for frontend.
 - Backend tests.
-- Drag & drop and persistent ordering.
-- Hiding functionality for each widget + persistence of setting.
+
+#### 0.14.0
+
+- Widget to display the current temperature and weather conditions in a configurable city.
+- Twitter widget.
+- Widget instantiation through FactoryPattern.
+- Persistent re-ordering of widgets using drag & drop.
+- Settings modal dialog to select which widget should be active. Selection is persistent in local storage.
+- Icons for each widget header.
+- Caching using redis in a separate Docker container.
+- Caching of more controller responses.
+- Full screen mode that shows one widget at a time in a carousel.
+- Unit test refactoring + server-side tests.
 
 #### 0.13.0
 
