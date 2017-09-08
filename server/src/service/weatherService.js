@@ -1,4 +1,7 @@
 import axios from 'axios';
+import isObject from 'lodash/isObject';
+import isEmpty from 'lodash/isEmpty';
+
 import validateSchema from '../helper/validator';
 
 class WeatherService {
@@ -22,8 +25,12 @@ class WeatherService {
   }
 
   fetchWeatherInfo() {
-    return axios.get(`http://api.openweathermap.org/data/2.5/weather?id=${this.apiCityId}&appid=${this.apiKey}&units=metric`)
+    return axios.get(this.buildWeatherInfoUrl())
       .then((payload) => {
+        if (isEmpty(payload.data) || !isObject(payload.data)) {
+          return {};
+        }
+
         const weatherData = payload.data;
         return ({
           city: weatherData.name,
@@ -33,6 +40,10 @@ class WeatherService {
           updated: new Date(),
         });
       });
+  }
+
+  buildWeatherInfoUrl() {
+    return `http://api.openweathermap.org/data/2.5/weather?id=${this.apiCityId}&appid=${this.apiKey}&units=metric`;
   }
 }
 
