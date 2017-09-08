@@ -161,6 +161,14 @@ const userSettings = {
       heading: 'Custom Breakdown',
       type: widgetType.breakdown,
     },
+    {
+      id: uuidv4(),
+      key: 'twitterFeed',
+      display: true,
+      heading: 'Twitter feed',
+      type: widgetType.text,
+      iconType: iconType.twitter,
+    },
   ],
 };
 

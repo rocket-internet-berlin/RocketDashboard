@@ -17,6 +17,7 @@ const constants = {
     google: 'google',
     calendar: 'calendar',
     weather: 'weather',
+    twitter: 'twitter',
   },
   iconSrc: {
     jira: 'icons/icon-jira-logo.png',
@@ -24,6 +25,7 @@ const constants = {
     google: 'icons/icon-google-logo.png',
     calendar: 'icons/icon-calendar-logo.png',
     weather: 'icons/icon-weather-logo.png',
+    twitter: 'icons/icon-twitter-logo.png',
   },
   draggableType: {
     smallWidget: 'smallWidget',

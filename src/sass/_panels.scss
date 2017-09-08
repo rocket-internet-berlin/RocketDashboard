@@ -44,6 +44,10 @@
       width: 32px;
       margin-top: -4px;
     }
+    .logo.twitter {
+      width: 40px;
+      margin-top: 0;
+    }
 
     .panel-title-text {
       display: inline-block;
@@ -112,6 +116,10 @@
         width: 100px;
         margin-top: -10px;
       }
+      .logo.twitter {
+        width: 88px;
+        margin-top: 0;
+      }
     }
 
     .panel-body {
@@ -153,6 +161,10 @@
       .logo.weather {
         width: 23px;
         margin-top: -4px;
+      }
+      .logo.twitter {
+        width: 35px;
+        margin-top: 0;
       }
     }
   }
