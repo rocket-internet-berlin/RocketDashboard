@@ -2,6 +2,7 @@
 import sinon from 'sinon';
 
 import GoogleSheetsService from '../../src/service/googleSheetsService';
+import constants from '../../src/config/constants';
 
 describe('GoogleSheetsService', () => {
   const validConfig = { serviceAccountEmail: 'someAccount', serviceAccountPrivateKey: 'someKey' };
@@ -73,7 +74,7 @@ describe('GoogleSheetsService', () => {
       expect('history' in processedResult).toBe(true);
       expect('updated' in processedResult).toBe(true);
       expect(processedResult.history).toEqual(expectedHistory);
-      expect(new Date(processedResult.updated)).not.toBe('Invalid date'); // Check valid date
+      expect(new Date(processedResult.updated)).not.toBe(constants.testing.invalidDateString); // Check valid date
     });
 
     it('Returns no data when Google returns an error', () => {
