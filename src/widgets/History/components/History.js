@@ -4,26 +4,15 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
-import { timeFormatter } from '../../../lib/formatter';
-import getIcon from '../../../lib/getIcon';
+import formatter from '../../../lib/formatter';
+import iconHandler from '../../../lib/iconHandler';
 import BasicTable from '../../../components/BasicTable/BasicTable';
+import CustomizedAxisTick from './CustomizedAxisTick';
 import './History.scss';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
 
 const getTableDataFromHistory = data => data.map(item => [item.date, item.openBugs, item.solvedBugs, item.newBugs]);
-
-const CustomizedAxisTick = props => {
-  const { x, y, stroke, payload } = props; // eslint-disable-line
-
-  return (
-    <g transform={`translate(${x},${y})`}>
-      <text x={0} y={0} dy={16} textAnchor="end" fill="#b7b7b7" transform="rotate(-35)">
-        {payload.value}
-      </text>
-    </g>
-  );
-};
 
 const History = ({ connectDragSource, connectDragPreview, connectDropTarget, isDragging, isOver, ...props }) =>
   compose(connectDragSource, connectDropTarget)(
@@ -31,7 +20,7 @@ const History = ({ connectDragSource, connectDragPreview, connectDropTarget, isD
       {connectDragPreview(
         <div className="panel-heading">
           <div className="panel-title-text">{props.heading}</div>
-          {getIcon(props.iconType)}
+          {iconHandler.getIconPartial(props.iconType)}
         </div>,
       )}
       <div className="panel-body hidden-xs">
@@ -75,7 +64,7 @@ const History = ({ connectDragSource, connectDragPreview, connectDropTarget, isD
       </div>
       <div className="panel-footer">
         {props.description}
-        {timeFormatter(props.data.updated)}
+        {formatter.formatWidgetUpdatedTimestamp(props.data.updated)}
       </div>
     </div>,
   );

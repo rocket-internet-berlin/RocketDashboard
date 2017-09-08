@@ -1,7 +1,7 @@
 import uuidv4 from 'uuid/v4';
 
 import constants from './constants';
-import { financeFormatter } from '../lib/formatter';
+import formatter from '../lib/formatter';
 
 const widgetType = constants.widgetType;
 const iconType = constants.iconType;
@@ -14,7 +14,7 @@ const userSettings = {
       display: true,
       iconType: iconType.google,
       type: widgetType.number,
-      formatter: financeFormatter,
+      formatter: formatter.formatStockPrice,
       heading: 'Stock Widget', // Only for displaying widget name in settings modal
     },
     {
