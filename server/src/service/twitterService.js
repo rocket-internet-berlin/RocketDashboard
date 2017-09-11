@@ -1,10 +1,25 @@
 import axios from 'axios';
 import cheerio from 'cheerio';
 
+import validateSchema from '../../src/helper/validator';
+
 class TwitterService {
   constructor(config) {
+    TwitterService.validateConfig(config);
+
     this.query = config.query;
     this.baseUrl = 'https://twitter.com';
+  }
+
+  static validateConfig(config) {
+    const schema = {
+      required: [
+        'query',
+      ],
+    };
+    if (!validateSchema(schema, config)) {
+      throw new Error('Invalid configuration properties');
+    }
   }
 
   getLatestTweetForHashtag() {
