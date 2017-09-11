@@ -144,8 +144,13 @@ const userSettings = {
       key: 'bugsHistory',
       display: true,
       iconType: iconType.jira,
-      type: widgetType.bugsHistory,
+      type: widgetType.history,
       heading: 'Bugs History',
+      legends: [
+        { dataKey: 'openBugs', name: 'Open', color: '#1986ff' },
+        { dataKey: 'solvedBugs', name: 'Solved', color: '#9BB209' },
+        { dataKey: 'newBugs', name: 'New', color: '#FF2B19' },
+      ],
     },
     {
       id: uuidv4(),
@@ -178,6 +183,16 @@ const userSettings = {
       heading: 'Twitter feed',
       type: widgetType.text,
       iconType: iconType.twitter,
+    },
+    {
+      id: uuidv4(),
+      key: 'statusCakeHistory',
+      display: true,
+      heading: 'StatusCake uptime history',
+      type: widgetType.history,
+      legends: [{ dataKey: 'status', name: 'Status', color: '#1986ff' }],
+      dots: false,
+      iconType: iconType.statuscake,
     },
   ],
 };

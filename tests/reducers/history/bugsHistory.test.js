@@ -1,9 +1,7 @@
-import bugsHistory from '../../../../src/widgets/BugsHistory/reducers/bugsHistory';
+import bugsHistory from '../../../src/reducers/history/bugsHistory';
 
-describe('bugsHistory reducer', () => {
+describe('history reducer', () => {
   it('updates the state with the data from a RECEIVE_BUGSHISTORY action', () => {
-    const date = new Date();
-
     expect(
       bugsHistory(
         {
@@ -24,11 +22,10 @@ describe('bugsHistory reducer', () => {
                 newBugs: 6,
               },
             ],
-            updated: date,
           },
         },
       ),
-    ).toEqual({
+    ).toEqual(expect.objectContaining({
       history: [
         {
           openBugs: 1,
@@ -41,8 +38,7 @@ describe('bugsHistory reducer', () => {
           newBugs: 6,
         },
       ],
-      updated: date,
-    });
+    }));
   });
 
   it('does not handle other actions', () => {

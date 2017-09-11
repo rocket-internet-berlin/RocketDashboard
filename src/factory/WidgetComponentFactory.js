@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Number from '../widgets/Number/components/Number';
-import BugsHistory from '../widgets/BugsHistory/components/BugsHistory';
+import History from '../widgets/History/components/History';
 import Breakdown from '../widgets/Breakdown/components/Breakdown';
 import Funnel from '../widgets/Funnel/components/Funnel';
 import Text from '../widgets/Text/components/Text';
@@ -45,12 +45,12 @@ class WidgetComponentFactory {
         );
       }
 
-      case widgetType.bugsHistory: {
-        const bugsHistoryProps = WidgetComponentFactory.getBugsHistoryProps(widget, props);
+      case widgetType.history: {
+        const historyProps = WidgetComponentFactory.getHistoryProps(widget, props);
 
         return (
           <div className="col-xs-12" key={key}>
-            <BugsHistory {...bugsHistoryProps} />
+            <History {...historyProps} />
           </div>
         );
       }
@@ -110,10 +110,11 @@ class WidgetComponentFactory {
     return Object.assign({}, WidgetComponentFactory.getGenericProps(widget, props));
   }
 
-  static getBugsHistoryProps(widget, props) {
+  static getHistoryProps(widget, props) {
     return Object.assign({}, WidgetComponentFactory.getGenericProps(widget, props), {
-      history: props[widget.key],
       description: widget.description,
+      legends: widget.legends,
+      dots: widget.dots,
     });
   }
 

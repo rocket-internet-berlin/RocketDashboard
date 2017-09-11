@@ -1,7 +1,7 @@
 import 'whatwg-fetch';
 import { createAction } from 'redux-actions';
-import { fetchApi } from '../../../lib/fetchApi';
-import WidgetStore from '../../../containers/WidgetList/stores/WidgetStore';
+import { fetchApi } from '../../lib/fetchApi';
+import WidgetStore from '../../containers/WidgetList/stores/WidgetStore';
 
 export const onReceive = createAction('RECEIVE_BUGSHISTORY', json => json.data);
 

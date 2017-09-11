@@ -1,6 +1,6 @@
-import * as actions from '../../../../src/widgets/BugsHistory/actions/bugsHistory';
+import * as actions from '../../../src/actions/history/bugsHistory';
 
-describe('bugsHistory response parsing', () => {
+describe('history response parsing', () => {
   it('creates a correct action', () => {
     const json = {
       data: [{ openBugs: 1, solvedBugs: 2, newBugs: 3 }],

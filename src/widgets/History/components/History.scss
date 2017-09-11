@@ -1,6 +1,6 @@
 @import 'variables';
 
-.BugsHistory {
+.History {
   &.panel {
     height: 360px;
   }
@@ -38,7 +38,7 @@
 }
 
 *:fullscreen {
-  .BugsHistory {
+  .History {
     &.panel {
       height: 100%;
     }

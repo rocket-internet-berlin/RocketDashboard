@@ -2,14 +2,14 @@ import React from 'react';
 import sinon from 'sinon';
 import { shallow } from 'enzyme';
 
-import constants from '../config/constants';
-import WidgetComponentFactory from './WidgetComponentFactory';
-import Number from '../widgets/Number/components/Number';
-import BugsHistory from '../widgets/BugsHistory/components/BugsHistory';
-import Breakdown from '../widgets/Breakdown/components/Breakdown';
-import Funnel from '../widgets/Funnel/components/Funnel';
-import Text from '../widgets/Text/components/Text';
-import Weather from '../widgets/Weather/components/Weather';
+import constants from '../../src/config/constants';
+import WidgetComponentFactory from '../../src/factory/WidgetComponentFactory';
+import Number from '../../src/widgets/Number/components/Number';
+import History from '../../src/widgets/History/components/History';
+import Breakdown from '../../src/widgets/Breakdown/components/Breakdown';
+import Funnel from '../../src/widgets/Funnel/components/Funnel';
+import Text from '../../src/widgets/Text/components/Text';
+import Weather from '../../src/widgets/Weather/components/Weather';
 
 const widgetType = constants.widgetType;
 
@@ -64,17 +64,17 @@ describe('WidgetComponentFactory', () => {
     ).toBe(false);
   });
 
-  it('creates `BugsHistory` component', () => {
+  it('creates `History` component', () => {
     const widgetConfig = {
       id: 'id',
       key: 'number',
       iconType: 'icon',
-      type: widgetType.bugsHistory,
+      type: widgetType.history,
       heading: 'Bugs history',
     };
 
     const expectedBugsHistory = (
-      <BugsHistory
+      <History
         id="id"
         heading="Bugs history"
         iconType="icon"
@@ -86,10 +86,10 @@ describe('WidgetComponentFactory', () => {
     const widget = WidgetComponentFactory.create(widgetConfig, genericProps);
     const widgetComp = shallow(widget);
 
-    expect(widgetComp.containsAllMatchingElements([<BugsHistory />])).toBe(true);
+    expect(widgetComp.containsAllMatchingElements([<History />])).toBe(true);
     expect(
       widgetComp.containsAllMatchingElements([
-        <BugsHistory id="id" onMove={genericProps.onMove} onHover={genericProps.onHover} />,
+        <History id="id" onMove={genericProps.onMove} onHover={genericProps.onHover} />,
       ]),
     ).toBe(true);
     expect(widgetComp.containsAllMatchingElements([expectedBugsHistory])).toBe(true);
@@ -97,7 +97,7 @@ describe('WidgetComponentFactory', () => {
     // Negative test
     expect(
       widgetComp.containsAllMatchingElements([
-        <BugsHistory random="test" onMove={genericProps.onMove} onHover={genericProps.onHover} />,
+        <History random="test" onMove={genericProps.onMove} onHover={genericProps.onHover} />,
       ]),
     ).toBe(false);
   });

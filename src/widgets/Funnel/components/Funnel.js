@@ -19,15 +19,13 @@ const Funnel = ({ connectDragSource, connectDragPreview, connectDropTarget, isDr
     <div className="panel Funnel NewRelicWebsiteFunnel" style={draggingStyle(isDragging, isOver)}>
       {connectDragPreview(
         <div className="panel-heading">
-          <div className="panel-title-text">
-            {props.heading}
-          </div>
+          <div className="panel-title-text">{props.heading}</div>
           {getIcon(props.iconType)}
         </div>,
       )}
       <div className="panel-body hidden-xs">
         <div className="row">
-          <ResponsiveContainer width="100%">
+          <ResponsiveContainer width="100%" minHeight={155}>
             <AreaChart
               data={props.data.results}
               layout="vertical"
