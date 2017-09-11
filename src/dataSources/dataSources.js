@@ -23,6 +23,7 @@ const dataSources = [
   { key: 'jiraSelectedForDevelopment', fetchFunction: () => fetchApi('jira/selected-for-development') },
   { key: 'jiraReadyForQa', fetchFunction: () => fetchApi('jira/ready-for-qa') },
   { key: 'customNumber', fetchFunction: () => fetchUrl('http://www.mocky.io/v2/5996ec35130000c4008b77f9') },
+  { key: 'github', fetchFunction: () => fetchApi('github/pr') },
   {
     key: 'customBreakdown',
     fetchFunction: () => fetchUrl('http://www.mocky.io/v2/5996ecef130000bd008b77fd'),

@@ -6,6 +6,7 @@ import TriviaService from './triviaService';
 import GoogleFinanceService from './googleFinanceService';
 import WeatherService from './weatherService';
 import TwitterService from './twitterService';
+import GithubService from './githubService';
 import config from '../config';
 
 const googleSheetsService = new GoogleSheetsService(config.google);
@@ -16,6 +17,7 @@ const triviaService = new TriviaService(config.trivia);
 const googleFinanceService = new GoogleFinanceService(config.finance);
 const weatherService = new WeatherService(config.weather);
 const twitterService = new TwitterService(config.twitter);
+const githubService = new GithubService(config.github);
 
 export {
   cacheService,
@@ -26,4 +28,5 @@ export {
   googleFinanceService,
   weatherService,
   twitterService,
+  githubService,
 };

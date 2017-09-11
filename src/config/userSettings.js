@@ -19,6 +19,16 @@ const userSettings = {
     },
     {
       id: uuidv4(),
+      key: 'githubPr',
+      display: true,
+      heading: 'Github Open PR Count',
+      iconType: iconType.github,
+      type: widgetType.number,
+      threshold: 5,
+      riseIsBad: true,
+    },
+    {
+      id: uuidv4(),
       key: 'weather',
       display: true,
       iconType: iconType.weather,
