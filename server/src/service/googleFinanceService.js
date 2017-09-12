@@ -1,4 +1,5 @@
 import axios from 'axios';
+import cheerio from 'cheerio';
 import validateSchema from '../helper/validator';
 
 class GoogleFinanceService {
@@ -23,19 +24,16 @@ class GoogleFinanceService {
   fetchStockPrice() {
     return axios.get(this.buildStockPriceFetchUrl())
       .then(payload => {
-        let stockData = null;
-        try {
-          stockData = JSON.parse(payload.data.replace('//', ''))[0];
-        } catch (e) {
+        const $ = cheerio.load(payload.data);
+        const $current = $('#price-panel span.pr span').text();
+        const $previous = $('.id-price-change span span').first().text();
+
+        if (!$current || !$previous) {
           return {};
         }
 
-        if (!('l_fix' in stockData) || !('c_fix' in stockData)) {
-          return {}; // Could not find the current stock price or last change in the response
-        }
-
-        const current = parseFloat(stockData.l_fix);
-        const change = parseFloat(stockData.c_fix);
+        const current = parseFloat($current);
+        const change = parseFloat($previous);
         const previous = current - change;
 
         return ({
@@ -49,7 +47,7 @@ class GoogleFinanceService {
   }
 
   buildStockPriceFetchUrl() {
-    return `http://www.google.com/finance/info?q=${this.stockTicker}`;
+    return `https://www.google.com/finance?q=${this.stockTicker}`;
   }
 }
 
