@@ -13,5 +13,5 @@ export const refresh = ({ key, fetchFunction }) => dispatch => {
     return;
   }
 
-  fetchFunction().then(json => dispatch(onReceive(key, json.data)));
+  fetchFunction().then(json => dispatch(onReceive(key, json)));
 };

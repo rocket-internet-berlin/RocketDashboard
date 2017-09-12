@@ -14,13 +14,13 @@ const expectedAction = {
   type: 'RECEIVE_DATA',
   payload: {
     key,
-    ...json.data,
+    ...json,
   },
 };
 
 describe('onReceive', () => {
   it('should create action with proper structure', () => {
-    const action = onReceive(key, json.data);
+    const action = onReceive(key, json);
 
     expect(action).toEqual(expectedAction);
   });

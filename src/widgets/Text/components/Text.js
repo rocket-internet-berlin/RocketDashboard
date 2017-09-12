@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
+import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import formatter from '../../../lib/formatter';
 import iconHandler from '../../../lib/iconHandler';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
@@ -23,8 +24,10 @@ const Text = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...pro
         {iconHandler.getIconPartial(props.iconType)}
       </div>
       <div className="panel-body">
-        {/* eslint-disable react/no-danger */}
-        <div dangerouslySetInnerHTML={createRawHtml(props.data.body)} />
+        <ErrorHandler {...props.response}>
+          {/* eslint-disable react/no-danger */}
+          <div dangerouslySetInnerHTML={createRawHtml(props.data.body)} />
+        </ErrorHandler>
       </div>
       <div className="panel-footer">{formatter.formatWidgetUpdatedTimestamp(props.data.updated)}</div>
     </div>,

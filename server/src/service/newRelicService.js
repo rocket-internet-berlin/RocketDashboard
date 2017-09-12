@@ -85,23 +85,20 @@ class NewRelicService {
   static getDescription(insightsResponse) {
     const since = _get(insightsResponse, 'metadata.rawSince', null);
     const compareWith = _get(insightsResponse, 'metadata.rawCompareWith', null);
+    let description = '';
 
     if (since && !compareWith) {
-      return `Since ${since}`;
+      description = `Since ${since}`;
     }
     if (since && compareWith) {
-      const description = `Since ${since} COMPARE WITH ${compareWith}`;
-      return description.toLowerCase();
+      description = `Since ${since} COMPARE WITH ${compareWith}`;
     }
 
-    return '';
+    return description.toLowerCase();
   }
 
   static errorHandler() {
-    return {
-      current: constants.unknown,
-      description: 'Newrelic is probably not setup correctly.',
-    };
+    throw new Error('Error getting response from newrelic.');
   }
 
   getTransactionErrors() {

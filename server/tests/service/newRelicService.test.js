@@ -152,9 +152,8 @@ describe('NewRelicService', () => {
       // It will force the promise to reject
       sinon.stub(newRelicService, 'newrelicSite').value('');
 
-      return newRelicService.getTransactionErrors().then((response) => {
-        const errorResponse = NewRelicService.errorHandler();
-        expect(response).toEqual(errorResponse);
+      return newRelicService.getTransactionErrors().catch((error) => {
+        expect(error).toBeInstanceOf(Error);
       });
     });
   });
@@ -197,9 +196,8 @@ describe('NewRelicService', () => {
       // It will force the promise to reject
       sinon.stub(newRelicService, 'newrelicSite').value('');
 
-      return newRelicService.getLoadTime().then((response) => {
-        const errorResponse = NewRelicService.errorHandler();
-        expect(response).toEqual(errorResponse);
+      return newRelicService.getLoadTime().catch((error) => {
+        expect(error).toBeInstanceOf(Error);
       });
     });
   });
@@ -241,9 +239,8 @@ describe('NewRelicService', () => {
       // It will force the promise to reject
       sinon.stub(newRelicService, 'newrelicSite').value('');
 
-      return newRelicService.getUniqueSessions().then((response) => {
-        const errorResponse = NewRelicService.errorHandler();
-        expect(response).toEqual(errorResponse);
+      return newRelicService.getUniqueSessions().catch((error) => {
+        expect(error).toBeInstanceOf(Error);
       });
     });
   });
@@ -285,9 +282,8 @@ describe('NewRelicService', () => {
       // It will force the promise to reject
       sinon.stub(newRelicService, 'newrelicSite').value('');
 
-      return newRelicService.getSuccessfulBookings().then((response) => {
-        const errorResponse = NewRelicService.errorHandler();
-        expect(response).toEqual(errorResponse);
+      return newRelicService.getSuccessfulBookings().catch((error) => {
+        expect(error).toBeInstanceOf(Error);
       });
     });
   });
@@ -329,9 +325,8 @@ describe('NewRelicService', () => {
       // It will force the promise to reject
       sinon.stub(newRelicService, 'newrelicCliSite').value('');
 
-      return newRelicService.getCLIErrors().then((response) => {
-        const errorResponse = NewRelicService.errorHandler();
-        expect(response).toEqual(errorResponse);
+      return newRelicService.getCLIErrors().catch((error) => {
+        expect(error).toBeInstanceOf(Error);
       });
     });
   });
@@ -388,9 +383,8 @@ describe('NewRelicService', () => {
       // It will force the promise to reject
       sinon.stub(newRelicService, 'newrelicSite').value('');
 
-      return newRelicService.getErrorBreakdown().then((response) => {
-        const errorResponse = NewRelicService.errorHandler();
-        expect(response).toEqual(errorResponse);
+      return newRelicService.getErrorBreakdown().catch((error) => {
+        expect(error).toBeInstanceOf(Error);
       });
     });
   });
@@ -458,9 +452,8 @@ describe('NewRelicService', () => {
       // It will force the promise to reject
       sinon.stub(newRelicService, 'buildWebsiteFunnelQuery').returns('');
 
-      return newRelicService.getWebsiteFunnel().then((response) => {
-        const errorResponse = NewRelicService.errorHandler();
-        expect(response).toEqual(errorResponse);
+      return newRelicService.getWebsiteFunnel().catch((error) => {
+        expect(error).toBeInstanceOf(Error);
       });
     });
   });

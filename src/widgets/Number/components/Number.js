@@ -4,6 +4,7 @@ import _round from 'lodash/round';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
+import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import formatter from '../../../lib/formatter';
 import iconHandler from '../../../lib/iconHandler';
 import constants from '../../../config/constants';
@@ -38,7 +39,7 @@ const getChangeClassName = (number, riseIsBad) => {
 };
 
 const getCurrentClassName = (current, threshold, riseIsBad) => {
-  if (current === null || current === 'undefined' || current === constants.unknown) {
+  if (isNaN(current) || current === null) {
     return constants.loading;
   }
 
@@ -53,7 +54,7 @@ const getCurrentClassName = (current, threshold, riseIsBad) => {
 const getFormattedData = current => {
   if (current === constants.unknown) {
     return current;
-  } else if (current === null || current === 'undefined') {
+  } else if (isNaN(current) || current === null) {
     return constants.loadingData;
   }
 
@@ -68,16 +69,18 @@ const Number = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...p
         {iconHandler.getIconPartial(props.iconType)}
       </div>
       <div className="panel-body">
-        {typeof props.data.current !== 'undefined' &&
-          <span className={getCurrentClassName(props.data.current, props.threshold, props.riseIsBad)}>
-            {props.formatter ? props.formatter(props.data.current) : getFormattedData(props.data.current)}
-          </span>}
-        {typeof props.data.previous !== 'undefined' &&
-        props.data.previous !== constants.unknown && (
-          <span className={getChangeClassName(getChange(props.data.current, props.data.previous), props.riseIsBad)}>
-            {formatChange(getChange(props.data.current, props.data.previous))}
-          </span>
-        )}
+        <ErrorHandler {...props.response}>
+          <div className="body-wrapper">
+            <span className={getCurrentClassName(props.data.current, props.threshold, props.riseIsBad)}>
+              {props.formatter ? props.formatter(props.data.current) : getFormattedData(props.data.current)}
+            </span>
+            {!isNaN(props.data.previous) && (
+              <span className={getChangeClassName(getChange(props.data.current, props.data.previous), props.riseIsBad)}>
+                {formatChange(getChange(props.data.current, props.data.previous))}
+              </span>
+            )}
+          </div>
+        </ErrorHandler>
       </div>
       <div className="panel-footer">
         {props.description || props.data.description}
