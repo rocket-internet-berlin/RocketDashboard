@@ -1,0 +1,25 @@
+@import 'variables';
+
+.PieChart {
+  .panel-body {
+    height: 65%;
+  }
+
+  .row {
+    height: 100%;
+  }
+
+  .recharts-pie-label-text {
+    font-size: $font-size-normal;
+  }
+}
+
+:fullscreen {
+  .recharts-pie-label-text {
+    font-size: $font-size-big;
+  }
+
+  .recharts-legend-item {
+    font-size: $font-size-big;
+  }
+}

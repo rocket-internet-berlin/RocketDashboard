@@ -35,7 +35,7 @@ export const WidgetList = props => {
     speed: 1000,
     slidesToShow: 1,
     slidesToScroll: 1,
-    pauseOnHover: false,
+    pauseOnHover: true,
   };
 
   const renderWidgetList = () => {
@@ -76,6 +76,7 @@ const mapStateToProps = state => ({
   twitterFeed: state.generic.twitterFeed,
   bugsHistory: state.bugsHistory,
   statusCakeHistory: state.statusCakeHistory,
+  jiraSummary: state.generic.jiraSummary,
 });
 
 WidgetList.defaultProps = {
@@ -98,6 +99,7 @@ WidgetList.defaultProps = {
   finance: {},
   twitterFeed: {},
   bugsHistory: [],
+  jiraSummary: {},
 };
 
 const mapDispatchToProps = dispatch => ({

@@ -194,6 +194,14 @@ const userSettings = {
       dots: false,
       iconType: iconType.statuscake,
     },
+    {
+      id: uuidv4(),
+      key: 'jiraSummary',
+      display: true,
+      iconType: iconType.jira,
+      heading: 'Jira Summary',
+      type: widgetType.pieChart,
+    },
   ],
 };
 
