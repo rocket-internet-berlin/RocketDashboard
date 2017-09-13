@@ -1,5 +1,10 @@
 @import 'variables';
 
+/* Remove scroll on the body when react-modal is open */
+.ReactModal__Body--open {
+    overflow: hidden;
+}
+
 .WidgetSettingsModalOverlay {
   background-color: $secondary-bg-color;
   position: fixed;
@@ -45,11 +50,57 @@
   }
 }
 
+/**
+ * Tablet device
+ */
+@media(max-width: $screen-lg-max) {
+  .WidgetSettingsModal {
+
+    .modal-content {
+      height: 600px;
+      overflow-y: scroll;
+    }
+
+    ul {
+      padding-left: $space-small;
+    }
+  }
+}
+
+/**
+ * Tablet device
+ */
+@media(max-width: $screen-md-max) {
+  .WidgetSettingsModal {
+
+    .modal-content {
+      height: 90%;
+      overflow-y: scroll;
+    }
+
+    ul {
+      padding-left: $space-small;
+    }
+  }
+}
+
+/**
+ * Mobile device
+ */
 @media(max-width: $screen-xs-max) {
   .WidgetSettingsModal {
     position: absolute;
     top: 0;
     width: 100%;
     bottom: 0;
+
+    .modal-content {
+      height: 100%;
+      overflow-y: scroll;
+    }
+
+    ul {
+      padding-left: $space-small;
+    }
   }
 }

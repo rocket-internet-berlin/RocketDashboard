@@ -103,6 +103,42 @@ class WidgetStore {
 
     return null;
   }
+
+  getWidgetById(id) {
+    const index = findIndex(this.widgetList, { id });
+
+    if (index > -1) {
+      return this.widgetList[index];
+    }
+
+    return null;
+  }
+
+  setWidgetProperty(id, props) {
+    this.readFromLocalStorage();
+    const index = findIndex(this.widgetList, { id });
+
+    if (index > -1) {
+      const widget = this.widgetList[index];
+      const newWidget = Object.assign({}, widget, props);
+      this.widgetList[index] = newWidget;
+      this.save();
+    }
+
+    return new Promise(resolve =>
+      resolve({
+        widgetList: this.widgetList,
+      }),
+    );
+  }
+
+  hideWidget(id) {
+    return this.setWidgetProperty(id, { display: false });
+  }
+
+  showWidget(id) {
+    return this.setWidgetProperty(id, { display: true });
+  }
 }
 
 const widgetStore = new WidgetStore();
