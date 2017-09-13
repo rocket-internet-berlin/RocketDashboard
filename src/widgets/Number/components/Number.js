@@ -4,8 +4,8 @@ import _round from 'lodash/round';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
-import { timeFormatter } from '../../../lib/formatter';
-import getIcon from '../../../lib/getIcon';
+import formatter from '../../../lib/formatter';
+import iconHandler from '../../../lib/iconHandler';
 import constants from '../../../config/constants';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import './Number.scss';
@@ -64,10 +64,8 @@ const Number = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...p
   compose(connectDragSource, connectDropTarget)(
     <div className="Number panel" style={draggingStyle(isDragging, isOver)}>
       <div className="panel-heading">
-        <div className="panel-title-text">
-          {props.data.heading || props.heading}
-        </div>
-        {getIcon(props.iconType)}
+        <div className="panel-title-text">{props.data.heading || props.heading}</div>
+        {iconHandler.getIconPartial(props.iconType)}
       </div>
       <div className="panel-body">
         {typeof props.data.current !== 'undefined' &&
@@ -75,14 +73,15 @@ const Number = ({ connectDragSource, connectDropTarget, isDragging, isOver, ...p
             {props.formatter ? props.formatter(props.data.current) : getFormattedData(props.data.current)}
           </span>}
         {typeof props.data.previous !== 'undefined' &&
-          props.data.previous !== constants.unknown &&
+        props.data.previous !== constants.unknown && (
           <span className={getChangeClassName(getChange(props.data.current, props.data.previous), props.riseIsBad)}>
             {formatChange(getChange(props.data.current, props.data.previous))}
-          </span>}
+          </span>
+        )}
       </div>
       <div className="panel-footer">
         {props.description || props.data.description}
-        {timeFormatter(props.data.updated)}
+        {formatter.formatWidgetUpdatedTimestamp(props.data.updated)}
       </div>
     </div>,
   );

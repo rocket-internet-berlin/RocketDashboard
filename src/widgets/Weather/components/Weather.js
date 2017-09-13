@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
-import { timeFormatter } from '../../../lib/formatter';
+import formatter from '../../../lib/formatter';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
-import getIcon from '../../../lib/getIcon';
 import './Weather.scss';
+import iconHandler from '../../../lib/iconHandler';
 
 const weatherIcon = icon => {
   if (!icon) {
@@ -34,10 +34,8 @@ const Weather = ({ connectDragSource, connectDropTarget, isDragging, isOver, ico
   compose(connectDragSource, connectDropTarget)(
     <div className="panel Number" style={draggingStyle(isDragging, isOver)}>
       <div className="panel-heading">
-        <div className="panel-title-text">
-          Weather for {weather.weather.city}
-        </div>
-        {getIcon(iconType)}
+        <div className="panel-title-text">Weather for {weather.weather.city}</div>
+        {iconHandler.getIconPartial(iconType)}
       </div>
       <div className="panel-body">
         {getTemperature(weather.weather.temp)}
@@ -46,7 +44,7 @@ const Weather = ({ connectDragSource, connectDropTarget, isDragging, isOver, ico
       <div className="panel-footer">
         <span>
           {weather.weather.description}
-          {timeFormatter(weather.weather.updated)}
+          {formatter.formatWidgetUpdatedTimestamp(weather.weather.updated)}
         </span>
       </div>
     </div>,

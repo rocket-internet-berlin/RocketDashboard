@@ -4,11 +4,11 @@ import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip } from 'rec
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
-import { timeFormatter } from '../../../lib/formatter';
+import formatter from '../../../lib/formatter';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
-import getIcon from '../../../lib/getIcon';
+import iconHandler from '../../../lib/iconHandler';
 import './Funnel.scss';
 
 export const getTableData = data => data.map(el => [el.name, el.count]);
@@ -20,7 +20,7 @@ const Funnel = ({ connectDragSource, connectDragPreview, connectDropTarget, isDr
       {connectDragPreview(
         <div className="panel-heading">
           <div className="panel-title-text">{props.heading}</div>
-          {getIcon(props.iconType)}
+          {iconHandler.getIconPartial(props.iconType)}
         </div>,
       )}
       <div className="panel-body hidden-xs">
@@ -47,7 +47,7 @@ const Funnel = ({ connectDragSource, connectDragPreview, connectDropTarget, isDr
       </div>
       <div className="panel-footer">
         {props.description || props.data.description}
-        {timeFormatter(props.data.updated)}
+        {formatter.formatWidgetUpdatedTimestamp(props.data.updated)}
       </div>
     </div>,
   );

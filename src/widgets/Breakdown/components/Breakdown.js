@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
-import { timeFormatter } from '../../../lib/formatter';
+import formatter from '../../../lib/formatter';
 import VerticalBarChart from '../../../components/VerticalBarChart/VerticalBarChart';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
-import getIcon from '../../../lib/getIcon';
+import iconHandler from '../../../lib/iconHandler';
 
 const getKeyValuePairs = results => results.map(el => ({ key: el.name, value: el.count }));
 const getTableData = results => results.map(el => [el.name, el.count]);
@@ -18,10 +18,8 @@ const Breakdown = ({ connectDragSource, connectDragPreview, connectDropTarget, i
     <div className="panel Breakdown" style={draggingStyle(isDragging, isOver)}>
       {connectDragPreview(
         <div className="panel-heading">
-          <div className="panel-title-text">
-            {props.heading}
-          </div>
-          {getIcon(props.iconType)}
+          <div className="panel-title-text">{props.heading}</div>
+          {iconHandler.getIconPartial(props.iconType)}
         </div>,
       )}
       <div className="panel-body hidden-xs">
@@ -34,7 +32,7 @@ const Breakdown = ({ connectDragSource, connectDragPreview, connectDropTarget, i
       </div>
       <div className="panel-footer">
         {props.description || props.data.description}
-        {timeFormatter(props.data.updated)}
+        {formatter.formatWidgetUpdatedTimestamp(props.data.updated)}
       </div>
     </div>,
   );
@@ -60,7 +58,6 @@ Breakdown.propTypes = {
   }).isRequired,
 };
 
-// export default Breakdown;
 export default compose(
   DragSource(constants.draggableType.smallWidget, dragSource, (connect, monitor) => ({
     connectDragSource: connect.dragSource(),
