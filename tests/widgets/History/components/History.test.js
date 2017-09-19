@@ -1,8 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import { LineChart } from 'recharts';
 
+import ErrorHandler, { Error as ErrorComp } from '../../../../src/components/ErrorHandler/ErrorHandler';
 import History from '../../../../src/widgets/History/components/History';
 import BasicTable from '../../../../src/components/BasicTable/BasicTable';
 import formatter from '../../../../src/lib/formatter';
@@ -95,11 +96,12 @@ describe('History component', () => {
       const dataWithError = {
         status: 'error',
         error: errorMessage,
+        message: errorMessage,
         history: [],
         updated: updatedTimestamp,
       };
 
-      widget = shallow(
+      widget = mount(
         <OriginalHistory
           connectDragSource={identity}
           connectDragPreview={preview}
@@ -110,6 +112,7 @@ describe('History component', () => {
           iconType={testIconType}
           legends={validLegends}
           dots={false}
+          response={dataWithError}
         />,
       );
 
@@ -120,8 +123,8 @@ describe('History component', () => {
       expect(widget.find('.panel-body.visible-xs-block').find(BasicTable).length).toBe(0);
 
       // Check error message is displayed instead
-      expect(widget.find('.panel-body.hidden-xs').contains(errorMessage)).toBe(true);
-      expect(widget.find('.panel-body.visible-xs-block').contains(errorMessage)).toBe(true);
+      expect(widget.find('.panel-body.hidden-xs').containsMatchingElement(<div>{errorMessage}</div>)).toBe(true);
+      expect(widget.find('.panel-body.visible-xs-block').containsMatchingElement(<div>{errorMessage}</div>)).toBe(true);
     });
 
     afterEach(() => {

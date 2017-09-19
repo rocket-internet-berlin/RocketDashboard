@@ -4,6 +4,7 @@ import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
 import formatter from '../../../lib/formatter';
+import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import VerticalBarChart from '../../../components/VerticalBarChart/VerticalBarChart';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
@@ -23,12 +24,16 @@ const Breakdown = ({ connectDragSource, connectDragPreview, connectDropTarget, i
         </div>,
       )}
       <div className="panel-body hidden-xs">
-        <div className="row">
-          {props.data.results && <VerticalBarChart data={getKeyValuePairs(props.data.results)} />}
-        </div>
+        <ErrorHandler {...props.response}>
+          <div className="row">
+            {props.data.results && <VerticalBarChart data={getKeyValuePairs(props.data.results)} />}
+          </div>
+        </ErrorHandler>
       </div>
       <div className="panel-body visible-xs-block">
-        {props.data.results && <BasicTable data={getTableData(props.data.results)} />}
+        <ErrorHandler {...props.response}>
+          {props.data.results && <BasicTable data={getTableData(props.data.results)} />}
+        </ErrorHandler>
       </div>
       <div className="panel-footer">
         {props.description || props.data.description}

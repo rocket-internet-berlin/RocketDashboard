@@ -38,8 +38,7 @@ class GithubService {
           updated: new Date(),
         });
       }).catch(error => {
-        console.log(error.message);
-        return {};
+        throw new Error(error.message);
       });
   }
 }

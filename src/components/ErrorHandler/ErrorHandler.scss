@@ -1,0 +1,13 @@
+@import 'variables';
+
+.error-wrapper {
+  font-size: $font-size-small;
+  color: lightcoral;
+  font-style: italic;
+}
+
+:fullscreen {
+  .error-wrapper {
+    font-size: $font-size-big;
+  }
+}

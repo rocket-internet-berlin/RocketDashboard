@@ -4,6 +4,7 @@ import { ResponsiveContainer, LineChart, Line, XAxis, YAxis, CartesianGrid, Tool
 import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
+import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import formatter from '../../../lib/formatter';
 import iconHandler from '../../../lib/iconHandler';
 import BasicTable from '../../../components/BasicTable/BasicTable';
@@ -25,9 +26,7 @@ const History = ({ connectDragSource, connectDragPreview, connectDropTarget, isD
       )}
       <div className="panel-body hidden-xs">
         <div className="row">
-          {props.data.status === 'error' ? (
-            props.data.error
-          ) : (
+          <ErrorHandler {...props.response}>
             <ResponsiveContainer width="100%" height="100%" minHeight={200}>
               <LineChart margin={{ top: 0, right: 45, left: 0, bottom: 0 }} data={props.data.history}>
                 {props.legends.map(legend => (
@@ -49,18 +48,18 @@ const History = ({ connectDragSource, connectDragPreview, connectDropTarget, isD
                 <Legend />
               </LineChart>
             </ResponsiveContainer>
-          )}
+          </ErrorHandler>
         </div>
       </div>
       <div className="panel-body visible-xs-block">
-        {props.data.status === 'error' ? (
-          props.data.error
-        ) : (
-          <BasicTable
-            data={getTableDataFromHistory(props.data.history)}
-            headings={['Date', 'Open Bugs', 'Solved Bugs', 'New Bugs']}
-          />
-        )}
+        <ErrorHandler {...props.response}>
+          {props.data.history && (
+            <BasicTable
+              data={getTableDataFromHistory(props.data.history)}
+              headings={['Date', 'Open Bugs', 'Solved Bugs', 'New Bugs']}
+            />
+          )}
+        </ErrorHandler>
       </div>
       <div className="panel-footer">
         {props.description}
@@ -71,7 +70,7 @@ const History = ({ connectDragSource, connectDragPreview, connectDropTarget, isD
 
 History.propTypes = {
   data: PropTypes.shape({
-    history: PropTypes.arrayOf(PropTypes.object).isRequired,
+    history: PropTypes.arrayOf(PropTypes.object),
     status: PropTypes.string,
     error: PropTypes.string,
   }).isRequired,

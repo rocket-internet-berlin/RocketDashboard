@@ -7,7 +7,6 @@ import * as actions from '../../../src/actions/history/bugsHistory';
 sinonStubPromise(sinon); // Initialize sinon-stub-promise
 
 describe('bugsHistory response parsing', () => {
-
   const fakeWidgetDisplayed = { display: true };
   const fakeWidgetNotDisplayed = { display: false };
   let sandbox = null;
@@ -17,7 +16,7 @@ describe('bugsHistory response parsing', () => {
   };
   const expectedAction = {
     type: 'RECEIVE_BUGSHISTORY',
-    payload: json.data,
+    payload: json,
   };
 
   beforeEach(() => {

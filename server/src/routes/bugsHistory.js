@@ -20,6 +20,7 @@ router.get('/', (req, res, next) => {
     const saveCallback = (error, payload) => {
       if (error) {
         next(error);
+        return;
       }
       cacheService.set(cacheKey, payload);
       res.json(getResponseSuccess(payload));

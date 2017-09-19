@@ -5,6 +5,7 @@ import { compose } from 'redux';
 import { DragSource, DropTarget } from 'react-dnd';
 
 import formatter from '../../../lib/formatter';
+import ErrorHandler from '../../../components/ErrorHandler/ErrorHandler';
 import BasicTable from '../../../components/BasicTable/BasicTable';
 import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
@@ -25,25 +26,29 @@ const Funnel = ({ connectDragSource, connectDragPreview, connectDropTarget, isDr
       )}
       <div className="panel-body hidden-xs">
         <div className="row">
-          <ResponsiveContainer width="100%" minHeight={155}>
-            <AreaChart
-              data={props.data.results}
-              layout="vertical"
-              width={600}
-              height={165}
-              stackOffset="silhouette"
-              margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-            >
-              <XAxis tickFormatter={fixSilhouette} type="number" stroke="#b7b7b7" fill="#b7b7b7" />
-              <YAxis width={140} dataKey="name" type="category" stroke="#b7b7b7" fill="#b7b7b7" />
-              <Tooltip />
-              <Area type="monotone" dataKey="count" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-            </AreaChart>
-          </ResponsiveContainer>
+          <ErrorHandler {...props.response}>
+            <ResponsiveContainer width="100%" minHeight={155}>
+              <AreaChart
+                data={props.data.results}
+                layout="vertical"
+                width={600}
+                height={165}
+                stackOffset="silhouette"
+                margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
+              >
+                <XAxis tickFormatter={fixSilhouette} type="number" stroke="#b7b7b7" fill="#b7b7b7" />
+                <YAxis width={140} dataKey="name" type="category" stroke="#b7b7b7" fill="#b7b7b7" />
+                <Tooltip />
+                <Area type="monotone" dataKey="count" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </ErrorHandler>
         </div>
       </div>
       <div className="panel-body visible-xs-block">
-        {props.data.results && <BasicTable data={getTableData(props.data.results)} />}
+        <ErrorHandler {...props.response}>
+          {props.data.results && <BasicTable data={getTableData(props.data.results)} />}
+        </ErrorHandler>
       </div>
       <div className="panel-footer">
         {props.description || props.data.description}

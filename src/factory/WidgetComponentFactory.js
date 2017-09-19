@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'lodash/get';
 
 import Number from '../widgets/Number/components/Number';
 import History from '../widgets/History/components/History';
@@ -89,7 +90,8 @@ class WidgetComponentFactory {
       onHover: props.onHover,
       heading: widget.heading,
       iconType: widget.iconType,
-      data: props[widget.key],
+      data: get(props[widget.key], 'data', {}),
+      response: props[widget.key],
       widgetName: widget.key,
     };
   }
