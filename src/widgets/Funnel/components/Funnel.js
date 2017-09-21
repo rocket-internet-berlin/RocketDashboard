@@ -36,10 +36,27 @@ const Funnel = ({ connectDragSource, connectDragPreview, connectDropTarget, isDr
                 stackOffset="silhouette"
                 margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
               >
-                <XAxis tickFormatter={fixSilhouette} type="number" stroke="#b7b7b7" fill="#b7b7b7" />
-                <YAxis width={140} dataKey="name" type="category" stroke="#b7b7b7" fill="#b7b7b7" />
+                <XAxis
+                  tickFormatter={fixSilhouette}
+                  type="number"
+                  stroke={constants.chartColor.tickColor}
+                  fill={constants.chartColor.tickColor}
+                />
+                <YAxis
+                  width={140}
+                  dataKey="name"
+                  type="category"
+                  stroke={constants.chartColor.tickColor}
+                  fill={constants.chartColor.tickColor}
+                />
                 <Tooltip />
-                <Area type="monotone" dataKey="count" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
+                <Area
+                  type="monotone"
+                  dataKey="count"
+                  stackId="1"
+                  stroke={constants.chartColor.green}
+                  fill={constants.chartColor.green}
+                />
               </AreaChart>
             </ResponsiveContainer>
           </ErrorHandler>

@@ -147,9 +147,9 @@ const userSettings = {
       type: widgetType.history,
       heading: 'Bugs History',
       legends: [
-        { dataKey: 'openBugs', name: 'Open', color: '#1986ff' },
-        { dataKey: 'solvedBugs', name: 'Solved', color: '#9BB209' },
-        { dataKey: 'newBugs', name: 'New', color: '#FF2B19' },
+        { dataKey: 'openBugs', name: 'Open', color: constants.chartColor.blue },
+        { dataKey: 'solvedBugs', name: 'Solved', color: constants.chartColor.green },
+        { dataKey: 'newBugs', name: 'New', color: constants.chartColor.red },
       ],
     },
     {
@@ -190,7 +190,7 @@ const userSettings = {
       display: true,
       heading: 'StatusCake uptime history',
       type: widgetType.history,
-      legends: [{ dataKey: 'status', name: 'Status', color: '#1986ff' }],
+      legends: [{ dataKey: 'status', name: 'Status', color: constants.chartColor.blue }],
       dots: false,
       iconType: iconType.statuscake,
     },

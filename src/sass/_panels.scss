@@ -242,7 +242,7 @@
 }
 
 // Wide screen desktop
-@media (min-width: $screen-wide-min) {
+@media (min-width: $screen-wd-min) {
   .panel {
     .panel-heading {
       font-size: 24px;

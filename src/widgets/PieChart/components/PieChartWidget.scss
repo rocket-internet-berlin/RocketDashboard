@@ -12,6 +12,11 @@
   .recharts-pie-label-text {
     font-size: $font-size-normal;
   }
+
+  .recharts-legend-wrapper {
+    font-size: $font-size-small;
+    color: $rocket-gray;
+  }
 }
 
 :fullscreen {
@@ -21,5 +26,6 @@
 
   .recharts-legend-item {
     font-size: $font-size-big;
+    color: $rocket-gray;
   }
 }

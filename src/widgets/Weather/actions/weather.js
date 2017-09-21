@@ -4,6 +4,7 @@ import { fetchApi } from '../../../lib/fetchApi';
 import WidgetStore from '../../../containers/WidgetList/stores/WidgetStore';
 
 export const onReceive = createAction('RECEIVE_WEATHER', json => json);
+export const onReceiveForecast = createAction('RECEIVE_FORECAST', json => json);
 
 export const refresh = () => dispatch => {
   const widget = WidgetStore.getWidget('weather');
@@ -13,4 +14,5 @@ export const refresh = () => dispatch => {
   }
 
   fetchApi('weather/current').then(json => dispatch(onReceive(json)));
+  fetchApi('weather/forecast').then(json => dispatch(onReceiveForecast(json)));
 };

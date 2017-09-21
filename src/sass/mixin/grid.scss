@@ -1,0 +1,55 @@
+// Generate the wide screen columns
+@mixin make-wd-column($columns, $gutter: $grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  ($gutter / 2);
+  padding-right: ($gutter / 2);
+
+  @media (min-width: $screen-wd-min) {
+    float: left;
+    width: percentage(($columns / $grid-columns));
+  }
+}
+@mixin make-wd-column-offset($columns) {
+  @media (min-width: $screen-wd-min) {
+    margin-left: percentage(($columns / $grid-columns));
+  }
+}
+@mixin make-wd-column-push($columns) {
+  @media (min-width: $screen-wd-min) {
+    left: percentage(($columns / $grid-columns));
+  }
+}
+@mixin make-wd-column-pull($columns) {
+  @media (min-width: $screen-wd-min) {
+    right: percentage(($columns / $grid-columns));
+  }
+}
+
+// Generate the extra wide screen columns
+@mixin make-xw-column($columns, $gutter: $grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  ($gutter / 2);
+  padding-right: ($gutter / 2);
+
+  @media (min-width: $screen-xw-min) {
+    float: left;
+    width: percentage(($columns / $grid-columns));
+  }
+}
+@mixin make-xw-column-offset($columns) {
+  @media (min-width: $screen-xw-min) {
+    margin-left: percentage(($columns / $grid-columns));
+  }
+}
+@mixin make-xw-column-push($columns) {
+  @media (min-width: $screen-xw-min) {
+    left: percentage(($columns / $grid-columns));
+  }
+}
+@mixin make-xw-column-pull($columns) {
+  @media (min-width: $screen-xw-min) {
+    right: percentage(($columns / $grid-columns));
+  }
+}

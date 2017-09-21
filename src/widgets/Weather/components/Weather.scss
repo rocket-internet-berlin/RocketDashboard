@@ -1,3 +1,62 @@
+@import 'variables';
+
 .weather-image {
-  width: 38px;
+  width: 50px;
+}
+
+.Weather {
+  .current {
+    font-size: $font-size-huge;
+    color: $main-color;
+    line-height: ($font-size-huge * 1.1);
+  }
+
+  .panel-body {
+    height: 65%;
+  }
+
+  .row {
+    height: 100%;
+  }
+
+  .weather-chart {
+    width: 70%;
+    position: absolute;
+    right: 0;
+  }
+
+  .custom-tooltip {
+    width: 200px;
+    padding: 15px;
+    background-color: $light-bg-color;
+    color: $primary-text-color;
+
+    .temp-min {
+      color: $green;
+    }
+
+    .temp-max {
+      color: $red;
+    }
+  }
+}
+
+// Tablet and laptop
+@media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+  .Weather {
+    .current {
+      font-size: 84px;
+    }
+  }
+}
+
+*:fullscreen {
+  .current {
+    font-size: ($font-size-fullscreen * 0.75);
+    line-height: 1.5;
+  }
+
+  .weather-chart {
+    height: 50%;
+  }
 }

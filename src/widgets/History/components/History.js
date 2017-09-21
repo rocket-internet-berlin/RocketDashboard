@@ -42,8 +42,14 @@ const History = ({ connectDragSource, connectDragPreview, connectDropTarget, isD
                   />
                 ))}
                 <CartesianGrid stroke="#e7e7e7" strokeDasharray="2 4" />
-                <XAxis dataKey="date" stroke="#b7b7b7" tickSize={10} height={70} tick={<CustomizedAxisTick />} />
-                <YAxis stroke="#b7b7b7" tickSize={10} padding={{ top: 20 }} />
+                <XAxis
+                  dataKey="date"
+                  stroke={constants.chartColor.tickColor}
+                  tickSize={10}
+                  height={70}
+                  tick={<CustomizedAxisTick />}
+                />
+                <YAxis stroke={constants.chartColor.tickColor} tickSize={10} padding={{ top: 20 }} />
                 <Tooltip />
                 <Legend />
               </LineChart>
