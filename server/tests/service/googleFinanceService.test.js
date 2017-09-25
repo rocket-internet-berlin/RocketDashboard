@@ -2,13 +2,12 @@
 import forEach from 'lodash/forEach';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-
 import GoogleFinanceService from '../../src/service/googleFinanceService';
 import constants from '../../src/config/constants';
 
 describe('GoogleFinanceService', () => {
   const testCompany = 'testCompany';
-  const validConfig = { stockTicker: 'testStock', company: testCompany };
+  const validConfig = {stockTicker: 'testStock', company: testCompany};
 
   describe('#constructor - Config schema validation', () => {
     it('Should not throw any error when passed a valid config', () => {
@@ -18,7 +17,7 @@ describe('GoogleFinanceService', () => {
     });
 
     it('Should throw error when passed an invalid config', () => {
-      const incompleteConfig = { company: 'testCompany' }; // stockTicker key not present, should throw error
+      const incompleteConfig = {company: 'testCompany'}; // stockTicker key not present, should throw error
 
       expect(() => {
         const googleFinanceService = new GoogleFinanceService(incompleteConfig);
@@ -36,15 +35,26 @@ describe('GoogleFinanceService', () => {
     });
 
     it('Returns correct data when Google returns valid stock data', () => {
-      axiosMock.onGet(googleFinanceService.buildStockPriceFetchUrl()).reply(200,
-        '// [ { "id": "343738966354611" ,"t" : "RKET" ,"e" : "FRA" ,"l" : "19.21" ,"l_fix" : "19.21" ,"l_cur" : "€19.21" ,"s": "0" ,"ltt":"8:03AM GMT+2" ,"lt" : "Sep 1, 8:03AM GMT+2" ,"lt_dts" : "2017-09-01T08:03:11Z" ,"c" : "-0.17" ,"c_fix" : "-0.17" ,"cp" : "-0.87" ,"cp_fix" : "-0.87" ,"ccol" : "chr" ,"pcls_fix" : "19.367" } ]',
-      );
+      axiosMock.onGet(googleFinanceService.buildStockPriceFetchUrl()).reply(200, `
+        <div id="price-panel" class="id-price-panel goog-inline-block">
+          <div>
+            <span class="pr">
+              <span id="ref_343738966354611_l">20.55</span>
+            </span>
+            <div class="id-price-change nwp goog-inline-block">
+              <span class="ch bld"><span class="chr" id="ref_343738966354611_c">-0.08</span>
+                <span class="chr" id="ref_343738966354611_cp">(-0.37%)</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      `);
 
       return googleFinanceService.fetchStockPrice().then(function (result) {
         const expectedResult = {
-          current: 19.21,
-          change: -0.17,
-          previous: 19.38,
+          current: 20.55,
+          change: -0.08,
+          previous: 20.63,
           heading: testCompany,
         };
 
@@ -64,30 +74,9 @@ describe('GoogleFinanceService', () => {
       });
     });
 
-    it('Returns empty object when Google does not return valid JSON', () => {
-      axiosMock.onGet(googleFinanceService.buildStockPriceFetchUrl()).reply(200,
-        'invalid response',
-      );
-
-      return googleFinanceService.fetchStockPrice().then(function (result) {
-        expect(result).toEqual({});
-      });
-    });
-
-    it('Returns empty object when Google returns valid JSON but without the stock price', () => {
-      axiosMock.onGet(googleFinanceService.buildStockPriceFetchUrl()).reply(200,
-        '// [ { "id": "343738966354611" ,"t" : "RKET" ,"e" : "FRA" ,"l" : "19.21", "c_fix" : "-0.17" } ]',
-      );
-
-      return googleFinanceService.fetchStockPrice().then(function (result) {
-        expect(result).toEqual({});
-      });
-    });
-
-    it('Returns empty object when Google returns valid JSON but without the last change in stock price', () => {
-      axiosMock.onGet(googleFinanceService.buildStockPriceFetchUrl()).reply(200,
-        '// [ { "id": "343738966354611" ,"t" : "RKET" ,"e" : "FRA" ,"l" : "19.21", "l_fix" : "-0.17" } ]',
-      );
+    it('Return empty object if properties missing from response', () => {
+      const googleFinanceUrl = googleFinanceService.buildStockPriceFetchUrl();
+      axiosMock.onGet(googleFinanceUrl).reply(200, {});
 
       return googleFinanceService.fetchStockPrice().then(function (result) {
         expect(result).toEqual({});
