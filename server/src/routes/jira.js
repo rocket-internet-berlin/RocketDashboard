@@ -7,5 +7,6 @@ const router = express.Router();
 router.get('/in-progress', createCachedRouterCallback(jiraService.fetchInProgress.bind(jiraService)));
 router.get('/selected-for-development', createCachedRouterCallback(jiraService.fetchSelectedForDevelopment.bind(jiraService)));
 router.get('/ready-for-qa', createCachedRouterCallback(jiraService.fetchReadyForQA.bind(jiraService)));
+router.get('/summary', createCachedRouterCallback(jiraService.getSummary.bind(jiraService)));
 
 export default router;

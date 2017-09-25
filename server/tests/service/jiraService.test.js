@@ -85,4 +85,88 @@ describe('JiraService', () => {
         });
     });
   });
+
+  describe('#getSummary', () => {
+    it('Should return valid data', () => {
+      const jiraService = new JiraService(validConfig);
+      const fakeResponseFromJira = {
+        total: 24,
+        issues: [{
+          id: '432564',
+          fields: {
+            status: { name: 'In Progress' },
+          },
+        }, {
+          id: '432138',
+          fields: {
+            status: { name: 'In Development' },
+          },
+        }, {
+          id: '432126',
+          fields: {
+            status: { name: 'Selected for Development' },
+          },
+        }, {
+          id: '431930',
+          fields: {
+            status: { name: 'Ready for QA' },
+          },
+        }, {
+          id: '431809',
+          fields: {
+            status: { name: 'Ready for QA (Stage)' },
+          },
+        }, {
+          id: '431734',
+          fields: {
+            status: { name: 'Ready for QA (Testsystem)' },
+          },
+        }],
+      };
+
+      const expectedResult = [
+        { name: 'In Progress', value: 2 },
+        { name: 'Selected for Development', value: 1 },
+        { name: 'Ready for QA', value: 3 },
+      ];
+
+      sinon.stub(jiraService.jira, 'searchJira').returnsPromise();
+      jiraService.jira.searchJira.resolves(fakeResponseFromJira);
+
+      return jiraService.getSummary()
+        .then(response => {
+          expect(jiraService.jira.searchJira.calledOnce).toBe(true);
+          expect('results' in response).toBe(true);
+          expect(response.results).toEqual(expectedResult);
+          expect('updated' in response).toBe(true);
+          expect(new Date(response.updated)).not.toBe('Invalid date');
+        });
+    });
+  });
+
+  describe('##getCountGroupedByIssueStatus', () => {
+    it('calculates issue count correctly', () => {
+      const fakeResponseFromJira = {
+        total: 24,
+        issues: [{
+          id: '432564',
+          fields: {
+            status: { name: 'In Progress' },
+          },
+        }, {
+          id: '432138',
+          fields: {
+            status: { name: 'InDevelopment' },
+          },
+        }],
+      };
+
+      const result = JiraService.getCountGroupedByIssueStatus(fakeResponseFromJira);
+      expect(result).toHaveLength(3);
+      expect(result).toEqual(expect.arrayContaining([{ name: 'In Progress', value: 1 }]));
+      expect(result).toEqual(expect.arrayContaining([{ name: 'Selected for Development', value: 0 }]));
+      expect(result).toEqual(expect.arrayContaining([{ name: 'Ready for QA', value: 0 }]));
+      expect(result).not.toEqual(expect.arrayContaining([{ name: 'InDevelopment', value: 0 }]));
+    });
+  });
 });

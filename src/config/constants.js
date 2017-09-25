@@ -11,6 +11,7 @@ const constants = {
     finance: 'finance',
     weather: 'weather',
     github: 'githubPr',
+    pieChart: 'pieChart',
   },
   iconType: {
     jira: 'jira',

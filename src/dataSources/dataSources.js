@@ -22,6 +22,7 @@ const dataSources = [
   { key: 'jiraInProgress', fetchFunction: () => fetchApi('jira/in-progress') },
   { key: 'jiraSelectedForDevelopment', fetchFunction: () => fetchApi('jira/selected-for-development') },
   { key: 'jiraReadyForQa', fetchFunction: () => fetchApi('jira/ready-for-qa') },
+  { key: 'jiraSummary', fetchFunction: () => fetchApi('jira/summary') },
   { key: 'customNumber', fetchFunction: () => fetchUrl('http://www.mocky.io/v2/5996ec35130000c4008b77f9') },
   { key: 'github', fetchFunction: () => fetchApi('github/pr') },
   {
