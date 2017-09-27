@@ -1,10 +1,11 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
 import Text from '../../../../src/widgets/Text/components/Text';
 import formatter from '../../../../src/lib/formatter';
 import iconHandler from '../../../../src/lib/iconHandler';
+import constants from '../../../../src/config/constants';
 
 describe('Text component', () => {
   // Obtain the reference to the component before React DnD wrapping
@@ -53,6 +54,22 @@ describe('Text component', () => {
   it('contains the supplied icon', () => {
     expect(widget.find('.panel-heading').contains(testIcon)).toBe(true);
     expect(getIconPartialStub.callCount).toBe(1);
+    expect(getIconPartialStub.calledWith(testIconType)).toBe(true);
+  });
+
+  it('displayes fallback text', () => {
+    const loadingWidget = mount(
+      <OriginalWidget
+        connectDragSource={identity}
+        connectDropTarget={identity}
+        data={{}}
+        heading={testHeading}
+        iconType={testIconType}
+      />,
+    );
+
+    expect(loadingWidget.find('.panel-body').text()).toEqual(constants.loadingData);
+    expect(getIconPartialStub.callCount).toBe(2); // 1 called in beforeEach
     expect(getIconPartialStub.calledWith(testIconType)).toBe(true);
   });
 

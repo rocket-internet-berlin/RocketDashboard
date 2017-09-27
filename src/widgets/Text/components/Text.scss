@@ -4,6 +4,11 @@
   font-size: 22px;
   color: $rocket-gray;
 
+  .loading {
+    color: $main-color;
+    font-size: 32px;
+  }
+
   &.twitterFeed {
     font-size: 18px;
   }

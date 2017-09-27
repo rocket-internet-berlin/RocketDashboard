@@ -10,9 +10,13 @@ import { dragSource, dropTarget, draggingStyle } from '../../../lib/draggable';
 import constants from '../../../config/constants';
 import './Text.scss';
 
-const createRawHtml = rawText => ({
-  __html: rawText,
-});
+const createRawHtml = rawText => {
+  const loadingText = `<span class="loading">${constants.loadingData}</span>`;
+  const text = rawText || loadingText;
+  return {
+    __html: text,
+  };
+};
 
 const getClassNames = widgetName => `panel Text ${widgetName}`;
 
