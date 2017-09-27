@@ -49,7 +49,9 @@ export const WidgetList = props => {
 
   return (
     <div className="WidgetList">
-      <div className="row">{renderWidgetList()}</div>
+      <div className="container-fluid">
+        <div className="row">{renderWidgetList()}</div>
+      </div>
     </div>
   );
 };

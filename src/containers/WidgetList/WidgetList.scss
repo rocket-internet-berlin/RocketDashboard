@@ -4,6 +4,10 @@
 
 .WidgetList {
   margin: $space-small;
+
+  .container-fluid {
+    overflow: hidden;
+  }
 }
 
 @media (min-width: $screen-md-min) {
