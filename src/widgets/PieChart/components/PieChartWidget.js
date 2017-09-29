@@ -12,7 +12,7 @@ import iconHandler from '../../../lib/iconHandler';
 import './PieChartWidget.scss';
 
 export const getTableData = data => data.map(el => [el.name, el.value]);
-const COLORS = ['#0088FE', '#00C49F', '#FF2B19'];
+const COLORS = [constants.chartColor.red, constants.chartColor.blue, constants.chartColor.green];
 
 const PieChartWidget = ({ connectDragSource, connectDragPreview, connectDropTarget, isDragging, isOver, ...props }) =>
   compose(connectDragSource, connectDropTarget)(

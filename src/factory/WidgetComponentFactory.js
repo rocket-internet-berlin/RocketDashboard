@@ -22,7 +22,7 @@ class WidgetComponentFactory {
         const numberProps = WidgetComponentFactory.getNumberProps(widget, props);
 
         return (
-          <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+          <div className={WidgetComponentFactory.getClassName(widgetType.number, key)} key={key}>
             <Number {...numberProps} />
           </div>
         );
@@ -32,7 +32,7 @@ class WidgetComponentFactory {
         const breakdownProps = WidgetComponentFactory.getBreakdownProps(widget, props);
 
         return (
-          <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+          <div className={WidgetComponentFactory.getClassName(widgetType.breakdown, key)} key={key}>
             <Breakdown {...breakdownProps} />
           </div>
         );
@@ -42,7 +42,7 @@ class WidgetComponentFactory {
         const funnelProps = WidgetComponentFactory.getFunnelProps(widget, props);
 
         return (
-          <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+          <div className={WidgetComponentFactory.getClassName(widgetType.funnel, key)} key={key}>
             <Funnel {...funnelProps} />
           </div>
         );
@@ -52,7 +52,7 @@ class WidgetComponentFactory {
         const historyProps = WidgetComponentFactory.getHistoryProps(widget, props);
 
         return (
-          <div className="col-xs-12" key={key}>
+          <div className={WidgetComponentFactory.getClassName(widgetType.history, key)} key={key}>
             <History {...historyProps} />
           </div>
         );
@@ -62,7 +62,7 @@ class WidgetComponentFactory {
         const textProps = WidgetComponentFactory.getTextProps(widget, props);
 
         return (
-          <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+          <div className={WidgetComponentFactory.getClassName(widgetType.text, key)} key={key}>
             <Text {...textProps} />
           </div>
         );
@@ -72,7 +72,7 @@ class WidgetComponentFactory {
         const watherProps = WidgetComponentFactory.getWeatherProps(widget, props);
 
         return (
-          <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+          <div className={WidgetComponentFactory.getClassName(widgetType.weather, key)} key={key}>
             <Weather {...watherProps} />
           </div>
         );
@@ -82,7 +82,7 @@ class WidgetComponentFactory {
         const pieChartProps = WidgetComponentFactory.getPieChartProps(widget, props);
 
         return (
-          <div className="col-xs-12 col-sm-6 col-md-3" key={key}>
+          <div className={WidgetComponentFactory.getClassName(widgetType.pieChart, key)} key={key}>
             <PieChartWidget {...pieChartProps} />
           </div>
         );
@@ -103,6 +103,10 @@ class WidgetComponentFactory {
     }
 
     return null;
+  }
+
+  static getClassName(type, key) {
+    return `widget ${key} ${type}-widget`;
   }
 
   static getGenericProps(widget, props) {

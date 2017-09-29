@@ -1,6 +1,8 @@
 import axios from 'axios';
 import isObject from 'lodash/isObject';
 import isEmpty from 'lodash/isEmpty';
+import forEach from 'lodash/forEach';
+import moment from 'moment';
 
 import validateSchema from '../helper/validator';
 
@@ -42,8 +44,44 @@ class WeatherService {
       });
   }
 
+  fetchWeatherForecast() {
+    return axios.get(this.buildWeatherForcastUrl())
+      .then((payload) => {
+        if (isEmpty(payload.data) || !isObject(payload.data)) {
+          return {};
+        }
+
+        const weatherData = payload.data;
+        return ({
+          result: WeatherService.formatDataForChart(weatherData),
+          updated: new Date(),
+        });
+      });
+  }
+
+  static formatDataForChart(response) {
+    const result = [];
+
+    forEach(response.list, (resp) => {
+      const dt = moment(resp.dt, 'X');
+      result.push({
+        date: dt.format('DD-MMM'),
+        temperature: [resp.temp.min, resp.temp.max],
+        temp_min: resp.temp.min,
+        temp_max: resp.temp.max,
+        icon: resp.weather[0].icon,
+      });
+    });
+
+    return result;
+  }
+
   buildWeatherInfoUrl() {
     return `http://api.openweathermap.org/data/2.5/weather?id=${this.apiCityId}&appid=${this.apiKey}&units=metric`;
+  }
+
+  buildWeatherForcastUrl() {
+    return `http://api.openweathermap.org/data/2.5/forecast/daily?id=${this.apiCityId}&appid=${this.apiKey}&units=metric&cnt=7`;
   }
 }
 

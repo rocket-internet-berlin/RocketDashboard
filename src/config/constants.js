@@ -36,6 +36,12 @@ const constants = {
     github: 'icons/icon-github-logo.png',
     instagram: 'icons/icon-instagram-logo.png',
   },
+  chartColor: {
+    green: '#6abf69',
+    blue: '#039be5',
+    red: '#ff6659',
+    tickColor: '#b7b7b7',
+  },
   draggableType: {
     smallWidget: 'smallWidget',
   },

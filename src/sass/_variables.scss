@@ -1,22 +1,23 @@
 @import "bootstrap/variables";
 
 // grid
-$grid-gutter-width: 20px;
+$grid-gutter-width: 10px;
 
-$primary-bg-color: #1b1b1b;
-$secondary-bg-color: #424242;
-$light-bg-color: #565656;
+$primary-bg-color: #005c6d; // #1b1b1b;
+$secondary-bg-color: #003242; // #424242;
+$light-bg-color: #408191; // #565656;
 
 $primary-text-color: #eeeeee;
-$secondary-text-color: #a5a5a5;
+$secondary-text-color: #d7d7d7; // #a5a5a5;
 
 // colors
-$main-color: #1986ff;
+$main-color: #039be5; // #1986ff;
 $default-bg-color: $primary-bg-color;
 $rocket-gray: #b7b7b7;
 $rocket-dark: #2D3239;
-$green: #9bb209;
-$red: #ff2b19;
+$blue: $main-color;
+$green: #6abf69; // #9bb209;
+$red: #ff6659; // #ff2b19;
 $negative-color: $red;
 $positive-color: $green;
 $white: #ffffff;
@@ -24,6 +25,9 @@ $white: #ffffff;
 $body-bg: $primary-bg-color !default;
 $panel-bg: $secondary-bg-color;
 $text-color: $primary-text-color;
+
+$link-color: $blue;
+$link-hover-color: #337ab7;
 
 // spaces
 $space-small : 5px;
@@ -49,8 +53,8 @@ $widget-heading-color: $secondary-text-color;
 $widget-border-color: #e5e5e5;
 
 // Charts
-$charts-rectangle-fill: #1986ff;
-$charts-label-fill: #1986ff;
+$charts-rectangle-fill: $main-color;
+$charts-label-fill: $main-color;
 
 // bugs history chart
 // (note: the variables below are not used, they are added here only as a memo)
@@ -69,7 +73,13 @@ $panel-border-radius: 0;
 // $screen-laptop-max: ($screen-lg-min - 1) !default;
 
 // Wide screen desktop
-$screen-wide:         1440px !default;
-$screen-wide-min:     $screen-wide !default;
-$screen-wide-desktop: $screen-wide-min !default;
-$screen-lg-max:       ($screen-wide-min - 1) !default;
+$screen-wd:         1440px !default;
+$screen-wd-min:     $screen-wd !default;
+$screen-wd-desktop: $screen-wd-min !default;
+$screen-lg-max:     ($screen-wd-min - 1) !default;
+
+// Extra Wide screen desktop
+$screen-xw:         1600px !default;
+$screen-xw-min:     $screen-xw !default;
+$screen-xw-desktop: $screen-xw-min !default;
+$screen-wd-max:       ($screen-xw-min - 1) !default;

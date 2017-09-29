@@ -1,3 +1,5 @@
+@import 'variables';
+
 body {
   background: $default-bg-color;
   padding: 0;
@@ -14,5 +16,13 @@ body {
   .container-fluid {
     padding-left: 0;
     padding-right: 0;
+  }
+}
+
+a {
+  color: $link-color;
+
+  &:hover {
+    color: $link-hover-color;
   }
 }

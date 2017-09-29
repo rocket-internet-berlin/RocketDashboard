@@ -48,8 +48,8 @@ describe('weather response parsing', () => {
 
     fetchApiStub.resolves(json);
 
-    expect(fetchApiStub.callCount).toBe(1);
-    expect(dispatchStub.callCount).toBe(1);
+    expect(fetchApiStub.callCount).toBe(2); // We are making 2 calls for weather widget
+    expect(dispatchStub.callCount).toBe(2); // 1 for current weather and 1 for next 7 days
     expect(dispatchStub.getCalls()[0].args[0]).toEqual(expectedAction);
   });
 

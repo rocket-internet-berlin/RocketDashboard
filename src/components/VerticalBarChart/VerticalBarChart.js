@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts';
-import './VerticalBarChart.scss';
 
-const VerticalBarChart = ({ data }) =>
+import './VerticalBarChart.scss';
+import constants from '../../config/constants';
+
+const VerticalBarChart = ({ data }) => (
   <div className="VerticalBarChart">
     <ResponsiveContainer width="100%" height={155}>
       <BarChart
@@ -16,10 +18,11 @@ const VerticalBarChart = ({ data }) =>
         <XAxis type="number" hide />
         <YAxis dataKey="key" type="category" tick={<CustomizedAxisTick />} />
         <Tooltip />
-        <Bar legendType="line" dataKey="value" barSize={15} label={{ fontSize: 20 }} />
+        <Bar legendType="line" dataKey="value" barSize={15} label={{ fontSize: 20 }} fill={constants.chartColor.blue} />
       </BarChart>
     </ResponsiveContainer>
-  </div>;
+  </div>
+);
 
 VerticalBarChart.propTypes = {
   data: PropTypes.arrayOf(
@@ -30,12 +33,13 @@ VerticalBarChart.propTypes = {
   ).isRequired,
 };
 
-const CustomizedAxisTick = ({ x, y, payload }) =>
+const CustomizedAxisTick = ({ x, y, payload }) => (
   <g transform={`translate(${x},${y})`}>
-    <text x="10" y="-10" dy="0" textAnchor="start" fill="#b7b7b7">
+    <text x="10" y="-10" dy="0" textAnchor="start" fill={constants.chartColor.tickColor}>
       {payload.value}
     </text>
-  </g>;
+  </g>
+);
 
 CustomizedAxisTick.propTypes = {
   x: PropTypes.number,
