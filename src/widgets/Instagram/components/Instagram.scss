@@ -1,0 +1,13 @@
+.Instagram {
+  .panel-body {
+    min-height: 155px;
+  }
+}
+
+*:fullscreen {
+  .Instagram {
+    .panel-body {
+      min-height: 78%;
+    }
+  }
+}

@@ -3,6 +3,7 @@ import { refresh as refreshBugsHistory } from './history/bugsHistory';
 import { refresh as refreshFinance } from './finance/finance';
 import { refresh as refreshWeather } from '../widgets/Weather/actions/weather';
 import { refresh as refreshStatusCakeHistory } from './history/statusCakeHistory';
+import { refresh as refreshInstagram } from '../widgets/Instagram/actions/instagram';
 import { showModal, closeModal } from '../components/WidgetSettings/actions/widgetSettings';
 import dataSources from '../dataSources/dataSources';
 
@@ -12,6 +13,7 @@ const refreshAll = () => dispatch => {
   dispatch(refreshStatusCakeHistory());
   dispatch(refreshFinance());
   dispatch(refreshWeather());
+  dispatch(refreshInstagram());
   dataSources.forEach(dataSource => {
     dispatch(refreshGeneric(dataSource));
   });

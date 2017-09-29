@@ -202,6 +202,13 @@ const userSettings = {
       heading: 'Jira Summary',
       type: widgetType.pieChart,
     },
+    {
+      id: uuidv4(),
+      key: 'instagram',
+      display: true,
+      iconType: iconType.instagram,
+      type: widgetType.instagram,
+    },
   ],
 };
 

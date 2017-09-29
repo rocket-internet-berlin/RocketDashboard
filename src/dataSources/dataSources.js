@@ -36,6 +36,7 @@ const dataSources = [
   },
   { key: 'weather', fetchFunction: () => fetchApi('weather/current') },
   { key: 'twitterFeed', fetchFunction: () => fetchApi('twitter/feed') },
+  { key: 'instagram', fetchFunction: () => fetchApi('instagram/location') },
 ];
 
 export default dataSources;

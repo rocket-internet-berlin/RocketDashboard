@@ -8,6 +8,7 @@ import WeatherService from './weatherService';
 import StatusCakeService from './statusCakeService';
 import TwitterService from './twitterService';
 import GithubService from './githubService';
+import InstagramService from './instagramService';
 import config from '../config';
 
 const googleSheetsService = new GoogleSheetsService(config.google);
@@ -20,6 +21,7 @@ const weatherService = new WeatherService(config.weather);
 const statusCakeService = new StatusCakeService(config.statusCake);
 const twitterService = new TwitterService(config.twitter);
 const githubService = new GithubService(config.github);
+const instagramService = new InstagramService(config.instagram);
 
 export {
   cacheService,
@@ -32,4 +34,5 @@ export {
   statusCakeService,
   twitterService,
   githubService,
+  instagramService,
 };

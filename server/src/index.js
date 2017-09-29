@@ -16,6 +16,7 @@ import loggerMiddleware from './middleware/loggerMiddleware';
 import triviaRoute from './routes/trivia';
 import statusCakeRoute from './routes/statusCakeHistory';
 import twitterRoute from './routes/twitter';
+import instagramRoute from './routes/instagram';
 
 const app = express();
 const ROUTE_PREFIX = '/api';
@@ -50,6 +51,7 @@ app.use(`${ROUTE_PREFIX}/jira`, jiraRoute);
 app.use(`${ROUTE_PREFIX}/trivia`, triviaRoute);
 app.use(`${ROUTE_PREFIX}/twitter`, twitterRoute);
 app.use(`${ROUTE_PREFIX}/statusCakeHistory`, statusCakeRoute);
+app.use(`${ROUTE_PREFIX}/instagram`, instagramRoute);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

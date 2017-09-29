@@ -12,6 +12,7 @@ const constants = {
     weather: 'weather',
     github: 'githubPr',
     pieChart: 'pieChart',
+    instagram: 'instagram',
   },
   iconType: {
     jira: 'jira',
@@ -22,6 +23,7 @@ const constants = {
     statuscake: 'statuscake',
     twitter: 'twitter',
     github: 'github',
+    instagram: 'instagram',
   },
   iconSrc: {
     jira: 'icons/icon-jira-logo.png',
@@ -32,6 +34,7 @@ const constants = {
     statuscake: 'icons/icon-statuscake-logo.png',
     twitter: 'icons/icon-twitter-logo.png',
     github: 'icons/icon-github-logo.png',
+    instagram: 'icons/icon-instagram-logo.png',
   },
   draggableType: {
     smallWidget: 'smallWidget',
