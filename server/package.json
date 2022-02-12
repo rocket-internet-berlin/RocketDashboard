@@ -13,7 +13,7 @@
     "test:watch": "yarn test -- --watchAll"
   },
   "dependencies": {
-    "ajv": "^5.1.5",
+    "ajv": "^6.12.3",
     "apicache": "^0.8.6",
     "axios": "^0.16.2",
     "body-parser": "~1.17.1",
