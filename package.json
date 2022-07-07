@@ -6,7 +6,7 @@
     "bootstrap": "^3.3.7",
     "concurrently": "^3.4.0",
     "lodash": "^4.17.4",
-    "moment": "^2.18.1",
+    "moment": "^2.29.4",
     "prop-types": "^15.5.9",
     "react": "^15.5.4",
     "react-addons-test-utils": "^15.5.1",
